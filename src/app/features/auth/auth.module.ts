@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './login/login.component';
-import { RecoverPassComponent } from './recover-pass/recover-pass.component';
+import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { ChangePassComponent } from './change-pass/change-pass.component';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 @NgModule({
-  declarations: [LoginComponent, RecoverPassComponent, SignupComponent, ChangePassComponent],
+  declarations: [SigninComponent, SignupComponent, ForgotPassComponent],
   imports: [CommonModule, AuthRoutingModule],
 })
 export class AuthModule {}
