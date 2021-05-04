@@ -1,7 +1,7 @@
 {
   "hooks": {
-    "pre-commit": "sass-lint -v && ng lint",
-    "pre-push": "ng test --code-coverage",
+    "pre-commit": "npm run lint",
+    "pre-push": "npm run test",
     "commit-msg": "echo $HUSKY_GIT_PARAMS"
   }
 }

@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "node --max-old-space-size=16384 ./node_modules/@angular/cli/bin/ng test --code-coverage --browsers ChromeHeadless",
-    "lint": "ng lint",
+    "lint": "sass-lint -v && ng lint",
     "e2e": "ng e2e"
   },
   "repository": {
