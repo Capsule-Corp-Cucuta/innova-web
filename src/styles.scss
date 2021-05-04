@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$innova-web-primary: mat-palette($mat-blue);
+$innova-web-accent: mat-palette($mat-blue-gray, A200, A100, A400);
+$innova-web-warn: mat-palette($mat-deep-orange);
+
+$innova-web-theme: mat-light-theme(
+  (
+    color: (
+      primary: $innova-web-primary,
+      accent: $innova-web-accent,
+      warn: $innova-web-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($innova-web-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
