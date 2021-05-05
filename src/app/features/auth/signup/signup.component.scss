@@ -1,0 +1,78 @@
+@import '../../../shared/styles/colors';
+
+.page {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.card {
+  border-top: 4px solid $primary-red;
+  width: 40rem;
+
+  &--footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    &--link {
+      color: $secondary-red;
+      font-size: 1.3rem;
+      padding-right: 1rm;
+    }
+  }
+}
+
+.header {
+  &__title {
+    display: flex;
+    font-size: 1.9rem;
+    width: 45rem;
+
+    &--icon {
+      font-size: 2rem;
+      margin-right: 2rem;
+    }
+
+    &--text {
+      margin: 0;
+    }
+  }
+}
+
+.form {
+  &__content {
+    display: grid;
+    padding-top: 1rem;
+
+    &--group {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &--avatar {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 1rem;
+    }
+
+    &--avatar-img {
+      width: 30rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.body {
+  margin: 0;
+  min-height: calc(100% - 19.4rem);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
