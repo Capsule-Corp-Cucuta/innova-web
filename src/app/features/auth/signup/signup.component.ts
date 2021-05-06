@@ -3,11 +3,13 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
+
 export class SignupComponent implements OnInit {
   public form: FormGroup;
   public isBusiness = false;
@@ -58,3 +60,4 @@ export class SignupComponent implements OnInit {
     });
   }
 }
+
