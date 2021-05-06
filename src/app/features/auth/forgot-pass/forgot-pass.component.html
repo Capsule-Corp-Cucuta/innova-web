@@ -19,17 +19,10 @@
           <input placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" matInput type="email" />
         </mat-form-field>
 
-        <div *ngIf="error" class="error">
-          <p>
-            {{ invalido }}
-          </p>
-        </div>
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button mat-raised-button color="warn" class="full-width" class="form__actions--button" (click)="request()">
-          {{ LABELS.BUTTON }}
-        </button>
+        <button mat-raised-button color="warn" class="full-width" class="form__actions--button" (click)="request()" [disabled]="form.invalid">{{ LABELS.BUTTON }}</button>
       </mat-card-actions>
     </form>
 

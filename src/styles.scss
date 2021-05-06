@@ -15,7 +15,6 @@ $innova-web-theme: mat-light-theme(
 @include angular-material-theme($innova-web-theme);
 html,
 body {
-  background-color: #ececeb;
   font-size: 10px;
   height: 100%;
   overflow-x: hidden;

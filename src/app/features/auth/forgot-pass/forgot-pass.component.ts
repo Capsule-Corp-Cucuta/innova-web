@@ -3,22 +3,23 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { IconConstants } from '../../../shared/constants/icon-constants';
+import { LinkConstants } from 'src/app/shared/constants/link-constants';
 
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
-  styleUrls: ['./forgot-pass.component.scss'],
+  styleUrls: ['../../../shared/styles/auth.component.scss'],
 })
 
 export class ForgotPassComponent implements OnInit {
 
   public form:FormGroup;
-  public error = false;
-  public invalido:string;
+ 
 
   public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
-  public readonly ICONS = LabelConstants.ICONS;
-  public readonly LINKS = LabelConstants.LINKS;
+  public readonly ICONS = IconConstants.ICONS;
+  public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
 
   constructor(private formBuilder: FormBuilder) {
@@ -28,12 +29,8 @@ export class ForgotPassComponent implements OnInit {
   ngOnInit(): void {}
 
   public request(): void {
-    this.error = false;
     if (this.form.valid) {
-    } else {
-      this.error = true;
-      this.invalido = 'Campo invalido !!!';
-    }
+    } 
   }
 
   private buildForm() {

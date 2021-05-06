@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IconConstants } from 'src/app/shared/constants/icon-constants';
+import { LinkConstants } from 'src/app/shared/constants/link-constants';
 
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  styleUrls: ['../../../shared/styles/auth.component.scss'],
 })
 
 export class SignupComponent implements OnInit {
@@ -15,9 +18,9 @@ export class SignupComponent implements OnInit {
   public isBusiness = false;
 
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
-  public readonly ICONS = LabelConstants.ICONS;
+  public readonly ICONS = IconConstants.ICONS;
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
-  public readonly LINKS = LabelConstants.LINKS;
+  public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
 
   constructor(private formBuilder: FormBuilder) {
@@ -36,7 +39,6 @@ export class SignupComponent implements OnInit {
 
   public create(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
     }
   }
 
