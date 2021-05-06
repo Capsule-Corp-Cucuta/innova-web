@@ -12,9 +12,7 @@
 
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
-        <div class="form__content--avatar">
-          {{ LABELS.TEXT }}
-        </div>
+        <div class="form__content--avatar">{{ LABELS.TEXT }}</div>
 
         <mat-form-field>
           <mat-icon matSuffix>{{ ICONS.EMAIL }}</mat-icon>
@@ -26,30 +24,19 @@
           <input placeholder="{{ LABELS.PLACEHOLDER.PASS }}" formControlName="password" matInput type="password" />
         </mat-form-field>
 
-        <div *ngIf="error" class="error">
-          <p>
-            {{ prueba }}
-          </p>
-        </div>
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button mat-raised-button color="primary" class="form__actions--button" (click)="onLogin()">
-          {{ LABELS.BUTTON }}
-        </button>
+        <button mat-raised-button color="primary" class="form__actions--button" (click)="onLogin()" [disabled]="form.invalid">{{ LABELS.BUTTON }}</button>
       </mat-card-actions>
     </form>
 
     <mat-card-footer class="card--footer">
       <p>
-        <a class="card--footer--link" routerLink="../{{ URIS.FORGOT_PASS }}">
-          {{ LABELS.LINK }}
-        </a>
+        <a class="card--footer--link" routerLink="../{{ URIS.FORGOT_PASS }}">{{ LABELS.LINK }}</a>
       </p>
       <p>
-        <a class="card--footer--link" routerLink="../{{ URIS.SIGNUP }}">
-          {{ LABELS.LINKREGISTER }}
-        </a>
+        <a class="card--footer--link" routerLink="../{{ URIS.SIGNUP }}">{{ LABELS.LINKREGISTER }}</a>
       </p>
     </mat-card-footer>
     <mat-card-footer class="form__content">

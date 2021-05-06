@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserLogin } from 'src/app/core/models/user-login.model';
-
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
+import { IconConstants } from 'src/app/shared/constants/icon-constants';
+import { LinkConstants } from 'src/app/shared/constants/link-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 
 @Component({
@@ -18,13 +19,11 @@ export class SigninComponent implements OnInit {
   public isLogged = false;
   public isLoginFail = false;
   public roles: string[] = [];
-  public error = false;
   public user: UserLogin;
-  public prueba: string;
 
   public readonly LABELS = LabelConstants.LABELS.LOGIN;
-  public readonly ICONS = LabelConstants.ICONS;
-  public readonly LINKS = LabelConstants.LINKS;
+  public readonly ICONS = IconConstants.ICONS;
+  public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
 
   constructor(private formBuilder: FormBuilder, private service: FacadeService, private router: Router) {
@@ -41,7 +40,6 @@ export class SigninComponent implements OnInit {
 
   public onLogin(): void {
     if (this.form.valid) {
-      this.error = false;
       this.user = new UserLogin(this.form.controls['email'].value, this.form.controls['password'].value);
 
       this.service.signin(this.user).subscribe(
@@ -53,17 +51,13 @@ export class SigninComponent implements OnInit {
           this.isLogged = true;
           this.isLoginFail = false;
           this.roles = this.service.getAuthorities();
-          //this.router.navigate([this.URIS.PRINCIPAL]);
         },
         (err) => {
           this.isLogged = false;
           this.isLoginFail = true;
-          this.error = true;
         }
       );
     } else {
-      this.error = true;
-      this.prueba = 'Campos invalidos, favor revisar ';
     }
   }
 

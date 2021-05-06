@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { IconConstants } from 'src/app/shared/constants/icon-constants';
+import { LinkConstants } from 'src/app/shared/constants/link-constants';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 
 @Component({
   selector: 'app-signup',
@@ -13,9 +16,9 @@ export class SignupComponent {
   public isBusiness = false;
 
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
-  public readonly ICONS = LabelConstants.ICONS;
+  public readonly ICONS = IconConstants.ICONS;
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
-  public readonly LINKS = LabelConstants.LINKS;
+  public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
 
   constructor(private formBuilder: FormBuilder) {

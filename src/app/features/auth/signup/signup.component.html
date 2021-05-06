@@ -1,10 +1,9 @@
 <section class="page">
   <mat-card class="mat-elevation-z8 card">
-    <mat-card-header class="header">
-      <mat-card-title class="header__title">
-        <mat-icon class="header__title--icon">{{ ICONS.PERSON }}</mat-icon>
-        <p class="header__title--text">{{ LABELS.TITLE }}</p>
-      </mat-card-title>
+    <mat-card-header mat-card-avatar class="header">
+      <div mat-card-avatar class="header--image"></div>
+      <mat-card-title class="header--title">{{ LABELS.TITLE }}</mat-card-title>
+      <mat-card-subtitle>{{ LABELS.SUBTITLE }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-divider></mat-divider>
@@ -67,9 +66,7 @@
               (selectionChange)="loadDataBusiness($event.value)"
               required
             >
-              <mat-option *ngFor="let type of TYPES" [value]="type.value">
-                {{ type.value }}
-              </mat-option>
+              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{ type.value }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

@@ -25,6 +25,7 @@ export class LabelConstants {
     CONTACTREGISTER: {
       FORM: {
         TITLE: 'Registrarme como contacto',
+        SUBTITLE: 'Innova UFPS',
         CONTACTTYPE: 'Tipo de contacto',
         PLACEHOLDER: {
           NAME: 'Nombres:',
@@ -46,17 +47,6 @@ export class LabelConstants {
         LINK: 'Volver a Inicio de Sesión',
       },
     },
-  };
-
-  public static ICONS = {
-    EMAIL: 'email',
-    VPN_KEY: 'vpn_key',
-    PERSON: 'person',
-    HOME: 'home',
-  };
-
-  public static LINKS = {
-    UFPS: 'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
   };
 
   public static CONTACTS_TYPES = [
