@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
@@ -7,14 +7,12 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
-  styleUrls: ['./forgot-pass.component.scss'],
+  styleUrls: ['../../../shared/styles/_auth.scss'],
 })
-
-export class ForgotPassComponent implements OnInit {
-
-  public form:FormGroup;
+export class ForgotPassComponent {
+  public form: FormGroup;
   public error = false;
-  public invalido:string;
+  public invalido: string;
 
   public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
   public readonly ICONS = LabelConstants.ICONS;
@@ -24,8 +22,6 @@ export class ForgotPassComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();
   }
-
-  ngOnInit(): void {}
 
   public request(): void {
     this.error = false;
@@ -42,4 +38,3 @@ export class ForgotPassComponent implements OnInit {
     });
   }
 }
-

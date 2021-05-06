@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  styleUrls: ['../../../shared/styles/_auth.scss'],
 })
-
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   public form: FormGroup;
   public isBusiness = false;
 
@@ -24,8 +22,6 @@ export class SignupComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit(): void {}
-
   public loadDataBusiness(type: string): void {
     if (type === 'Empresa') {
       this.isBusiness = true;
@@ -36,7 +32,7 @@ export class SignupComponent implements OnInit {
 
   public create(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
+      // TODO
     }
   }
 
@@ -60,4 +56,3 @@ export class SignupComponent implements OnInit {
     });
   }
 }
-
