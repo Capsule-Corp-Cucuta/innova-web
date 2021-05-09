@@ -15,7 +15,8 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT:
+        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electronico:',
       },

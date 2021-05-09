@@ -1,13 +1,15 @@
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
+import type { Router } from '@angular/router';
+import type { FormGroup, FormBuilder } from '@angular/forms';
 
 import { UserLogin } from 'src/app/core/models/user-login.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { FacadeService } from 'src/app/shared/services/facade.service';
 import { IconConstants } from 'src/app/shared/constants/icon-constants';
 import { LinkConstants } from 'src/app/shared/constants/link-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import type { FacadeService } from 'src/app/shared/services/facade.service';
 
 @Component({
   selector: 'app-signin',
@@ -26,7 +28,11 @@ export class SigninComponent implements OnInit {
   public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
 
-  constructor(private formBuilder: FormBuilder, private service: FacadeService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: FacadeService,
+    private router: Router,
+  ) {
     this.buildForm();
   }
 
@@ -40,7 +46,10 @@ export class SigninComponent implements OnInit {
 
   public onLogin(): void {
     if (this.form.valid) {
-      this.user = new UserLogin(this.form.controls['email'].value, this.form.controls['password'].value);
+      this.user = new UserLogin(
+        this.form.controls['email'].value,
+        this.form.controls['password'].value,
+      );
 
       this.service.signin(this.user).subscribe(
         (response) => {
@@ -52,12 +61,11 @@ export class SigninComponent implements OnInit {
           this.isLoginFail = false;
           this.roles = this.service.getAuthorities();
         },
-        (err) => {
+        () => {
           this.isLogged = false;
           this.isLoginFail = true;
-        }
+        },
       );
-    } else {
     }
   }
 

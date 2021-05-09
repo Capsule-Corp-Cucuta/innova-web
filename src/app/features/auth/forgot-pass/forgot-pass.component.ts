@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import type { FormGroup, FormBuilder } from '@angular/forms';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LinkConstants } from 'src/app/shared/constants/link-constants';
@@ -9,7 +10,7 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
-  styleUrls: ['../../../shared/styles/auth.component.scss'],
+  styleUrls: ['../../../shared/styles/_auth.scss'],
 })
 export class ForgotPassComponent {
   public form: FormGroup;
@@ -24,8 +25,7 @@ export class ForgotPassComponent {
   }
 
   public request(): void {
-    if (this.form.valid) {
-    }
+    // TODO
   }
 
   private buildForm() {

@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
 
 import { ForgotPassComponent } from './forgot-pass.component';
 
@@ -8,9 +9,8 @@ describe('ForgotPassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForgotPassComponent ]
-    })
-    .compileComponents();
+      declarations: [ForgotPassComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

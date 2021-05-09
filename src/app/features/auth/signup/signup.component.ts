@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import type { FormGroup, FormBuilder } from '@angular/forms';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { IconConstants } from 'src/app/shared/constants/icon-constants';
