@@ -1,11 +1,8 @@
 @import '~@angular/material/theming';
-
 @include mat-core();
-
 $innova-web-primary: mat-palette($mat-blue);
 $innova-web-accent: mat-palette($mat-blue-gray, A200, A100, A400);
 $innova-web-warn: mat-palette($mat-deep-orange);
-
 $innova-web-theme: mat-light-theme(
   (
     color: (
@@ -15,12 +12,13 @@ $innova-web-theme: mat-light-theme(
     ),
   )
 );
-
 @include angular-material-theme($innova-web-theme);
-
 html,
 body {
+  font-size: 10px;
   height: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 body {

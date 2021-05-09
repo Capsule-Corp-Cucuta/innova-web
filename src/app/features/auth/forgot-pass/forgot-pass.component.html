@@ -1,1 +1,35 @@
-<p>forgot-pass works!</p>
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header mat-card-avatar class="header">
+      <div mat-card-avatar class="header--image"></div>
+
+      <mat-card-title class="header--title">{{ LABELS.TITLE }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <div>
+          <p class="form__content--text">{{ LABELS.TEXT }}</p>
+        </div>
+
+        <mat-form-field>
+          <mat-icon matSuffix>{{ ICONS.EMAIL }}</mat-icon>
+          <input placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" matInput type="email" />
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button mat-raised-button color="warn" class="full-width" class="form__actions--button" (click)="request()" [disabled]="form.invalid">{{ LABELS.BUTTON }}</button>
+      </mat-card-actions>
+    </form>
+
+    <mat-card-footer class="card--footer">
+      <p>
+        <a class="card--footer--link" routerLink="/{{ URIS.SECURITY }}">{{ LABELS.LINK }}</a>
+      </p>
+    </mat-card-footer>
+  </mat-card>
+</section>

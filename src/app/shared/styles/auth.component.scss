@@ -1,4 +1,4 @@
-@import '../../../shared/styles/colors';
+@import 'colors';
 
 .page {
   align-items: center;
@@ -9,7 +9,7 @@
 
 .card {
   border-top: 4px solid $primary-red;
-  width: 50rem;
+  width: 40rem;
 
   &--footer {
     display: flex;
@@ -28,6 +28,21 @@
 .header {
   padding-bottom: 2rem;
 
+  &__title {	
+    display: flex;	
+    font-size: 1.9rem;	
+    width: 45rem;	
+
+    &--icon {	
+      font-size: 2rem;	
+      margin-right: 2rem;	
+    }	
+
+    &--text {	
+      margin: 0;	
+    }
+  }
+
   &--image {
     background-image: url('https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/Logo-vertical.jpg');
     background-size: cover;
@@ -35,12 +50,24 @@
   &--title {
     width: 30rem;
   }
+  
 }
 
 .form {
   &__content {
     display: grid;
     padding-top: 1rem;
+
+    &--group {	
+        display: flex;	
+        justify-content: space-between;	
+        width: 100%;	
+    }
+
+    &--text {	
+        display: flex;	
+        justify-content: center;
+    }    
 
     &--avatar {
       display: flex;
@@ -55,7 +82,7 @@
 
   &__actions {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 
     &--button {
       width: 25rem;
@@ -63,8 +90,10 @@
   }
 }
 
-.error {
-  color: $accent-red;
-  display: flex;
-  justify-content: center;
-}
+.body {	
+    margin: 0;	
+    min-height: calc(100% - 19.4rem);	
+    padding-bottom: 1rem;	
+    padding-top: 1rem;	
+  }
+
