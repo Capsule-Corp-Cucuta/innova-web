@@ -1,14 +1,14 @@
-import type { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import type {
-  HttpRequest,
-  HttpHandler,
+import {
   HttpEvent,
+  HttpHandler,
+  HttpRequest,
   HttpInterceptor,
 } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import type { FacadeService } from '../services/facade.service';
+import { FacadeService } from '../services/facade.service';
 
 @Injectable({
   providedIn: 'root',

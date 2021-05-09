@@ -1,5 +1,6 @@
 {
   "root": true,
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -10,9 +11,7 @@
         "plugin:@typescript-eslint/recommended",
         "prettier"
       ],
-      "rules": {
-        "@typescript-eslint/consistent-type-imports": "error"
-      }
+      "rules": {}
     },
     {
       "files": ["*.html"],

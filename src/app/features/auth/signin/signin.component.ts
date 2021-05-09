@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
-import type { OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-import type { Router } from '@angular/router';
-import type { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserLogin } from 'src/app/core/models/user-login.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { FacadeService } from 'src/app/shared/services/facade.service';
 import { IconConstants } from 'src/app/shared/constants/icon-constants';
 import { LinkConstants } from 'src/app/shared/constants/link-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import type { FacadeService } from 'src/app/shared/services/facade.service';
 
 @Component({
   selector: 'app-signin',

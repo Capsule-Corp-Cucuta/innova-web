@@ -1,11 +1,10 @@
-import type { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import type { Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
 
 import { TokenService } from './token.service';
-import type { JwtModel } from 'src/app/core/models/jwt.model';
+import { JwtModel } from 'src/app/core/models/jwt.model';
 import { AuthService } from 'src/app/core/services/auth.service';
-import type { UserLogin } from 'src/app/core/models/user-login.model';
+import { UserLogin } from 'src/app/core/models/user-login.model';
 
 @Injectable({
   providedIn: 'root',

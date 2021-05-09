@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import type {
-  ActivatedRouteSnapshot,
-  CanActivate,
+import {
   Router,
+  CanActivate,
   RouterStateSnapshot,
+  ActivatedRouteSnapshot,
 } from '@angular/router';
 
 import { UrlConstants } from '../constants/url-constants';
-import type { FacadeService } from '../services/facade.service';
+import { FacadeService } from '../services/facade.service';
 
 @Injectable({
   providedIn: 'root',
