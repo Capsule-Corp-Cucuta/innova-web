@@ -14,16 +14,16 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  public option: string;
-  public advisers: [] = [];
-  public adviser: MatTableDataSource<[]>;
-
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
+
+  public option: string;
+  public advisers: [] = [];
+  public adviser: MatTableDataSource<[]>;
 
   ngOnInit(): void {
     this.loadData();

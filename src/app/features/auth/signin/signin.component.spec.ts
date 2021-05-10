@@ -1,8 +1,7 @@
 import { of, throwError } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
-import { ComponentFixture } from '@angular/core/testing';
-import { getTestBed, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
 import { TestUtils } from 'src/app/shared/stubs/TestUtils';
@@ -11,11 +10,10 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { FacadeServiceStub } from 'src/app/shared/stubs/facade-service.stub';
 
 describe('SigninComponent', () => {
+  let injector: TestBed;
+  let service: FacadeService;
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
-  let formBuilder: FormBuilder;
-  let service: FacadeService;
-  let injector: TestBed;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,16 +37,14 @@ describe('SigninComponent', () => {
     component = fixture.componentInstance;
     injector = getTestBed();
     service = injector.inject(FacadeService);
-    formBuilder = injector.inject(FormBuilder);
     fixture.detectChanges();
   });
 
   afterAll(() => {
-    component = null;
     fixture = null;
-    formBuilder = null;
     service = null;
     injector = null;
+    component = null;
   });
 
   describe('When ngOnInit is invoked', () => {

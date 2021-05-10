@@ -11,12 +11,12 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
   styleUrls: ['../../../shared/styles/_form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  public readonly URIS = UrlConstants.ROUTES;
+  public readonly ICONS = LabelConstants.ICONS;
+  public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
+
   public form: FormGroup;
   public isCreate: boolean;
-
-  public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
-  public readonly ICONS = LabelConstants.ICONS;
-  public readonly URIS = UrlConstants.ROUTES;
 
   constructor(
     private formBuilder: FormBuilder,

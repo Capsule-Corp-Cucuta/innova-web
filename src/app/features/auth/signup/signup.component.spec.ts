@@ -1,6 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import { ComponentFixture } from '@angular/core/testing';
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { SignupComponent } from './signup.component';
@@ -8,8 +7,6 @@ import { SignupComponent } from './signup.component';
 describe('SignupComponent', () => {
   let component: SignupComponent;
   let fixture: ComponentFixture<SignupComponent>;
-  let formBuilder: FormBuilder;
-  let injector: TestBed;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,16 +24,12 @@ describe('SignupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
-    injector = getTestBed();
-    formBuilder = injector.inject(FormBuilder);
     fixture.detectChanges();
   });
 
   afterEach(() => {
-    component = null;
     fixture = null;
-    formBuilder = null;
-    injector = null;
+    component = null;
   });
 
   describe('When loadDataBusiness is invoked', () => {

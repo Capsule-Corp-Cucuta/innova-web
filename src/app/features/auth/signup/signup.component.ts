@@ -12,14 +12,14 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
 export class SignupComponent {
-  public form: FormGroup;
-  public isBusiness = false;
-
   public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
+
+  public form: FormGroup;
+  public isBusiness = false;
 
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();

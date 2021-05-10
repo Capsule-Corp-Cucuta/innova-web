@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { TableComponent } from './table.component';
 
@@ -10,7 +9,6 @@ describe('TableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TableComponent],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -18,11 +16,6 @@ describe('TableComponent', () => {
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  afterAll(() => {
-    component = null;
-    fixture = null;
   });
 
   it('should create', () => {

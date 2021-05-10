@@ -11,12 +11,12 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
 export class ForgotPassComponent {
-  public form: FormGroup;
-
   public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
+
+  public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();
