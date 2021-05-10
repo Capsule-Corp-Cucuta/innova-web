@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: UrlConstants.ROUTES.ADVISORY,
+    loadChildren: () => import('./features/advisory/advisory.module').then((m) => m.AdvisoryModule),
+  },
 ];
 
 @NgModule({

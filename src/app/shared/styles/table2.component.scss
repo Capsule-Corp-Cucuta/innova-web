@@ -1,0 +1,25 @@
+@import 'colors';
+
+.page {
+    align-items: center;
+    justify-content: center;
+    width:  100%;
+}
+
+table {
+    width: 100%;
+    border-top: 0.2rem solid $primary-red;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+td, th {
+    width: 25%;
+}
+
+.paginator{
+    width: 100%;
+}
