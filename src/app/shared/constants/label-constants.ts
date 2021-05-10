@@ -86,8 +86,8 @@ export class LabelConstants {
   };
 
   public static CONTACTS_TYPES = [
-    { id: 0, value: 'Emprendedor' },
-    { id: 1, value: 'Empresa' },
+    { id: 0, value: 'Emprendedor'},
+    { id: 1, value: 'Empresa'},
   ];
 
 

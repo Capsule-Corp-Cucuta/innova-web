@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import { IconConstants } from '../../../shared/constants/icon-constants';
-import { UrlConstants } from '../../../shared/constants/url-constants';
-import { LabelConstants } from '../../../shared/constants/label-constants';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+
+import { UrlConstants } from '../../../shared/constants/url-constants';
+import { LabelConstants } from '../../../shared/constants/label-constants';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-table',
@@ -22,13 +23,11 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public readonly ICONS = IconConstants.ICONS;
+  public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
-  public readonly CELLS = LabelConstants.LABELS.ADVISORY.LIST.CELLS;
-  public readonly COLUMNS = LabelConstants.LABELS.ADVISORY.LIST.COLUMNS;
-
-
+ 
+ 
   constructor() { }
 
   ngOnInit(): void {
@@ -48,33 +47,30 @@ export class TableComponent implements OnInit {
     if (this.adviser.paginator) {
       this.adviser.paginator.firstPage();
     }
+
   }
 
-  public activateAndDeactivate(IdAsesor:string,state:boolean):void{
-
-    this.option = "activar";
-    
-    if(!state){
-     this.option= "inactivar";
-    }
+  public activateAndDeactivate(IdAsesor:string,state:boolean):void{    
+    this.option = state === true ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE; 
 
     Swal.fire({
-      title: 'Estas Seguro?',
-      text: 'De ' + this.option + ' el asesor',
-      icon: 'warning',
+      title: SharedConstants.ALERTACTIVATE.TITLE,
+      text: SharedConstants.ALERTACTIVATE.TEXT + this.option + SharedConstants.ALERTACTIVATE.TEXTEND,
+      icon:'warning',
       showCancelButton: true,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText:SharedConstants.ALERTACTIVATE.TOACCEPT,
+      cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        
+        //TODO
       } else if (result.dismiss === Swal.DismissReason.cancel) {
+        //TODO
       }
     });
   }
 
   private loadData(): void {
-    
+    //TODO
   }
 
 }

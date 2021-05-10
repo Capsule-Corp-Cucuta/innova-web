@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { SharedConstants } from '../constants/shared-constants';
 
 @Pipe({
   name: 'State',
@@ -7,9 +8,9 @@ export class StatePipe implements PipeTransform {
   public transform(value: boolean): unknown {
     switch (value) {
       case true:
-        return 'Activo';
+        return SharedConstants.ACTIVE;
       case false:
-        return 'Inactivo';
+        return SharedConstants.INACTIVE;
     }
   }
 }

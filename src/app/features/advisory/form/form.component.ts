@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { IconConstants } from 'src/app/shared/constants/icon-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 
@@ -16,7 +15,7 @@ export class FormComponent implements OnInit {
   public isCreate: boolean;
 
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
-  public readonly ICONS = IconConstants.ICONS;
+  public readonly ICONS = LabelConstants.ICONS;
   public readonly URIS = UrlConstants.ROUTES;
 
   constructor(private formBuilder: FormBuilder,private activeRoute: ActivatedRoute) {
@@ -41,12 +40,14 @@ export class FormComponent implements OnInit {
   public create(e: Event) {
     e.preventDefault();
     if (this.form.valid) {
+      //TODO
     }
   }
 
   public update(e: Event) {
     e.preventDefault();
     if (this.form.valid) {
+      //TODO
     }
   }
 
