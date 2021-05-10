@@ -5,6 +5,10 @@ export class UrlConstants {
     SIGNUP: 'registro',
     FORGOT_PASS: 'recuperar-clave',
     ADVISORY: 'asesor',
+    ATTENDANCE: 'asistencia',
+    CLIENT: 'cliente',
+    CONSULTANT: 'asesoria',
+    EVENT: 'evento',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
   };
