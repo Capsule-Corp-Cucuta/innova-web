@@ -10,11 +10,13 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { StatePipe } from './pipes/state-pipe';
+
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, SidenavComponent],
+  declarations: [LayoutComponent, HeaderComponent, SidenavComponent,StatePipe],
   imports: [CommonModule, CoreModule, MaterialModule],
   providers: [FacadeService, TokenService, SessionGuardService, AuthInterceptorService],
-  exports: [LayoutComponent, HeaderComponent, SidenavComponent, MaterialModule],
+  exports: [LayoutComponent, HeaderComponent, SidenavComponent, MaterialModule,StatePipe],
 })
 export class SharedModule {}

@@ -4,5 +4,9 @@ export class IconConstants{
     VPN_KEY: 'vpn_key',
     PERSON: 'person',
     HOME: 'home',
+    SAVE: 'save',
+    CREATE: 'create',
+    ADD: 'add',
+    OFFLINE:'offline_pin',
  };
 }
