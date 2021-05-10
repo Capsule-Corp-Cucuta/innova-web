@@ -15,7 +15,8 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT:
+        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electronico:',
       },
@@ -53,4 +54,11 @@ export class LabelConstants {
     { id: 0, value: 'Emprendedor' },
     { id: 1, value: 'Empresa' },
   ];
+
+  public static ICONS = {
+    EMAIL: 'email',
+    VPN_KEY: 'vpn_key',
+    PERSON: 'person',
+    HOME: 'home',
+  };
 }

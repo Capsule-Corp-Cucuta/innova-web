@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  Router,
+  CanActivate,
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot,
+} from '@angular/router';
 
 import { UrlConstants } from '../constants/url-constants';
 import { FacadeService } from '../services/facade.service';
@@ -12,7 +17,10 @@ export class SessionGuardService implements CanActivate {
 
   constructor(private service: FacadeService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot,
+  ): boolean {
     if (!this.service.getToken()) {
       this.router.navigate([this.ROUTES.SECURITY]);
       return false;

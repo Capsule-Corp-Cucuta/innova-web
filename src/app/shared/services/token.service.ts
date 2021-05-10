@@ -30,15 +30,18 @@ export class TokenService {
 
   public setAuthorities(authorities: string[]): void {
     window.sessionStorage.removeItem(this.AUTHORITIES_KEY);
-    window.sessionStorage.setItem(this.AUTHORITIES_KEY, JSON.stringify(authorities));
+    window.sessionStorage.setItem(
+      this.AUTHORITIES_KEY,
+      JSON.stringify(authorities),
+    );
   }
 
   public getAuthorities(): string[] {
     this.roles = [];
     if (sessionStorage.getItem(this.AUTHORITIES_KEY)) {
-      JSON.parse(sessionStorage.getItem(this.AUTHORITIES_KEY)).forEach((authority: any) =>
-        this.roles.push(authority.authority)
-      );
+      JSON.parse(
+        sessionStorage.getItem(this.AUTHORITIES_KEY),
+      ).forEach((authority: any) => this.roles.push(authority.authority));
     }
     return this.roles;
   }

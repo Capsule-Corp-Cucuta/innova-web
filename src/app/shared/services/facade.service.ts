@@ -3,8 +3,8 @@ import { Injectable, Injector } from '@angular/core';
 
 import { TokenService } from './token.service';
 import { JwtModel } from 'src/app/core/models/jwt.model';
-import { UserLogin } from 'src/app/core/models/user-login.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UserLogin } from 'src/app/core/models/user-login.model';
 
 @Injectable({
   providedIn: 'root',
