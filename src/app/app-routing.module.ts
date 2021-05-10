@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { UrlConstants } from './shared/constants/url-constants';
 import { SessionGuardService } from './shared/guards/session-guard.service';
@@ -11,11 +12,11 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [SessionGuardService],
     canActivateChild: [SessionGuardService],
-    children: [],
   },
   {
     path: UrlConstants.ROUTES.SECURITY,
-    loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: UrlConstants.ROUTES.ADVISORY,

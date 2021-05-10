@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FormComponent } from './form/form.component';
