@@ -1,0 +1,37 @@
+@import 'colors';
+
+.page {
+  display: flex;
+  justify-content: center;
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+
+    &--filter {
+      margin: 0 1rem;
+    }
+
+    &__title {
+      display: flex;
+      width: 55rem;
+
+      &--icon {
+        margin-right: 2rem;
+      }
+
+      &--text {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.table {
+  border-top: 0.2rem solid $primary-red;
+  width: 98%;
+
+  &--content {
+    width: 100%;
+  }
+}

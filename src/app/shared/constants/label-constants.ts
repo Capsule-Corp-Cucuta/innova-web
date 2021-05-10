@@ -48,6 +48,49 @@ export class LabelConstants {
         LINK: 'Volver a Inicio de Sesión',
       },
     },
+    ADVISORY: {
+      FORM: {
+        TITLE: 'Registrar asesor',
+        TITLE_UPDATE: 'Actualizar asesor',
+        SUBTITLE: 'Innova UFPS',
+        PLACEHOLDER: {
+          ID: 'Id asesor',
+          STATE: 'Estado asesor',
+          NAME: 'Nombres',
+          LASTNAME: 'Apellidos',
+          IDENTIFICATIONCARD: 'Nro. de Cedula',
+          MOBILE: 'Celular',
+          EMAIL: 'Corre Electronico',
+          ADDRESS: 'Direccion de residencia',
+        },
+        REGISTER_BUTTON: 'Registrar',
+        UPDATE_BUTTON: 'Actualizar',
+      },
+      LIST: {
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        EXPORT: 'Exportar datos',
+        COLUMNS: [
+          'identificatioCard',
+          'name',
+          'lastName',
+          'email',
+          'mobile',
+          'state',
+          'actions',
+        ],
+        CELLS: {
+          USERNAME: 'Usuario',
+          IDENTIFICATIONCARD: 'Cédula:',
+          NAME: 'Nombres:',
+          LASTNAME: 'Apellidos',
+          EMAIL: 'Correo electrónico:',
+          MOBILE: 'Número de Celular:',
+          STATE: 'Estado',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
@@ -60,5 +103,9 @@ export class LabelConstants {
     VPN_KEY: 'vpn_key',
     PERSON: 'person',
     HOME: 'home',
+    SAVE: 'save',
+    CREATE: 'create',
+    ADD: 'add',
+    OFFLINE: 'offline_pin',
   };
 }

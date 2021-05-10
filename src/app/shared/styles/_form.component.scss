@@ -1,0 +1,46 @@
+@import 'colors';
+
+.page {
+  align-items: center;
+  display: flex;
+  height: 78.5rem;
+  justify-content: center;
+}
+
+.card {
+  border-top: 4px solid $primary-red;
+  width: 60rem;
+}
+
+.header {
+  &__title {
+    display: flex;
+    width: 45rem;
+
+    &--icon {
+      margin-right: 2rem;
+    }
+
+    &--text {
+      margin: 0;
+    }
+  }
+}
+
+.form {
+  &__content {
+    display: grid;
+    padding-top: 1rem;
+
+    &--group {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+  }
+}

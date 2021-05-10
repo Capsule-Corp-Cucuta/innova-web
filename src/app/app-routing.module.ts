@@ -12,11 +12,20 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [SessionGuardService],
     canActivateChild: [SessionGuardService],
+    children: [
+      {
+        path: UrlConstants.ROUTES.SECURITY,
+        loadChildren: () =>
+          import('./features/auth/auth.module').then((m) => m.AuthModule),
+      },
+    ],
   },
   {
-    path: UrlConstants.ROUTES.SECURITY,
+    path: UrlConstants.ROUTES.ADVISORY,
     loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
+      import('./features/advisory/advisory.module').then(
+        (m) => m.AdvisoryModule,
+      ),
   },
 ];
 

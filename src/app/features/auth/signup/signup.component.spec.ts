@@ -1,7 +1,7 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { getTestBed, TestBed } from '@angular/core/testing';
-import { ComponentFixture } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
+import { ComponentFixture } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { SignupComponent } from './signup.component';
 
