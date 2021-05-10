@@ -1,13 +1,11 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserLogin } from 'src/app/core/models/user-login.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
-import { IconConstants } from 'src/app/shared/constants/icon-constants';
-import { LinkConstants } from 'src/app/shared/constants/link-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
   selector: 'app-signin',
@@ -21,15 +19,15 @@ export class SigninComponent implements OnInit {
   public roles: string[] = [];
   public user: UserLogin;
 
-  public readonly LABELS = LabelConstants.LABELS.LOGIN;
-  public readonly ICONS = IconConstants.ICONS;
-  public readonly LINKS = LinkConstants.LINKS;
+  public readonly constants = SharedConstants;
   public readonly URIS = UrlConstants.ROUTES;
+  public readonly LINKS = UrlConstants.LINKS;
+  public readonly ICONS = LabelConstants.ICONS;
+  public readonly LABELS = LabelConstants.LABELS.LOGIN;
 
   constructor(
     private formBuilder: FormBuilder,
     private service: FacadeService,
-    private router: Router,
   ) {
     this.buildForm();
   }
@@ -45,15 +43,15 @@ export class SigninComponent implements OnInit {
   public onLogin(): void {
     if (this.form.valid) {
       this.user = new UserLogin(
-        this.form.controls['email'].value,
-        this.form.controls['password'].value,
+        this.form.controls[this.constants.EMAIL].value,
+        this.form.controls[this.constants.PASSWORD].value,
       );
 
       this.service.signin(this.user).subscribe(
         (response) => {
           this.service.setToken(response.jwt);
           this.service.setAuthorities(response.authorities);
-          this.service.setUser(this.form.controls['email'].value);
+          this.service.setUser(this.form.controls[this.constants.EMAIL].value);
 
           this.isLogged = true;
           this.isLoginFail = false;

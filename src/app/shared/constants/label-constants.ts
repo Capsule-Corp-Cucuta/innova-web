@@ -54,4 +54,11 @@ export class LabelConstants {
     { id: 0, value: 'Emprendedor' },
     { id: 1, value: 'Empresa' },
   ];
+
+  public static ICONS = {
+    EMAIL: 'email',
+    VPN_KEY: 'vpn_key',
+    PERSON: 'person',
+    HOME: 'home',
+  };
 }

@@ -11,12 +11,12 @@ import { UrlConstants } from '../../shared/constants/url-constants';
   providedIn: 'root',
 })
 export class AuthService {
-  private endPoint = environment.APIUrl + UrlConstants.ENDPOINTS.SIGNIN;
+  static ENDPOINT = `${environment.APIUrl}${UrlConstants.ENDPOINTS.SIGNIN}`;
 
   constructor(private http: HttpClient) {}
 
   public signin(user: UserLogin): Observable<JwtModel> {
-    return this.http.post<JwtModel>(this.endPoint, user);
+    return this.http.post<JwtModel>(AuthService.ENDPOINT, user);
   }
 
   public signout(): void {
