@@ -48,48 +48,55 @@ export class LabelConstants {
         LINK: 'Volver a Inicio de Sesión',
       },
     },
-    ADVISORY:{
-      FORM:{
-        TITLE:'Registrar asesor',
-        TITLE_UPDATE:'Actualizar asesor',
-        SUBTITLE:'Innova UFPS',
-        PLACEHOLDER:{
-          ID:'Id asesor',
-          STATE:'Estado asesor',
-          NAME:'Nombres',
-          LASTNAME:'Apellidos',
-          IDENTIFICATIONCARD:'Nro. de Cedula',
-          MOBILE:'Celular',
-          EMAIL:'Corre Electronico',
-          ADDRESS:'Direccion de residencia'
+    ADVISORY: {
+      FORM: {
+        TITLE: 'Registrar asesor',
+        TITLE_UPDATE: 'Actualizar asesor',
+        SUBTITLE: 'Innova UFPS',
+        PLACEHOLDER: {
+          ID: 'Id asesor',
+          STATE: 'Estado asesor',
+          NAME: 'Nombres',
+          LASTNAME: 'Apellidos',
+          IDENTIFICATIONCARD: 'Nro. de Cedula',
+          MOBILE: 'Celular',
+          EMAIL: 'Corre Electronico',
+          ADDRESS: 'Direccion de residencia',
         },
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
       },
       LIST: {
-        FILTER:'Buscar',
-        SEARCH:'Buscar...',
-        NOTDATA:'No hay datos',
-        EXPORT:'Exportar datos',
-        COLUMNS: ['identificatioCard','name','lastName', 'email', 'mobile','state', 'actions'],
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        EXPORT: 'Exportar datos',
+        COLUMNS: [
+          'identificatioCard',
+          'name',
+          'lastName',
+          'email',
+          'mobile',
+          'state',
+          'actions',
+        ],
         CELLS: {
-          USERNAME:'Usuario',
+          USERNAME: 'Usuario',
           IDENTIFICATIONCARD: 'Cédula:',
           NAME: 'Nombres:',
-          LASTNAME:'Apellidos',
+          LASTNAME: 'Apellidos',
           EMAIL: 'Correo electrónico:',
           MOBILE: 'Número de Celular:',
-          STATE:'Estado'
+          STATE: 'Estado',
         },
       },
     },
   };
 
   public static CONTACTS_TYPES = [
-    { id: 0, value: 'Emprendedor'},
-    { id: 1, value: 'Empresa'},
+    { id: 0, value: 'Emprendedor' },
+    { id: 1, value: 'Empresa' },
   ];
-
 
   public static ICONS = {
     EMAIL: 'email',
@@ -99,7 +106,6 @@ export class LabelConstants {
     SAVE: 'save',
     CREATE: 'create',
     ADD: 'add',
-    OFFLINE:'offline_pin',
- };
-
+    OFFLINE: 'offline_pin',
+  };
 }

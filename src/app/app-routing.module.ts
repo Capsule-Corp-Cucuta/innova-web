@@ -12,15 +12,44 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [SessionGuardService],
     canActivateChild: [SessionGuardService],
+    children: [
+      {
+        path: UrlConstants.ROUTES.ADVISORY,
+        loadChildren: () =>
+          import('./features/advisory/advisory.module').then(
+            (m) => m.AdvisoryModule,
+          ),
+      },
+      {
+        path: UrlConstants.ROUTES.ATTENDANCE,
+        loadChildren: () =>
+          import('./features/attendance/attendance.module').then(
+            (m) => m.AttendanceModule,
+          ),
+      },
+      {
+        path: UrlConstants.ROUTES.CLIENT,
+        loadChildren: () =>
+          import('./features/client/client.module').then((m) => m.ClientModule),
+      },
+      {
+        path: UrlConstants.ROUTES.CONSULTANT,
+        loadChildren: () =>
+          import('./features/consultant/consultant.module').then(
+            (m) => m.ConsultantModule,
+          ),
+      },
+      {
+        path: UrlConstants.ROUTES.EVENT,
+        loadChildren: () =>
+          import('./features/event/event.module').then((m) => m.EventModule),
+      },
+    ],
   },
   {
     path: UrlConstants.ROUTES.SECURITY,
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
-    path: UrlConstants.ROUTES.ADVISORY,
-    loadChildren: () => import('./features/advisory/advisory.module').then((m) => m.AdvisoryModule),
   },
 ];
 

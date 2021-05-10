@@ -13,17 +13,16 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
 export class SigninComponent implements OnInit {
-  public form: FormGroup;
-  public isLogged = false;
-  public isLoginFail = false;
-  public roles: string[] = [];
-  public user: UserLogin;
-
-  public readonly constants = SharedConstants;
   public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.LOGIN;
+
+  public user: UserLogin;
+  public form: FormGroup;
+  public isLogged = false;
+  public isLoginFail = false;
+  public roles: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,16 +42,15 @@ export class SigninComponent implements OnInit {
   public onLogin(): void {
     if (this.form.valid) {
       this.user = new UserLogin(
-        this.form.controls[this.constants.EMAIL].value,
-        this.form.controls[this.constants.PASSWORD].value,
+        this.form.controls[SharedConstants.EMAIL].value,
+        this.form.controls[SharedConstants.PASSWORD].value,
       );
 
       this.service.signin(this.user).subscribe(
         (response) => {
           this.service.setToken(response.jwt);
           this.service.setAuthorities(response.authorities);
-          this.service.setUser(this.form.controls[this.constants.EMAIL].value);
-
+          this.service.setUser(this.form.controls[SharedConstants.EMAIL].value);
           this.isLogged = true;
           this.isLoginFail = false;
           this.roles = this.service.getAuthorities();

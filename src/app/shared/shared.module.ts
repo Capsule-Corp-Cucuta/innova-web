@@ -12,11 +12,21 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { StatePipe } from './pipes/state-pipe';
 
-
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, SidenavComponent,StatePipe],
+  declarations: [LayoutComponent, HeaderComponent, SidenavComponent, StatePipe],
   imports: [CommonModule, CoreModule, MaterialModule],
-  providers: [FacadeService, TokenService, SessionGuardService, AuthInterceptorService],
-  exports: [LayoutComponent, HeaderComponent, SidenavComponent, MaterialModule,StatePipe],
+  providers: [
+    FacadeService,
+    TokenService,
+    SessionGuardService,
+    AuthInterceptorService,
+  ],
+  exports: [
+    LayoutComponent,
+    HeaderComponent,
+    SidenavComponent,
+    MaterialModule,
+    StatePipe,
+  ],
 })
 export class SharedModule {}

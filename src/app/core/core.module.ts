@@ -17,12 +17,12 @@ import { AttendanceService } from './services/attendance.service';
   providers: [
     AuthService,
     UserService,
-    DirectorService,
-    ConsultantService,
-    ContactService,
-    ClientService,
-    AdvisoryService,
     EventService,
+    ClientService,
+    ContactService,
+    DirectorService,
+    AdvisoryService,
+    ConsultantService,
     AttendanceService,
   ],
 })
