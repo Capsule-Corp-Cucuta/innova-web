@@ -3,8 +3,6 @@ import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { LinkConstants } from 'src/app/shared/constants/link-constants';
-import { IconConstants } from '../../../shared/constants/icon-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 
 @Component({
@@ -15,10 +13,10 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 export class ForgotPassComponent {
   public form: FormGroup;
 
-  public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
-  public readonly ICONS = IconConstants.ICONS;
-  public readonly LINKS = LinkConstants.LINKS;
   public readonly URIS = UrlConstants.ROUTES;
+  public readonly LINKS = UrlConstants.LINKS;
+  public readonly ICONS = LabelConstants.ICONS;
+  public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
 
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();
@@ -30,7 +28,7 @@ export class ForgotPassComponent {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      email: [undefined, [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 }
