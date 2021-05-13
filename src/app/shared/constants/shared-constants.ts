@@ -9,8 +9,15 @@ export class SharedConstants {
   static readonly ALERTACTIVATE = {
     TITLE: '¿Estás seguro?',
     TEXT: 'De ',
-    TEXTEND: ' el asesor',
+    TEXTADVISER: ' el asesor',
+    TEXTCLIENT: ' el cliente',
     TOACCEPT: 'Aceptar',
     CANCEL: 'Cancelar',
+  };
+  static readonly STETP = {
+    ZERO: 0,
+    ONE: 1,
+    TWO: 2,
+    THREE: 3,
   };
 }

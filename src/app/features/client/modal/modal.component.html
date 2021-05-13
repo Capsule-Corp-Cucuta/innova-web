@@ -1,0 +1,33 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header mat-card-avatar class="header">
+      <div mat-card-avatar class="header--image"></div>
+      <mat-card-title class="header--title">{{ LABELS.TITLE }}</mat-card-title>
+      <mat-card-subtitle>{{ LABELS.SUBTITLE }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <mat-form-field>
+          <mat-label>{{ LABELS.LABELASSIGN }}</mat-label>
+          <mat-select
+            placeholder="{{ LABELS.ADVISER }}"
+            formControlName="adviser"
+            required
+          >
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="form__actions">
+        <button mat-raised-button>
+          <span>{{ LABELS.ASSIGN_BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
