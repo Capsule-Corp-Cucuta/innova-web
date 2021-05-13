@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    //canActivate: [SessionGuardService],
-    //canActivateChild: [SessionGuardService],
+    canActivate: [SessionGuardService],
+    canActivateChild: [SessionGuardService],
     children: [
       {
         path: UrlConstants.ROUTES.ADVISORY,
