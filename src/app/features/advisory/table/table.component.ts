@@ -51,7 +51,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       text:
         SharedConstants.ALERTACTIVATE.TEXT +
         this.option +
-        SharedConstants.ALERTACTIVATE.TEXTEND,
+        SharedConstants.ALERTACTIVATE.TEXTADVISER,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: SharedConstants.ALERTACTIVATE.TOACCEPT,

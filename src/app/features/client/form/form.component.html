@@ -1,1 +1,546 @@
-<p>form works!</p>
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.PERSON }}</mat-icon>
+        <p *ngIf="isWatch" class="header__title--text">{{ LABELS.TITLE }}</p>
+        <p *ngIf="!isWatch" class="header__title--text">
+          {{ LABELS.TITLE_UPDATE }}
+        </p>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content" *ngIf="step == STEP.ZERO">
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ID }}"
+              formControlName="id"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATEREGISTER }}"
+              formControlName="dateRegister"
+            />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <span>{{ LABELS.LABELCLASSIFICATION }}</span>
+        </div>
+
+        <mat-form-field>
+          <mat-select
+            placeholder="{{ LABELS.PLACEHOLDER.CLIENTTYPE }}"
+            formControlName="clientType"
+          >
+            <mat-option *ngFor="" [value]=""></mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.ONE">
+        <div>
+          <span>{{ LABELS.LABELCONTACT }}</span>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
+              formControlName="name"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
+              formControlName="lastName"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.POSITION }}"
+              formControlName="position"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.ANTIQUITY }}"
+              formControlName="antiquity"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.PLACEOFBIRTH }}"
+              formControlName="placeOfBirth"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATEOFBIRTH }}"
+              formControlName="dateOfBirth"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}"
+              formControlName="identificationCard"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONALLEVEL }}"
+              formControlName="educationalLevel"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESSCONTACT }}"
+              formControlName="addressContact"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
+              formControlName="cityContact"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.DEPARTMENT }}"
+              formControlName="departmentContact"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
+              formControlName="phoneContact"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+              formControlName="mobileContact"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="email"
+            placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
+            formControlName="emailContact"
+          />
+        </mat-form-field>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.GENDER }}"
+              formControlName="gender"
+            >
+              <mat-option *ngFor="" [value]=""></mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.ETHNICGROUP }}"
+              formControlName="ethnicGroup"
+            >
+              <mat-option *ngFor="" [value]=""></mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}"
+              formControlName="displaced"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}"
+              formControlName="disabled"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.TWO">
+        <div>
+          <span>{{ LABELS.LABELBUSINESS }}</span>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.BUSINESSNAME }}"
+              formControlName="businessName"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.NIT }}"
+              formControlName="nit"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.LEGALREPRESENTATIVE }}"
+            formControlName="legalRepresentative"
+          />
+        </mat-form-field>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.LEGALCONSTITUTION }}"
+              formControlName="legalConstitution"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.DATECONSTITUTION }}"
+              formControlName="dateConstitution"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.EMPLOYEES }}"
+              formControlName="employees"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.TC }}"
+              formControlName="tc"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.MT }}"
+              formControlName="mt"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.DIRECT }}"
+              formControlName="direct"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.INDIRECT }}"
+              formControlName="indirect"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESSBUSINESS }}"
+              formControlName="addressBusiness"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
+              formControlName="city"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
+              formControlName="phone"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+              formControlName="mobile"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
+              formControlName="email"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
+              formControlName="website"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.THREE">
+        <div class="form__content--group">
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.TYPEOFCOMPANY }}"
+              formControlName="typeOfCompany"
+            >
+              <mat-option *ngFor="" [value]=""></mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ANOTHERTYPE }}"
+              formControlName="anotherType"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTER }}"
+              formControlName="commercialRegister"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTERNUMBER }}"
+              formControlName="commercialRegisterNumber"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.YEARRENOVATION }}"
+              formControlName="yearRenovation"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.MAINCODECIIU }}"
+              formControlName="mainCodeCiiu"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONALACTIVITY }}"
+              formControlName="internationalActivity"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.COUNTRIES }}"
+            formControlName="countries"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.INTERNETBUSINESS }}"
+            formControlName="internetBusiness"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{ LABELS.PLACEHOLDER.SERVICES }} </mat-label>
+          <textarea matInput formControlName="services"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select
+            placeholder="{{ LABELS.LABELEND }}"
+            formControlName="means"
+          >
+            <mat-option *ngFor="" [value]=""></mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{ LABELS.PLACEHOLDER.OBSERVATIONS }} </mat-label>
+          <textarea matInput formControlName="observations"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+        </div>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          [disabled]="form.invalid"
+          *ngIf="isWatch"
+          routerLink="../"
+        >
+          <span>{{ LABELS.BACK_BUTTON }}</span>
+        </button>
+
+        <button
+          *ngIf="!isWatch"
+          mat-raised-button
+          color="accent"
+          class="button-form"
+          (click)="update($event)"
+        >
+          {{ LABELS.UPDATE_BUTTON }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
