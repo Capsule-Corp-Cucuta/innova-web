@@ -1,4 +1,4 @@
-@import '../../shared/styles/colors.scss';
+@import '../../shared/styles/colors';
 
 .sidenav-container {
   height: 100%;
@@ -8,9 +8,11 @@
   width: 20rem;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-  background-color: $primary-red;
+.sidenav-class {
+  .mat-toolbar {
+    background: inherit;
+    background-color: $primary-red;
+  }
 }
 
 .toolbar {
