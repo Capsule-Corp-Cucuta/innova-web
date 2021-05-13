@@ -48,6 +48,21 @@ export class LabelConstants {
         LINK: 'Volver a Inicio de Sesión',
       },
     },
+    PRINCIPAL: {
+      TITLE: 'Innova',
+      MODULES: {
+        ADVISORY: 'Asesores',
+        ATTENDANCE: 'Asistencias',
+        CLIENT: 'Clientes',
+        CONSULTANT: 'Asesorias',
+        EVENT: 'Eventos',
+      },
+      MENU: {
+        PROFILE: 'Perfil',
+        CHANGE_PASS: 'Cambiar clave',
+        LOGOUT: 'Salir',
+      },
+    },
     ADVISORY: {
       FORM: {
         TITLE: 'Registrar asesor',
