@@ -1,4 +1,8 @@
+import { of } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { FormComponent } from './form.component';
 
@@ -9,6 +13,16 @@ describe('FormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FormComponent],
+      providers: [
+        FormBuilder,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: 123 }),
+          },
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

@@ -1,48 +1,64 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatDividerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatPaginatorModule,
+    LayoutModule,
     MatSortModule,
-    MatTooltipModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
     MatDialogModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatPaginatorModule,
   ],
   exports: [
-    MatCardModule,
-    MatIconModule,
-    MatDividerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatPaginatorModule,
+    LayoutModule,
     MatSortModule,
-    MatTooltipModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
     MatDialogModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
