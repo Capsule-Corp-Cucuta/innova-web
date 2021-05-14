@@ -4,11 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 import { UrlConstants } from '../../../shared/constants/url-constants';
 import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-table',

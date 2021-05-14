@@ -1,0 +1,27 @@
+@import '../../shared/styles/colors';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 20rem;
+}
+
+.sidenav-class {
+  .mat-toolbar {
+    background: inherit;
+    background-color: $primary-red;
+  }
+}
+
+.toolbar {
+  background-color: $primary-red;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.title {
+  color: $white;
+}

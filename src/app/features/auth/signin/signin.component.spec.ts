@@ -1,5 +1,7 @@
 import { of, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing';
 
@@ -11,21 +13,22 @@ import { FacadeServiceStub } from 'src/app/shared/stubs/facade-service.stub';
 
 describe('SigninComponent', () => {
   let injector: TestBed;
+  let routerService: Router;
   let service: FacadeService;
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [SigninComponent],
-      imports: [],
       providers: [
-        {
-          provide: FormBuilder,
-        },
         {
           provide: FacadeService,
           useClass: FacadeServiceStub,
+        },
+        {
+          provide: FormBuilder,
         },
       ],
       schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
@@ -36,7 +39,9 @@ describe('SigninComponent', () => {
     fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
     injector = getTestBed();
+    routerService = injector.inject(Router);
     service = injector.inject(FacadeService);
+    spyOn(routerService, 'navigate');
     fixture.detectChanges();
   });
 
@@ -70,6 +75,7 @@ describe('SigninComponent', () => {
       expect(spy).toHaveBeenCalled();
       expect(component.isLogged).toBeTruthy();
       expect(component.isLoginFail).toBeFalsy();
+      expect(routerService.navigate).toHaveBeenCalledWith(['/']);
     });
 
     it('should mark isLoginFail as true', () => {

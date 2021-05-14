@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -13,8 +14,8 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
 export class SigninComponent implements OnInit {
-  public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
+  public readonly ROUTES = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.LOGIN;
 
@@ -25,8 +26,9 @@ export class SigninComponent implements OnInit {
   public roles: string[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private router: Router,
     private service: FacadeService,
+    private formBuilder: FormBuilder,
   ) {
     this.buildForm();
   }
@@ -54,6 +56,7 @@ export class SigninComponent implements OnInit {
           this.isLogged = true;
           this.isLoginFail = false;
           this.roles = this.service.getAuthorities();
+          this.router.navigate(['/']);
         },
         () => {
           this.isLogged = false;
