@@ -208,6 +208,58 @@ export class LabelConstants {
         ASSIGN_BUTTON: 'Asignar',
       },
     },
+    CONSULTANT: {
+      FORM: {
+        TITLE: 'Registrar asesoria',
+        TITLE_UPDATE: 'Actualizar asesoria',
+        TITLE_VIEW: 'Informacion asesoria',
+        SUBTITLE: 'Innova UFPS',
+        PLACEHOLDER: {
+          ADVISER: 'Asesor',
+          CLIENT: 'Cliente',
+          DATECONSULTANT: 'Fecha Asesoria',
+          CONSULTATNTYPE: 'Tipo de asesoria',
+          DURATION: 'Duracion(Horas)',
+          PREPARATION: 'Tiempo de preparacion',
+          AREA: 'Area',
+          AFFAIR: 'Asunto',
+          NOTES: 'Notas',
+          STATE: 'Estado',
+        },
+        REGISTER_BUTTON: 'Registrar',
+        UPDATE_BUTTON: 'Actualizar',
+      },
+      LIST: {
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        EXPORT: 'Exportar datos',
+        COLUMNS: [
+          'adviser',
+          'client',
+          'date',
+          'type',
+          'area',
+          'affair',
+          'state',
+          'actions',
+        ],
+        CELLS: {
+          ADVISER: 'Asesor',
+          CLIENT: 'Cliente',
+          DATE: 'Fecha asesoria:',
+          TYPE: 'Tipo de asesoria:',
+          AREA: 'Area',
+          AFFAIR: 'Asunto:',
+          STATE: 'Estado',
+        },
+        TOOLTIP: {
+          NEW: 'Nueva asesoria',
+          VIEW: 'Ver asesoria',
+          EDIT: 'Actualizar asesoria',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
@@ -224,5 +276,11 @@ export class LabelConstants {
     CREATE: 'create',
     ADD: 'add',
     OFFLINE: 'offline_pin',
+    VIEW: 'pageview',
+    EDIT: 'edit',
+    BOOK: 'book_online',
+    CHECK: 'fact_check',
+    EVENTO: 'event',
+    REPORT: 'equalizer',
   };
 }
