@@ -1,1 +1,128 @@
-<p>form works!</p>
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.BOOK }}</mat-icon>
+        <p *ngIf="isCreate" class="header__title--text">{{ LABELS.TITLE }}</p>
+        <p *ngIf="!isCreate" class="header__title--text">
+          {{ LABELS.TITLE_UPDATE }}
+        </p>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADVISER }}"
+              formControlName="adviser"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.CLIENT }}"
+              formControlName="client"
+            >
+              <mat-option *ngFor="" [value]=""></mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATECONSULTANT }}"
+              formControlName="date"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
+              formControlName="type"
+            >
+              <mat-option *ngFor="" [value]=""></mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
+              formControlName="duration"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
+              formControlName="preparation"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-select
+            placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
+            formControlName="area"
+          >
+            <mat-option *ngFor="" [value]=""></mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.AFFAIR }}"
+            formControlName="affair"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{ LABELS.PLACEHOLDER.NOTES }} </mat-label>
+          <textarea matInput formControlName="notes"></textarea>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!isCreate">
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
+            formControlName="state"
+          />
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
+          <span>{{ LABELS.REGISTER_BUTTON }}</span>
+        </button>
+
+        <button
+          *ngIf="!isCreate"
+          mat-raised-button
+          color="accent"
+          class="button-form"
+          (click)="update($event)"
+        >
+          {{ LABELS.UPDATE_BUTTON }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
