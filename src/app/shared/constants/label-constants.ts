@@ -260,6 +260,63 @@ export class LabelConstants {
         },
       },
     },
+    EVENT: {
+      FORM: {
+        TITLE: 'Registrar evento',
+        TITLE_UPDATE: 'Actualizar evento',
+        TITLE_VIEW: 'Informacion del evento',
+        PLACEHOLDER: {
+          TITLE: 'Titulo',
+          DATESTART: 'Fecha inicio',
+          DATEEND: 'Fecha fin',
+          DEADLINE: 'Fecha limite de inscripcion',
+          HOUR: 'Hora del evento',
+          DURATION: 'Duracion del evento',
+          THEME: 'Tema',
+          EVENTTYPE: 'Tipo de evento',
+          STATE: 'Estado',
+          DESCRIPTION: 'Descripcion',
+          PLACE: 'Lugar',
+          CITY: 'Ciudad',
+          DEPARTMENT: 'Departamento',
+          EMAIL: 'Correo electronico',
+          WEBSITE: 'Link del evento',
+        },
+        INSCRIPTION_BUTTON: 'Inscribirse',
+        DESIST_BUTTON: 'Desistir',
+        REGISTER_BUTTON: 'Registrar',
+        UPDATE_BUTTON: 'Actualizar',
+      },
+      LIST: {
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        EXPORT: 'Exportar datos',
+        COLUMNS: [
+          'title',
+          'dateStart',
+          'dateEnd',
+          'deadLine',
+          'eventType',
+          'state',
+          'actions',
+        ],
+        CELLS: {
+          TITLE: 'Titulo',
+          DATESTART: 'Fecha inicio',
+          DATEEND: 'Fecha fin:',
+          DEADLINE: 'Fecha maxima de inscripcion:',
+          EVENTTYPE: 'Tipo de evento',
+          STATE: 'Estado',
+        },
+        TOOLTIP: {
+          NEW: 'Nuevo evento',
+          VIEW: 'Ver evento',
+          EDIT: 'Actualizar evento',
+          ATTENDANCE: 'Asistencia',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
@@ -280,7 +337,7 @@ export class LabelConstants {
     EDIT: 'edit',
     BOOK: 'book_online',
     CHECK: 'fact_check',
-    EVENTO: 'event',
+    EVENT: 'event',
     REPORT: 'equalizer',
   };
 }

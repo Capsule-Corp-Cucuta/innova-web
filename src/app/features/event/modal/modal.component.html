@@ -3,10 +3,7 @@
     <mat-card-header class="header">
       <mat-card-title class="header__title">
         <mat-icon class="header__title--icon">{{ ICONS.EVENT }}</mat-icon>
-        <p *ngIf="isCreate" class="header__title--text">{{ LABELS.TITLE }}</p>
-        <p *ngIf="!isCreate" class="header__title--text">
-          {{ LABELS.TITLE_UPDATE }}
-        </p>
+        <p class="header__title--text">{{ LABELS.TITLE_VIEW }}</p>
       </mat-card-title>
     </mat-card-header>
 
@@ -155,18 +152,8 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
-          <span>{{ LABELS.REGISTER_BUTTON }}</span>
-        </button>
-
-        <button
-          *ngIf="!isCreate"
-          mat-raised-button
-          color="accent"
-          class="button-form"
-          (click)="update($event)"
-        >
-          {{ LABELS.UPDATE_BUTTON }}
+        <button mat-raised-button>
+          <span>{{ LABELS.INSCRIPTION_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>
