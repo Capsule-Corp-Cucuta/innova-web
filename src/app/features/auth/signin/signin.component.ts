@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { UserLogin } from 'src/app/core/models/user-login.model';
+import { UserLogin } from 'src/app/core/models/user.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { JwtModel } from '../models/jwt.model';
-import { UserLogin } from '../models/user-login.model';
+import { UserLogin } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { UrlConstants } from '../../shared/constants/url-constants';
 
