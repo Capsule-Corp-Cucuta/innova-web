@@ -317,6 +317,21 @@ export class LabelConstants {
         },
       },
     },
+    ATTENDANCE: {
+      LIST: {
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        EXPORT: 'Exportar datos',
+        COLUMNS: ['identificationCard', 'name', 'state', 'actions'],
+        CELLS: {
+          IDENTIFICATIONCARD: 'Cedula',
+          NAME: 'Nombre',
+          STATE: 'Estado:',
+          ACTIONS: 'Asistencia',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
