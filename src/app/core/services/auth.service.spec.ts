@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 
 import { AuthService } from './auth.service';
-import { UserLogin } from '../models/user-login.model';
+import { UserLogin } from '../models/user.model';
 
 describe('AuthService', () => {
   let injector: TestBed;

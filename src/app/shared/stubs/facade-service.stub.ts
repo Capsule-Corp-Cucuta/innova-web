@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthServiceStub } from './auth-service.stub';
 import { JwtModel } from 'src/app/core/models/jwt.model';
-import { UserLogin } from 'src/app/core/models/user-login.model';
+import { UserLogin } from 'src/app/core/models/user.model';
 import { TokenServiceStub } from './token-service.stub';
 
 @Injectable({
