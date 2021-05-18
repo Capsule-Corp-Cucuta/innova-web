@@ -51,10 +51,10 @@ export class LabelConstants {
     PRINCIPAL: {
       TITLE: 'Innova',
       MODULES: {
-        ADVISORY: 'Asesores',
+        ADVISORY: 'Asesorias',
         ATTENDANCE: 'Asistencias',
         CLIENT: 'Clientes',
-        CONSULTANT: 'Asesorias',
+        CONSULTANT: 'Asesores',
         EVENT: 'Eventos',
       },
       MENU: {
@@ -63,7 +63,7 @@ export class LabelConstants {
         LOGOUT: 'Salir',
       },
     },
-    ADVISORY: {
+    CONSULTANT: {
       FORM: {
         TITLE: 'Registrar asesor',
         TITLE_UPDATE: 'Actualizar asesor',
@@ -208,7 +208,7 @@ export class LabelConstants {
         ASSIGN_BUTTON: 'Asignar',
       },
     },
-    CONSULTANT: {
+    ADVISORY: {
       FORM: {
         TITLE: 'Registrar asesoria',
         TITLE_UPDATE: 'Actualizar asesoria',
@@ -217,7 +217,7 @@ export class LabelConstants {
         PLACEHOLDER: {
           ADVISER: 'Asesor',
           CLIENT: 'Cliente',
-          DATECONSULTANT: 'Fecha Asesoria',
+          DATEADVISORY: 'Fecha Asesoria',
           CONSULTATNTYPE: 'Tipo de asesoria',
           DURATION: 'Duracion(Horas)',
           PREPARATION: 'Tiempo de preparacion',
