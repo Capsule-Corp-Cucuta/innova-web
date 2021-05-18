@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 
 @Component({
   selector: 'app-form',
@@ -33,6 +33,7 @@ export class FormComponent implements OnInit {
     this.activeRoute.params.subscribe((params: Params) => {
       this.isCreate = params.id ? false : true;
     });
+    console.log(this.isCreate);
   }
 
   public create(e: Event): void {
@@ -51,13 +52,15 @@ export class FormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      id: [''],
-      name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      identificationCard: ['', [Validators.required, Validators.maxLength(10)]],
-      mobile: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
-      address: ['', [Validators.required]],
+      adviser: ['', [Validators.required]],
+      client: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      duration: ['', [Validators.required]],
+      preparation: ['', [Validators.required]],
+      area: ['', [Validators.required]],
+      affair: ['', [Validators.required]],
+      notes: [''],
       state: [''],
     });
   }

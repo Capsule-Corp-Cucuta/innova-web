@@ -6,10 +6,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { ConsultantRoutingModule } from './consultant-routing.module';
-import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [FormComponent, TableComponent, ModalComponent],
+  declarations: [FormComponent, TableComponent],
   imports: [
     FormsModule,
     CommonModule,

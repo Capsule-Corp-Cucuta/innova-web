@@ -1,12 +1,12 @@
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
-import Swal from 'sweetalert2';
-import { UrlConstants } from '../../../shared/constants/url-constants';
-import { LabelConstants } from '../../../shared/constants/label-constants';
-import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-table',
@@ -21,9 +21,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
 
-  public option: string;
-  public advisers: [] = [];
-  public adviser: MatTableDataSource<[]>;
+  public consultants: [] = [];
+  public advisory: MatTableDataSource<[]>;
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -36,33 +37,19 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.adviser.filter = filterValue.trim().toLowerCase();
+    this.advisory.filter = filterValue.trim().toLowerCase();
 
-    if (this.adviser.paginator) {
-      this.adviser.paginator.firstPage();
+    if (this.advisory.paginator) {
+      this.advisory.paginator.firstPage();
     }
   }
 
-  public activateAndDeactivate(IdAsesor: string, state: boolean): void {
-    this.option = state ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
-
-    Swal.fire({
-      title: SharedConstants.ALERTACTIVATE.TITLE,
-      text:
-        SharedConstants.ALERTACTIVATE.TEXT +
-        this.option +
-        SharedConstants.ALERTACTIVATE.TEXTADVISER,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: SharedConstants.ALERTACTIVATE.TOACCEPT,
-      cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
-    }).then((result) => {
-      if (result.value) {
-        //TODO
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        //TODO
-      }
-    });
+  public openDialog(consultant: string): void {
+    if (consultant) {
+      this.dialog.open(ModalComponent, {
+        data: consultant,
+      });
+    }
   }
 
   private loadData(): void {

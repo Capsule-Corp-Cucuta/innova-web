@@ -4,10 +4,10 @@ export class UrlConstants {
     SIGNIN: 'iniciar-sesion',
     SIGNUP: 'registro',
     FORGOT_PASS: 'recuperar-clave',
-    ADVISORY: 'asesor',
+    ADVISORY: 'asesoria',
     ATTENDANCE: 'asistencia',
     CLIENT: 'cliente',
-    CONSULTANT: 'asesoria',
+    CONSULTANT: 'asesor',
     EVENT: 'evento',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
@@ -15,6 +15,11 @@ export class UrlConstants {
 
   public static ENDPOINTS = {
     SIGNIN: 'auth/signin',
+    CONTACT: 'contact',
+    CLIENT: 'client',
+    ADVISORY: 'advisory',
+    CONSULTANT: 'consultant',
+    EVENT: 'event',
   };
 
   public static LINKS = {
