@@ -5,12 +5,16 @@ import { SharedConstants } from '../constants/shared-constants';
   name: 'State',
 })
 export class StatePipe implements PipeTransform {
-  public transform(value: boolean): unknown {
+  public transform(value: number): string {
     switch (value) {
-      case true:
-        return SharedConstants.ACTIVE;
-      case false:
-        return SharedConstants.INACTIVE;
+      case 0:
+        return SharedConstants.PIPES.STATES.NO_ADVISORY;
+      case 1:
+        return SharedConstants.PIPES.STATES.PENDING_ADVISOR;
+      case 2:
+        return SharedConstants.PIPES.STATES.ENABLED;
+      default:
+        return SharedConstants.PIPES.STATES.DISABLED;
     }
   }
 }

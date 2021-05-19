@@ -47,6 +47,41 @@ export class LabelConstants {
         REGISTER_BUTTON: 'Registrarme',
         LINK: 'Volver a Inicio de Sesión',
       },
+      LIST: {
+        FILTER: 'Buscar',
+        SEARCH: 'Buscar...',
+        NOTDATA: 'No hay datos',
+        COLUMNS: [
+          'businessType',
+          'identificatioCard',
+          'name',
+          'lastName',
+          'businessName',
+          'nit',
+          'state',
+          'actions',
+        ],
+        CELLS: {
+          BUSINESSTYPE: 'Tipo de contacto',
+          IDENTIFICATIONCARD: 'Cédula:',
+          NAME: 'Nombres:',
+          LASTNAME: 'Apellidos:',
+          BUSINESSNAME: 'Empresa:',
+          NIT: 'Nit:',
+          STATE: 'Estado',
+        },
+        TOOLTIP: {
+          ASSIGN: 'Asignar asesor',
+        },
+        EXPORT_BUTTON: 'Exportar datos',
+      },
+      ASSIGNADVISOR: {
+        TITLE: 'Asignar asesor',
+        SUBTITLE: 'Innova UFPS',
+        LABELASSIGN: 'Asesores',
+        ADVISER: 'Seleccionar asesor',
+        ASSIGN_BUTTON: 'Asignar',
+      },
     },
     PRINCIPAL: {
       TITLE: 'Innova',
@@ -175,19 +210,17 @@ export class LabelConstants {
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         COLUMNS: [
-          'businessType',
-          'request',
-          'identificatioCard',
+          'contactType',
+          'id',
           'name',
           'lastName',
-          'businessName',
+          'companyName',
           'nit',
           'state',
           'actions',
         ],
         CELLS: {
           BUSINESSTYPE: 'Tipo de cliente',
-          REQUEST: 'Solicitud',
           IDENTIFICATIONCARD: 'Cédula:',
           NAME: 'Nombres:',
           LASTNAME: 'Apellidos:',
@@ -196,7 +229,9 @@ export class LabelConstants {
           STATE: 'Estado',
         },
         TOOLTIP: {
-          ASSIGN: 'Asignar asesor',
+          ASSIGN: 'Asignar Asesor',
+          DEACTIVATE: 'Inactivar Cliente',
+          EDIT: 'Actualizar Cliente',
         },
         EXPORT_BUTTON: 'Exportar datos',
       },
@@ -335,8 +370,69 @@ export class LabelConstants {
   };
 
   public static CONTACTS_TYPES = [
-    { id: 0, value: 'Emprendedor' },
-    { id: 1, value: 'Empresa' },
+    { id: 1, value: 'ENTREPRENEUR' },
+    { id: 0, value: 'COMPANY' },
+  ];
+
+  public static EUCATIONAL_LEVEL = [
+    { id: 0, value: 'PRIMARY' },
+    { id: 1, value: 'BACHELOR' },
+    { id: 2, value: 'TECHNICAL' },
+    { id: 3, value: 'PROFESSIONAL' },
+    { id: 4, value: 'POSTGRADUATE' },
+    { id: 5, value: 'OTHERS' },
+  ];
+
+  public static GENDER = [
+    { id: 0, value: 'MALE' },
+    { id: 1, value: 'FEMALE' },
+    { id: 2, value: 'OTHER' },
+  ];
+
+  public static ETHNICGROUP = [
+    { id: 0, value: 'GYPSY' },
+    { id: 1, value: 'INDIGENOUS' },
+    { id: 2, value: 'AFRO_COLOMBIAN' },
+    { id: 3, value: 'RAIZALES' },
+    { id: 4, value: 'OTHER' },
+  ];
+
+  public static LEGALCONSTITUTION = [
+    { id: 0, value: 'SAS' },
+    { id: 1, value: 'LIMITED' },
+    { id: 2, value: 'ANONYMOUS' },
+    { id: 3, value: 'LEGAL_PERSON' },
+    { id: 4, value: 'OTHER' },
+  ];
+
+  public static COMPANYTYPE = [
+    { id: 0, value: 'INDUSTRIAL' },
+    { id: 1, value: 'WHOLESALE' },
+    { id: 2, value: 'RETAIL' },
+    { id: 3, value: 'SERVICES' },
+    { id: 4, value: 'AGROINDUSTRIAL' },
+  ];
+
+  public static INTERNATIONALACTIVITY = [
+    { id: 0, value: 'IMPORT' },
+    { id: 1, value: 'EXPORT' },
+    { id: 2, value: 'BOTH' },
+    { id: 3, value: 'DOES_NO_APPLY' },
+  ];
+
+  public static CONTACTMEDIUM = [
+    { id: 0, value: 'MINISTRY_REFERRAL' },
+    { id: 1, value: 'BUSINESS_REFERRAL' },
+    { id: 2, value: 'UNIVERSITY' },
+    { id: 3, value: 'MASS_MEDIA' },
+    { id: 4, value: 'WEBSITE' },
+    { id: 5, value: 'SOCIAL_MEDIA' },
+    { id: 6, value: 'OTHERS' },
+  ];
+
+  public static OPTION = [
+    { id: true, value: 'YES' },
+    { id: false, value: 'NOT' },
   ];
 
   public static ICONS = {
@@ -347,7 +443,7 @@ export class LabelConstants {
     SAVE: 'save',
     CREATE: 'create',
     ADD: 'add',
-    OFFLINE: 'offline_pin',
+    OFFLINE: 'block',
     VIEW: 'pageview',
     EDIT: 'edit',
     BOOK: 'book_online',
