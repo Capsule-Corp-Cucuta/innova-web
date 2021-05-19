@@ -5,6 +5,10 @@ import { TokenService } from './token.service';
 import { JwtModel } from 'src/app/core/models/jwt.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserLogin } from 'src/app/core/models/user.model';
+import { ContactService } from 'src/app/core/services/contact.service';
+import { ClientService } from 'src/app/core/services/client.service';
+import { Contact } from 'src/app/core/models/contact.model';
+import { Client } from 'src/app/core/models/client.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +16,8 @@ import { UserLogin } from 'src/app/core/models/user.model';
 export class FacadeService {
   private _authService: AuthService; // tslint:disable-line
   private _tokenService: TokenService; // tslint:disable-line
+  private _contactService: ContactService; // tslint:disable-line
+  private _clientService: ClientService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -27,6 +33,20 @@ export class FacadeService {
       this._tokenService = this.injector.get<TokenService>(TokenService);
     }
     return this._tokenService;
+  }
+
+  public get contactService(): ContactService {
+    if (!this._contactService) {
+      this._contactService = this.injector.get<ContactService>(ContactService);
+    }
+    return this._contactService;
+  }
+
+  public get clientService(): ClientService {
+    if (!this._clientService) {
+      this._clientService = this.injector.get<ClientService>(ClientService);
+    }
+    return this._clientService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -59,5 +79,21 @@ export class FacadeService {
 
   public getAuthorities(): string[] {
     return this.tokenService.getAuthorities();
+  }
+
+  public createContact(contact: Contact): Observable<Contact> {
+    return this.contactService.create(contact);
+  }
+
+  public updateClient(client: Client): Observable<Boolean> {
+    return this.clientService.update(client);
+  }
+
+  public findByIDClient(id: string): Observable<Client> {
+    return this.clientService.findByID(id);
+  }
+
+  public findAllClient(): Observable<Client[]> {
+    return this.clientService.findAll();
   }
 }

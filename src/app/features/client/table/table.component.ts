@@ -9,6 +9,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { UrlConstants } from '../../../shared/constants/url-constants';
 import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { Client } from '../../../core/models/client.model';
 
 @Component({
   selector: 'app-table',
@@ -25,17 +27,17 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public option: string;
   public clients: [] = [];
-  public client: MatTableDataSource<[]>;
+  public client: MatTableDataSource<Client>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   ngAfterViewInit(): void {
-    //this.adviser.sort = this.sort;
-    //this.adviser.paginator = this.paginator;
+    this.client.sort = this.sort;
+    this.client.paginator = this.paginator;
   }
 
   public applyFilter(event: Event): void {
@@ -47,8 +49,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public activateAndDeactivate(IdClient: string, state: boolean): void {
-    this.option = state ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
+  public Deactivate(IdClient: string): void {
+    this.option = SharedConstants.DEACTIVATE;
 
     Swal.fire({
       title: SharedConstants.ALERTACTIVATE.TITLE,
@@ -78,6 +80,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    //TODO
+    this.service.findAllClient().subscribe((resp) => {
+      this.client = new MatTableDataSource(resp);
+    });
   }
 }

@@ -14,8 +14,8 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  public update(client: Client): Observable<Client> {
-    return this.http.put<Client>(
+  public update(client: Client): Observable<Boolean> {
+    return this.http.put<Boolean>(
       ClientService.ENDPOINT + '/' + client.id,
       client,
     );
