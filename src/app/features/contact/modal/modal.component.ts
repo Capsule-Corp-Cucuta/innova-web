@@ -10,7 +10,7 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 })
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CLIENT.ASSIGNADVISOR;
+  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.ASSIGNADVISOR;
 
   public form: FormGroup;
   public id: number;

@@ -13,8 +13,8 @@ export class SharedConstants {
       ENTREPRENEUR: 'Emprendedor',
     },
     STATES: {
-      NO_ADVISORY: 'Sin asignar',
-      PENDING_ADVISOR: 'Pendiente de asignar',
+      NO_ADVISORY: 'No ha solicitado seguimiento',
+      PENDING_ADVISOR: 'Pendiente de asignar asesor',
       ENABLED: 'Activo',
       DISABLED: 'Inactivo',
     },

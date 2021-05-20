@@ -9,6 +9,7 @@ export class UrlConstants {
     CLIENT: 'cliente',
     CONSULTANT: 'asesor',
     EVENT: 'evento',
+    CONTACT: 'contacto',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
   };

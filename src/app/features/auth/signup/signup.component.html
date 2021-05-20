@@ -37,7 +37,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}"
-              formControlName="identificationCard"
+              formControlName="id"
               required
             />
           </mat-form-field>
@@ -47,7 +47,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-              formControlName="mobile"
+              formControlName="cellPhone"
               required
             />
           </mat-form-field>
@@ -68,12 +68,12 @@
             <mat-label>{{ LABELS.CONTACTTYPE }}</mat-label>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.TYPE }}"
-              formControlName="contactType"
+              formControlName="type"
               (selectionChange)="loadDataBusiness($event.value)"
               required
             >
-              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{
-                type.value
+              <mat-option *ngFor="let type of TYPES" [value]="type.id">{{
+                type.id | ContactType
               }}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -89,7 +89,7 @@
                 matInput
                 type="text"
                 placeholder="{{ LABELS.PLACEHOLDER.EMPRESA }}"
-                formControlName="businessName"
+                formControlName="companyName"
               />
             </mat-form-field>
 
@@ -108,7 +108,7 @@
                 matInput
                 type="text"
                 placeholder="{{ LABELS.PLACEHOLDER.ADDRESSBUSINESS }}"
-                formControlName="address"
+                formControlName="companyAddress"
               />
             </mat-form-field>
 
@@ -117,7 +117,7 @@
                 matInput
                 type="text"
                 placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-                formControlName="city"
+                formControlName="companyCity"
               />
             </mat-form-field>
           </div>
@@ -128,7 +128,7 @@
                 matInput
                 type="tel"
                 placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
-                formControlName="businessPhone"
+                formControlName="companyPhone"
               />
             </mat-form-field>
 
@@ -137,7 +137,7 @@
                 matInput
                 type="tel"
                 placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-                formControlName="businessMobile"
+                formControlName="companyCellPhone"
               />
             </mat-form-field>
           </div>
@@ -148,7 +148,7 @@
                 matInput
                 type="email"
                 placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-                formControlName="businessEmail"
+                formControlName="companyEmail"
               />
             </mat-form-field>
 
@@ -157,13 +157,13 @@
                 matInput
                 type="text"
                 placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-                formControlName="website"
+                formControlName="companyWebsite"
               />
             </mat-form-field>
           </div>
         </mat-card-content>
 
-        <mat-checkbox formControlName="applyFor">
+        <mat-checkbox formControlName="state">
           {{ LABELS.PLACEHOLDER.APPLYFOR }}</mat-checkbox
         >
       </mat-card-content>

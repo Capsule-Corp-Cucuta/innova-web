@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+import Swal from 'sweetalert2';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { ContactType } from 'src/app/core/models/contact.model';
+import { ContactState } from '../../../core/models/contact.model';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { SharedConstants } from '../../../shared/constants/shared-constants';
 
 @Component({
   selector: 'app-signup',
@@ -20,38 +24,64 @@ export class SignupComponent {
 
   public form: FormGroup;
   public isBusiness = false;
+  public state: number;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: FacadeService,
+  ) {
     this.buildForm();
   }
 
-  public loadDataBusiness(type: string): void {
-    this.isBusiness = type === SharedConstants.BUSINESS ? true : false;
+  public loadDataBusiness(type: number): void {
+    this.isBusiness = type === ContactType.COMPANY ? true : false;
   }
 
   public create(): void {
-    if (this.form.valid) {
-      // TODO
-    }
+    const contact = this.form.value;
+    this.state =
+      contact.state === true
+        ? ContactState.PENDING_ADVISOR
+        : ContactState.NO_ADVISORY;
+    contact.state = this.state;
+    this.service.createContact(contact).subscribe((resp) => {
+      if (resp) {
+        Swal.fire(
+          SharedConstants.ALERTSUCCESS.TITLE,
+          SharedConstants.ALERTSUCCESS.TEXTCREATE +
+            SharedConstants.ALERTSUCCESS.CONTACT,
+          'success',
+        );
+      } else {
+        Swal.fire(
+          SharedConstants.ALERTERROR.TITLE,
+          SharedConstants.ALERTERROR.TEXTCREATE +
+            SharedConstants.ALERTERROR.CONTACT,
+          'error',
+        );
+      }
+    });
   }
 
   private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      identificationCard: ['', [Validators.required, Validators.maxLength(10)]],
-      mobile: ['', [Validators.required, Validators.maxLength(10)]],
+      id: ['', [Validators.required, Validators.maxLength(10)]],
+      cellPhone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
-      contactType: ['', [Validators.required]],
-      applyFor: [false],
-      businessName: [''],
+      type: ['', [Validators.required]],
+      state: [],
+      companyName: [''],
       nit: [''],
-      address: [''],
-      city: [''],
-      businessPhone: ['', [Validators.maxLength(10)]],
-      businessMobile: ['', [Validators.maxLength(10)]],
-      businessEmail: ['', [Validators.email]],
-      website: [''],
+      companyAddress: [''],
+      companyCity: [''],
+      companyDepartment: ['', [Validators.maxLength(10)]],
+      companyPhone: ['', [Validators.maxLength(10)]],
+      companyCellPhone: ['', [Validators.maxLength(10)]],
+      companyEmail: ['', [Validators.email]],
+      companyWebsite: [''],
+      registrationDate: [new Date()],
     });
   }
 }

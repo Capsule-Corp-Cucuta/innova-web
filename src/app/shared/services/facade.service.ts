@@ -9,6 +9,7 @@ import { ContactService } from 'src/app/core/services/contact.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { Contact } from 'src/app/core/models/contact.model';
 import { Client } from 'src/app/core/models/client.model';
+import { FacadeServiceStub } from '../stubs/facade-service.stub';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class FacadeService {
   private _contactService: ContactService; // tslint:disable-line
   private _clientService: ClientService; // tslint:disable-line
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector, private stub: FacadeServiceStub) {}
 
   public get authService(): AuthService {
     if (!this._authService) {
@@ -81,14 +82,17 @@ export class FacadeService {
     return this.tokenService.getAuthorities();
   }
 
-  public createContact(contact: Contact): Observable<Contact> {
+  public createContact(contact: Contact): Observable<Boolean> {
     return this.contactService.create(contact);
+  }
+
+  public findAllContact(): Observable<Contact[]> {
+    return this.contactService.findAll();
   }
 
   public updateClient(client: Client): Observable<Boolean> {
     return this.clientService.update(client);
   }
-
   public findByIDClient(id: string): Observable<Client> {
     return this.clientService.findByID(id);
   }

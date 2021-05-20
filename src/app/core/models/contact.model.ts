@@ -1,16 +1,19 @@
 import { User } from './user.model';
 
 export class Contact extends User {
-  contactType: ContactType;
-  registrationDate: Date;
+  type: ContactType;
   state: ContactState;
+  registrationDate?: Date;
 
-  companyName?: string;
   nit?: string;
-  department?: string;
-  city?: string;
-  phone?: string;
-  website?: string;
+  companyName?: string;
+  companyDepartment?: string;
+  companyCity?: string;
+  companyAddress?: string;
+  companyEmail?: string;
+  companyPhone?: string;
+  companyCellPhone?: string;
+  companyWebsite?: string;
 }
 
 export enum ContactType {
