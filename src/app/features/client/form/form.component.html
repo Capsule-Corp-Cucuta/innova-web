@@ -41,7 +41,7 @@
         <mat-form-field>
           <mat-select
             placeholder="{{ LABELS.PLACEHOLDER.CLIENTTYPE }}"
-            formControlName="contactType"
+            formControlName="type"
           >
             <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.id"
               >{{ op.id | ContactType }}
@@ -156,7 +156,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-              formControlName="city"
+              formControlName="contactCity"
             />
           </mat-form-field>
 
@@ -165,7 +165,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.DEPARTMENT }}"
-              formControlName="department"
+              formControlName="contactDepartment"
             />
           </mat-form-field>
         </div>
@@ -176,7 +176,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
-              formControlName="phone"
+              formControlName="contactPhone"
             />
           </mat-form-field>
 
@@ -363,7 +363,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.ADDRESSBUSINESS }}"
-              formControlName="address"
+              formControlName="companyAddress"
             />
           </mat-form-field>
           <mat-form-field>
@@ -371,7 +371,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-              formControlName="city"
+              formControlName="companyCity"
             />
           </mat-form-field>
         </div>
@@ -381,7 +381,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
-              formControlName="phone"
+              formControlName="companyPhone"
             />
           </mat-form-field>
 
@@ -390,7 +390,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-              formControlName="cellPhone"
+              formControlName="companyCellPhone"
             />
           </mat-form-field>
         </div>
@@ -400,7 +400,7 @@
               matInput
               type="email"
               placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-              formControlName="email"
+              formControlName="companyEmail"
             />
           </mat-form-field>
 
@@ -409,7 +409,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-              formControlName="website"
+              formControlName="companyWebsite"
             />
           </mat-form-field>
         </div>

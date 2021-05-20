@@ -2,6 +2,7 @@ import { ContactState, ContactType } from 'src/app/core/models/contact.model';
 import { JwtModel } from 'src/app/core/models/jwt.model';
 import { Client } from '../../core/models/client.model';
 import { Consultant } from '../../core/models/consultant.model';
+import { Contact } from '../../core/models/contact.model';
 
 export class TestUtils {
   static JWT: JwtModel = {
@@ -27,7 +28,7 @@ export class TestUtils {
     email: 'edwi@gmail.com',
     cellPhone: '3102171788',
     address: 'av 9 # 10-45',
-    contactType: ContactType.ENTREPRENEUR,
+    type: ContactType.ENTREPRENEUR,
     registrationDate: new Date(),
     state: ContactState.ENABLED,
     companyName: 'Tesoreria ufps',
@@ -43,7 +44,7 @@ export class TestUtils {
       email: 'edwi@gmail.com',
       cellPhone: '3102171788',
       address: 'av 9 # 10-45',
-      contactType: ContactType.ENTREPRENEUR,
+      type: ContactType.ENTREPRENEUR,
       registrationDate: new Date(),
       state: ContactState.ENABLED,
       companyName: 'Tesoreria ufps',
@@ -57,12 +58,39 @@ export class TestUtils {
       email: 'edwi@gmail.com',
       cellPhone: '3102171788',
       address: 'av 9 # 10-45',
-      contactType: ContactType.COMPANY,
+      type: ContactType.COMPANY,
       registrationDate: new Date(),
       state: ContactState.ENABLED,
       companyName: 'Colpatria',
       nit: '12345678-0',
       consultant: TestUtils.consultant,
+    },
+  ];
+
+  static contacts: Contact[] = [
+    {
+      id: '1090494947',
+      name: 'Cristian',
+      lastName: 'Arevalo',
+      email: 'cristian@gmail.com',
+      cellPhone: '3102171788',
+      address: 'av 9 # 10-45',
+      type: ContactType.ENTREPRENEUR,
+      registrationDate: new Date(),
+      state: ContactState.PENDING_ADVISOR,
+    },
+    {
+      id: '1090494958',
+      name: 'Saul',
+      lastName: 'Mora',
+      email: 'saul@gmail.com',
+      cellPhone: '3102171788',
+      address: 'av 9 # 10-45',
+      type: ContactType.COMPANY,
+      registrationDate: new Date(),
+      state: ContactState.NO_ADVISORY,
+      companyName: 'Colpatria',
+      nit: '12345678-0',
     },
   ];
 }

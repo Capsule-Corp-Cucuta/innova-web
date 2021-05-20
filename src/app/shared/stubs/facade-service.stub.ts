@@ -62,6 +62,10 @@ export class FacadeServiceStub {
     return this.contactServiceStub.create(contact);
   }
 
+  public findAllContact(): Observable<Contact[]> {
+    return this.contactServiceStub.findAll();
+  }
+
   public updateClient(client: Client): Observable<Boolean> {
     return this.clientServiceStub.update(client);
   }

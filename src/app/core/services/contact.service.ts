@@ -14,7 +14,11 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  public create(contact: Contact): Observable<Contact> {
-    return this.http.post<Contact>(ContactService.ENDPOINT, contact);
+  public create(contact: Contact): Observable<Boolean> {
+    return this.http.post<Boolean>(ContactService.ENDPOINT, contact);
+  }
+
+  public findAll(): Observable<Contact[]> {
+    return this.http.get<Contact[]>(ContactService.ENDPOINT + '/all');
   }
 }

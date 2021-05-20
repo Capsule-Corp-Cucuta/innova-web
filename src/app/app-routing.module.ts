@@ -43,6 +43,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/event/event.module').then((m) => m.EventModule),
       },
+      {
+        path: UrlConstants.ROUTES.CONTACT,
+        loadChildren: () =>
+          import('./features/contact/contact.module').then(
+            (m) => m.ContactModule,
+          ),
+      },
     ],
   },
   {

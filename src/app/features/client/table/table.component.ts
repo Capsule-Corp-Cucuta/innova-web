@@ -5,7 +5,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../contact/modal/modal.component';
 import { UrlConstants } from '../../../shared/constants/url-constants';
 import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
@@ -69,14 +69,6 @@ export class TableComponent implements OnInit, AfterViewInit {
         //TODO
       }
     });
-  }
-
-  public openDialog(client: string): void {
-    if (client) {
-      this.dialog.open(ModalComponent, {
-        data: client,
-      });
-    }
   }
 
   private loadData(): void {

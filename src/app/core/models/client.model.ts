@@ -4,6 +4,9 @@ import { Consultant } from './consultant.model';
 export class Client extends Contact {
   consultant: Consultant;
 
+  contactDepartment?: string;
+  contactCity?: string;
+  contactPhone?: string;
   position?: string;
   antiquity?: string;
   birthplace?: string;
