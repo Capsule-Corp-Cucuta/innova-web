@@ -9,6 +9,8 @@ import { Contact } from 'src/app/core/models/contact.model';
 import { ContactServiceStub } from './contact-service.stub';
 import { Client } from 'src/app/core/models/client.model';
 import { ClientServiceStub } from './cliente-service.stub';
+import { ConsultantServiceStub } from './consultant-service.stub';
+import { Consultant } from '../../core/models/consultant.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +20,14 @@ export class FacadeServiceStub {
   private tokenServiceStub: TokenServiceStub;
   private contactServiceStub: ContactServiceStub;
   private clientServiceStub: ClientServiceStub;
+  private consultantServiveStub: ConsultantServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
     this.tokenServiceStub = new TokenServiceStub();
     this.contactServiceStub = new ContactServiceStub();
     this.clientServiceStub = new ClientServiceStub();
+    this.consultantServiveStub = new ConsultantServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -76,5 +80,20 @@ export class FacadeServiceStub {
 
   public findAllClient(): Observable<Client[]> {
     return this.clientServiceStub.findAll();
+  }
+
+  public createConsultant(consultant: Consultant): Observable<Boolean> {
+    return this.consultantServiveStub.create(consultant);
+  }
+  public updateConsultant(consultant: Consultant): Observable<Boolean> {
+    return this.consultantServiveStub.update(consultant);
+  }
+
+  public findByIDConsultant(id: string): Observable<Consultant> {
+    return this.consultantServiveStub.findByID(id);
+  }
+
+  public findAllConsultant(): Observable<Consultant[]> {
+    return this.consultantServiveStub.findAll();
   }
 }
