@@ -9,7 +9,8 @@ import { ContactService } from 'src/app/core/services/contact.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { Contact } from 'src/app/core/models/contact.model';
 import { Client } from 'src/app/core/models/client.model';
-import { FacadeServiceStub } from '../stubs/facade-service.stub';
+import { ConsultantService } from '../../core/services/consultant.service';
+import { Consultant } from 'src/app/core/models/consultant.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,9 @@ export class FacadeService {
   private _tokenService: TokenService; // tslint:disable-line
   private _contactService: ContactService; // tslint:disable-line
   private _clientService: ClientService; // tslint:disable-line
+  private _consultantService: ConsultantService; // tslint:disable-line
 
-  constructor(private injector: Injector, private stub: FacadeServiceStub) {}
+  constructor(private injector: Injector) {}
 
   public get authService(): AuthService {
     if (!this._authService) {
@@ -48,6 +50,15 @@ export class FacadeService {
       this._clientService = this.injector.get<ClientService>(ClientService);
     }
     return this._clientService;
+  }
+
+  public get consultantService(): ConsultantService {
+    if (!this._consultantService) {
+      this._consultantService = this.injector.get<ConsultantService>(
+        ConsultantService,
+      );
+    }
+    return this._consultantService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -99,5 +110,20 @@ export class FacadeService {
 
   public findAllClient(): Observable<Client[]> {
     return this.clientService.findAll();
+  }
+
+  public createConsultant(consultant: Consultant): Observable<Boolean> {
+    return this.consultantService.create(consultant);
+  }
+
+  public updateConsultant(consultant: Consultant): Observable<Boolean> {
+    return this.consultantService.update(consultant);
+  }
+  public findByIDConsultant(id: string): Observable<Consultant> {
+    return this.consultantService.findByID(id);
+  }
+
+  public findAllConsultant(): Observable<Consultant[]> {
+    return this.consultantService.findAll();
   }
 }

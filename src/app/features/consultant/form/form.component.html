@@ -14,25 +14,23 @@
 
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
-        <div *ngIf="!isCreate" class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.ID }}"
-              formControlName="id"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}"
+            formControlName="id"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="state"
-            />
-          </mat-form-field>
-        </div>
+        <mat-form-field *ngIf="!isCreate">
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
+            formControlName="isActive"
+          />
+        </mat-form-field>
 
         <mat-form-field>
           <input
@@ -57,19 +55,9 @@
         <mat-form-field>
           <input
             matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}"
-            formControlName="identificationCard"
-            required
-          />
-        </mat-form-field>
-
-        <mat-form-field>
-          <input
-            matInput
             type="tel"
             placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-            formControlName="mobile"
+            formControlName="cellPhone"
             required
           />
         </mat-form-field>
@@ -96,8 +84,13 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
-          <mat-icon>{{ ICONS.SAVE }}</mat-icon>
+        <button
+          *ngIf="isCreate"
+          mat-raised-button
+          color="primary"
+          (click)="create($event)"
+          [disabled]="form.invalid"
+        >
           <span>{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 

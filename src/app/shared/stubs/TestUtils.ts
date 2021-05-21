@@ -21,6 +21,29 @@ export class TestUtils {
     isActive: true,
   };
 
+  static consultants: Consultant[] = [
+    {
+      id: '1090494956',
+      name: 'Edgar',
+      lastName: 'Perez',
+      email: 'edgar@gmail.com',
+      cellPhone: '3102171787',
+      address: 'av 9 # 10-45',
+      code: '12344',
+      isActive: false,
+    },
+    {
+      id: '1090494956',
+      name: 'Jose Guillermo',
+      lastName: 'Parada Corredor',
+      email: 'jguillermoparada@gmail.com',
+      cellPhone: '3102171787',
+      address: 'av 9 # 10-45',
+      code: '12345',
+      isActive: true,
+    },
+  ];
+
   static client: Client = {
     id: '1090494957',
     name: 'Edwar ',

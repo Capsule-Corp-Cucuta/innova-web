@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { UrlConstants } from '../../../shared/constants/url-constants';
 import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { Consultant } from '../../../core/models/consultant.model';
+import { FacadeService } from '../../../shared/services/facade.service';
 
 @Component({
   selector: 'app-table',
@@ -22,16 +24,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
 
   public option: string;
-  public advisers: [] = [];
-  public consultant: MatTableDataSource<[]>;
+  public consultant: MatTableDataSource<Consultant>;
+
+  constructor(private service: FacadeService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   ngAfterViewInit(): void {
-    //this.adviser.sort = this.sort;
-    //this.adviser.paginator = this.paginator;
+    this.consultant.sort = this.sort;
+    this.consultant.paginator = this.paginator;
   }
 
   public applyFilter(event: Event): void {
@@ -44,8 +47,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   public activateAndDeactivate(IdAsesor: string, state: boolean): void {
-    this.option = state ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
-
+    this.option =
+      state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
     Swal.fire({
       title: SharedConstants.ALERTACTIVATE.TITLE,
       text:
@@ -66,6 +69,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    //TODO
+    this.service.findAllConsultant().subscribe((resp) => {
+      this.consultant = new MatTableDataSource(resp);
+    });
   }
 }
