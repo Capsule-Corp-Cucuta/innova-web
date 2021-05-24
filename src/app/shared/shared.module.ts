@@ -17,6 +17,9 @@ import { SessionGuardService } from './guards/session-guard.service';
 import { LegalConstitutionPipe } from './pipes/legalConstitution-pipe';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
+import { AdvisoryAreaPipe } from './pipes/advisoryArea-pipe';
+import { AdvisoryStatePipe } from './pipes/AdvisoryState-pipe';
+import { AdvisoryTypePipe } from './pipes/advisoryType-pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
     ContactTypePipe,
     CompanyTypePipe,
     EthnicGroupPipe,
+    AdvisoryTypePipe,
+    AdvisoryAreaPipe,
+    AdvisoryStatePipe,
     ContactMediumPipe,
     EducationLevelPipe,
     LegalConstitutionPipe,
@@ -46,6 +52,9 @@ import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
     ContactTypePipe,
     CompanyTypePipe,
     EthnicGroupPipe,
+    AdvisoryTypePipe,
+    AdvisoryAreaPipe,
+    AdvisoryStatePipe,
     ContactMediumPipe,
     EducationLevelPipe,
     LegalConstitutionPipe,

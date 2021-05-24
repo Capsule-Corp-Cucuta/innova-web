@@ -11,6 +11,8 @@ import { Client } from 'src/app/core/models/client.model';
 import { ClientServiceStub } from './cliente-service.stub';
 import { ConsultantServiceStub } from './consultant-service.stub';
 import { Consultant } from '../../core/models/consultant.model';
+import { AdvisoryServiceStub } from './advisory-service.stub';
+import { Advisory, advisoryState } from '../../core/models/advisory.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class FacadeServiceStub {
   private contactServiceStub: ContactServiceStub;
   private clientServiceStub: ClientServiceStub;
   private consultantServiveStub: ConsultantServiceStub;
+  private advisoryServiceStub: AdvisoryServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
@@ -28,6 +31,7 @@ export class FacadeServiceStub {
     this.contactServiceStub = new ContactServiceStub();
     this.clientServiceStub = new ClientServiceStub();
     this.consultantServiveStub = new ConsultantServiceStub();
+    this.advisoryServiceStub = new AdvisoryServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -77,6 +81,9 @@ export class FacadeServiceStub {
   public findByIDClient(id: string): Observable<Client> {
     return this.clientServiceStub.findByID(id);
   }
+  public findClientByConsultant(id: string): Observable<Client[]> {
+    return this.clientServiceStub.findClientByConsultant(id);
+  }
 
   public findAllClient(): Observable<Client[]> {
     return this.clientServiceStub.findAll();
@@ -95,5 +102,23 @@ export class FacadeServiceStub {
 
   public findAllConsultant(): Observable<Consultant[]> {
     return this.consultantServiveStub.findAll();
+  }
+
+  public createAdvisory(advisory: Advisory): Observable<Boolean> {
+    return this.advisoryServiceStub.create(advisory);
+  }
+  public updateAdvisory(advisory: Advisory): Observable<Boolean> {
+    return this.advisoryServiceStub.update(advisory);
+  }
+
+  public findByIDAdvisory(id: string): Observable<Advisory> {
+    return this.advisoryServiceStub.findByID(id);
+  }
+
+  public findAdvisoryByConsultant(id: string): Observable<Advisory[]> {
+    return this.advisoryServiceStub.findByConsultatn(id);
+  }
+  public findAllAdvisory(): Observable<Advisory[]> {
+    return this.advisoryServiceStub.findAll();
   }
 }

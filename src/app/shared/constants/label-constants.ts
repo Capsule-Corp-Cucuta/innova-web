@@ -260,16 +260,16 @@ export class LabelConstants {
         TITLE_VIEW: 'Informacion asesoria',
         SUBTITLE: 'Innova UFPS',
         PLACEHOLDER: {
-          ADVISER: 'Asesor',
-          CLIENT: 'Cliente',
-          DATEADVISORY: 'Fecha Asesoria',
-          CONSULTATNTYPE: 'Tipo de asesoria',
-          DURATION: 'Duracion(Horas)',
-          PREPARATION: 'Tiempo de preparacion',
-          AREA: 'Area',
-          AFFAIR: 'Asunto',
-          NOTES: 'Notas',
-          STATE: 'Estado',
+          ADVISER: 'Asesor: ',
+          CLIENT: 'Cliente: ',
+          DATEADVISORY: 'Fecha Asesoria: ',
+          CONSULTATNTYPE: 'Tipo de asesoria: ',
+          DURATION: 'Duracion(Horas): ',
+          PREPARATION: 'Tiempo de preparacion: ',
+          AREA: 'Area: ',
+          AFFAIR: 'Asunto: ',
+          NOTES: 'Notas: ',
+          STATE: 'Estado: ',
         },
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
@@ -280,10 +280,10 @@ export class LabelConstants {
         NOTDATA: 'No hay datos',
         EXPORT: 'Exportar datos',
         COLUMNS: [
-          'adviser',
+          'consultant',
           'client',
           'date',
-          'type',
+          'advisoryType',
           'area',
           'affair',
           'state',
@@ -443,6 +443,25 @@ export class LabelConstants {
   public static OPTION = [
     { id: true, value: 'YES' },
     { id: false, value: 'NOT' },
+  ];
+
+  public static ADVISORYTYPE = [
+    { id: 0, value: 'INITIAL' },
+    { id: 1, value: 'FOLLOW_UP' },
+    { id: 2, value: 'UCLOSING' },
+  ];
+
+  public static ADVISORYAREA = [
+    { id: 0, value: 'BUSINESS_PLAN' },
+    { id: 1, value: 'HUMAN_RESOURCES' },
+    { id: 2, value: 'BUSINESS_ADMINISTRATION' },
+    { id: 3, value: 'FINANCING' },
+  ];
+
+  public static ADVISORYSTATE = [
+    { id: 0, value: 'PENDING' },
+    { id: 1, value: 'REJECTED' },
+    { id: 2, value: 'COMPLETE' },
   ];
 
   public static ICONS = {

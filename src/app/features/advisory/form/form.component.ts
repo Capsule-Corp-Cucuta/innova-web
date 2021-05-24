@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import Swal from 'sweetalert2';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { SharedConstants } from '../../../shared/constants/shared-constants';
+import { Client } from '../../../core/models/client.model';
 
 @Component({
   selector: 'app-form',
@@ -14,11 +18,18 @@ export class FormComponent implements OnInit {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
+  public readonly ADVISORYTYPE = LabelConstants.ADVISORYTYPE;
+  public readonly ADVISORYAREA = LabelConstants.ADVISORYAREA;
+  public readonly ADVISORYSTATE = LabelConstants.ADVISORYSTATE;
 
+  public consultant: string;
   public form: FormGroup;
   public isCreate: boolean;
+  public clients: Client[];
 
   constructor(
+    private router: Router,
+    private service: FacadeService,
     private formBuilder: FormBuilder,
     private activeRoute: ActivatedRoute,
   ) {
@@ -26,42 +37,93 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.consultant = this.service.getUser();
     this.validateIsCreateForm();
+    this.loadClients(this.consultant);
   }
 
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.isCreate = params.id ? false : true;
+      const idAdvisory = params.id;
+      if (!this.isCreate) {
+        this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
+          this.form.patchValue(resp);
+        });
+      }
     });
-    console.log(this.isCreate);
   }
 
   public create(e: Event): void {
     e.preventDefault();
+    const advisory = this.form.value;
     if (this.form.valid) {
-      //TODO
+      this.service.createAdvisory(advisory).subscribe((resp) => {
+        if (resp) {
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE +
+              SharedConstants.ALERTSUCCESS.ADVISER,
+            'success',
+          );
+        } else {
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTCREATE +
+              SharedConstants.ALERTERROR.ADVISER,
+            'error',
+          );
+        }
+        this.router.navigate(['./asesoria']);
+      });
     }
   }
 
   public update(e: Event): void {
     e.preventDefault();
     if (this.form.valid) {
-      //TODO
+      const advisory = this.form.value;
+      this.service.updateAdvisory(advisory).subscribe((resp) => {
+        if (resp) {
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
+              SharedConstants.ALERTSUCCESS.ADVISER,
+            'success',
+          );
+        } else {
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTUPDATE +
+              SharedConstants.ALERTERROR.ADVISER,
+            'error',
+          );
+        }
+        this.router.navigate(['./asesoria']);
+      });
     }
   }
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      adviser: ['', [Validators.required]],
-      client: ['', [Validators.required]],
+      consultant: this.consultant,
+      client: [''],
       date: ['', [Validators.required]],
-      type: ['', [Validators.required]],
+      advisoryType: ['', [Validators.required]],
       duration: ['', [Validators.required]],
-      preparation: ['', [Validators.required]],
+      preparationTime: ['', [Validators.required]],
       area: ['', [Validators.required]],
       affair: ['', [Validators.required]],
       notes: [''],
       state: [''],
     });
+  }
+
+  private loadClients(idConsultant: string): void {
+    if (this.isCreate) {
+      this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
+        this.clients = resp;
+      });
+    }
   }
 }

@@ -9,6 +9,7 @@ export class Advisory {
   duration?: number;
   preparationTime?: number;
   area: advisoryArea;
+  affair?: string;
   notes?: string;
   state: advisoryState;
 }

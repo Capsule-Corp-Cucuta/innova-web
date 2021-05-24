@@ -16,6 +16,10 @@ export class ClientServiceStub {
     return of(TestUtils.client);
   }
 
+  public findClientByConsultant(id: string): Observable<Client[]> {
+    return of(TestUtils.clients);
+  }
+
   public findAll(): Observable<Client[]> {
     return of(TestUtils.clients);
   }

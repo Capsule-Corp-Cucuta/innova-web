@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LabelConstants } from '../../../shared/constants/label-constants';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { Advisory } from '../../../core/models/advisory.model';
 
 @Component({
   selector: 'app-modal',
@@ -12,16 +14,15 @@ export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
 
-  public form: FormGroup;
-  public id: number;
+  public advisory: Advisory;
+  public id: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
-    private formBuilder: FormBuilder,
-  ) {
-    this.buildForm();
-  }
+    @Inject(MAT_DIALOG_DATA) public data: string,
+
+    private service: FacadeService,
+  ) {}
 
   ngOnInit(): void {
     this.id = this.data;
@@ -33,21 +34,8 @@ export class ModalComponent implements OnInit {
   }
 
   private loadConsultant() {
-    //TODO
-  }
-
-  private buildForm(): void {
-    this.form = this.formBuilder.group({
-      adviser: [''],
-      client: [''],
-      date: [''],
-      type: [''],
-      duration: [''],
-      preparation: [''],
-      area: [''],
-      affair: [''],
-      notes: [''],
-      state: [''],
+    this.service.findByIDAdvisory(this.id).subscribe((resp) => {
+      this.advisory = resp;
     });
   }
 }

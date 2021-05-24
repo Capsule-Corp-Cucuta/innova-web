@@ -25,6 +25,12 @@ export class ClientService {
     return this.http.get<Client>(ClientService.ENDPOINT + '/' + id);
   }
 
+  public findByConsultant(id: string): Observable<Client[]> {
+    return this.http.get<Client[]>(
+      ClientService.ENDPOINT + '/consultant/' + id,
+    );
+  }
+
   public findAll(): Observable<Client[]> {
     return this.http.get<Client[]>(ClientService.ENDPOINT + '/all');
   }
