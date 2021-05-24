@@ -71,6 +71,22 @@ export class SharedConstants {
       YES: 'Si',
       NOT: 'No',
     },
+    ADVISORYTYPE: {
+      INITIAL: 'Inicial',
+      FOLLOW_UP: 'Seguimiento',
+      CLOSING: 'Clausura',
+    },
+    ADVISORYAREA: {
+      BUSINESS_PLAN: 'Plan de negocios',
+      HUMAN_RESOURCES: 'Recursos humanos',
+      BUSINESS_ADMINISTRATION: 'Admin. de empresas',
+      FINANCING: 'Financiacion',
+    },
+    ADVISORYSTATE: {
+      PENDING: 'Pendiente',
+      REJECTED: 'Rechazada',
+      COMPLETE: 'Completa',
+    },
   };
 
   static readonly ALERTACTIVATE = {

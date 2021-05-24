@@ -9,90 +9,62 @@
 
     <mat-divider></mat-divider>
 
-    <form [formGroup]="form" class="form">
-      <mat-card-content class="form__content">
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.ADVISER }}"
-            formControlName="adviser"
-          />
-        </mat-form-field>
-
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.CLIENT }}"
-            formControlName="client"
-          />
-        </mat-form-field>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEADVISORY }}"
-              formControlName="date"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="number"
-              placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
-              formControlName="duration"
-            />
-          </mat-form-field>
-        </div>
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
-              formControlName="type"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="state"
-            />
-          </mat-form-field>
-        </div>
-        <mat-form-field>
-          <mat-select
-            placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
-            formControlName="area"
-          >
-            <mat-option *ngFor="" [value]=""></mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.AFFAIR }}"
-            formControlName="affair"
-            required
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label> {{ LABELS.PLACEHOLDER.NOTES }} </mat-label>
-          <textarea matInput formControlName="notes"></textarea>
-        </mat-form-field>
-      </mat-card-content>
-
-      <mat-card-actions class="form__actions"> </mat-card-actions>
-    </form>
+    <br />
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.ADVISER }}</b>
+      </span>
+      <span>
+        {{ advisory.consultant.name }} {{ advisory.consultant.lastName }}
+      </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.CLIENT }}</b>
+      </span>
+      <span> {{ advisory.client.name }} {{ advisory.client.lastName }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DATEADVISORY }}</b>
+      </span>
+      <span> {{ advisory.date }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
+      </span>
+      <span> {{ advisory.duration }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}</b>
+      </span>
+      <span> {{ advisory.advisoryType | AdvisoryType }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.STATE }}</b>
+      </span>
+      <span> {{ advisory.state | AdvisoryState }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.AREA }}</b>
+      </span>
+      <span> {{ advisory.area | AdvisoryArea }} </span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.AFFAIR }}</b>
+      </span>
+      <span> {{ advisory.affair }} </span>
+    </div>
+    <div class="header__justify">
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.NOTES }}</b>
+      </span>
+      <span> {{ advisory.notes }} </span>
+    </div>
   </mat-card>
 </section>

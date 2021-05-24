@@ -20,7 +20,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.ADVISER }}"
-              formControlName="adviser"
+              formControlName="consultant"
             />
           </mat-form-field>
 
@@ -29,7 +29,9 @@
               placeholder="{{ LABELS.PLACEHOLDER.CLIENT }}"
               formControlName="client"
             >
-              <mat-option *ngFor="" [value]=""></mat-option>
+              <mat-option *ngFor="let op of clients" [value]="op.id">
+                {{ op.name }} {{ op.lastName }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -47,9 +49,11 @@
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
-              formControlName="type"
+              formControlName="advisoryType"
             >
-              <mat-option *ngFor="" [value]=""></mat-option>
+              <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.id">
+                {{ op.id | AdvisoryType }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -69,19 +73,34 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
-              formControlName="preparation"
+              formControlName="preparationTime"
             />
           </mat-form-field>
         </div>
 
-        <mat-form-field>
-          <mat-select
-            placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
-            formControlName="area"
-          >
-            <mat-option *ngFor="" [value]=""></mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="form__content--group">
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
+              formControlName="area"
+            >
+              <mat-option *ngFor="let op of ADVISORYAREA" [value]="op.id">
+                {{ op.id | AdvisoryArea }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
+              formControlName="state"
+            >
+              <mat-option *ngFor="let op of ADVISORYSTATE" [value]="op.id">
+                {{ op.id | AdvisoryState }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
         <mat-form-field>
           <input
@@ -96,15 +115,6 @@
         <mat-form-field appearance="fill">
           <mat-label> {{ LABELS.PLACEHOLDER.NOTES }} </mat-label>
           <textarea matInput formControlName="notes"></textarea>
-        </mat-form-field>
-
-        <mat-form-field *ngIf="!isCreate">
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-            formControlName="state"
-          />
         </mat-form-field>
       </mat-card-content>
 

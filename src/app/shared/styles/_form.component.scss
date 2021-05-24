@@ -25,6 +25,10 @@
       margin: 0;
     }
   }
+
+  &__justify {
+    text-align: justify;
+  }
 }
 
 .form {
@@ -42,5 +46,10 @@
   &__actions {
     display: flex;
     justify-content: space-around;
+  }
+  .span {
+    &__justify {
+      text-align: justify;
+    }
   }
 }

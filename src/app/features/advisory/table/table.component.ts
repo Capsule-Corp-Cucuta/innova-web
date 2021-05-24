@@ -7,6 +7,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
+import { Advisory } from '../../../core/models/advisory.model';
+import { FacadeService } from '../../../shared/services/facade.service';
 
 @Component({
   selector: 'app-table',
@@ -21,18 +23,22 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
 
-  public consultants: [] = [];
-  public advisory: MatTableDataSource<[]>;
+  public authority: string;
+  public consultant: string;
+  public advisory: MatTableDataSource<Advisory>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
-    this.loadData();
+    this.authority = this.service.getAuthorities()[0];
+    this.consultant = this.service.getUser();
+    // this.loadData();
+    this.loadDataAdmin();
   }
 
   ngAfterViewInit(): void {
-    //this.adviser.sort = this.sort;
-    //this.adviser.paginator = this.paginator;
+    this.advisory.sort = this.sort;
+    this.advisory.paginator = this.paginator;
   }
 
   public applyFilter(event: Event): void {
@@ -44,15 +50,31 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public openDialog(consultant: string): void {
-    if (consultant) {
+  public openDialog(advisory: string): void {
+    if (advisory) {
       this.dialog.open(ModalComponent, {
-        data: consultant,
+        data: advisory,
       });
     }
   }
 
   private loadData(): void {
-    //TODO
+    if (this.authority === 'ADMIN') {
+      this.loadData();
+    } else {
+      this.loadDataByConsultant(this.consultant);
+    }
+  }
+
+  private loadDataAdmin(): void {
+    this.service.findAllAdvisory().subscribe((resp) => {
+      this.advisory = new MatTableDataSource(resp);
+    });
+  }
+
+  private loadDataByConsultant(consultant: string): void {
+    this.service.findAdvisoryByConsultant(consultant).subscribe((resp) => {
+      this.advisory = new MatTableDataSource(resp);
+    });
   }
 }
