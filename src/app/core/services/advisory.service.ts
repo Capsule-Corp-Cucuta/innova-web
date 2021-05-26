@@ -24,7 +24,7 @@ export class AdvisoryService {
     );
   }
 
-  public findByID(id: string): Observable<Advisory> {
+  public findByID(id: number): Observable<Advisory> {
     return this.http.get<Advisory>(AdvisoryService.ENDPOINT + '/' + id);
   }
 

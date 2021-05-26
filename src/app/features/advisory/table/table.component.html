@@ -89,7 +89,7 @@
           <button
             mat-stroked-button
             color="accent"
-            routerLink="{{ ROUTES.UPDATE }}/{{ advisory.consultant.id }}"
+            routerLink="{{ ROUTES.UPDATE }}/{{ advisory.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
@@ -97,7 +97,7 @@
           <button
             mat-stroked-button
             color="accent"
-            (click)="openDialog(advisory.consultant.id)"
+            (click)="openDialog(advisory.id)"
             matTooltip="{{ LABELS.TOOLTIP.VIEW }}"
           >
             <mat-icon>{{ ICONS.VIEW }}</mat-icon>

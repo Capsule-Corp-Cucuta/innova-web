@@ -111,7 +111,7 @@ export class FacadeServiceStub {
     return this.advisoryServiceStub.update(advisory);
   }
 
-  public findByIDAdvisory(id: string): Observable<Advisory> {
+  public findByIDAdvisory(id: number): Observable<Advisory> {
     return this.advisoryServiceStub.findByID(id);
   }
 

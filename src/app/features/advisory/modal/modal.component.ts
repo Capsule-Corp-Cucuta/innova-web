@@ -15,25 +15,25 @@ export class ModalComponent implements OnInit {
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
 
   public advisory: Advisory;
-  public id: string;
+  public id: number;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
+    @Inject(MAT_DIALOG_DATA) public data: number,
 
     private service: FacadeService,
   ) {}
 
   ngOnInit(): void {
     this.id = this.data;
-    this.loadConsultant();
+    this.loadAdvisory();
   }
 
   public onNoClick(): void {
     this.dialogRef.close();
   }
 
-  private loadConsultant() {
+  private loadAdvisory() {
     this.service.findByIDAdvisory(this.id).subscribe((resp) => {
       this.advisory = resp;
     });
