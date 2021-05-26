@@ -125,6 +125,7 @@ export class TestUtils {
   ];
 
   static advisory: Advisory = {
+    id: 1,
     consultant: TestUtils.consultant,
     client: TestUtils.client,
     date: new Date(),
@@ -140,6 +141,7 @@ export class TestUtils {
 
   static advisorys: Advisory[] = [
     {
+      id: 1,
       consultant: TestUtils.consultant,
       client: TestUtils.client,
       date: new Date(),
@@ -152,6 +154,7 @@ export class TestUtils {
       state: advisoryState.REJECTED,
     },
     {
+      id: 2,
       consultant: TestUtils.consultant,
       client: TestUtils.client,
       date: new Date(),

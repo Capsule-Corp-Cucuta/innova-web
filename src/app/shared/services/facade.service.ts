@@ -149,7 +149,7 @@ export class FacadeService {
   public updateAdvisory(advisory: Advisory): Observable<Boolean> {
     return this.advisoryService.update(advisory);
   }
-  public findByIDAdvisory(id: string): Observable<Advisory> {
+  public findByIDAdvisory(id: number): Observable<Advisory> {
     return this.advisoryService.findByID(id);
   }
 

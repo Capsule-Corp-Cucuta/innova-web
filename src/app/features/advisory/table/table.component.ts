@@ -50,7 +50,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public openDialog(advisory: string): void {
+  public openDialog(advisory: number): void {
     if (advisory) {
       this.dialog.open(ModalComponent, {
         data: advisory,

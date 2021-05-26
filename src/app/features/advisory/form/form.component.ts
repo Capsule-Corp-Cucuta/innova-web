@@ -48,7 +48,19 @@ export class FormComponent implements OnInit {
       const idAdvisory = params.id;
       if (!this.isCreate) {
         this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
-          this.form.patchValue(resp);
+          const advisory = {
+            consultant: resp.consultant.id,
+            client: resp.client.id,
+            date: resp.date,
+            advisoryType: resp.advisoryType,
+            duration: resp.duration,
+            preparationTime: resp.preparationTime,
+            area: resp.area,
+            affair: resp.affair,
+            notes: resp.notes,
+            state: resp.state,
+          };
+          this.form.patchValue(advisory);
         });
       }
     });
@@ -120,10 +132,8 @@ export class FormComponent implements OnInit {
   }
 
   private loadClients(idConsultant: string): void {
-    if (this.isCreate) {
-      this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
-        this.clients = resp;
-      });
-    }
+    this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
+      this.clients = resp;
+    });
   }
 }

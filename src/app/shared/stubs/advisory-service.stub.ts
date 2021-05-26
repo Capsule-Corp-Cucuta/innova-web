@@ -16,7 +16,7 @@ export class AdvisoryServiceStub {
     return of(true);
   }
 
-  public findByID(id: string): Observable<Advisory> {
+  public findByID(id: number): Observable<Advisory> {
     return of(TestUtils.advisory);
   }
 

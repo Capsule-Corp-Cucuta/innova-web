@@ -2,6 +2,7 @@ import { Client } from './client.model';
 import { Consultant } from './consultant.model';
 
 export class Advisory {
+  id?: number;
   client: Client;
   consultant: Consultant;
   date: Date;
