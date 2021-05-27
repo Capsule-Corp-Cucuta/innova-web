@@ -12,7 +12,9 @@ import { ClientServiceStub } from './cliente-service.stub';
 import { ConsultantServiceStub } from './consultant-service.stub';
 import { Consultant } from '../../core/models/consultant.model';
 import { AdvisoryServiceStub } from './advisory-service.stub';
-import { Advisory, advisoryState } from '../../core/models/advisory.model';
+import { Advisory } from '../../core/models/advisory.model';
+import { EventServiceStub } from './event-service.stub';
+import { Event } from 'src/app/core/models/event.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,7 @@ export class FacadeServiceStub {
   private clientServiceStub: ClientServiceStub;
   private consultantServiveStub: ConsultantServiceStub;
   private advisoryServiceStub: AdvisoryServiceStub;
+  private eventServiceStub: EventServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
@@ -32,6 +35,7 @@ export class FacadeServiceStub {
     this.clientServiceStub = new ClientServiceStub();
     this.consultantServiveStub = new ConsultantServiceStub();
     this.advisoryServiceStub = new AdvisoryServiceStub();
+    this.eventServiceStub = new EventServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -120,5 +124,23 @@ export class FacadeServiceStub {
   }
   public findAllAdvisory(): Observable<Advisory[]> {
     return this.advisoryServiceStub.findAll();
+  }
+
+  public createEvent(event: Event): Observable<Boolean> {
+    return this.eventServiceStub.create(event);
+  }
+  public updateEvent(event: Event): Observable<Boolean> {
+    return this.eventServiceStub.update(event);
+  }
+
+  public findByIDEvent(id: number): Observable<Event> {
+    return this.eventServiceStub.findByID(id);
+  }
+
+  public findEventByClient(id: string): Observable<Event[]> {
+    return this.eventServiceStub.findByClient(id);
+  }
+  public findAllEvent(): Observable<Event[]> {
+    return this.eventServiceStub.findAll();
   }
 }

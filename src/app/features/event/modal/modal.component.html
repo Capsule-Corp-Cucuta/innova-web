@@ -8,154 +8,106 @@
     </mat-card-header>
 
     <mat-divider></mat-divider>
-
-    <form [formGroup]="form" class="form">
-      <mat-card-content class="form__content">
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.TITLE }}"
-            formControlName="title"
-          />
-        </mat-form-field>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
-              formControlName="dateStart"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
-              formControlName="dateEnd"
-            />
-          </mat-form-field>
-        </div>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DEADLINE }}"
-              formControlName="deadLine"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.HOUR }}"
-              formControlName="hour"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
-              formControlName="duration"
-            />
-          </mat-form-field>
-        </div>
-
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.THEME }}"
-            formControlName="theme"
-          />
-        </mat-form-field>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
-              formControlName="eventType"
-            >
-              <mat-option *ngFor="" [value]=""></mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="state"
-            >
-              <mat-option *ngFor="" [value]=""></mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <mat-form-field appearance="fill">
-          <mat-label> {{ LABELS.PLACEHOLDER.DESCRIPTION }} </mat-label>
-          <textarea matInput formControlName="description"></textarea>
-        </mat-form-field>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.PLACE }}"
-              formControlName="place"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-              formControlName="city"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.DEPARTMENT }}"
-              formControlName="department"
-            />
-          </mat-form-field>
-        </div>
-
-        <div class="form__content--group">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-              formControlName="email"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-              formControlName="website"
-            />
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-
-      <mat-card-actions class="form__actions">
-        <button mat-raised-button>
-          <span>{{ LABELS.INSCRIPTION_BUTTON }}</span>
-        </button>
-      </mat-card-actions>
-    </form>
+    <br />
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.ID }}</b>
+      </span>
+      <span> {{ event.id }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.TITLE }}</b>
+      </span>
+      <span> {{ event.title }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DATESTART }}</b>
+      </span>
+      <span> {{ event.startDate }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DATEEND }}</b>
+      </span>
+      <span> {{ event.closeDate }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DEADLINE }}</b>
+      </span>
+      <span> {{ event.registrationDeadline }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DATESTART }}</b>
+      </span>
+      <span> {{ event.startDate }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.HOUR }}</b>
+      </span>
+      <span> {{ event.eventTime }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
+      </span>
+      <span> {{ event.eventDuration }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.THEME }}</b>
+      </span>
+      <span> {{ event.theme }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.EVENTTYPE }}</b>
+      </span>
+      <span> {{ event.eventType | EventType }}</span>
+    </div>
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.STATE }}</b>
+      </span>
+      <span> {{ event.eventState | EventState }}</span>
+    </div>
+    <div class="header__justify">
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.DESCRIPTION }}</b>
+      </span>
+      <span> {{ event.description }}</span>
+    </div>
+    <br />
+    <div>
+      <span>
+        <b>{{ LABELS.PLACEHOLDER.PLACE }}</b>
+      </span>
+      <span> {{ event.place }}</span>
+    </div>
+    <div>
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.CITY }}</b>
+        </span>
+        <span> {{ event.city }}</span>
+      </div>
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DEPARTMENT }}</b>
+        </span>
+        <span> {{ event.department }}</span>
+      </div>
+    </div>
+    <div>
+      <span>
+        <a href="{{ event.eventLink }}" target="_blank">
+          <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>
+        </a>
+      </span>
+    </div>
   </mat-card>
 </section>

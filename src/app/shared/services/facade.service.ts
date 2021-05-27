@@ -13,6 +13,8 @@ import { ConsultantService } from '../../core/services/consultant.service';
 import { Consultant } from 'src/app/core/models/consultant.model';
 import { AdvisoryService } from '../../core/services/advisory.service';
 import { Advisory } from 'src/app/core/models/advisory.model';
+import { EventService } from 'src/app/core/services/event.service';
+import { Event } from 'src/app/core/models/event.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,7 @@ export class FacadeService {
   private _clientService: ClientService; // tslint:disable-line
   private _consultantService: ConsultantService; // tslint:disable-line
   private _advisoryService: AdvisoryService; // tslint:disable-line
+  private _eventService: EventService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -71,6 +74,13 @@ export class FacadeService {
       );
     }
     return this._advisoryService;
+  }
+
+  public get eventService(): EventService {
+    if (!this._eventService) {
+      this._eventService = this.injector.get<EventService>(EventService);
+    }
+    return this._eventService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -159,5 +169,23 @@ export class FacadeService {
 
   public findAllAdvisory(): Observable<Advisory[]> {
     return this.advisoryService.findAll();
+  }
+  public createEvent(event: Event): Observable<Boolean> {
+    return this.eventService.create(event);
+  }
+
+  public updateEvent(event: Event): Observable<Boolean> {
+    return this.eventService.update(event);
+  }
+  public findByIDEvent(id: number): Observable<Event> {
+    return this.eventService.findByID(id);
+  }
+
+  public findEventByClient(id: string): Observable<Event[]> {
+    return this.eventService.findByClient(id);
+  }
+
+  public findAllEvent(): Observable<Event[]> {
+    return this.eventService.findAll();
   }
 }

@@ -5,14 +5,15 @@
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input
           matInput
-          (keyup)="applyFilter($event)"
+          (keyup)="applyFilter()"
           placeholder="{{ LABELS.SEARCH }}"
+          [(ngModel)]="filter"
           #input
         />
       </mat-form-field>
     </mat-card>
 
-    <table mat-table [dataSource]="event" matSort class="table--content">
+    <table mat-table [dataSource]="events" matSort class="table--content">
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.TITLE }}
@@ -22,44 +23,46 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="dateStart">
+      <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.DATESTART }}
         </th>
         <td mat-cell *matCellDef="let event">
-          {{ event.dateStart }}
+          {{ event.startDate }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="dateEnd">
+      <ng-container matColumnDef="closeDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.DATEEND }}
         </th>
-        <td mat-cell *matCellDef="let event">{{ event.dateEnd }}</td>
+        <td mat-cell *matCellDef="let event">{{ event.closeDate }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="deadLine">
+      <ng-container matColumnDef="registrationDeadline">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.DEADLINE }}
         </th>
-        <td mat-cell *matCellDef="let event">{{ event.deadLine }}</td>
+        <td mat-cell *matCellDef="let event">
+          {{ event.registrationDeadline }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="eventType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.EVENTTYPE }}
         </th>
-        <td mat-cell *matCellDef="let event" mat-sort-header>
-          {{ event.eventType }}
+        <td mat-cell *matCellDef="let event">
+          {{ event.eventType | EventType }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="state">
+      <ng-container matColumnDef="eventState">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let event">
-          {{ event.state }}
+          {{ event.eventState | EventState }}
         </td>
       </ng-container>
 
@@ -70,6 +73,7 @@
             color="primary"
             routerLink="{{ ROUTES.CREATE }}"
             matTooltip="{{ LABELS.TOOLTIP.NEW }}"
+            *ngIf="watch"
           >
             <mat-icon>{{ ICONS.ADD }}</mat-icon>
           </button>
@@ -78,13 +82,12 @@
           <button
             mat-stroked-button
             color="accent"
-            routerLink="../{{ ROUTES.UPDATE }}/{{ event.id }}"
+            routerLink="{{ ROUTES.UPDATE }}/{{ event.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
+            *ngIf="watch"
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
           </button>
-        </td>
-        <td mat-cell *matCellDef="let event">
           <button
             mat-stroked-button
             color="accent"
@@ -100,6 +103,7 @@
               event.id
             }}"
             matTooltip="{{ LABELS.TOOLTIP.ATTENDANCE }}"
+            *ngIf="watch"
           >
             <mat-icon>{{ ICONS.CHECK }}</mat-icon>
           </button>

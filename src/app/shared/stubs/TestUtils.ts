@@ -3,6 +3,7 @@ import { JwtModel } from 'src/app/core/models/jwt.model';
 import { Client } from '../../core/models/client.model';
 import { Consultant } from '../../core/models/consultant.model';
 import { Contact } from '../../core/models/contact.model';
+import { Event, EventState, EventType } from '../../core/models/event.model';
 
 import {
   Advisory,
@@ -165,6 +166,67 @@ export class TestUtils {
       affair: 'Prueba 2',
       notes: 'Pruebas de asesoria 2',
       state: advisoryState.PENDING,
+    },
+  ];
+
+  static event: Event = {
+    id: 1,
+    title: 'Evento de prueba 1',
+    startDate: new Date(),
+    closeDate: new Date(),
+    registrationDeadline: new Date(),
+    eventTime: '2',
+    eventDuration: '3 horas',
+    theme: 'Mocks',
+    description:
+      'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
+    eventType: EventType.TALK,
+    eventState: EventState.OPEN,
+    department: 'NORTE DE SANTANDER',
+    city: 'Cucuta',
+    place: 'Universidad Francisco de Paula Santander',
+    contactEmail: 'innova@ufps.edu.co',
+    eventLink: 'https://ww2.ufps.edu.co/',
+  };
+
+  static events: Event[] = [
+    {
+      id: 1,
+      title: 'Evento de prueba 1',
+      startDate: new Date(),
+      closeDate: new Date(),
+      registrationDeadline: new Date(),
+      eventTime: '2',
+      eventDuration: '3 horas',
+      theme: 'Mocks',
+      description:
+        'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
+      eventType: EventType.TALK,
+      eventState: EventState.OPEN,
+      department: 'NORTE DE SANTANDER',
+      city: 'Cucuta',
+      place: 'Universidad Francisco de Paula Santander',
+      contactEmail: 'innova@ufps.edu.co',
+      eventLink: 'https://ww2.ufps.edu.co/',
+    },
+    {
+      id: 2,
+      title: 'Evento de prueba 2',
+      startDate: new Date(),
+      closeDate: new Date(),
+      registrationDeadline: new Date(),
+      eventTime: '5',
+      eventDuration: '10 horas',
+      theme: 'Mocks parte 2',
+      description:
+        'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
+      eventType: EventType.COURSE,
+      eventState: EventState.OPEN,
+      department: 'NORTE DE SANTANDER',
+      city: 'Cucuta',
+      place: 'Universidad Francisco de Paula Santander',
+      contactEmail: 'innova@ufps.edu.co',
+      eventLink: 'https://ww2.ufps.edu.co/',
     },
   ];
 }

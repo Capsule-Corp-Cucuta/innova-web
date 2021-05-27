@@ -29,7 +29,7 @@
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
-              formControlName="dateStart"
+              formControlName="startDate"
             />
           </mat-form-field>
 
@@ -38,7 +38,7 @@
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
-              formControlName="dateEnd"
+              formControlName="CloseDate"
             />
           </mat-form-field>
         </div>
@@ -49,7 +49,7 @@
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DEADLINE }}"
-              formControlName="deadLine"
+              formControlName="registrationDeadLine"
             />
           </mat-form-field>
 
@@ -58,7 +58,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.HOUR }}"
-              formControlName="hour"
+              formControlName="eventTime"
             />
           </mat-form-field>
           <mat-form-field>
@@ -66,7 +66,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
-              formControlName="duration"
+              formControlName="eventDuration"
             />
           </mat-form-field>
         </div>
@@ -86,16 +86,20 @@
               placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
               formControlName="eventType"
             >
-              <mat-option *ngFor="" [value]=""></mat-option>
+              <mat-option *ngFor="let op of EVENTTYPE" [value]="op.id">
+                {{ op.id | EventType }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="state"
+              formControlName="eventState"
             >
-              <mat-option *ngFor="" [value]=""></mat-option>
+              <mat-option *ngFor="let op of EVENTSTATE" [value]="op.id">
+                {{ op.id | EventState }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -139,7 +143,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-              formControlName="email"
+              formControlName="contactEmail"
             />
           </mat-form-field>
 
@@ -148,7 +152,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-              formControlName="website"
+              formControlName="eventLink"
             />
           </mat-form-field>
         </div>
