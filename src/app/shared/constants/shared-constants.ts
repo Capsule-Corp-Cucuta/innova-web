@@ -87,6 +87,23 @@ export class SharedConstants {
       REJECTED: 'Rechazada',
       COMPLETE: 'Completa',
     },
+    EVENTTYPE: {
+      TALK: 'Charla',
+      BUSINESS_FAIR: 'Feria Empresarial',
+      COURSE: 'Curso',
+      ONLINE_COURSE: 'Curso en linea',
+      BUSINESS_CONFERENCE: 'Rueda de Negocios',
+      TELECONFERENCE: 'Teleconferencia',
+      SEMINAR: 'Seminario',
+      WEBINAR: 'Webinar',
+    },
+    EVENTSTATE: {
+      OPEN: 'Abierto',
+      CLOSED: 'Cerrado',
+      COMPLETE: 'Completo',
+      CANCELED: 'Cancelado',
+      POSTPONED: 'Aplazado',
+    },
   };
 
   static readonly ALERTACTIVATE = {

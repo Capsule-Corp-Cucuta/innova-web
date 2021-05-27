@@ -2,10 +2,13 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+
 import { MatTableDataSource } from '@angular/material/table';
+import { Event } from 'src/app/core/models/event.model';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
+import { FacadeService } from '../../../shared/services/facade.service';
 
 @Component({
   selector: 'app-table',
@@ -20,38 +23,60 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.EVENT.LIST;
 
-  public events: [] = [];
-  public event: MatTableDataSource<[]>;
+  public authority: string;
+  public client: string;
+  public filter: string;
+  public watch = true;
+  public events: MatTableDataSource<Event>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
-    this.loadData();
+    this.authority = this.service.getAuthorities()[0];
+    this.client = this.service.getUser();
+    //this.watch = this.authority === 'ADMIN' ? true : false;
+    this.loadDataAdmin();
   }
 
   ngAfterViewInit(): void {
-    //this.event.sort = this.sort;
-    //this.event.paginator = this.paginator;
+    this.events.sort = this.sort;
+    this.events.paginator = this.paginator;
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.event.filter = filterValue.trim().toLowerCase();
+  public applyFilter(): void {
+    const filterValue = this.filter;
+    this.events.filter = filterValue.trim().toLowerCase();
 
-    if (this.event.paginator) {
-      this.event.paginator.firstPage();
+    if (this.events.paginator) {
+      this.events.paginator.firstPage();
     }
   }
 
-  public openDialog(event: string): void {
-    if (event) {
+  public openDialog(idEvent: number): void {
+    if (idEvent) {
       this.dialog.open(ModalComponent, {
-        data: event,
+        data: idEvent,
       });
     }
   }
 
   private loadData(): void {
-    //TODO
+    if (this.authority === 'ADMIN') {
+      this.loadDataAdmin();
+    } else if (this.authority === 'CLIENT') {
+      this.loadDataByClient(this.client);
+    }
+  }
+
+  private loadDataAdmin(): void {
+    this.service.findAllEvent().subscribe((resp) => {
+      this.events = new MatTableDataSource(resp);
+    });
+  }
+
+  private loadDataByClient(client: string): void {
+    this.service.findEventByClient(client).subscribe((resp) => {
+      this.events = new MatTableDataSource(resp);
+    });
   }
 }

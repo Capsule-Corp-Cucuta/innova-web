@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import Swal from 'sweetalert2';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { FacadeService } from 'src/app/shared/services/facade.service';
+import { SharedConstants } from '../../../shared/constants/shared-constants';
 
 @Component({
   selector: 'app-form',
@@ -14,6 +17,8 @@ export class FormComponent implements OnInit {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
+  public readonly EVENTTYPE = LabelConstants.EVENTTYPE;
+  public readonly EVENTSTATE = LabelConstants.EVENTSTATE;
 
   public form: FormGroup;
   public isCreate: boolean;
@@ -21,6 +26,8 @@ export class FormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private activeRoute: ActivatedRoute,
+    private service: FacadeService,
+    private router: Router,
   ) {
     this.buildForm();
   }
@@ -32,40 +39,83 @@ export class FormComponent implements OnInit {
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.isCreate = params.id ? false : true;
+      const idEvent = params.id;
+      if (!this.isCreate) {
+        this.service.findByIDEvent(idEvent).subscribe((resp) => {
+          this.form.patchValue(resp);
+        });
+      }
     });
   }
 
   public create(e: Event): void {
     e.preventDefault();
+    const event = this.form.value;
     if (this.form.valid) {
-      //TODO
+      this.service.createEvent(event).subscribe((resp) => {
+        if (resp) {
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE +
+              SharedConstants.ALERTSUCCESS.EVENT,
+            'success',
+          );
+        } else {
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTCREATE +
+              SharedConstants.ALERTERROR.EVENT,
+            'error',
+          );
+        }
+        this.router.navigate(['./evento']);
+      });
     }
   }
 
   public update(e: Event): void {
     e.preventDefault();
     if (this.form.valid) {
-      //TODO
+      const event = this.form.value;
+      this.service.updateEvent(event).subscribe((resp) => {
+        if (resp) {
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
+              SharedConstants.ALERTSUCCESS.EVENT,
+            'success',
+          );
+        } else {
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTUPDATE +
+              SharedConstants.ALERTERROR.EVENT,
+            'error',
+          );
+        }
+        this.router.navigate(['./evento']);
+      });
     }
   }
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
+      id: [''],
       title: ['', [Validators.required]],
-      dateStart: ['', [Validators.required]],
-      dateEnd: ['', [Validators.required]],
-      deadLine: ['', [Validators.required]],
-      hour: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      CloseDate: ['', [Validators.required]],
+      registrationDeadLine: ['', [Validators.required]],
+      eventTime: ['', [Validators.required]],
+      eventDuration: ['', [Validators.required]],
       theme: ['', [Validators.required]],
       eventType: ['', [Validators.required]],
-      state: ['', [Validators.required]],
+      eventState: ['', [Validators.required]],
       description: [''],
       place: [''],
       city: [''],
       department: [''],
-      email: ['', [Validators.email]],
-      website: [''],
+      contactEmail: ['', [Validators.email]],
+      eventLink: [''],
     });
   }
 }

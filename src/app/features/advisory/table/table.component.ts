@@ -60,8 +60,8 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   private loadData(): void {
     if (this.authority === 'ADMIN') {
-      this.loadData();
-    } else {
+      this.loadDataAdmin();
+    } else if (this.authority === 'CONSULTANT') {
       this.loadDataByConsultant(this.consultant);
     }
   }
