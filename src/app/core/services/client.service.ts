@@ -34,4 +34,11 @@ export class ClientService {
   public findAll(): Observable<Client[]> {
     return this.http.get<Client[]>(ClientService.ENDPOINT + '/all');
   }
+
+  public assign(contact: string, consultant: string): Observable<Response> {
+    return this.http.post<Response>(
+      `${ClientService.ENDPOINT}/assign?contact=${contact}&consultant=${consultant}`,
+      {},
+    );
+  }
 }

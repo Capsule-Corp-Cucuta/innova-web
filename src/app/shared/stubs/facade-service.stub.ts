@@ -78,6 +78,13 @@ export class FacadeServiceStub {
     return this.contactServiceStub.findAll();
   }
 
+  public assignConsultant(
+    contacto: string,
+    asesor: string,
+  ): Observable<Boolean> {
+    return this.contactServiceStub.assign(contacto, asesor);
+  }
+
   public updateClient(client: Client): Observable<Boolean> {
     return this.clientServiceStub.update(client);
   }

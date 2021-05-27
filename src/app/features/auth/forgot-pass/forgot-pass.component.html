@@ -31,7 +31,7 @@
           color="warn"
           class="full-width"
           class="form__actions--button"
-          (click)="request()"
+          (click)="request($event)"
           [disabled]="form.invalid"
         >
           {{ LABELS.BUTTON }}
