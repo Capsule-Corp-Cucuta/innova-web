@@ -15,4 +15,8 @@ export class ContactServiceStub {
   public findAll(): Observable<Contact[]> {
     return of(TestUtils.contacts);
   }
+
+  public assign(contacto: string, asesor: string): Observable<Boolean> {
+    return of(true);
+  }
 }

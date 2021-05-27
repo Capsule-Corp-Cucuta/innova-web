@@ -15,6 +15,7 @@ import { AdvisoryService } from '../../core/services/advisory.service';
 import { Advisory } from 'src/app/core/models/advisory.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { Event } from 'src/app/core/models/event.model';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,7 @@ export class FacadeService {
   private _consultantService: ConsultantService; // tslint:disable-line
   private _advisoryService: AdvisoryService; // tslint:disable-line
   private _eventService: EventService; // tslint:disable-line
+  private _userService: UserService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -60,18 +62,16 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService = this.injector.get<ConsultantService>(
-        ConsultantService,
-      );
+      this._consultantService =
+        this.injector.get<ConsultantService>(ConsultantService);
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService = this.injector.get<AdvisoryService>(
-        AdvisoryService,
-      );
+      this._advisoryService =
+        this.injector.get<AdvisoryService>(AdvisoryService);
     }
     return this._advisoryService;
   }
@@ -81,6 +81,13 @@ export class FacadeService {
       this._eventService = this.injector.get<EventService>(EventService);
     }
     return this._eventService;
+  }
+
+  public get userService(): UserService {
+    if (!this._userService) {
+      this._userService = this.injector.get<UserService>(UserService);
+    }
+    return this._userService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -137,6 +144,13 @@ export class FacadeService {
     return this.clientService.findAll();
   }
 
+  public assignConsultant(
+    contact: string,
+    consultant: string,
+  ): Observable<Response> {
+    return this.clientService.assign(contact, consultant);
+  }
+
   public createConsultant(consultant: Consultant): Observable<Boolean> {
     return this.consultantService.create(consultant);
   }
@@ -187,5 +201,21 @@ export class FacadeService {
 
   public findAllEvent(): Observable<Event[]> {
     return this.eventService.findAll();
+  }
+
+  public enableAndDisableUser(user: string): Observable<Response> {
+    return this.userService.disable(user);
+  }
+
+  public changePassword(
+    id: string,
+    oldPass: string,
+    newPass: string,
+  ): Observable<Response> {
+    return this.userService.changePassword(id, oldPass, newPass);
+  }
+
+  public recoverPassword(email: string): Observable<Response> {
+    return this.userService.recoverPassword(email);
   }
 }

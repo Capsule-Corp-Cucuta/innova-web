@@ -46,7 +46,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public activateAndDeactivate(IdAsesor: string, state: boolean): void {
+  public activateAndDeactivate(id: string, state: boolean): void {
+    console.log(id + '-' + state);
     this.option =
       state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
     Swal.fire({
@@ -61,7 +62,14 @@ export class TableComponent implements OnInit, AfterViewInit {
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        //TODO
+        this.service.enableAndDisableUser(id).subscribe(
+          (resp) => {
+            Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, 'success');
+          },
+          (err) => {
+            Swal.fire(SharedConstants.ALERTERROR.TITLE, 'error');
+          },
+        );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //TODO
       }
