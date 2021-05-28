@@ -1,0 +1,72 @@
+@import 'colors';
+
+.page {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.card {
+  border-top: 4px solid $primary-red;
+  width: 60rem;
+}
+
+.header {
+  &__title {
+    display: flex;
+    width: 45rem;
+
+    &--icon {
+      margin-right: 2rem;
+    }
+
+    &--text {
+      margin: 0;
+    }
+  }
+
+  &__justify {
+    text-align: justify;
+  }
+}
+
+.form {
+  &__content {
+    display: grid;
+    padding-top: 1rem;
+
+    &--group {
+      display: flex;
+      justify-content: space-between;
+      &--item {
+        padding: 5px;
+        flex: 1 1 0px;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  .span {
+    &__justify {
+      text-align: justify;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .card {
+    width: 28rem;
+  }
+
+  .form {
+    &__content {
+      display: grid;
+      &--group {
+        flex-direction: column;
+      }
+    }
+  }
+}

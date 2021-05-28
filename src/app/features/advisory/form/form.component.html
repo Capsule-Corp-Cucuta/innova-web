@@ -15,7 +15,7 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -24,7 +24,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.CLIENT }}"
               formControlName="client"
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -46,7 +46,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
               formControlName="advisoryType"
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -68,7 +68,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -79,7 +79,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
               formControlName="area"
@@ -90,7 +90,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
               formControlName="state"
