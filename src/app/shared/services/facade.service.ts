@@ -4,7 +4,7 @@ import { Injectable, Injector } from '@angular/core';
 import { TokenService } from './token.service';
 import { JwtModel } from 'src/app/core/models/jwt.model';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { UserLogin } from 'src/app/core/models/user.model';
+import { User, UserLogin } from 'src/app/core/models/user.model';
 import { ContactService } from 'src/app/core/services/contact.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { Contact } from 'src/app/core/models/contact.model';
@@ -217,5 +217,13 @@ export class FacadeService {
 
   public recoverPassword(email: string): Observable<Response> {
     return this.userService.recoverPassword(email);
+  }
+
+  public updateUser(user: User): Observable<Boolean> {
+    return this.userService.update(user);
+  }
+
+  public findByIdUser(id: string): Observable<User> {
+    return this.userService.findByID(id);
   }
 }

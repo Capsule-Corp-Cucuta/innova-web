@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { AuthServiceStub } from './auth-service.stub';
 import { JwtModel } from 'src/app/core/models/jwt.model';
-import { UserLogin } from 'src/app/core/models/user.model';
+import { User, UserLogin } from 'src/app/core/models/user.model';
 import { TokenServiceStub } from './token-service.stub';
 import { Contact } from 'src/app/core/models/contact.model';
 import { ContactServiceStub } from './contact-service.stub';
@@ -15,6 +15,7 @@ import { AdvisoryServiceStub } from './advisory-service.stub';
 import { Advisory } from '../../core/models/advisory.model';
 import { EventServiceStub } from './event-service.stub';
 import { Event } from 'src/app/core/models/event.model';
+import { UserServiceStub } from './user-service.stub';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,7 @@ export class FacadeServiceStub {
   private consultantServiveStub: ConsultantServiceStub;
   private advisoryServiceStub: AdvisoryServiceStub;
   private eventServiceStub: EventServiceStub;
+  private userServiceStub: UserServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
@@ -36,6 +38,7 @@ export class FacadeServiceStub {
     this.consultantServiveStub = new ConsultantServiceStub();
     this.advisoryServiceStub = new AdvisoryServiceStub();
     this.eventServiceStub = new EventServiceStub();
+    this.userServiceStub = new UserServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -149,5 +152,13 @@ export class FacadeServiceStub {
   }
   public findAllEvent(): Observable<Event[]> {
     return this.eventServiceStub.findAll();
+  }
+
+  public updateUser(user: User): Observable<Boolean> {
+    return this.userServiceStub.update(user);
+  }
+
+  public findByIdUser(id: string): Observable<User> {
+    return this.userServiceStub.findByID(id);
   }
 }

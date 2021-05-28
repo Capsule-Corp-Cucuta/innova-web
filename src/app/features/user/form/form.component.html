@@ -1,0 +1,96 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.PERSON }}</mat-icon>
+        <p class="header__title--text">
+          {{ LABELS.TITLE_UPDATE }}
+        </p>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}"
+            formControlName="id"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
+            formControlName="name"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
+            formControlName="lastName"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="tel"
+            placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+            formControlName="cellPhone"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="email"
+            placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.ADDRESS }}"
+            formControlName="address"
+          />
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-form"
+          (click)="update($event)"
+          [disabled]="form.invalid"
+        >
+          {{ LABELS.UPDATE_BUTTON }}
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          class="button-form"
+          (click)="openDialog($event)"
+        >
+          {{ LABELS.CHANGE_BUTTON }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

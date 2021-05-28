@@ -1,0 +1,65 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.VPN_KEY }}</mat-icon>
+        <p class="header__title--text">
+          {{ LABELS.TITLE }}
+        </p>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="{{ LABELS.OLDPASS }}"
+            formControlName="oldPassword"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="{{ LABELS.NEWPASS }}"
+            formControlName="newPassword"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="{{ LABELS.REPEATNEWPASS }}"
+            formControlName="repeatPassword"
+            required
+          />
+        </mat-form-field>
+        <div *ngIf="error" class="error">
+          <p>
+            {{ LABELS.ERROR }}
+          </p>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-form"
+          (click)="changePassword()"
+          [disabled]="form.invalid"
+        >
+          {{ LABELS.ASSIGN_BUTTON }}
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

@@ -15,8 +15,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT:
-        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electronico:',
       },
@@ -26,6 +25,7 @@ export class LabelConstants {
     CONTACTREGISTER: {
       FORM: {
         TITLE: 'Registrarme como contacto',
+        TITLE_UPDATE: 'Actualizar mis datos',
         SUBTITLE: 'Innova UFPS',
         CONTACTTYPE: 'Tipo de contacto',
         PLACEHOLDER: {
@@ -34,6 +34,7 @@ export class LabelConstants {
           CEDULA: 'Cédula:',
           MOBILE: 'Número de Celular:',
           EMAIL: 'Correo electrónico:',
+          ADDRESS: 'Direccion de residencia:',
           TYPE: 'Tipo de contacto:',
           EMPRESA: 'Nombre de la empresa:',
           NIT: 'Nit:',
@@ -46,6 +47,8 @@ export class LabelConstants {
         },
         TEXT: 'Datos de empresa',
         REGISTER_BUTTON: 'Registrarme',
+        UPDATE_BUTTON: 'Actualizar Datos',
+        CHANGE_BUTTON: 'Cambiar contraseña',
         LINK: 'Volver a Inicio de Sesión',
       },
       LIST: {
@@ -85,6 +88,14 @@ export class LabelConstants {
         LABELASSIGN: 'Asesores',
         ADVISER: 'Seleccionar asesor',
         ASSIGN_BUTTON: 'Asignar',
+      },
+      CHANGEPASSWORD: {
+        TITLE: 'Cambiar contraseña',
+        ERROR: 'Contraseñas no son iguales',
+        OLDPASS: 'Ingresa contraseña actual',
+        NEWPASS: 'Ingresa contraseña nueva',
+        REPEATNEWPASS: 'Confirmar contraseña nueva',
+        ASSIGN_BUTTON: 'Enviar datos',
       },
     },
     PRINCIPAL: {

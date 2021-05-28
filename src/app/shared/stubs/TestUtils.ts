@@ -11,11 +11,21 @@ import {
   AdvisoryType,
   advisoryState,
 } from '../../core/models/advisory.model';
+import { User } from 'src/app/core/models/user.model';
 
 export class TestUtils {
   static JWT: JwtModel = {
     jwt: 'Bearer ',
     authorities: ['Admin'],
+  };
+
+  static user: User = {
+    id: '1090494956',
+    name: 'Jose Guillermo',
+    lastName: 'Parada Corredor',
+    email: 'jguillermoparada@gmail.com',
+    cellPhone: '3102171787',
+    address: 'av 9 # 10-45',
   };
 
   static consultant: Consultant = {
