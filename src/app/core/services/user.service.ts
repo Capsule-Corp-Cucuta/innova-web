@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,13 @@ export class UserService {
       `${UserService.ENDPOINT}/${email}/recover-password`,
       {},
     );
+  }
+
+  public update(user: User): Observable<Boolean> {
+    return this.http.put<Boolean>(UserService.ENDPOINT + '/' + user.id, user);
+  }
+
+  public findByID(id: string): Observable<User> {
+    return this.http.get<User>(UserService.ENDPOINT + '/' + id);
   }
 }

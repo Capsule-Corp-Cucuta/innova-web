@@ -50,6 +50,11 @@ const routes: Routes = [
             (m) => m.ContactModule,
           ),
       },
+      {
+        path: UrlConstants.ROUTES.USER,
+        loadChildren: () =>
+          import('./features/user/user.module').then((m) => m.UserModule),
+      },
     ],
   },
   {

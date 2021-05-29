@@ -10,6 +10,7 @@ export class UrlConstants {
     CONSULTANT: 'asesor',
     EVENT: 'evento',
     CONTACT: 'contacto',
+    USER: 'usuario',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
   };
