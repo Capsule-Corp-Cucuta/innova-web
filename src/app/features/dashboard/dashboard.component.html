@@ -8,32 +8,52 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
   >
     <mat-toolbar>
-      <span class="title" *ngIf="isHandset$ | async">{{ LABELS.TITLE }}</span>
+      <div>
+        <a mat-list-item>
+          <img src="{{ LINKS.UFPS }}" alt="Logo UFPS" class="icon-ufps" />
+        </a>
+      </div>
     </mat-toolbar>
 
     <mat-nav-list>
-      <a mat-list-item routerLink="/{{ ROUTES.CONTACT }}">{{
-        LABELS.MODULES.CONTACT
-      }}</a>
-      <a mat-list-item routerLink="/{{ ROUTES.ADVISORY }}">{{
-        LABELS.MODULES.ADVISORY
-      }}</a>
+      <a mat-list-item routerLink="/{{ ROUTES.CONTACT }}">
+        <mat-icon> {{ ICONS.CONTACT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CONTACT }}</span></a
+      >
+      <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.CONSULTANT }}">{{
-        LABELS.MODULES.CONSULTANT
-      }}</a>
+      <a mat-list-item routerLink="/{{ ROUTES.ADVISORY }}">
+        <mat-icon> {{ ICONS.BOOK }}</mat-icon>
+        <span>{{ LABELS.MODULES.ADVISORY }}</span></a
+      >
 
-      <a mat-list-item routerLink="/{{ ROUTES.ATTENDANCE }}">{{
-        LABELS.MODULES.ATTENDANCE
-      }}</a>
+      <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.CLIENT }}">{{
-        LABELS.MODULES.CLIENT
-      }}</a>
+      <a mat-list-item routerLink="/{{ ROUTES.CONSULTANT }}">
+        <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CONSULTANT }}</span></a
+      >
 
-      <a mat-list-item routerLink="/{{ ROUTES.EVENT }}">{{
-        LABELS.MODULES.EVENT
-      }}</a>
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/{{ ROUTES.CLIENT }}">
+        <mat-icon> {{ ICONS.CLIENT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CLIENT }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/{{ ROUTES.EVENT }}">
+        <mat-icon> {{ ICONS.EVENT }}</mat-icon>
+        <span>{{ LABELS.MODULES.EVENT }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/{{ ROUTES.EVENT }}">
+        <mat-icon> {{ ICONS.REPORT }}</mat-icon>
+        <span>{{ LABELS.MODULES.REPORT }}</span></a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
@@ -50,6 +70,33 @@
       </button>
 
       <span>{{ LABELS.TITLE }}</span>
+
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon aria-hidden="true">
+          {{ ICONS.PERSON2 }}
+        </mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <span class="id-user"> {{ id }} </span>
+
+        <mat-divider></mat-divider>
+
+        <button
+          mat-menu-item
+          routerLink="/{{ ROUTES.USER }}/{{ ROUTES.UPDATE }}/{{ id }}"
+        >
+          <mat-icon> {{ ICONS.PERSON }}</mat-icon>
+          {{ LABELS.MENU.PROFILE }}
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item (click)="signout()">
+          <mat-icon> {{ ICONS.LOGOUT }}</mat-icon>
+          {{ LABELS.MENU.LOGOUT }}
+        </button>
+      </mat-menu>
     </mat-toolbar>
 
     <router-outlet></router-outlet>
