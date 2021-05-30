@@ -107,6 +107,7 @@ export class LabelConstants {
         CONSULTANT: 'Asesores',
         EVENT: 'Eventos',
         CONTACT: 'Contactos',
+        REPORT: 'Reportes',
       },
       MENU: {
         PROFILE: 'Perfil',
@@ -499,6 +500,7 @@ export class LabelConstants {
     EMAIL: 'email',
     VPN_KEY: 'vpn_key',
     PERSON: 'person',
+    PERSON2: 'account_circle',
     HOME: 'home',
     SAVE: 'save',
     CREATE: 'create',
@@ -510,5 +512,9 @@ export class LabelConstants {
     CHECK: 'fact_check',
     EVENT: 'event',
     REPORT: 'equalizer',
+    LOGOUT: 'power_settings_new',
+    CLIENT: 'groups',
+    CONSULTANT: 'manage_accounts',
+    CONTACT: 'contact_page',
   };
 }
