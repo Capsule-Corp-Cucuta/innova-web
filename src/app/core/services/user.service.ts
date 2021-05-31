@@ -15,7 +15,10 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public disable(id: string): Observable<Response> {
-    return this.http.put<Response>(`${UserService.ENDPOINT}/${id}/disable`, {});
+    return this.http.put<Response>(
+      `${UserService.ENDPOINT}/change-state/${id}`,
+      null,
+    );
   }
 
   public changePassword(

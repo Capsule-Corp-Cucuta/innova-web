@@ -100,8 +100,8 @@ export class FormComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: ['', [Validators.required, Validators.maxLength(10)]],
       name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      cellPhone: ['', [Validators.required, Validators.maxLength(10)]],
+      lastname: ['', [Validators.required]],
+      cellphone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]],
       code: [null],

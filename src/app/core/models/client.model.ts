@@ -1,14 +1,13 @@
 import { Contact } from './contact.model';
-import { Consultant } from './consultant.model';
 
 export class Client extends Contact {
-  consultant: Consultant;
+  consultantId: string;
 
   contactDepartment?: string;
   contactCity?: string;
   contactPhone?: string;
-  position?: string;
-  antiquity?: string;
+  positionInCompany?: string;
+  dateOfEntryToCompany?: Date;
   birthplace?: string;
   birthdate?: Date;
   educationalLevel?: EducationalLevel;

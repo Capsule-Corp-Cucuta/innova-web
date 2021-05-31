@@ -1,7 +1,8 @@
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { UrlConstants } from '../../../shared/constants/url-constants';
@@ -15,7 +16,7 @@ import { FacadeService } from '../../../shared/services/facade.service';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,11 +33,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit(): void {
-    this.consultant.sort = this.sort;
-    this.consultant.paginator = this.paginator;
-  }
-
   public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.consultant.filter = filterValue.trim().toLowerCase();
@@ -47,7 +43,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   public activateAndDeactivate(id: string, state: boolean): void {
-    console.log(id + '-' + state);
     this.option =
       state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
     Swal.fire({
@@ -77,8 +72,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    this.service.findAllConsultant().subscribe((resp) => {
-      this.consultant = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAllConsultant()
+      .pipe(
+        finalize(() => {
+          this.consultant.sort = this.sort;
+          this.consultant.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.consultant = new MatTableDataSource(resp);
+      });
   }
 }

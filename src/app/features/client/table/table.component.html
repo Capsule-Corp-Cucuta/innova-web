@@ -38,11 +38,11 @@
         <td mat-cell *matCellDef="let client">{{ client.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName">
+      <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.LASTNAME }}
         </th>
-        <td mat-cell *matCellDef="let client">{{ client.lastName }}</td>
+        <td mat-cell *matCellDef="let client">{{ client.lastname }}</td>
       </ng-container>
 
       <ng-container matColumnDef="companyName">
@@ -64,7 +64,7 @@
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let client">
-          {{ client.state | State }}
+          {{ client.active }}
         </td>
       </ng-container>
 

@@ -2,7 +2,7 @@ import { User } from './user.model';
 
 export class Contact extends User {
   type: ContactType;
-  state: ContactState;
+  requestAccompaniment: boolean;
   registrationDate?: Date;
 
   nit?: string;

@@ -29,11 +29,11 @@
         <td mat-cell *matCellDef="let consultant">{{ consultant.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName">
+      <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.LASTNAME }}
         </th>
-        <td mat-cell *matCellDef="let consultant">{{ consultant.lastName }}</td>
+        <td mat-cell *matCellDef="let consultant">{{ consultant.lastname }}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
@@ -43,12 +43,12 @@
         <td mat-cell *matCellDef="let consultant">{{ consultant.email }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="cellPhone">
+      <ng-container matColumnDef="cellphone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.MOBILE }}
         </th>
         <td mat-cell *matCellDef="let consultant">
-          {{ consultant.cellPhone }}
+          {{ consultant.cellphone }}
         </td>
       </ng-container>
 
@@ -57,7 +57,7 @@
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let consultant">
-          {{ consultant.isActive | State }}
+          {{ consultant.active }}
         </td>
       </ng-container>
 

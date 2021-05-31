@@ -10,10 +10,11 @@ import { DirectorService } from './services/director.service';
 import { AdvisoryService } from './services/advisory.service';
 import { ConsultantService } from './services/consultant.service';
 import { AttendanceService } from './services/attendance.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   providers: [
     AuthService,
     UserService,

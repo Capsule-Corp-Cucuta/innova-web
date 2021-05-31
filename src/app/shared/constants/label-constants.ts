@@ -15,7 +15,8 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT:
+        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electronico:',
       },
@@ -60,8 +61,8 @@ export class LabelConstants {
           'type',
           'id',
           'name',
-          'lastName',
-          'cellPhone',
+          'lastname',
+          'cellphone',
           'companyName',
           'nit',
           'actions',
@@ -142,9 +143,9 @@ export class LabelConstants {
         COLUMNS: [
           'id',
           'name',
-          'lastName',
+          'lastname',
           'email',
-          'cellPhone',
+          'cellphone',
           'state',
           'actions',
         ],
@@ -236,7 +237,7 @@ export class LabelConstants {
           'type',
           'id',
           'name',
-          'lastName',
+          'lastname',
           'companyName',
           'nit',
           'state',

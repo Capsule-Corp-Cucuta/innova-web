@@ -7,6 +7,7 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { Client } from 'src/app/core/models/client.model';
 
 @Component({
   selector: 'app-form',
@@ -32,6 +33,8 @@ export class FormComponent implements OnInit {
   public isWatch: boolean;
   public step = 0;
 
+  private client: Client;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -50,6 +53,7 @@ export class FormComponent implements OnInit {
       this.isWatch = params.id ? false : true;
       const idClient = params.id;
       this.service.findByIDClient(idClient).subscribe((resp) => {
+        this.client = resp;
         this.form.patchValue(resp);
       });
     });
@@ -59,6 +63,7 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       const client = this.form.value;
+      client.consultantId = this.client.consultantId;
       this.service.updateClient(client).subscribe((resp) => {
         if (resp) {
           Swal.fire(
@@ -94,7 +99,7 @@ export class FormComponent implements OnInit {
       registrationDate: [''],
       type: [''],
       name: [''],
-      lastName: [''],
+      lastname: [''],
       position: [''],
       antiquity: [''],
       birthplace: [''],
@@ -104,7 +109,7 @@ export class FormComponent implements OnInit {
       contactCity: [''],
       contactDepartment: [''],
       contactPhone: ['', [Validators.maxLength(10)]],
-      cellPhone: ['', [Validators.maxLength(10)]],
+      cellphone: ['', [Validators.maxLength(10)]],
       email: ['', [Validators.email]],
       gender: [''],
       ethnicGroup: [''],

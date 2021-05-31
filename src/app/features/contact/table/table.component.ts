@@ -1,8 +1,9 @@
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
@@ -16,7 +17,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,11 +33,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadData();
-  }
-
-  ngAfterViewInit(): void {
-    this.contact.sort = this.sort;
-    this.contact.paginator = this.paginator;
   }
 
   public applyFilter(): void {
@@ -68,8 +64,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    this.service.findAllContact().subscribe((resp) => {
-      this.contact = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAllContact()
+      .pipe(
+        finalize(() => {
+          this.contact.sort = this.sort;
+          this.contact.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.contact = new MatTableDataSource(resp);
+      });
   }
 }

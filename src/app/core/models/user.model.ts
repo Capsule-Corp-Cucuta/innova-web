@@ -1,10 +1,11 @@
 export class User {
   id: string;
   name: string;
-  lastName: string;
+  lastname: string;
   email: string;
-  cellPhone: string;
+  cellphone: string;
   address?: string;
+  active?: boolean;
 }
 
 export class UserLogin {

@@ -66,12 +66,12 @@ export class SignupComponent {
   private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
       id: ['', [Validators.required, Validators.maxLength(10)]],
-      cellPhone: ['', [Validators.required, Validators.maxLength(10)]],
+      cellphone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       type: ['', [Validators.required]],
-      state: [],
+      requestAccompaniment: [],
       companyName: [''],
       nit: [''],
       companyAddress: [''],
