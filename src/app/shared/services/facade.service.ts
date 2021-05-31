@@ -18,6 +18,8 @@ import { Event } from 'src/app/core/models/event.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { ExporterService } from './exporter.service';
 
+import { FacadeServiceStub } from '../stubs/facade-service.stub';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,7 +34,7 @@ export class FacadeService {
   private _userService: UserService; // tslint:disable-line
   private _exporterService: ExporterService; // tslint:disable-line
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector, private stub: FacadeServiceStub) {}
 
   public get authService(): AuthService {
     if (!this._authService) {
@@ -64,16 +66,18 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService =
-        this.injector.get<ConsultantService>(ConsultantService);
+      this._consultantService = this.injector.get<ConsultantService>(
+        ConsultantService,
+      );
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService =
-        this.injector.get<AdvisoryService>(AdvisoryService);
+      this._advisoryService = this.injector.get<AdvisoryService>(
+        AdvisoryService,
+      );
     }
     return this._advisoryService;
   }
@@ -94,14 +98,15 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService =
-        this.injector.get<ExporterService>(ExporterService);
+      this._exporterService = this.injector.get<ExporterService>(
+        ExporterService,
+      );
     }
     return this._exporterService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
-    return this.authService.signin(user);
+    return this.stub.signin(user);
   }
 
   public signout(): void {
@@ -140,7 +145,7 @@ export class FacadeService {
     return this.contactService.findAll();
   }
 
-  public updateClient(client: Client): Observable<Boolean> {
+  public updateClient(client: Client): Observable<Response> {
     return this.clientService.update(client);
   }
   public findByIDClient(id: string): Observable<Client> {

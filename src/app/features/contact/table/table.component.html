@@ -27,7 +27,7 @@
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let contact">
-          {{ contact.active }}
+          {{ contact.active | State }}
         </td>
       </ng-container>
 

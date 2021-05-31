@@ -64,24 +64,25 @@ export class FormComponent implements OnInit {
     if (this.form.valid) {
       const client = this.form.value;
       client.consultantId = this.client.consultantId;
-      this.service.updateClient(client).subscribe((resp) => {
-        if (resp) {
+      this.service.updateClient(client).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
               SharedConstants.ALERTSUCCESS.CLIENT,
             'success',
           );
-        } else {
+          this.router.navigate(['./cliente']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
               SharedConstants.ALERTERROR.CLIENT,
             'error',
           );
-        }
-        this.router.navigate(['./cliente']);
-      });
+        },
+      );
     }
   }
 
@@ -101,7 +102,7 @@ export class FormComponent implements OnInit {
       name: [''],
       lastname: [''],
       position: [''],
-      antiquity: [''],
+      dateOfEntryToCompany: [''],
       birthplace: [''],
       birthdate: [''],
       educationalLevel: [''],

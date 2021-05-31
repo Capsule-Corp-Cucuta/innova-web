@@ -1,7 +1,7 @@
 export class Advisory {
   id?: number;
-  client: string;
-  consultant: string;
+  clientId: string;
+  consultantId: string;
   date: Date;
   type: AdvisoryType;
   durationInHours?: number;

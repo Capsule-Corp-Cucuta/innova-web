@@ -49,8 +49,8 @@ export class FormComponent implements OnInit {
       if (!this.isCreate) {
         this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
           const advisory = {
-            consultant: resp.consultant,
-            client: resp.client,
+            consultantId: resp.consultantId,
+            clientId: resp.clientId,
             date: resp.date,
             type: resp.type,
             durationInHours: resp.durationInHours,

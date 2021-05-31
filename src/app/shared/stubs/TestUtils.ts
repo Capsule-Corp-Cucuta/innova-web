@@ -7,9 +7,9 @@ import { Event, EventState, EventType } from '../../core/models/event.model';
 
 import {
   Advisory,
-  advisoryArea,
+  AdvisoryArea,
+  AdvisoryState,
   AdvisoryType,
-  advisoryState,
 } from '../../core/models/advisory.model';
 import { User } from 'src/app/core/models/user.model';
 
@@ -36,7 +36,7 @@ export class TestUtils {
     cellphone: '3102171787',
     address: 'av 9 # 10-45',
     code: '12345',
-    isActive: true,
+    active: true,
   };
 
   static consultants: Consultant[] = [
@@ -48,7 +48,7 @@ export class TestUtils {
       cellphone: '3102171787',
       address: 'av 9 # 10-45',
       code: '12344',
-      isActive: false,
+      active: false,
     },
     {
       id: '1090494956',
@@ -58,7 +58,7 @@ export class TestUtils {
       cellphone: '3102171787',
       address: 'av 9 # 10-45',
       code: '12345',
-      isActive: true,
+      active: true,
     },
   ];
 
@@ -137,45 +137,45 @@ export class TestUtils {
 
   static advisory: Advisory = {
     id: 1,
-    consultant: TestUtils.consultant,
-    client: TestUtils.client,
+    consultantId: TestUtils.consultant.id,
+    clientId: TestUtils.client.id,
     date: new Date(),
-    advisoryType: AdvisoryType.INITIAL,
-    duration: 2,
-    preparationTime: 3,
-    area: advisoryArea.HUMAN_RESOURCES,
-    affair: 'Prueba 1',
+    type: AdvisoryType.INITIAL,
+    durationInHours: 2,
+    preparationTypeInHours: 3,
+    area: AdvisoryArea.HUMAN_RESOURCES,
+    subject: 'Prueba 1',
     notes:
       'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
-    state: advisoryState.REJECTED,
+    state: AdvisoryState.REJECTED,
   };
 
   static advisorys: Advisory[] = [
     {
       id: 1,
-      consultant: TestUtils.consultant,
-      client: TestUtils.client,
+      consultantId: TestUtils.consultant.id,
+      clientId: TestUtils.client.id,
       date: new Date(),
-      advisoryType: AdvisoryType.INITIAL,
-      duration: 2,
-      preparationTime: 3,
-      area: advisoryArea.HUMAN_RESOURCES,
-      affair: 'Prueba 1',
+      type: AdvisoryType.INITIAL,
+      durationInHours: 2,
+      preparationTypeInHours: 3,
+      area: AdvisoryArea.HUMAN_RESOURCES,
+      subject: 'Prueba 1',
       notes: 'Pruebas de asesoria 1',
-      state: advisoryState.REJECTED,
+      state: AdvisoryState.REJECTED,
     },
     {
       id: 2,
-      consultant: TestUtils.consultant,
-      client: TestUtils.client,
+      consultantId: TestUtils.consultant.id,
+      clientId: TestUtils.client.id,
       date: new Date(),
-      advisoryType: AdvisoryType.FOLLOW_UP,
-      duration: 3,
-      preparationTime: 5,
-      area: advisoryArea.HUMAN_RESOURCES,
-      affair: 'Prueba 2',
+      type: AdvisoryType.FOLLOW_UP,
+      durationInHours: 3,
+      preparationTypeInHours: 5,
+      area: AdvisoryArea.HUMAN_RESOURCES,
+      subject: 'Prueba 2',
       notes: 'Pruebas de asesoria 2',
-      state: advisoryState.PENDING,
+      state: AdvisoryState.PENDING,
     },
   ];
 
@@ -186,17 +186,17 @@ export class TestUtils {
     closeDate: new Date(),
     registrationDeadline: new Date(),
     eventTime: '2',
-    eventDuration: '3 horas',
+    eventDurationInHours: 3,
     theme: 'Mocks',
     description:
       'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
-    eventType: EventType.TALK,
-    eventState: EventState.OPEN,
+    type: EventType.TALK,
+    state: EventState.OPEN,
     department: 'NORTE DE SANTANDER',
     city: 'Cucuta',
     place: 'Universidad Francisco de Paula Santander',
-    contactEmail: 'innova@ufps.edu.co',
-    eventLink: 'https://ww2.ufps.edu.co/',
+    email: 'innova@ufps.edu.co',
+    link: 'https://ww2.ufps.edu.co/',
   };
 
   static events: Event[] = [
@@ -207,17 +207,17 @@ export class TestUtils {
       closeDate: new Date(),
       registrationDeadline: new Date(),
       eventTime: '2',
-      eventDuration: '3 horas',
+      eventDurationInHours: 3,
       theme: 'Mocks',
       description:
         'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
-      eventType: EventType.TALK,
-      eventState: EventState.OPEN,
+      type: EventType.TALK,
+      state: EventState.OPEN,
       department: 'NORTE DE SANTANDER',
       city: 'Cucuta',
       place: 'Universidad Francisco de Paula Santander',
-      contactEmail: 'innova@ufps.edu.co',
-      eventLink: 'https://ww2.ufps.edu.co/',
+      email: 'innova@ufps.edu.co',
+      link: 'https://ww2.ufps.edu.co/',
     },
     {
       id: 2,
@@ -226,17 +226,17 @@ export class TestUtils {
       closeDate: new Date(),
       registrationDeadline: new Date(),
       eventTime: '5',
-      eventDuration: '10 horas',
+      eventDurationInHours: 10,
       theme: 'Mocks parte 2',
       description:
         'Al venir al mundo fueron delicadamente mecidas por las manos de la lustral Doniazada, su buena tía, que grabó sus nombres sobre hojas de oro coloreadas de húmedas pedrerías y las cuidó bajo el terciopelo de sus pupilas hasta la adolescencia dura, para esparcirlas después, voluptuosas y libres, sobre el mundo oriental, eternizado por su sonrisa.',
-      eventType: EventType.COURSE,
-      eventState: EventState.OPEN,
+      type: EventType.COURSE,
+      state: EventState.OPEN,
       department: 'NORTE DE SANTANDER',
       city: 'Cucuta',
       place: 'Universidad Francisco de Paula Santander',
-      contactEmail: 'innova@ufps.edu.co',
-      eventLink: 'https://ww2.ufps.edu.co/',
+      email: 'innova@ufps.edu.co',
+      link: 'https://ww2.ufps.edu.co/',
     },
   ];
 }
