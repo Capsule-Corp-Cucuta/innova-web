@@ -125,6 +125,7 @@ export class LabelConstants {
         PLACEHOLDER: {
           ID: 'Id asesor',
           STATE: 'Estado asesor',
+          CODE: 'Código',
           NAME: 'Nombres',
           LASTNAME: 'Apellidos',
           IDENTIFICATIONCARD: 'Nro. de Cedula',

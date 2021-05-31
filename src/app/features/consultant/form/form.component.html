@@ -23,12 +23,13 @@
           />
         </mat-form-field>
 
-        <mat-form-field *ngIf="!isCreate">
+        <mat-form-field>
           <input
             matInput
             type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-            formControlName="isActive"
+            placeholder="{{ LABELS.PLACEHOLDER.CODE }}"
+            formControlName="code"
+            required
           />
         </mat-form-field>
 

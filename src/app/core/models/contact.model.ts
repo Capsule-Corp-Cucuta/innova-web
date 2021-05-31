@@ -17,8 +17,8 @@ export class Contact extends User {
 }
 
 export enum ContactType {
-  COMPANY,
-  ENTREPRENEUR,
+  COMPANY = 'COMPANY',
+  ENTREPRENEUR = 'ENTREPRENEUR',
 }
 
 export enum ContactState {

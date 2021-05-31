@@ -43,8 +43,8 @@
             placeholder="{{ LABELS.PLACEHOLDER.CLIENTTYPE }}"
             formControlName="type"
           >
-            <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.id"
-              >{{ op.id | ContactType }}
+            <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.value"
+              >{{ op.value | ContactType }}
             </mat-option>
           </mat-select>
         </mat-form-field>
