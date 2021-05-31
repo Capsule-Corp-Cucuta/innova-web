@@ -49,14 +49,14 @@ export class FormComponent implements OnInit {
       if (!this.isCreate) {
         this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
           const advisory = {
-            consultant: resp.consultant.id,
-            client: resp.client.id,
+            consultant: resp.consultant,
+            client: resp.client,
             date: resp.date,
-            advisoryType: resp.advisoryType,
-            duration: resp.duration,
-            preparationTime: resp.preparationTime,
+            type: resp.type,
+            durationInHours: resp.durationInHours,
+            preparationTypeInHours: resp.preparationTypeInHours,
             area: resp.area,
-            affair: resp.affair,
+            subject: resp.subject,
             notes: resp.notes,
             state: resp.state,
           };
@@ -118,16 +118,17 @@ export class FormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
+      id: null,
       consultant: this.consultant,
-      client: [''],
-      date: ['', [Validators.required]],
-      advisoryType: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
-      preparationTime: ['', [Validators.required]],
-      area: ['', [Validators.required]],
-      affair: ['', [Validators.required]],
-      notes: [''],
-      state: [''],
+      client: null,
+      date: [null, [Validators.required]],
+      type: [null, [Validators.required]],
+      durationInHours: [null, [Validators.required]],
+      preparationTypeInHours: [null, [Validators.required]],
+      area: [null, [Validators.required]],
+      subject: [null, [Validators.required]],
+      notes: [null],
+      state: [null],
     });
   }
 

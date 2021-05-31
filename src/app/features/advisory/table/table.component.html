@@ -18,7 +18,7 @@
           {{ LABELS.CELLS.ADVISER }}
         </th>
         <td mat-cell *matCellDef="let advisory">
-          {{ advisory.consultant.code }}
+          {{ advisory.consultant }}
         </td>
       </ng-container>
 
@@ -27,7 +27,7 @@
           {{ LABELS.CELLS.CLIENT }}
         </th>
         <td mat-cell *matCellDef="let advisory">
-          {{ advisory.client.id }}
+          {{ advisory.client }}
         </td>
       </ng-container>
 
@@ -38,12 +38,12 @@
         <td mat-cell *matCellDef="let advisory">{{ advisory.date }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="advisoryType">
+      <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.TYPE }}
         </th>
         <td mat-cell *matCellDef="let advisory">
-          {{ advisory.advisoryType | AdvisoryType }}
+          {{ advisory.type | AdvisoryType }}
         </td>
       </ng-container>
 
@@ -56,12 +56,12 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="affair">
+      <ng-container matColumnDef="subject">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.AFFAIR }}
         </th>
         <td mat-cell *matCellDef="let advisory">
-          {{ advisory.affair }}
+          {{ advisory.subject }}
         </td>
       </ng-container>
 

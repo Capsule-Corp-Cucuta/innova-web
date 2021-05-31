@@ -64,9 +64,9 @@
           <mat-form-field>
             <input
               matInput
-              type="text"
+              type="number"
               placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
-              formControlName="eventDuration"
+              formControlName="eventDurationInHours"
             />
           </mat-form-field>
         </div>
@@ -84,7 +84,7 @@
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
-              formControlName="eventType"
+              formControlName="type"
             >
               <mat-option *ngFor="let op of EVENTTYPE" [value]="op.id">
                 {{ op.id | EventType }}
@@ -95,7 +95,7 @@
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="eventState"
+              formControlName="state"
             >
               <mat-option *ngFor="let op of EVENTSTATE" [value]="op.id">
                 {{ op.id | EventState }}
@@ -143,7 +143,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-              formControlName="contactEmail"
+              formControlName="email"
             />
           </mat-form-field>
 
@@ -152,7 +152,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-              formControlName="eventLink"
+              formControlName="link"
             />
           </mat-form-field>
         </div>

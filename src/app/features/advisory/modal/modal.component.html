@@ -15,14 +15,14 @@
         <b>{{ LABELS.PLACEHOLDER.ADVISER }}</b>
       </span>
       <span>
-        {{ advisory.consultant.name }} {{ advisory.consultant.lastname }}
+        {{ advisory.consultant }}
       </span>
     </div>
     <div>
       <span>
         <b>{{ LABELS.PLACEHOLDER.CLIENT }}</b>
       </span>
-      <span> {{ advisory.client.name }} {{ advisory.client.lastname }} </span>
+      <span> {{ advisory.client }} </span>
     </div>
     <div>
       <span>
@@ -34,13 +34,13 @@
       <span>
         <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
       </span>
-      <span> {{ advisory.duration }} </span>
+      <span> {{ advisory.durationInHours }} </span>
     </div>
     <div>
       <span>
         <b>{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}</b>
       </span>
-      <span> {{ advisory.advisoryType | AdvisoryType }} </span>
+      <span> {{ advisory.type | AdvisoryType }} </span>
     </div>
     <div>
       <span>
@@ -58,7 +58,7 @@
       <span>
         <b>{{ LABELS.PLACEHOLDER.AFFAIR }}</b>
       </span>
-      <span> {{ advisory.affair }} </span>
+      <span> {{ advisory.subject }} </span>
     </div>
     <div class="header__justify">
       <span>
