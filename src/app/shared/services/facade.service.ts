@@ -16,6 +16,7 @@ import { Advisory } from 'src/app/core/models/advisory.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { Event } from 'src/app/core/models/event.model';
 import { UserService } from 'src/app/core/services/user.service';
+import { ExporterService } from './exporter.service';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class FacadeService {
   private _advisoryService: AdvisoryService; // tslint:disable-line
   private _eventService: EventService; // tslint:disable-line
   private _userService: UserService; // tslint:disable-line
+  private _exporterService: ExporterService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -88,6 +90,14 @@ export class FacadeService {
       this._userService = this.injector.get<UserService>(UserService);
     }
     return this._userService;
+  }
+
+  public get exporterService(): ExporterService {
+    if (!this._exporterService) {
+      this._exporterService =
+        this.injector.get<ExporterService>(ExporterService);
+    }
+    return this._exporterService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -225,5 +235,9 @@ export class FacadeService {
 
   public findByIdUser(id: string): Observable<User> {
     return this.userService.findByID(id);
+  }
+
+  public exporterToExcel(data: any[], fileName: string): void {
+    return this.exporterService.exportToExcel(data, fileName);
   }
 }

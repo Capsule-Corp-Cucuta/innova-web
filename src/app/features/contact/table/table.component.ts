@@ -9,6 +9,7 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { Contact } from '../../../core/models/contact.model';
 import { ModalComponent } from '../modal/modal.component';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
   selector: 'app-table',
@@ -22,8 +23,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.LIST;
+  public readonly FILENAME = SharedConstants.FILENAMES;
 
   public contact: MatTableDataSource<Contact>;
+  public filter = '';
 
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
@@ -36,8 +39,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.contact.paginator = this.paginator;
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  public applyFilter(): void {
+    const filterValue = this.filter;
     this.contact.filter = filterValue.trim().toLowerCase();
 
     if (this.contact.paginator) {
@@ -50,6 +53,17 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.dialog.open(ModalComponent, {
         data: client,
       });
+    }
+  }
+
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.contact.data, this.FILENAME.CONTACT);
+    } else {
+      this.service.exporterToExcel(
+        this.contact.filteredData,
+        this.FILENAME.CONTACT,
+      );
     }
   }
 
