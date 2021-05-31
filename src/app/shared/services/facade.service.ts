@@ -18,6 +18,8 @@ import { Event } from 'src/app/core/models/event.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { ExporterService } from './exporter.service';
 
+import { FacadeServiceStub } from '../stubs/facade-service.stub';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,7 +34,7 @@ export class FacadeService {
   private _userService: UserService; // tslint:disable-line
   private _exporterService: ExporterService; // tslint:disable-line
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector, private stub: FacadeServiceStub) {}
 
   public get authService(): AuthService {
     if (!this._authService) {
@@ -101,7 +103,7 @@ export class FacadeService {
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
-    return this.authService.signin(user);
+    return this.stub.signin(user);
   }
 
   public signout(): void {

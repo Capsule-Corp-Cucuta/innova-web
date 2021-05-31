@@ -11,6 +11,7 @@ export class UrlConstants {
     EVENT: 'evento',
     CONTACT: 'contacto',
     USER: 'usuario',
+    REPORT: 'reportes',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
   };

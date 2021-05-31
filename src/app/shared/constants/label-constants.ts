@@ -391,6 +391,21 @@ export class LabelConstants {
         },
       },
     },
+    REPORT: {
+      LIST: {
+        CONSULTANT: 'Asesor',
+        STARTDATE: 'Fecha inicial',
+        CLOSEDATE: 'Fecha final',
+        BUTTON: 'Buscar',
+        COLUMNS: ['consultant', 'startDate', 'closeDate', 'hour'],
+        CELLS: {
+          CONSULTANT: 'Asesor',
+          STARTDATE: 'Fecha inicial',
+          CLOSEDATE: 'Fecha final',
+          HOUR: 'Horas',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
