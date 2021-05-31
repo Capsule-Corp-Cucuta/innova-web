@@ -12,7 +12,7 @@ export class Contact extends User {
   companyAddress?: string;
   companyEmail?: string;
   companyPhone?: string;
-  companyCellPhone?: string;
+  companyCellphone?: string;
   companyWebsite?: string;
 }
 

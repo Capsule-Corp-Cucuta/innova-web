@@ -49,7 +49,7 @@
           <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
-              formControlName="advisoryType"
+              formControlName="type"
             >
               <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.id">
                 {{ op.id | AdvisoryType }}
@@ -64,7 +64,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.DURATION }}"
-              formControlName="duration"
+              formControlName="durationInHours"
             />
           </mat-form-field>
 
@@ -73,7 +73,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
-              formControlName="preparationTime"
+              formControlName="preparationTypeInHours"
             />
           </mat-form-field>
         </div>
@@ -107,7 +107,7 @@
             matInput
             type="text"
             placeholder="{{ LABELS.PLACEHOLDER.AFFAIR }}"
-            formControlName="affair"
+            formControlName="subject"
             required
           />
         </mat-form-field>

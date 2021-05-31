@@ -106,16 +106,16 @@ export class FormComponent implements OnInit {
       CloseDate: ['', [Validators.required]],
       registrationDeadLine: ['', [Validators.required]],
       eventTime: ['', [Validators.required]],
-      eventDuration: ['', [Validators.required]],
+      eventDurationInHours: ['', [Validators.required]],
       theme: ['', [Validators.required]],
-      eventType: ['', [Validators.required]],
-      eventState: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       description: [''],
       place: [''],
       city: [''],
       department: [''],
-      contactEmail: ['', [Validators.email]],
-      eventLink: [''],
+      email: ['', [Validators.email]],
+      link: [''],
     });
   }
 }

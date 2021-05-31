@@ -48,21 +48,21 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="eventType">
+      <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.EVENTTYPE }}
         </th>
         <td mat-cell *matCellDef="let event">
-          {{ event.eventType | EventType }}
+          {{ event.type | EventType }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="eventState">
+      <ng-container matColumnDef="state">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let event">
-          {{ event.eventState | EventState }}
+          {{ event.state | EventState }}
         </td>
       </ng-container>
 

@@ -15,8 +15,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT:
-        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electronico:',
       },
@@ -57,7 +56,7 @@ export class LabelConstants {
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         COLUMNS: [
-          'state',
+          'active',
           'type',
           'id',
           'name',
@@ -147,7 +146,7 @@ export class LabelConstants {
           'lastname',
           'email',
           'cellphone',
-          'state',
+          'active',
           'actions',
         ],
         CELLS: {
@@ -241,7 +240,7 @@ export class LabelConstants {
           'lastname',
           'companyName',
           'nit',
-          'state',
+          'active',
           'actions',
         ],
         CELLS: {
@@ -298,9 +297,9 @@ export class LabelConstants {
           'consultant',
           'client',
           'date',
-          'advisoryType',
+          'type',
           'area',
-          'affair',
+          'subject',
           'state',
           'actions',
         ],
@@ -358,8 +357,8 @@ export class LabelConstants {
           'startDate',
           'closeDate',
           'registrationDeadline',
-          'eventType',
-          'eventState',
+          'type',
+          'state',
           'actions',
         ],
         CELLS: {
