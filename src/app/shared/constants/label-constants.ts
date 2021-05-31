@@ -79,8 +79,9 @@ export class LabelConstants {
         },
         TOOLTIP: {
           ASSIGN: 'Asignar asesor',
+          EXPORT: 'Exportar datos',
         },
-        EXPORT_BUTTON: 'Exportar datos',
+        EXPORT_BUTTON: 'Exportar',
       },
       ASSIGNADVISOR: {
         TITLE: 'Asignar asesor',
@@ -516,5 +517,7 @@ export class LabelConstants {
     CLIENT: 'groups',
     CONSULTANT: 'manage_accounts',
     CONTACT: 'contact_page',
+    EXPORT: 'get_app',
+    ADDCONSULTANT: 'person_add_alt',
   };
 }

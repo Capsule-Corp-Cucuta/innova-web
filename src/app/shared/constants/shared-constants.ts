@@ -162,4 +162,22 @@ export class SharedConstants {
     TWO: 2,
     THREE: 3,
   };
+
+  static readonly FILENAMES = {
+    CONTACT: 'Contactos',
+    CLIENT: 'Clientes',
+    CONSULTANT: 'Asesores',
+    ADVISER: 'Asesorias',
+    EVENT: 'Eventos',
+  };
+
+  static readonly EXPORTSERVICE = {
+    EXCEL_TYPE:
+      'application/vnd.openxmlformats-officedocument.spreadsheetml; charset=UTF-8',
+    EXCEL_EXT: '.xlsx',
+    SHEETNAMES: {
+      DATA: 'data',
+    },
+    _EXPORT_: '_export_',
+  };
 }

@@ -13,6 +13,7 @@ import { MaterialModule } from './material/material.module';
 import { ContactTypePipe } from './pipes/contactType-pipe';
 import { CompanyTypePipe } from './pipes/companyType-pipe';
 import { EthnicGroupPipe } from './pipes/ethnicGroup-pipe';
+import { ExporterService } from './services/exporter.service';
 import { AdvisoryAreaPipe } from './pipes/advisoryArea-pipe';
 import { AdvisoryTypePipe } from './pipes/advisoryType-pipe';
 import { AdvisoryStatePipe } from './pipes/AdvisoryState-pipe';
@@ -45,6 +46,7 @@ import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
   providers: [
     TokenService,
     FacadeService,
+    ExporterService,
     SessionGuardService,
     AuthInterceptorService,
   ],

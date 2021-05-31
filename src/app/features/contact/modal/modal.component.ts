@@ -11,7 +11,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['../../../shared/styles/_auth.scss'],
+  styleUrls: ['../../../shared/styles/_modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
