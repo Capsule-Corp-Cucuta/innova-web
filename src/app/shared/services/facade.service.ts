@@ -240,4 +240,16 @@ export class FacadeService {
   public exporterToExcel(data: any[], fileName: string): void {
     return this.exporterService.exportToExcel(data, fileName);
   }
+
+  public reportHours(
+    idConsultant: string,
+    startDate: Date,
+    closeDate: Date,
+  ): Observable<any[]> {
+    return this.consultantService.reportHours(
+      idConsultant,
+      startDate,
+      closeDate,
+    );
+  }
 }

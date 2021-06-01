@@ -9,6 +9,14 @@
     display: flex;
     justify-content: space-between;
 
+    &--group {
+      justify-content: space-between;
+      &--item {
+        padding: 5px;
+        flex: 1 1 0px;
+      }
+    }
+
     &--filter {
       margin: 0 1rem;
     }
@@ -43,4 +51,22 @@
     overflow-x: auto;
     white-space: nowrap;
   }
+  .page {
+    &__header {
+      flex-direction: column;
+      &--group {
+        display: flex;
+        flex-direction: column;
+        &--item {
+          flex: 1 1 0px;
+        }
+      }
+    }
+  }
+}
+
+.error {
+  color: $accent-red;
+  display: flex;
+  justify-content: center;
 }
