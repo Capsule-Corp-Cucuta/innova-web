@@ -169,6 +169,7 @@ export class SharedConstants {
     CONSULTANT: 'Asesores',
     ADVISER: 'Asesorias',
     EVENT: 'Eventos',
+    HOUR: 'Horas_Asesor',
   };
 
   static readonly EXPORTSERVICE = {
