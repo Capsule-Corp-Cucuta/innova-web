@@ -33,7 +33,7 @@ export class SignupComponent {
     this.buildForm();
   }
 
-  public loadDataBusiness(type: number | string): void {
+  public loadDataBusiness(type: ContactType): void {
     this.isBusiness = type === ContactType.COMPANY ? true : false;
   }
 

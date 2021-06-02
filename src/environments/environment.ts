@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIUrl: 'https://455b19b5d33a.ngrok.io/innova/api/',
+  APIUrl: 'http://localhost:8080/api/',
 };
 
 /*
