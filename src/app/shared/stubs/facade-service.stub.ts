@@ -16,6 +16,7 @@ import { Advisory } from '../../core/models/advisory.model';
 import { EventServiceStub } from './event-service.stub';
 import { Event } from 'src/app/core/models/event.model';
 import { UserServiceStub } from './user-service.stub';
+import { ReportServiceStub } from './report-service.stub';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class FacadeServiceStub {
   private advisoryServiceStub: AdvisoryServiceStub;
   private eventServiceStub: EventServiceStub;
   private userServiceStub: UserServiceStub;
+  private reportServiceStub: ReportServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
@@ -39,6 +41,7 @@ export class FacadeServiceStub {
     this.advisoryServiceStub = new AdvisoryServiceStub();
     this.eventServiceStub = new EventServiceStub();
     this.userServiceStub = new UserServiceStub();
+    this.reportServiceStub = new ReportServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -160,5 +163,17 @@ export class FacadeServiceStub {
 
   public findByIdUser(id: string): Observable<User> {
     return this.userServiceStub.findByID(id);
+  }
+
+  public reportHours(
+    idConsultant: string,
+    startDate: Date,
+    closeDate: Date,
+  ): Observable<any[]> {
+    return this.reportServiceStub.reportHours(
+      idConsultant,
+      startDate,
+      closeDate,
+    );
   }
 }

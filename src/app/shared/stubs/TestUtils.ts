@@ -62,6 +62,15 @@ export class TestUtils {
     },
   ];
 
+  static report: any[] = [
+    {
+      consultant: '1090494956',
+      startDate: new Date(),
+      closeDate: new Date(),
+      hour: 20,
+    },
+  ];
+
   static client: Client = {
     id: '1090494957',
     name: 'Edwar ',

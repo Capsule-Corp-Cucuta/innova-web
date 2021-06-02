@@ -122,13 +122,14 @@ export class SharedConstants {
     TEXTASSIGN: 'Se asigno asesor',
     TEXTDISABLE: 'Se inactivo ',
     TEXTENABLE: 'Se activo ',
-    TEXTEMAIL: 'Se ha enviado contraseña al correo ingresado',
-    TEXTCHANGE: 'Se ha cambiado la contraseña',
+    TEXTEMAIL: 'Se ha enviado contraseña al correo electronico ingresado.',
+    TEXTCHANGE: 'Se ha cambiado la contraseña.',
     ADVISER: ' asesoria',
     CLIENT: ' cliente',
     CONSULTANT: ' asesor',
     EVENT: ' evento',
-    CONTACT: ' contacto',
+    CONTACT:
+      ' contacto, revisa tu correo electronico, recibiras una contraseña de ingreso.',
     USER: 'usuario',
     ATTENDANCE: ' asistencia',
     EMAIL: 'Se envio correo electronico con la contraseña',
@@ -169,6 +170,7 @@ export class SharedConstants {
     CONSULTANT: 'Asesores',
     ADVISER: 'Asesorias',
     EVENT: 'Eventos',
+    HOUR: 'Horas_Asesor',
   };
 
   static readonly EXPORTSERVICE = {

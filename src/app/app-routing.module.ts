@@ -55,6 +55,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/user/user.module').then((m) => m.UserModule),
       },
+      {
+        path: UrlConstants.ROUTES.REPORT,
+        loadChildren: () =>
+          import('./features/report/report.module').then((m) => m.ReportModule),
+      },
     ],
   },
   {

@@ -392,6 +392,23 @@ export class LabelConstants {
         },
       },
     },
+    REPORT: {
+      LIST: {
+        CONSULTANT: 'Asesor',
+        STARTDATE: 'Fecha inicial',
+        CLOSEDATE: 'Fecha final',
+        BUTTON: 'Buscar',
+        ERRORCONSULTANT: '* Selecciona un asesor *',
+        NOTDATA: 'No hay datos',
+        COLUMNS: ['consultant', 'startDate', 'closeDate', 'hour'],
+        CELLS: {
+          CONSULTANT: 'Asesor',
+          STARTDATE: 'Fecha inicial',
+          CLOSEDATE: 'Fecha final',
+          HOUR: 'Horas',
+        },
+      },
+    },
   };
 
   public static CONTACTS_TYPES = [
@@ -520,5 +537,6 @@ export class LabelConstants {
     CONTACT: 'contact_page',
     EXPORT: 'get_app',
     ADDCONSULTANT: 'person_add_alt',
+    SEARCH: 'search',
   };
 }

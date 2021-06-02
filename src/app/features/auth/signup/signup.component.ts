@@ -9,6 +9,7 @@ import { ContactType } from 'src/app/core/models/contact.model';
 import { ContactState } from '../../../core/models/contact.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -29,6 +30,7 @@ export class SignupComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: FacadeService,
+    private router: Router,
   ) {
     this.buildForm();
   }
@@ -44,23 +46,25 @@ export class SignupComponent {
         ? ContactState.PENDING_ADVISOR
         : ContactState.NO_ADVISORY;
     contact.state = this.state;
-    this.service.createContact(contact).subscribe((resp) => {
-      if (resp) {
+    this.service.createContact(contact).subscribe(
+      (resp) => {
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
           SharedConstants.ALERTSUCCESS.TEXTCREATE +
             SharedConstants.ALERTSUCCESS.CONTACT,
           'success',
         );
-      } else {
+        this.router.navigate(['./seguridad']);
+      },
+      (err) => {
         Swal.fire(
           SharedConstants.ALERTERROR.TITLE,
           SharedConstants.ALERTERROR.TEXTCREATE +
             SharedConstants.ALERTERROR.CONTACT,
           'error',
         );
-      }
-    });
+      },
+    );
   }
 
   private buildForm() {
