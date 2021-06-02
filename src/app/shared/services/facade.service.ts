@@ -34,7 +34,7 @@ export class FacadeService {
   private _userService: UserService; // tslint:disable-line
   private _exporterService: ExporterService; // tslint:disable-line
 
-  constructor(private injector: Injector, private stub: FacadeServiceStub) {}
+  constructor(private injector: Injector) {}
 
   public get authService(): AuthService {
     if (!this._authService) {
@@ -106,7 +106,7 @@ export class FacadeService {
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
-    return this.stub.signin(user);
+    return this.authService.signin(user);
   }
 
   public signout(): void {

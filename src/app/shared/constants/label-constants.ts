@@ -5,7 +5,7 @@ export class LabelConstants {
       SUBTITLE: 'Innova UFPS',
       TEXT: 'Ingresa tus datos para iniciar sesión',
       PLACEHOLDER: {
-        USER: 'Correo electronico:',
+        USER: 'Correo electrònico:',
         PASS: 'Contraseña:',
       },
       ERROR: '¡Ups! parece que las credenciales no son correctas.',
@@ -15,9 +15,10 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT:
+        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
-        EMAIL: 'Correo electronico:',
+        EMAIL: 'Correo electrònico:',
       },
       BUTTON: 'Enviar correo de recuperación',
       LINK: 'Volver a Inicio de Sesión',
@@ -129,7 +130,7 @@ export class LabelConstants {
           LASTNAME: 'Apellidos',
           IDENTIFICATIONCARD: 'Nro. de Cedula',
           MOBILE: 'Celular',
-          EMAIL: 'Corre Electronico',
+          EMAIL: 'Corre electrònico',
           ADDRESS: 'Direccion de residencia',
         },
         REGISTER_BUTTON: 'Registrar',
@@ -192,7 +193,7 @@ export class LabelConstants {
           DEPARTMENT: 'Departamento',
           PHONE: 'Telefono fijo',
           MOBILE: 'Telefino celular',
-          EMAIL: 'Correo electronico',
+          EMAIL: 'Correo electrònico',
           GENDER: 'Genero',
           ETHNICGROUP: 'Grupo etnico',
           DISPLACED: 'Desplazado',
