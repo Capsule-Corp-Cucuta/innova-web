@@ -317,6 +317,7 @@ export class LabelConstants {
           NEW: 'Nueva asesoria',
           VIEW: 'Ver asesoria',
           EDIT: 'Actualizar asesoria',
+          EXPORT:'Exportar datos',
         },
       },
     },

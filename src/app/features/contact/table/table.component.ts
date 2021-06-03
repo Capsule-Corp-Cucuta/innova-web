@@ -46,8 +46,12 @@ export class TableComponent implements OnInit {
 
   public openDialog(client: string): void {
     if (client) {
-      this.dialog.open(ModalComponent, {
+      const dialogRef = this.dialog.open(ModalComponent, {
         data: client,
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.loadData();
       });
     }
   }
