@@ -10,6 +10,7 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
 import { Advisory } from '../../../core/models/advisory.model';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
   selector: 'app-table',
@@ -23,10 +24,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
+  public readonly FILENAME = SharedConstants.FILENAMES;
 
   public authority: string;
   public consultant: string;
   public advisory: MatTableDataSource<Advisory>;
+  public filter = '';
 
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
@@ -42,8 +45,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.advisory.paginator = this.paginator;
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  public applyFilter(): void {
+    const filterValue = this.filter;
     this.advisory.filter = filterValue.trim().toLowerCase();
 
     if (this.advisory.paginator) {
@@ -79,6 +82,17 @@ export class TableComponent implements OnInit, AfterViewInit {
       .subscribe((resp) => {
         this.advisory = new MatTableDataSource(resp);
       });
+  }
+
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.advisory.data, this.FILENAME.ADVISER);
+    } else {
+      this.service.exporterToExcel(
+        this.advisory.filteredData,
+        this.FILENAME.ADVISER,
+      );
+    }
   }
 
   private loadDataByConsultant(consultant: string): void {
