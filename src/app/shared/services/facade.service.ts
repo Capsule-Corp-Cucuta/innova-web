@@ -18,7 +18,7 @@ import { Event } from 'src/app/core/models/event.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { ExporterService } from './exporter.service';
 
-import { FacadeServiceStub } from '../stubs/facade-service.stub';
+
 
 @Injectable({
   providedIn: 'root',
