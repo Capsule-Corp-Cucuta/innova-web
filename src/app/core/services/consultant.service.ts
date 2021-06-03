@@ -30,7 +30,7 @@ export class ConsultantService {
   }
 
   public findAll(): Observable<Consultant[]> {
-    return this.http.get<Consultant[]>(ConsultantService.ENDPOINT + '/all');
+    return this.http.get<Consultant[]>(ConsultantService.ENDPOINT);
   }
 
   public reportHours(

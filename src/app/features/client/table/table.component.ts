@@ -1,11 +1,11 @@
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../../contact/modal/modal.component';
 import { UrlConstants } from '../../../shared/constants/url-constants';
 import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
@@ -17,7 +17,7 @@ import { Client } from '../../../core/models/client.model';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,11 +33,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadData();
-  }
-
-  ngAfterViewInit(): void {
-    this.client.sort = this.sort;
-    this.client.paginator = this.paginator;
   }
 
   public applyFilter(event: Event): void {
@@ -89,8 +84,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    this.service.findAllClient().subscribe((resp) => {
-      this.client = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAllClient()
+      .pipe(
+        finalize(() => {
+          this.client.sort = this.sort;
+          this.client.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.client = new MatTableDataSource(resp);
+      });
   }
 }

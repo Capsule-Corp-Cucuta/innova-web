@@ -122,17 +122,17 @@ export class SharedConstants {
     TEXTASSIGN: 'Se asigno asesor',
     TEXTDISABLE: 'Se inactivo ',
     TEXTENABLE: 'Se activo ',
-    TEXTEMAIL: 'Se ha enviado contraseña al correo electronico ingresado.',
+    TEXTEMAIL: 'Se ha enviado contraseña al correo electrónico ingresado.',
     TEXTCHANGE: 'Se ha cambiado la contraseña.',
-    ADVISER: ' asesoria',
-    CLIENT: ' cliente',
-    CONSULTANT: ' asesor',
-    EVENT: ' evento',
+    ADVISER: ' la asesoria',
+    CLIENT: ' el cliente',
+    CONSULTANT: ' el asesor',
+    EVENT: ' el evento',
     CONTACT:
-      ' contacto, revisa tu correo electronico, recibiras una contraseña de ingreso.',
+      ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
     USER: 'usuario',
     ATTENDANCE: ' asistencia',
-    EMAIL: 'Se envio correo electronico con la contraseña',
+    EMAIL: 'Se envio correo electrónico con la contraseña',
     TOACCEPT: 'OK',
   };
 
@@ -153,7 +153,7 @@ export class SharedConstants {
     USER: 'usuario',
     ATTENDANCE: ' asistencia',
     EMAIL: 'Se ha producido un error al enviar el correo',
-    EMAILEXIST: 'El correo electronico no se encuentra registrado',
+    EMAILEXIST: 'El correo electrònico no se encuentra registrado',
     TOACCEPT: 'OK',
   };
 
@@ -181,5 +181,12 @@ export class SharedConstants {
       DATA: 'data',
     },
     _EXPORT_: '_export_',
+  };
+
+  static readonly ROLES = {
+    ADMIN: 'ADMIN',
+    CONSULTANT: 'CONSULTANT',
+    CONTACT: 'CONTACT',
+    CLIENT: 'CLIENT',
   };
 }

@@ -1,14 +1,13 @@
 import { Contact } from './contact.model';
-import { Consultant } from './consultant.model';
 
 export class Client extends Contact {
-  consultant: Consultant;
+  consultantId: string;
 
   contactDepartment?: string;
   contactCity?: string;
   contactPhone?: string;
-  position?: string;
-  antiquity?: string;
+  positionInCompany?: string;
+  dateOfEntryToCompany?: Date;
   birthplace?: string;
   birthdate?: Date;
   educationalLevel?: EducationalLevel;
@@ -16,25 +15,26 @@ export class Client extends Contact {
   ethnicGroup?: EthnicGroup;
   isDisplaced?: boolean;
   isHandicapped?: boolean;
-  legalRepresentative?: Contact;
-  legalConstitution?: LegalConstitution;
+  companyLegalRepresentative?: Contact;
+  companyLegalConstitution?: LegalConstitution;
   otherLegalConstitution?: string;
-  constitutionDate?: Date;
-  numberOfEmployees?: number;
-  numberOfFullTimeEmployees?: number;
-  numberOfPartTimeEmployees?: number;
-  numberOfDirectEmployees?: number;
-  numberOfIndirectEmployees?: number;
-  companyType?: CompanyType;
-  otherCompanyType?: string;
+  companyConstitutionDate?: Date;
+  companyNumberOfEmployees?: number;
+  companyNumberOfFullTimeEmployees?: number;
+  companyNumberOfPartTimeEmployees?: number;
+  companyNumberOfDirectEmployees?: number;
+  companyNumberOfIndirectEmployees?: number;
+  ccompanySector?: CompanySector;
+  otherCompanySector?: string;
   hasComercialRegister?: boolean;
   comercialRegisterNumber?: string;
+  principalCodeCiiu?: string;
   lastYearOfRenovation?: Date;
   internationalActivity?: InternationalActivity;
   internationalActivityCountries?: string;
   isEcommerce?: boolean;
   servicesProductsOffered?: string;
-  contactMedium?: ContactMedium;
+  discoveryChannel?: DiscoveryChannel;
   observations?: string;
 }
 
@@ -69,7 +69,7 @@ export enum LegalConstitution {
   OTHER,
 }
 
-export enum CompanyType {
+export enum CompanySector {
   INDUSTRIAL,
   WHOLESALE,
   RETAIL,
@@ -84,7 +84,7 @@ export enum InternationalActivity {
   DOES_NO_APPLY,
 }
 
-export enum ContactMedium {
+export enum DiscoveryChannel {
   MINISTRY_REFERRAL,
   BUSINESS_REFERRAL,
   UNIVERSITY,

@@ -5,9 +5,10 @@ import { SharedConstants } from '../constants/shared-constants';
   name: 'ContactType',
 })
 export class ContactTypePipe implements PipeTransform {
-  public transform(value: number): string {
+  public transform(value: number | string): string {
     switch (value) {
       case 0:
+      case 'COMPANY':
         return SharedConstants.PIPES.CONTACTTYPE.COMPANY;
       default:
         return SharedConstants.PIPES.CONTACTTYPE.ENTREPRENEUR;

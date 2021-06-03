@@ -1,3 +1,4 @@
+import { finalize } from 'rxjs/operators';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +10,7 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { SharedConstants } from '../../../shared/constants/shared-constants';
 
 @Component({
   selector: 'app-table',
@@ -22,6 +24,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.EVENT.LIST;
+  public readonly ROLES = SharedConstants.ROLES;
 
   public authority: string;
   public client: string;
@@ -61,22 +64,41 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    if (this.authority === 'ADMIN') {
+    if (this.authority === this.ROLES.ADMIN) {
       this.loadDataAdmin();
-    } else if (this.authority === 'CLIENT') {
+    } else if (
+      this.authority === this.ROLES.CLIENT ||
+      this.authority === this.ROLES.CONTACT
+    ) {
       this.loadDataByClient(this.client);
     }
   }
 
   private loadDataAdmin(): void {
-    this.service.findAllEvent().subscribe((resp) => {
-      this.events = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAllEvent()
+      .pipe(
+        finalize(() => {
+          this.events.sort = this.sort;
+          this.events.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.events = new MatTableDataSource(resp);
+      });
   }
 
   private loadDataByClient(client: string): void {
-    this.service.findEventByClient(client).subscribe((resp) => {
-      this.events = new MatTableDataSource(resp);
-    });
+    this.service
+      .findEventByClient(client)
+      .pipe(
+        finalize(() => {
+          this.events.sort = this.sort;
+          this.events.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.events = new MatTableDataSource(resp);
+      });
   }
 }

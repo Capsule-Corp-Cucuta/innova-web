@@ -1,18 +1,15 @@
-import { Client } from './client.model';
-import { Consultant } from './consultant.model';
-
 export class Advisory {
   id?: number;
-  client: Client;
-  consultant: Consultant;
+  clientId: string;
+  consultantId: string;
   date: Date;
-  advisoryType: AdvisoryType;
-  duration?: number;
-  preparationTime?: number;
-  area: advisoryArea;
-  affair?: string;
+  type: AdvisoryType;
+  durationInHours?: number;
+  preparationTypeInHours?: number;
+  area: AdvisoryArea;
   notes?: string;
-  state: advisoryState;
+  subject?: string;
+  state: AdvisoryState;
 }
 
 export enum AdvisoryType {
@@ -21,14 +18,14 @@ export enum AdvisoryType {
   CLOSING,
 }
 
-export enum advisoryArea {
+export enum AdvisoryArea {
   BUSINESS_PLAN,
   HUMAN_RESOURCES,
   BUSINESS_ADMINISTRATION,
   FINANCING,
 }
 
-export enum advisoryState {
+export enum AdvisoryState {
   PENDING,
   REJECTED,
   COMPLETE,

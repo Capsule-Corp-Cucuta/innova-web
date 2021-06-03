@@ -5,16 +5,16 @@ export class Event {
   closeDate?: Date;
   registrationDeadline?: Date;
   eventTime: string;
-  eventDuration?: string;
+  eventDurationInHours?: number;
   theme: string;
   description: string;
-  eventType: EventType;
-  eventState: EventState;
+  type: EventType;
+  state: EventState;
   department: string;
   city: string;
   place: string;
-  contactEmail: string;
-  eventLink: string;
+  email: string;
+  link: string;
 }
 
 export enum EventType {

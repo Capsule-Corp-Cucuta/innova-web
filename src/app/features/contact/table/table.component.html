@@ -22,12 +22,12 @@
     </mat-card>
 
     <table mat-table [dataSource]="contact" matSort class="table--content">
-      <ng-container matColumnDef="state">
+      <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let contact">
-          {{ contact.state | State }}
+          {{ contact.active | State }}
         </td>
       </ng-container>
 
@@ -56,18 +56,18 @@
         <td mat-cell *matCellDef="let contact">{{ contact.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName">
+      <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.LASTNAME }}
         </th>
-        <td mat-cell *matCellDef="let contact">{{ contact.lastName }}</td>
+        <td mat-cell *matCellDef="let contact">{{ contact.lastname }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="cellPhone">
+      <ng-container matColumnDef="cellphone">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.CELLPHONE }}
         </th>
-        <td mat-cell *matCellDef="let contact">{{ contact.cellPhone }}</td>
+        <td mat-cell *matCellDef="let contact">{{ contact.cellphone }}</td>
       </ng-container>
 
       <ng-container matColumnDef="companyName">

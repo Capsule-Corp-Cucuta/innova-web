@@ -26,7 +26,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
-              formControlName="lastName"
+              formControlName="lastname"
               required
             />
           </mat-form-field>
@@ -47,7 +47,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-              formControlName="cellPhone"
+              formControlName="cellphone"
               required
             />
           </mat-form-field>
@@ -72,7 +72,7 @@
               (selectionChange)="loadDataBusiness($event.value)"
               required
             >
-              <mat-option *ngFor="let type of TYPES" [value]="type.id">{{
+              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{
                 type.id | ContactType
               }}</mat-option>
             </mat-select>
@@ -163,7 +163,7 @@
           </div>
         </mat-card-content>
 
-        <mat-checkbox formControlName="state">
+        <mat-checkbox formControlName="requestAccompaniment">
           {{ LABELS.PLACEHOLDER.APPLYFOR }}</mat-checkbox
         >
       </mat-card-content>

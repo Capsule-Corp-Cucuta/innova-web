@@ -2,7 +2,7 @@ import { User } from './user.model';
 
 export class Contact extends User {
   type: ContactType;
-  state: ContactState;
+  requestAccompaniment: boolean;
   registrationDate?: Date;
 
   nit?: string;
@@ -12,13 +12,13 @@ export class Contact extends User {
   companyAddress?: string;
   companyEmail?: string;
   companyPhone?: string;
-  companyCellPhone?: string;
+  companyCellphone?: string;
   companyWebsite?: string;
 }
 
 export enum ContactType {
-  COMPANY,
-  ENTREPRENEUR,
+  COMPANY = 'COMPANY',
+  ENTREPRENEUR = 'ENTREPRENEUR',
 }
 
 export enum ContactState {

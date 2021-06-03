@@ -14,8 +14,10 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  public update(client: Client): Observable<Boolean> {
-    return this.http.put<Boolean>(
+  public update(client: Client): Observable<Response> {
+    console.log(client);
+
+    return this.http.put<Response>(
       ClientService.ENDPOINT + '/' + client.id,
       client,
     );
@@ -32,12 +34,12 @@ export class ClientService {
   }
 
   public findAll(): Observable<Client[]> {
-    return this.http.get<Client[]>(ClientService.ENDPOINT + '/all');
+    return this.http.get<Client[]>(ClientService.ENDPOINT);
   }
 
   public assign(contact: string, consultant: string): Observable<Response> {
     return this.http.post<Response>(
-      `${ClientService.ENDPOINT}/assign?contact=${contact}&consultant=${consultant}`,
+      `${ClientService.ENDPOINT}/${contact}/consultant/${consultant}`,
       {},
     );
   }

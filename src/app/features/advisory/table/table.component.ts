@@ -1,3 +1,4 @@
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -67,14 +68,30 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadDataAdmin(): void {
-    this.service.findAllAdvisory().subscribe((resp) => {
-      this.advisory = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAllAdvisory()
+      .pipe(
+        finalize(() => {
+          this.advisory.sort = this.sort;
+          this.advisory.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.advisory = new MatTableDataSource(resp);
+      });
   }
 
   private loadDataByConsultant(consultant: string): void {
-    this.service.findAdvisoryByConsultant(consultant).subscribe((resp) => {
-      this.advisory = new MatTableDataSource(resp);
-    });
+    this.service
+      .findAdvisoryByConsultant(consultant)
+      .pipe(
+        finalize(() => {
+          this.advisory.sort = this.sort;
+          this.advisory.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.advisory = new MatTableDataSource(resp);
+      });
   }
 }

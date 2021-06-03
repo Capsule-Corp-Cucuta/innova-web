@@ -55,7 +55,7 @@
       <span>
         <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
       </span>
-      <span> {{ event.eventDuration }}</span>
+      <span> {{ event.eventDurationInHours }}</span>
     </div>
     <div>
       <span>
@@ -67,13 +67,13 @@
       <span>
         <b>{{ LABELS.PLACEHOLDER.EVENTTYPE }}</b>
       </span>
-      <span> {{ event.eventType | EventType }}</span>
+      <span> {{ event.type | EventType }}</span>
     </div>
     <div>
       <span>
         <b>{{ LABELS.PLACEHOLDER.STATE }}</b>
       </span>
-      <span> {{ event.eventState | EventState }}</span>
+      <span> {{ event.state | EventState }}</span>
     </div>
     <div class="header__justify">
       <span>
@@ -104,7 +104,7 @@
     </div>
     <div>
       <span>
-        <a href="{{ event.eventLink }}" target="_blank">
+        <a href="{{ event.link }}" target="_blank">
           <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>
         </a>
       </span>

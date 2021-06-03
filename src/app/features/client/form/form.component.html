@@ -43,8 +43,8 @@
             placeholder="{{ LABELS.PLACEHOLDER.CLIENTTYPE }}"
             formControlName="type"
           >
-            <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.id"
-              >{{ op.id | ContactType }}
+            <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.value"
+              >{{ op.value | ContactType }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -74,7 +74,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
-              formControlName="lastName"
+              formControlName="lastname"
             />
           </mat-form-field>
         </div>
@@ -94,7 +94,7 @@
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.ANTIQUITY }}"
-              formControlName="antiquity"
+              formControlName="dateOfEntryToCompany"
             />
           </mat-form-field>
         </div>
@@ -185,7 +185,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-              formControlName="cellPhone"
+              formControlName="cellphone"
             />
           </mat-form-field>
         </div>
@@ -344,7 +344,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.DIRECT }}"
-              formControlName="numberOfDirectEmployees"
+              formControlName="companyNumberOfDirectEmployees"
             />
           </mat-form-field>
           <mat-form-field>
@@ -352,7 +352,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.INDIRECT }}"
-              formControlName="numberOfIndirectEmployees"
+              formControlName="companyNumberOfIndirectEmployees"
             />
           </mat-form-field>
         </div>
@@ -440,7 +440,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.ANOTHERTYPE }}"
-              formControlName="otherCompanyType"
+              formControlName="otherCompanySector"
             />
           </mat-form-field>
         </div>

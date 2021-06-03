@@ -99,12 +99,12 @@ export class FormComponent implements OnInit {
   private buildForm(): void {
     this.form = this.formBuilder.group({
       id: ['', [Validators.required, Validators.maxLength(10)]],
+      code: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      cellPhone: ['', [Validators.required, Validators.maxLength(10)]],
+      lastname: ['', [Validators.required]],
+      cellphone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]],
-      code: [null],
       isActive: true,
     });
   }

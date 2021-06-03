@@ -38,11 +38,11 @@
         <td mat-cell *matCellDef="let client">{{ client.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName">
+      <ng-container matColumnDef="lastname">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.LASTNAME }}
         </th>
-        <td mat-cell *matCellDef="let client">{{ client.lastName }}</td>
+        <td mat-cell *matCellDef="let client">{{ client.lastname }}</td>
       </ng-container>
 
       <ng-container matColumnDef="companyName">
@@ -59,25 +59,17 @@
         <td mat-cell *matCellDef="let client">{{ client.nit }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="state">
+      <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.STATE }}
         </th>
         <td mat-cell *matCellDef="let client">
-          {{ client.state | State }}
+          {{ client.active | State }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>
-          <button
-            mat-stroked-button
-            color="primary"
-            routerLink="{{ ROUTES.CREATE }}"
-          >
-            <mat-icon>{{ ICONS.ADD }}</mat-icon>
-          </button>
-        </th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let client">
           <button
             mat-stroked-button

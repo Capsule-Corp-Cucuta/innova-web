@@ -23,10 +23,11 @@ export class UrlConstants {
     ADVISORY: 'advisory',
     CONSULTANT: 'consultant',
     EVENT: 'event',
-    USER: 'usuario',
+    USER: 'user',
   };
 
   public static LINKS = {
-    UFPS: 'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
+    UFPS:
+      'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
   };
 }

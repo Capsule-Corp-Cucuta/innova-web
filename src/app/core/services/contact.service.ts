@@ -19,6 +19,6 @@ export class ContactService {
   }
 
   public findAll(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(ContactService.ENDPOINT + '/all');
+    return this.http.get<Contact[]>(ContactService.ENDPOINT);
   }
 }
