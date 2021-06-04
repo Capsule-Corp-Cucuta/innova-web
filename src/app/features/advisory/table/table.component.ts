@@ -3,7 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
@@ -17,7 +17,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -40,11 +40,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.loadDataAdmin();
   }
 
-  ngAfterViewInit(): void {
-    this.advisory.sort = this.sort;
-    this.advisory.paginator = this.paginator;
-  }
-
   public applyFilter(): void {
     const filterValue = this.filter;
     this.advisory.filter = filterValue.trim().toLowerCase();
@@ -56,8 +51,12 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public openDialog(advisory: number): void {
     if (advisory) {
-      this.dialog.open(ModalComponent, {
+      const dialogRef = this.dialog.open(ModalComponent, {
         data: advisory,
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.loadDataAdmin();
       });
     }
   }
