@@ -52,24 +52,25 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     const event = this.form.value;
     if (this.form.valid) {
-      this.service.createEvent(event).subscribe((resp) => {
-        if (resp) {
+      this.service.createEvent(event).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
               SharedConstants.ALERTSUCCESS.EVENT,
             'success',
           );
-        } else {
+          this.router.navigate(['./evento']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
               SharedConstants.ALERTERROR.EVENT,
             'error',
           );
-        }
-        this.router.navigate(['./evento']);
-      });
+        },
+      );
     }
   }
 
@@ -77,24 +78,25 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       const event = this.form.value;
-      this.service.updateEvent(event).subscribe((resp) => {
-        if (resp) {
+      this.service.updateEvent(event).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
               SharedConstants.ALERTSUCCESS.EVENT,
             'success',
           );
-        } else {
+          this.router.navigate(['./evento']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
               SharedConstants.ALERTERROR.EVENT,
             'error',
           );
-        }
-        this.router.navigate(['./evento']);
-      });
+        },
+      );
     }
   }
 

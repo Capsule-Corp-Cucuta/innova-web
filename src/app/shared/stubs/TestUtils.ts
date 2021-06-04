@@ -12,6 +12,7 @@ import {
   AdvisoryType,
 } from '../../core/models/advisory.model';
 import { User } from 'src/app/core/models/user.model';
+import { Inscription } from 'src/app/core/models/attendance.model';
 
 export class TestUtils {
   static JWT: JwtModel = {
@@ -246,6 +247,81 @@ export class TestUtils {
       place: 'Universidad Francisco de Paula Santander',
       email: 'innova@ufps.edu.co',
       link: 'https://ww2.ufps.edu.co/',
+    },
+  ];
+
+  static inscriptions: Inscription[] = [
+    {
+      userId: '1090494956',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382491',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
+    },
+    {
+      userId: '1090494951',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382492',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
+    },
+    {
+      userId: '1090494952',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382493',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
+    },
+    {
+      userId: '1090494953',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382494',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
+    },
+    {
+      userId: '1090494954',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382495',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
+    },
+    {
+      userId: '1090494955',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: false,
+    },
+    {
+      userId: '1090382496',
+      eventId: 1,
+      inscriptionDate: new Date(),
+      attended: true,
     },
   ];
 }

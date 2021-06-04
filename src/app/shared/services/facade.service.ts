@@ -17,6 +17,8 @@ import { EventService } from 'src/app/core/services/event.service';
 import { Event } from 'src/app/core/models/event.model';
 import { UserService } from 'src/app/core/services/user.service';
 import { ExporterService } from './exporter.service';
+import { Inscription } from 'src/app/core/models/attendance.model';
+import { AttendanceService } from 'src/app/core/services/attendance.service';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +33,7 @@ export class FacadeService {
   private _eventService: EventService; // tslint:disable-line
   private _userService: UserService; // tslint:disable-line
   private _exporterService: ExporterService; // tslint:disable-line
+  private _attendanceService: AttendanceService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -98,6 +101,14 @@ export class FacadeService {
         this.injector.get<ExporterService>(ExporterService);
     }
     return this._exporterService;
+  }
+
+  public get attendanceService(): AttendanceService {
+    if (!this._attendanceService) {
+      this._attendanceService =
+        this.injector.get<AttendanceService>(AttendanceService);
+    }
+    return this._attendanceService;
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -194,11 +205,11 @@ export class FacadeService {
   public findAllAdvisory(): Observable<Advisory[]> {
     return this.advisoryService.findAll();
   }
-  public createEvent(event: Event): Observable<Boolean> {
+  public createEvent(event: Event): Observable<Response> {
     return this.eventService.create(event);
   }
 
-  public updateEvent(event: Event): Observable<Boolean> {
+  public updateEvent(event: Event): Observable<Response> {
     return this.eventService.update(event);
   }
   public findByIDEvent(id: number): Observable<Event> {
@@ -258,5 +269,16 @@ export class FacadeService {
       startDate,
       closeDate,
     );
+  }
+
+  public findAttendanceByEvent(eventId: number): Observable<Inscription[]> {
+    return this.attendanceService.findAttendanceByEvent(eventId);
+  }
+
+  public createAttendanceByEvent(
+    eventId: number,
+    inscription: Inscription[],
+  ): Observable<Response> {
+    return this.attendanceService.createAttendanceByEvent(eventId, inscription);
   }
 }

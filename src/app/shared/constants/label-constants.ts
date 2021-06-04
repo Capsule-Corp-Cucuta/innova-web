@@ -15,8 +15,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT:
-        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electrònico:',
       },
@@ -317,7 +316,7 @@ export class LabelConstants {
           NEW: 'Nueva asesoria',
           VIEW: 'Ver asesoria',
           EDIT: 'Actualizar asesoria',
-          EXPORT:'Exportar datos',
+          EXPORT: 'Exportar datos',
         },
       },
     },
@@ -350,11 +349,13 @@ export class LabelConstants {
         UPDATE_BUTTON: 'Actualizar',
       },
       LIST: {
+        TITLE: 'Listado de eventos',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         EXPORT: 'Exportar datos',
         COLUMNS: [
+          'id',
           'title',
           'startDate',
           'closeDate',
@@ -364,6 +365,7 @@ export class LabelConstants {
           'actions',
         ],
         CELLS: {
+          EVENTID: 'Id',
           TITLE: 'Titulo',
           DATESTART: 'Fecha inicio',
           DATEEND: 'Fecha fin:',
@@ -381,21 +383,26 @@ export class LabelConstants {
     },
     ATTENDANCE: {
       LIST: {
+        TITLE: 'Listado de asistencia a evento: ',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         EXPORT: 'Exportar datos',
-        COLUMNS: ['identificationCard', 'name', 'state', 'actions'],
+        COLUMNS: ['userId', 'inscriptionDate', 'attended'],
         CELLS: {
-          IDENTIFICATIONCARD: 'Cedula',
-          NAME: 'Nombre',
-          STATE: 'Estado:',
-          ACTIONS: 'Asistencia',
+          USERID: 'Participante',
+          DATE: 'Fecha de inscripcion',
+          ATTENDED: 'Asistencia:',
+        },
+        TOOLTIP: {
+          EXPORT: 'Exportar datos',
+          SAVE: 'Guardar asistencia',
         },
       },
     },
     REPORT: {
       LIST: {
+        TITLE: 'Reporte de horas ',
         CONSULTANT: 'Asesor',
         STARTDATE: 'Fecha inicial',
         CLOSEDATE: 'Fecha final',

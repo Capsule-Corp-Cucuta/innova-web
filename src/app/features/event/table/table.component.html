@@ -1,6 +1,10 @@
 <section class="page">
   <div class="mat-elevation-z8 table">
     <mat-card class="page__header">
+      <h3>{{ LABELS.TITLE }}</h3>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="page__header">
       <mat-form-field>
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input
@@ -14,6 +18,15 @@
     </mat-card>
 
     <table mat-table [dataSource]="events" matSort class="table--content">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.EVENTID }}
+        </th>
+        <td mat-cell *matCellDef="let event">
+          {{ event.id }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.TITLE }}
@@ -90,7 +103,7 @@
           </button>
           <button
             mat-stroked-button
-            color="accent"
+            color="success"
             (click)="openDialog(event.id)"
             matTooltip="{{ LABELS.TOOLTIP.VIEW }}"
           >
@@ -98,7 +111,7 @@
           </button>
           <button
             mat-stroked-button
-            color="accent"
+            color="warn"
             routerLink="../{{ ROUTES.ATTENDANCE }}/{{ ROUTES.UPDATE }}/{{
               event.id
             }}"
