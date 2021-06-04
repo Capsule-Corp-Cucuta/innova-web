@@ -131,7 +131,7 @@ export class SharedConstants {
     CONTACT:
       ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
     USER: 'usuario',
-    ATTENDANCE: ' asistencia',
+    ATTENDANCE: ' la asistencia',
     EVENT_INSCRIPTION: 'Se ha registro inscrion a evento',
     EMAIL: 'Se envio correo electrónico con la contraseña',
     TOACCEPT: 'OK',
@@ -173,6 +173,7 @@ export class SharedConstants {
     ADVISER: 'Asesorias',
     EVENT: 'Eventos',
     HOUR: 'Horas_Asesor',
+    ATTENDANCE: 'Asistencia_Evento',
   };
 
   static readonly EXPORTSERVICE = {

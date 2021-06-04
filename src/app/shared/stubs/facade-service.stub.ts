@@ -17,6 +17,8 @@ import { EventServiceStub } from './event-service.stub';
 import { Event } from 'src/app/core/models/event.model';
 import { UserServiceStub } from './user-service.stub';
 import { ReportServiceStub } from './report-service.stub';
+import { AttendanceServiceStub } from './attendance-service.stub';
+import { Inscription } from 'src/app/core/models/attendance.model';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +33,7 @@ export class FacadeServiceStub {
   private eventServiceStub: EventServiceStub;
   private userServiceStub: UserServiceStub;
   private reportServiceStub: ReportServiceStub;
+  private attendanceServiceStub: AttendanceServiceStub;
 
   constructor() {
     this.authServiceStub = new AuthServiceStub();
@@ -42,6 +45,7 @@ export class FacadeServiceStub {
     this.eventServiceStub = new EventServiceStub();
     this.userServiceStub = new UserServiceStub();
     this.reportServiceStub = new ReportServiceStub();
+    this.attendanceServiceStub = new AttendanceServiceStub();
   }
 
   public signin(user: UserLogin): Observable<JwtModel> {
@@ -175,5 +179,9 @@ export class FacadeServiceStub {
       startDate,
       closeDate,
     );
+  }
+
+  public findAttendanceByEvent(id: number): Observable<Inscription[]> {
+    return this.attendanceServiceStub.findAttendanceByEvent(id);
   }
 }

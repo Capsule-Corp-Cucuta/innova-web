@@ -13,12 +13,12 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  public create(event: Event): Observable<Boolean> {
-    return this.http.post<Boolean>(EventService.ENDPOINT, event);
+  public create(event: Event): Observable<Response> {
+    return this.http.post<Response>(EventService.ENDPOINT, event);
   }
 
-  public update(event: Event): Observable<Boolean> {
-    return this.http.put<Boolean>(
+  public update(event: Event): Observable<Response> {
+    return this.http.put<Response>(
       EventService.ENDPOINT + '/' + event.id,
       event,
     );
