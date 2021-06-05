@@ -170,7 +170,7 @@ export class LabelConstants {
     CLIENT: {
       FORM: {
         TITLE: 'Informacion cliente',
-        TITLE_UPDATE: 'Actualizar informacion cliente',
+        TITLE_UPDATE: 'Actualizar cliente',
         SUBTITLE: 'Innova UFPS',
         LABELCLASSIFICATION: 'Clasificacion de clientes',
         LABELCONTACT: 'Datos del contacto',
@@ -258,6 +258,7 @@ export class LabelConstants {
           ASSIGN: 'Asignar Asesor',
           DEACTIVATE: 'Inactivar Cliente',
           EDIT: 'Actualizar Cliente',
+          EXPORT: 'Exportar datos',
         },
         EXPORT_BUTTON: 'Exportar datos',
       },

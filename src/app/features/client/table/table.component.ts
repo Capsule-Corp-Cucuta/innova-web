@@ -24,10 +24,12 @@ export class TableComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.CLIENT.LIST;
+  public readonly FILENAME = SharedConstants.FILENAMES;
 
   public option: string;
   public clients: [] = [];
   public client: MatTableDataSource<Client>;
+  public filter = '';
 
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
@@ -35,8 +37,8 @@ export class TableComponent implements OnInit {
     this.loadData();
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  public applyFilter(): void {
+    const filterValue = this.filter;
     this.client.filter = filterValue.trim().toLowerCase();
 
     if (this.client.paginator) {
@@ -81,6 +83,17 @@ export class TableComponent implements OnInit {
         //TODO
       }
     });
+  }
+
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.client.data, this.FILENAME.CLIENT);
+    } else {
+      this.service.exporterToExcel(
+        this.client.filteredData,
+        this.FILENAME.CLIENT,
+      );
+    }
   }
 
   private loadData(): void {
