@@ -22,6 +22,9 @@ export class FormComponent implements OnInit {
 
   public form: FormGroup;
   public idUser: string;
+  public check: boolean;
+  public authority: string;
+  public isAccompaniment = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +36,9 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authority = this.service.getAuthorities()[0];
     this.validateIsCreateForm();
+    this.validateAccompaniment(this.authority);
   }
 
   public validateIsCreateForm(): void {
@@ -46,28 +51,42 @@ export class FormComponent implements OnInit {
     });
   }
 
+  public validateAccompaniment(authority: string): void {
+    if (authority === SharedConstants.ROLES.CONTACT) {
+      this.service.findByIDContact(this.idUser).subscribe((resp) => {
+        this.isAccompaniment = resp.requestAccompaniment == true ? false : true;
+      });
+    }
+  }
+
   public update(e: Event): void {
     e.preventDefault();
     this.validateInput(false);
+    this.check = this.form.value[SharedConstants.CHECK];
     if (this.form.valid) {
       const user = this.form.value;
-      this.service.updateUser(user).subscribe((resp) => {
-        if (resp) {
+      this.service.updateUser(user).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
               SharedConstants.ALERTSUCCESS.USER,
             'success',
           );
-        } else {
+          if (this.check) {
+            this.service.updateAccompaniment(this.idUser);
+          }
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
               SharedConstants.ALERTERROR.USER,
             'error',
           );
-        }
-      });
+          this.validateInput(true);
+        },
+      );
     }
   }
 
@@ -86,14 +105,15 @@ export class FormComponent implements OnInit {
       cellphone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       address: [''],
+      check: false,
     });
   }
 
   private validateInput(exito: Boolean) {
     if (exito) {
-      this.form.controls['id'].disable();
+      this.form.controls[SharedConstants.ID].disable();
     } else {
-      this.form.controls['id'].enable();
+      this.form.controls[SharedConstants.ID].enable();
     }
   }
 }

@@ -118,6 +118,18 @@ export class TestUtils {
     },
   ];
 
+  static contact: Contact = {
+    id: '1090494947',
+    name: 'Cristian',
+    lastname: 'Arevalo',
+    email: 'cristian@gmail.com',
+    cellphone: '3102171788',
+    address: 'av 9 # 10-45',
+    type: ContactType.ENTREPRENEUR,
+    registrationDate: new Date(),
+    requestAccompaniment: false,
+  };
+
   static contacts: Contact[] = [
     {
       id: '1090494947',
@@ -128,7 +140,8 @@ export class TestUtils {
       address: 'av 9 # 10-45',
       type: ContactType.ENTREPRENEUR,
       registrationDate: new Date(),
-      requestAccompaniment: false,
+      requestAccompaniment: true,
+      active: true,
     },
     {
       id: '1090494958',
@@ -142,6 +155,7 @@ export class TestUtils {
       requestAccompaniment: false,
       companyName: 'Colpatria',
       nit: '12345678-0',
+      active: true,
     },
   ];
 

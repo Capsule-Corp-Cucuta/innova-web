@@ -84,6 +84,10 @@ export class FacadeServiceStub {
     return this.contactServiceStub.create(contact);
   }
 
+  public findByIDContact(id: string): Observable<Contact> {
+    return this.contactServiceStub.findById(id);
+  }
+
   public findAllContact(): Observable<Contact[]> {
     return this.contactServiceStub.findAll();
   }
