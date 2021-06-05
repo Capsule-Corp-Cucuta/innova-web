@@ -163,6 +163,7 @@ export class LabelConstants {
           OPTION: 'Activar/Inactivar',
           EDIT: 'Actualizar Asesor',
           NEW: 'Nuevo Asesor',
+          EXPORT: 'Exportar datos',
         },
       },
     },
