@@ -19,4 +19,8 @@ export class ContactServiceStub {
   public assign(contacto: string, asesor: string): Observable<Boolean> {
     return of(true);
   }
+
+  public findById(id: string): Observable<Contact> {
+    return of(TestUtils.contact);
+  }
 }

@@ -90,6 +90,7 @@
         </th>
         <td mat-cell *matCellDef="let contact">
           <button
+            *ngIf="contact.requestAccompaniment"
             mat-stroked-button
             matTooltip="{{ LABELS.TOOLTIP.ASSIGN }}"
             (click)="openDialog(contact.id)"

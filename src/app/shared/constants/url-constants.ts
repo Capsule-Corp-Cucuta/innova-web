@@ -14,6 +14,7 @@ export class UrlConstants {
     REPORT: 'reportes',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
+    ASSIGNED: 'asesor-asignado',
   };
 
   public static ENDPOINTS = {

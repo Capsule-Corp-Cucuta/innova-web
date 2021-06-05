@@ -120,6 +120,7 @@ export class LabelConstants {
       FORM: {
         TITLE: 'Registrar asesor',
         TITLE_UPDATE: 'Actualizar asesor',
+        TITLE_VIEW: 'Asesor asignado',
         SUBTITLE: 'Innova UFPS',
         PLACEHOLDER: {
           ID: 'Id asesor',

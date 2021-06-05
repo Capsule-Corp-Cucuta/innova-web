@@ -143,10 +143,16 @@ export class FacadeService {
     return this.tokenService.getAuthorities();
   }
 
-  public createContact(contact: Contact): Observable<Boolean> {
+  public createContact(contact: Contact): Observable<Response> {
     return this.contactService.create(contact);
   }
 
+  public findByIDContact(contactId: string): Observable<Contact> {
+    return this.contactService.findById(contactId);
+  }
+  public updateAccompaniment(contact: string): Observable<Response> {
+    return this.contactService.updateAccompaniment(contact);
+  }
   public findAllContact(): Observable<Contact[]> {
     return this.contactService.findAll();
   }
