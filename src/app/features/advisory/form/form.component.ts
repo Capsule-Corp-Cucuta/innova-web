@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.consultant = this.service.getUser();
+    this.consultant = this.service.getUser().id;
     this.validateIsCreateForm();
     this.loadClients(this.consultant);
   }

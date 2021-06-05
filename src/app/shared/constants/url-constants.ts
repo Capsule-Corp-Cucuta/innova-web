@@ -17,7 +17,7 @@ export class UrlConstants {
   };
 
   public static ENDPOINTS = {
-    SIGNIN: 'auth/signin',
+    SIGNIN: 'auth',
     CONTACT: 'contact',
     CLIENT: 'client',
     ADVISORY: 'advisory',

@@ -35,7 +35,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
-    this.consultant = this.service.getUser();
+    this.consultant = this.service.getUser().id;
     // this.loadData();
     this.loadDataAdmin();
   }

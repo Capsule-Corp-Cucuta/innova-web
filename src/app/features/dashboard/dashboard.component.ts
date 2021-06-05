@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.service.getUser();
+    this.id = this.service.getUser().id;
     this.authority = this.service.getAuthorities()[0];
   }
 

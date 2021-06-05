@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "innova-ufps": {
+      "hosting": {
+        "innova-web": [
+          "innova-ufps"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "innova-ufps"
+  }
+}

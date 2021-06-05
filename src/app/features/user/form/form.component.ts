@@ -89,7 +89,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  private validateInput(exito: Boolean) {
+  private validateInput(exito: boolean) {
     if (exito) {
       this.form.controls['id'].disable();
     } else {
