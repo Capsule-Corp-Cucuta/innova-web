@@ -70,6 +70,9 @@
             formControlName="address"
           />
         </mat-form-field>
+        <mat-checkbox formControlName="check" *ngIf="isAccompaniment">
+          {{ LABELS.PLACEHOLDER.APPLYFOR }}</mat-checkbox
+        >
       </mat-card-content>
 
       <mat-card-actions class="form__actions">

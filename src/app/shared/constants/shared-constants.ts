@@ -6,6 +6,8 @@ export class SharedConstants {
   static readonly DEACTIVATE = 'inactivar';
   static readonly ACTIVE = 'Activo';
   static readonly INACTIVE = 'Inactivo';
+  static readonly CHECK = 'check';
+  static readonly ID = 'id';
 
   static readonly PIPES = {
     CONTACTTYPE: {
@@ -131,27 +133,29 @@ export class SharedConstants {
     CONTACT:
       ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
     USER: 'usuario',
-    ATTENDANCE: ' asistencia',
+    ATTENDANCE: ' la asistencia',
+    EVENT_INSCRIPTION: 'Se ha registro inscrion a evento',
     EMAIL: 'Se envio correo electrónico con la contraseña',
     TOACCEPT: 'OK',
   };
 
   static readonly ALERTERROR = {
     TITLE: '¡Error!',
-    TEXTCREATE: 'Se ha producido un error registrando el',
-    TEXTUPDATE: 'Se ha producido un error actualizando el ',
+    TEXTCREATE: 'Se ha producido un error registrando',
+    TEXTUPDATE: 'Se ha producido un error actualizando',
     TEXTASSIGN: 'Se ha producido un error asignando el asesor',
     TEXTDISABLE: 'Se ha producido un error inactivando el ',
     TEXTENABLE: 'Se ha producido un error acitvando el ',
     TEXTEMAIL: 'Se ha producido un error al enviar correo',
     TEXTCHANGE: 'Se ha producido un error al cambiar la contraseña',
-    ADVISER: ' asesoria',
-    CLIENT: ' cliente',
-    CONSULTANT: ' asesor',
-    EVENT: ' evento',
-    CONTACT: ' contacto',
-    USER: 'usuario',
-    ATTENDANCE: ' asistencia',
+    ADVISER: ' la asesoria',
+    CLIENT: ' el cliente',
+    CONSULTANT: ' el asesor',
+    EVENT: ' el evento',
+    CONTACT: ' el contacto',
+    USER: ' el usuario',
+    ATTENDANCE: ' la asistencia',
+    EVENT_INSCRIPTION: ' la inscripcion al evento',
     EMAIL: 'Se ha producido un error al enviar el correo',
     EMAILEXIST: 'El correo electrònico no se encuentra registrado',
     TOACCEPT: 'OK',
@@ -171,6 +175,7 @@ export class SharedConstants {
     ADVISER: 'Asesorias',
     EVENT: 'Eventos',
     HOUR: 'Horas_Asesor',
+    ATTENDANCE: 'Asistencia_Evento',
   };
 
   static readonly EXPORTSERVICE = {

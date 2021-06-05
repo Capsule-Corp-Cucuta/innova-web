@@ -6,6 +6,7 @@ import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { SessionGuardService } from 'src/app/shared/guards/session-guard.service';
+import { FormViewComponent } from './form-view/form-view.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: UrlConstants.ROUTES.UPDATE + '/:id',
     component: FormComponent,
+    canActivate: [SessionGuardService],
+  },
+  {
+    path: UrlConstants.ROUTES.ASSIGNED,
+    component: FormViewComponent,
     canActivate: [SessionGuardService],
   },
 ];

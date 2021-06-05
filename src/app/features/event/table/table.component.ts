@@ -1,5 +1,5 @@
 import { finalize } from 'rxjs/operators';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,7 +17,7 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,11 +39,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.client = this.service.getUser().id;
     //this.watch = this.authority === 'ADMIN' ? true : false;
     this.loadDataAdmin();
-  }
-
-  ngAfterViewInit(): void {
-    this.events.sort = this.sort;
-    this.events.paginator = this.paginator;
   }
 
   public applyFilter(): void {

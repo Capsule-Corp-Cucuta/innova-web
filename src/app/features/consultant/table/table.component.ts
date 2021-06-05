@@ -23,9 +23,11 @@ export class TableComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
+  public readonly FILENAME = SharedConstants.FILENAMES;
 
   public option: string;
   public consultant: MatTableDataSource<Consultant>;
+  public filter = '';
 
   constructor(private service: FacadeService) {}
 
@@ -33,8 +35,8 @@ export class TableComponent implements OnInit {
     this.loadData();
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  public applyFilter(): void {
+    const filterValue = this.filter;
     this.consultant.filter = filterValue.trim().toLowerCase();
 
     if (this.consultant.paginator) {
@@ -69,6 +71,17 @@ export class TableComponent implements OnInit {
         //TODO
       }
     });
+  }
+
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.consultant.data, this.FILENAME.CONSULTANT);
+    } else {
+      this.service.exporterToExcel(
+        this.consultant.filteredData,
+        this.FILENAME.CONSULTANT,
+      );
+    }
   }
 
   private loadData(): void {

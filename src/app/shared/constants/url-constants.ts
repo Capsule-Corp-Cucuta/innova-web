@@ -14,6 +14,7 @@ export class UrlConstants {
     REPORT: 'reportes',
     CREATE: 'registrar',
     UPDATE: 'actualizar',
+    ASSIGNED: 'asesor-asignado',
   };
 
   public static ENDPOINTS = {
@@ -24,10 +25,10 @@ export class UrlConstants {
     CONSULTANT: 'consultant',
     EVENT: 'event',
     USER: 'user',
+    ATTENDANCE: 'attendance',
   };
 
   public static LINKS = {
-    UFPS:
-      'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
+    UFPS: 'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
   };
 }

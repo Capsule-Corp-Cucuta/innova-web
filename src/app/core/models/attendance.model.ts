@@ -1,5 +1,5 @@
 export class Inscription {
-  eventId: string;
+  eventId: number;
   userId: string;
   inscriptionDate: Date;
   attended: boolean;

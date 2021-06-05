@@ -5,11 +5,20 @@
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input
           matInput
-          (keyup)="applyFilter($event)"
+          (keyup)="applyFilter()"
           placeholder="{{ LABELS.SEARCH }}"
+          [(ngModel)]="filter"
           #input
         />
       </mat-form-field>
+      <button
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+      >
+        <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
+      </button>
     </mat-card>
 
     <table mat-table [dataSource]="client" matSort class="table--content">

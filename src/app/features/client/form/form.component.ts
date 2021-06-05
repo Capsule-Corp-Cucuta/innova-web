@@ -12,7 +12,7 @@ import { Client } from 'src/app/core/models/client.model';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['../../../shared/styles/_form.component.scss'],
+  styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
 export class FormComponent implements OnInit {
   public readonly URIS = UrlConstants.ROUTES;

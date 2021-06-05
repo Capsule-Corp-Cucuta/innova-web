@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: UrlConstants.ROUTES.UPDATE + '/:id',
-    component: FormComponent,
+    component: TableComponent,
     canActivate: [SessionGuardService],
   },
 ];

@@ -12,11 +12,13 @@ import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User, UserLogin } from 'src/app/core/models/user.model';
 import { Consultant } from 'src/app/core/models/consultant.model';
+import { Inscription } from 'src/app/core/models/attendance.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { ContactService } from 'src/app/core/services/contact.service';
 import { AdvisoryService } from '../../core/services/advisory.service';
 import { ConsultantService } from '../../core/services/consultant.service';
+import { AttendanceService } from 'src/app/core/services/attendance.service';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +33,7 @@ export class FacadeService {
   private _eventService: EventService; // tslint:disable-line
   private _userService: UserService; // tslint:disable-line
   private _exporterService: ExporterService; // tslint:disable-line
+  private _attendanceService: AttendanceService; // tslint:disable-line
 
   constructor(private injector: Injector) {}
 
@@ -103,6 +106,15 @@ export class FacadeService {
     return this._exporterService;
   }
 
+  public get attendanceService(): AttendanceService {
+    if (!this._attendanceService) {
+      this._attendanceService = this.injector.get<AttendanceService>(
+        AttendanceService,
+      );
+    }
+    return this._attendanceService;
+  }
+
   public signin(user: UserLogin): Observable<JwtModel> {
     return this.authService.signin(user);
   }
@@ -163,10 +175,16 @@ export class FacadeService {
     return this.userService.recoverPassword(email);
   }
 
-  public createContact(contact: Contact): Observable<Boolean> {
+  public createContact(contact: Contact): Observable<Response> {
     return this.contactService.create(contact);
   }
 
+  public findByIDContact(contactId: string): Observable<Contact> {
+    return this.contactService.findById(contactId);
+  }
+  public updateAccompaniment(contact: string): Observable<Response> {
+    return this.contactService.updateAccompaniment(contact);
+  }
   public findAllContact(): Observable<Contact[]> {
     return this.contactService.findAll();
   }
@@ -225,11 +243,11 @@ export class FacadeService {
   public findAllAdvisory(): Observable<Advisory[]> {
     return this.advisoryService.findAll();
   }
-  public createEvent(event: Event): Observable<Boolean> {
+  public createEvent(event: Event): Observable<Response> {
     return this.eventService.create(event);
   }
 
-  public updateEvent(event: Event): Observable<Boolean> {
+  public updateEvent(event: Event): Observable<Response> {
     return this.eventService.update(event);
   }
   public findByIDEvent(id: number): Observable<Event> {
@@ -242,6 +260,13 @@ export class FacadeService {
 
   public findAllEvent(): Observable<Event[]> {
     return this.eventService.findAll();
+  }
+
+  public eventInscription(
+    idUser: string,
+    idEvent: number,
+  ): Observable<Response> {
+    return this.eventService.eventInscription(idUser, idEvent);
   }
 
   public exporterToExcel(data: any[], fileName: string): void {
@@ -258,5 +283,16 @@ export class FacadeService {
       startDate,
       closeDate,
     );
+  }
+
+  public findAttendanceByEvent(eventId: number): Observable<Inscription[]> {
+    return this.attendanceService.findAttendanceByEvent(eventId);
+  }
+
+  public createAttendanceByEvent(
+    eventId: number,
+    inscription: Inscription[],
+  ): Observable<Response> {
+    return this.attendanceService.createAttendanceByEvent(eventId, inscription);
   }
 }

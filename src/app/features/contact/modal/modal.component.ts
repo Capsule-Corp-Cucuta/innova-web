@@ -39,24 +39,23 @@ export class ModalComponent implements OnInit {
   public assign(e: Event): void {
     e.preventDefault();
     this.idConsultant = this.form.value['consultant'];
-    this.service
-      .assignConsultant(this.id, this.idConsultant)
-      .subscribe((resp) => {
-        if (resp) {
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTASSIGN,
-            'success',
-          );
-        } else {
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTASSIGN,
-            'error',
-          );
-        }
-        this.onNoClick();
-      });
+    this.service.assignConsultant(this.id, this.idConsultant).subscribe(
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTSUCCESS.TITLE,
+          SharedConstants.ALERTSUCCESS.TEXTASSIGN,
+          'success',
+        );
+      },
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTERROR.TITLE,
+          SharedConstants.ALERTERROR.TEXTASSIGN,
+          'error',
+        );
+      },
+    );
+    this.onNoClick();
   }
 
   public onNoClick(): void {

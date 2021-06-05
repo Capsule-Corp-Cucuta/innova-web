@@ -15,8 +15,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT:
-        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electrònico:',
       },
@@ -121,6 +120,7 @@ export class LabelConstants {
       FORM: {
         TITLE: 'Registrar asesor',
         TITLE_UPDATE: 'Actualizar asesor',
+        TITLE_VIEW: 'Asesor asignado',
         SUBTITLE: 'Innova UFPS',
         PLACEHOLDER: {
           ID: 'Id asesor',
@@ -163,13 +163,14 @@ export class LabelConstants {
           OPTION: 'Activar/Inactivar',
           EDIT: 'Actualizar Asesor',
           NEW: 'Nuevo Asesor',
+          EXPORT: 'Exportar datos',
         },
       },
     },
     CLIENT: {
       FORM: {
         TITLE: 'Informacion cliente',
-        TITLE_UPDATE: 'Actualizar informacion cliente',
+        TITLE_UPDATE: 'Actualizar cliente',
         SUBTITLE: 'Innova UFPS',
         LABELCLASSIFICATION: 'Clasificacion de clientes',
         LABELCONTACT: 'Datos del contacto',
@@ -257,6 +258,7 @@ export class LabelConstants {
           ASSIGN: 'Asignar Asesor',
           DEACTIVATE: 'Inactivar Cliente',
           EDIT: 'Actualizar Cliente',
+          EXPORT: 'Exportar datos',
         },
         EXPORT_BUTTON: 'Exportar datos',
       },
@@ -317,7 +319,7 @@ export class LabelConstants {
           NEW: 'Nueva asesoria',
           VIEW: 'Ver asesoria',
           EDIT: 'Actualizar asesoria',
-          EXPORT:'Exportar datos',
+          EXPORT: 'Exportar datos',
         },
       },
     },
@@ -350,11 +352,13 @@ export class LabelConstants {
         UPDATE_BUTTON: 'Actualizar',
       },
       LIST: {
+        TITLE: 'Listado de eventos',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         EXPORT: 'Exportar datos',
         COLUMNS: [
+          'id',
           'title',
           'startDate',
           'closeDate',
@@ -364,6 +368,7 @@ export class LabelConstants {
           'actions',
         ],
         CELLS: {
+          EVENTID: 'Id',
           TITLE: 'Titulo',
           DATESTART: 'Fecha inicio',
           DATEEND: 'Fecha fin:',
@@ -381,21 +386,26 @@ export class LabelConstants {
     },
     ATTENDANCE: {
       LIST: {
+        TITLE: 'Listado de asistencia a evento: ',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         EXPORT: 'Exportar datos',
-        COLUMNS: ['identificationCard', 'name', 'state', 'actions'],
+        COLUMNS: ['userId', 'inscriptionDate', 'attended'],
         CELLS: {
-          IDENTIFICATIONCARD: 'Cedula',
-          NAME: 'Nombre',
-          STATE: 'Estado:',
-          ACTIONS: 'Asistencia',
+          USERID: 'Participante',
+          DATE: 'Fecha de inscripcion',
+          ATTENDED: 'Asistencia:',
+        },
+        TOOLTIP: {
+          EXPORT: 'Exportar datos',
+          SAVE: 'Guardar asistencia',
         },
       },
     },
     REPORT: {
       LIST: {
+        TITLE: 'Reporte de horas ',
         CONSULTANT: 'Asesor',
         STARTDATE: 'Fecha inicial',
         CLOSEDATE: 'Fecha final',
