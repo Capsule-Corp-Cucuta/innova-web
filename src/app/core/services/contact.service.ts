@@ -28,7 +28,7 @@ export class ContactService {
 
   public updateAccompaniment(id: string): Observable<Response> {
     return this.http.put<Response>(
-      `${ContactService.ENDPOINT}/requestAccompaniment/${id}`,
+      `${ContactService.ENDPOINT}/${id}/request-accompaniment`,
       null,
     );
   }

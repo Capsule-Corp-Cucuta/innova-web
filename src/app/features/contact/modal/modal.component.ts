@@ -63,7 +63,7 @@ export class ModalComponent implements OnInit {
   }
 
   private loadConsultants() {
-    this.service.findAllConsultant().subscribe((resp) => {
+    this.service.findAllConsultantActive().subscribe((resp) => {
       this.consultants = resp;
     });
   }

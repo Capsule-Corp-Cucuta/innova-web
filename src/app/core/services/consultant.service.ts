@@ -14,12 +14,12 @@ export class ConsultantService {
 
   constructor(private http: HttpClient) {}
 
-  public create(consultant: Consultant): Observable<Boolean> {
-    return this.http.post<Boolean>(ConsultantService.ENDPOINT, consultant);
+  public create(consultant: Consultant): Observable<Response> {
+    return this.http.post<Response>(ConsultantService.ENDPOINT, consultant);
   }
 
-  public update(consultant: Consultant): Observable<Boolean> {
-    return this.http.put<Boolean>(
+  public update(consultant: Consultant): Observable<Response> {
+    return this.http.put<Response>(
       ConsultantService.ENDPOINT + '/' + consultant.id,
       consultant,
     );
@@ -31,6 +31,10 @@ export class ConsultantService {
 
   public findAll(): Observable<Consultant[]> {
     return this.http.get<Consultant[]>(ConsultantService.ENDPOINT);
+  }
+
+  public findAllActive(): Observable<Consultant[]> {
+    return this.http.get<Consultant[]>(ConsultantService.ENDPOINT + '/active');
   }
 
   public reportHours(
