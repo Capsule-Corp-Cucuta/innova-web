@@ -193,6 +193,10 @@ export class FacadeService {
     return this.consultantService.findAll();
   }
 
+  public findAllConsultantActive(): Observable<Consultant[]> {
+    return this.consultantService.findAllActive();
+  }
+
   public createAdvisory(advisory: Advisory): Observable<Boolean> {
     return this.advisoryService.create(advisory);
   }
