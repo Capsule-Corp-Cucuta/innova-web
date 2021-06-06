@@ -69,7 +69,9 @@ export class SigninComponent implements OnInit {
                 this.service.setUser(user);
               },
               () => {
-                // TODO error screen
+                this.isLogged = false;
+                this.isLoginFail = true;
+                this.service.signout();
               },
             );
         },
