@@ -159,14 +159,19 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
+        <button
+          *ngIf="isCreate"
+          color="primary"
+          mat-raised-button
+          (click)="create($event)"
+        >
           <span>{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
           *ngIf="!isCreate"
           mat-raised-button
-          color="accent"
+          color="primary"
           class="button-form"
           (click)="update($event)"
         >

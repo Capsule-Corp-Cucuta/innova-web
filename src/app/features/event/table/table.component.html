@@ -86,7 +86,7 @@
             color="primary"
             routerLink="{{ ROUTES.CREATE }}"
             matTooltip="{{ LABELS.TOOLTIP.NEW }}"
-            *ngIf="watch"
+            *ngIf="authority == ROLES.ADMIN"
           >
             <mat-icon>{{ ICONS.ADD }}</mat-icon>
           </button>
@@ -97,7 +97,7 @@
             color="accent"
             routerLink="{{ ROUTES.UPDATE }}/{{ event.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
-            *ngIf="watch"
+            *ngIf="authority == ROLES.ADMIN"
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
           </button>
@@ -116,7 +116,7 @@
               event.id
             }}"
             matTooltip="{{ LABELS.TOOLTIP.ATTENDANCE }}"
-            *ngIf="watch"
+            *ngIf="authority == ROLES.ADMIN"
           >
             <mat-icon>{{ ICONS.CHECK }}</mat-icon>
           </button>
