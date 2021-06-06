@@ -29,7 +29,6 @@ export class TableComponent implements OnInit {
   public authority: string;
   public client: string;
   public filter: string;
-  public watch = true;
   public events: MatTableDataSource<Event>;
 
   constructor(public dialog: MatDialog, private service: FacadeService) {}
@@ -37,7 +36,6 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
     this.client = this.service.getUser().id;
-    //this.watch = this.authority === 'ADMIN' ? true : false;
     this.loadDataAdmin();
   }
 
