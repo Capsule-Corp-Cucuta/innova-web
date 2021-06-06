@@ -21,7 +21,7 @@ import { ContactMediumPipe } from './pipes/contactMedium-pipe';
 import { EducationLevelPipe } from './pipes/educationalLevel-pipe';
 import { SessionGuardService } from './guards/session-guard.service';
 import { LegalConstitutionPipe } from './pipes/legalConstitution-pipe';
-import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { interceptorProvider } from './interceptors/auth-interceptor.service';
 import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
 
 @NgModule({
@@ -48,7 +48,7 @@ import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
     FacadeService,
     ExporterService,
     SessionGuardService,
-    AuthInterceptorService,
+    interceptorProvider,
   ],
   exports: [
     StatePipe,

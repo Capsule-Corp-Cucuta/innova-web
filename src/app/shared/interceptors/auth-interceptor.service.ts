@@ -1,33 +1,49 @@
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import {
   HttpEvent,
   HttpHandler,
   HttpRequest,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { UrlConstants } from '../constants/url-constants';
 import { FacadeService } from '../services/facade.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private service: FacadeService) {}
+  constructor(private service: FacadeService, private router: Router) {}
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    let authRequest = request;
-    const token = this.service.getToken();
-    if (token != null) {
-      authRequest = request.clone({
-        headers: request.headers.set('Authorization', 'Bearer ' + token),
+    const token: string = this.service.getToken();
+
+    let request = req;
+
+    if (token) {
+      request = req.clone({
+        setHeaders: {
+          authorization: `Bearer ${token}`,
+        },
       });
     }
-    return next.handle(authRequest);
+
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigateByUrl(UrlConstants.ROUTES.SECURITY);
+        }
+        return throwError(err);
+      }),
+    );
   }
 }
 

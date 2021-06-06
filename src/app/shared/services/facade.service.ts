@@ -2,22 +2,22 @@ import { Observable } from 'rxjs';
 import { Injectable, Injector } from '@angular/core';
 
 import { TokenService } from './token.service';
+import { ExporterService } from './exporter.service';
+import { Event } from 'src/app/core/models/event.model';
 import { JwtModel } from 'src/app/core/models/jwt.model';
+import { Client } from 'src/app/core/models/client.model';
+import { Contact } from 'src/app/core/models/contact.model';
+import { Advisory } from 'src/app/core/models/advisory.model';
+import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User, UserLogin } from 'src/app/core/models/user.model';
-import { ContactService } from 'src/app/core/services/contact.service';
-import { ClientService } from 'src/app/core/services/client.service';
-import { Contact } from 'src/app/core/models/contact.model';
-import { Client } from 'src/app/core/models/client.model';
-import { ConsultantService } from '../../core/services/consultant.service';
 import { Consultant } from 'src/app/core/models/consultant.model';
-import { AdvisoryService } from '../../core/services/advisory.service';
-import { Advisory } from 'src/app/core/models/advisory.model';
-import { EventService } from 'src/app/core/services/event.service';
-import { Event } from 'src/app/core/models/event.model';
-import { UserService } from 'src/app/core/services/user.service';
-import { ExporterService } from './exporter.service';
 import { Inscription } from 'src/app/core/models/attendance.model';
+import { EventService } from 'src/app/core/services/event.service';
+import { ClientService } from 'src/app/core/services/client.service';
+import { ContactService } from 'src/app/core/services/contact.service';
+import { AdvisoryService } from '../../core/services/advisory.service';
+import { ConsultantService } from '../../core/services/consultant.service';
 import { AttendanceService } from 'src/app/core/services/attendance.service';
 
 @Injectable({
@@ -67,16 +67,18 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService =
-        this.injector.get<ConsultantService>(ConsultantService);
+      this._consultantService = this.injector.get<ConsultantService>(
+        ConsultantService,
+      );
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService =
-        this.injector.get<AdvisoryService>(AdvisoryService);
+      this._advisoryService = this.injector.get<AdvisoryService>(
+        AdvisoryService,
+      );
     }
     return this._advisoryService;
   }
@@ -97,16 +99,18 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService =
-        this.injector.get<ExporterService>(ExporterService);
+      this._exporterService = this.injector.get<ExporterService>(
+        ExporterService,
+      );
     }
     return this._exporterService;
   }
 
   public get attendanceService(): AttendanceService {
     if (!this._attendanceService) {
-      this._attendanceService =
-        this.injector.get<AttendanceService>(AttendanceService);
+      this._attendanceService = this.injector.get<AttendanceService>(
+        AttendanceService,
+      );
     }
     return this._attendanceService;
   }
@@ -127,12 +131,12 @@ export class FacadeService {
     return this.tokenService.getToken();
   }
 
-  public setUser(id: string): void {
-    this.tokenService.setUser(id);
+  public setUser(user: User): void {
+    this.tokenService.setUser(user);
   }
 
-  public getUser(): string {
-    return this.tokenService.getUser();
+  public getUser(): User {
+    return JSON.parse(this.tokenService.getUser());
   }
 
   public setAuthorities(authorities: string[]): void {
@@ -141,6 +145,34 @@ export class FacadeService {
 
   public getAuthorities(): string[] {
     return this.tokenService.getAuthorities();
+  }
+
+  public enableAndDisableUser(user: string): Observable<Response> {
+    return this.userService.disable(user);
+  }
+
+  public updateUser(user: User): Observable<Response> {
+    return this.userService.update(user);
+  }
+
+  public findByIdUser(id: string): Observable<User> {
+    return this.userService.findByID(id);
+  }
+
+  public findByEmail(email: string): Observable<User> {
+    return this.userService.findByEmail(email);
+  }
+
+  public changePassword(
+    id: string,
+    oldPass: string,
+    newPass: string,
+  ): Observable<Response> {
+    return this.userService.changePassword(id, oldPass, newPass);
+  }
+
+  public recoverPassword(email: string): Observable<Response> {
+    return this.userService.recoverPassword(email);
   }
 
   public createContact(contact: Contact): Observable<Response> {
@@ -235,30 +267,6 @@ export class FacadeService {
     idEvent: number,
   ): Observable<Response> {
     return this.eventService.eventInscription(idUser, idEvent);
-  }
-
-  public enableAndDisableUser(user: string): Observable<Response> {
-    return this.userService.disable(user);
-  }
-
-  public changePassword(
-    id: string,
-    oldPass: string,
-    newPass: string,
-  ): Observable<Response> {
-    return this.userService.changePassword(id, oldPass, newPass);
-  }
-
-  public recoverPassword(email: string): Observable<Response> {
-    return this.userService.recoverPassword(email);
-  }
-
-  public updateUser(user: User): Observable<Boolean> {
-    return this.userService.update(user);
-  }
-
-  public findByIdUser(id: string): Observable<User> {
-    return this.userService.findByID(id);
   }
 
   public exporterToExcel(data: any[], fileName: string): void {
