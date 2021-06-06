@@ -16,41 +16,73 @@
     </mat-toolbar>
 
     <mat-nav-list>
-      <a mat-list-item routerLink="/{{ ROUTES.CONTACT }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.CONTACT }}"
+        *ngIf="authority == ROLES.ADMIN"
+      >
         <mat-icon> {{ ICONS.CONTACT }}</mat-icon>
         <span>{{ LABELS.MODULES.CONTACT }}</span></a
       >
       <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.ADVISORY }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.ADVISORY }}"
+        *ngIf="
+          authority == ROLES.ADMIN ||
+          authority == ROLES.CONSULTANT ||
+          authority == ROLES.CLIENT
+        "
+      >
         <mat-icon> {{ ICONS.BOOK }}</mat-icon>
         <span>{{ LABELS.MODULES.ADVISORY }}</span></a
       >
 
       <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.CONSULTANT }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.CONSULTANT }}"
+        *ngIf="authority == ROLES.ADMIN"
+      >
         <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
         <span>{{ LABELS.MODULES.CONSULTANT }}</span></a
       >
 
       <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.CLIENT }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.CLIENT }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT"
+      >
         <mat-icon> {{ ICONS.CLIENT }}</mat-icon>
         <span>{{ LABELS.MODULES.CLIENT }}</span></a
       >
 
       <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.EVENT }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.EVENT }}"
+        *ngIf="
+          authority == ROLES.ADMIN ||
+          authority == ROLES.CLIENT ||
+          authority == ROLES.CONTACT
+        "
+      >
         <mat-icon> {{ ICONS.EVENT }}</mat-icon>
         <span>{{ LABELS.MODULES.EVENT }}</span></a
       >
 
       <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/{{ ROUTES.REPORT }}">
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.REPORT }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT"
+      >
         <mat-icon> {{ ICONS.REPORT }}</mat-icon>
         <span>{{ LABELS.MODULES.REPORT }}</span></a
       >

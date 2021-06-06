@@ -7,6 +7,7 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-pass',
@@ -24,6 +25,7 @@ export class ForgotPassComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: FacadeService,
+    private router: Router,
   ) {
     this.buildForm();
   }
@@ -37,6 +39,7 @@ export class ForgotPassComponent {
           SharedConstants.ALERTSUCCESS.TEXTEMAIL,
           'success',
         );
+        this.router.navigate(['./seguridad']);
       },
       (err) => {
         Swal.fire(

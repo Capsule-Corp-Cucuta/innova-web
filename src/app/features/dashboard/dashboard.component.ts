@@ -7,6 +7,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UrlConstants } from '../../shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from '../../shared/constants/label-constants';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.PRINCIPAL;
+  public readonly ROLES = SharedConstants.ROLES;
 
   public id: string;
   public authority: string;

@@ -41,6 +41,7 @@ export class FormComponent implements OnInit {
       if (!this.isCreate) {
         this.service.findByIDConsultant(idConsultant).subscribe((resp) => {
           this.form.patchValue(resp);
+          this.validateInput(true);
         });
       }
     });
@@ -50,49 +51,53 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     const consultant = this.form.value;
     if (this.form.valid) {
-      this.service.createConsultant(consultant).subscribe((resp) => {
-        if (resp) {
+      this.service.createConsultant(consultant).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
               SharedConstants.ALERTSUCCESS.CONSULTANT,
             'success',
           );
-        } else {
+          this.router.navigate(['./asesor']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
               SharedConstants.ALERTERROR.CONSULTANT,
             'error',
           );
-        }
-        this.router.navigate(['./asesor']);
-      });
+        },
+      );
     }
   }
 
   public update(e: Event): void {
     e.preventDefault();
+    this.validateInput(false);
     if (this.form.valid) {
       const consultant = this.form.value;
-      this.service.updateConsultant(consultant).subscribe((resp) => {
-        if (resp) {
+      this.service.updateConsultant(consultant).subscribe(
+        (resp) => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
               SharedConstants.ALERTSUCCESS.CONSULTANT,
             'success',
           );
-        } else {
+          this.router.navigate(['./asesor']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
               SharedConstants.ALERTERROR.CONSULTANT,
             'error',
           );
-        }
-        this.router.navigate(['./asesor']);
-      });
+          this.validateInput(true);
+        },
+      );
     }
   }
 
@@ -105,7 +110,15 @@ export class FormComponent implements OnInit {
       cellphone: ['', [Validators.required, Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]],
-      isActive: true,
+      active: true,
     });
+  }
+
+  private validateInput(exito: boolean) {
+    if (exito) {
+      this.form.controls[SharedConstants.ID].disable();
+    } else {
+      this.form.controls[SharedConstants.ID].enable();
+    }
   }
 }

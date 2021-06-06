@@ -16,7 +16,7 @@ export class UserService {
 
   public disable(id: string): Observable<Response> {
     return this.http.put<Response>(
-      `${UserService.ENDPOINT}/change-state/${id}`,
+      `${UserService.ENDPOINT}/${id}/change-state`,
       null,
     );
   }
@@ -27,7 +27,7 @@ export class UserService {
     newPass: string,
   ): Observable<Response> {
     return this.http.post<Response>(
-      `${UserService.ENDPOINT}/${id}/change-password?oldPass=${oldPass}&newPass=${newPass}`,
+      `${UserService.ENDPOINT}/${id}/change-password?newPassword=${newPass}&oldPassword=${oldPass}`,
       {},
     );
   }
