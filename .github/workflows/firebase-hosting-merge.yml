@@ -22,10 +22,10 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Archive Production Artifact
+      - name: Archive Artifact
         uses: actions/upload-artifact@master
         with:
-          name: dist/innova-web
+          name: innova-web
           path: ./dist/innova-web
   deploy:
     name: Deploy to firebase
