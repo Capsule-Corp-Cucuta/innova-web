@@ -93,7 +93,7 @@ export class LabelConstants {
       },
       CHANGEPASSWORD: {
         TITLE: 'Cambiar contraseña',
-        ERROR: 'Contraseñas no son iguales',
+        ERROR: 'Contraseñas ingresadas no coinciden',
         OLDPASS: 'Ingresa contraseña actual',
         NEWPASS: 'Ingresa contraseña nueva',
         REPEATNEWPASS: 'Confirmar contraseña nueva',

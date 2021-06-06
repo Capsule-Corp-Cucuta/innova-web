@@ -76,6 +76,7 @@ export class FormComponent implements OnInit {
           if (this.check) {
             this.service.updateAccompaniment(this.idUser);
           }
+          this.validateIsCreateForm();
         },
         () => {
           Swal.fire(
