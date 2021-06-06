@@ -25,9 +25,10 @@ export class TableComponent implements OnInit {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly ROLES = SharedConstants.ROLES;
 
   public authority: string;
-  public consultant: string;
+  public user: string;
   public advisory: MatTableDataSource<Advisory>;
   public filter = '';
 
@@ -35,9 +36,8 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
-    this.consultant = this.service.getUser().id;
-    // this.loadData();
-    this.loadDataAdmin();
+    this.user = this.service.getUser().id;
+    this.loadData();
   }
 
   public applyFilter(): void {
@@ -62,10 +62,13 @@ export class TableComponent implements OnInit {
   }
 
   private loadData(): void {
-    if (this.authority === 'ADMIN') {
+    if (this.authority == this.ROLES.ADMIN) {
       this.loadDataAdmin();
-    } else if (this.authority === 'CONSULTANT') {
-      this.loadDataByConsultant(this.consultant);
+    } else if (
+      this.authority == this.ROLES.CONSULTANT ||
+      this.authority == this.ROLES.CLIENT
+    ) {
+      this.loadDataByUser(this.user);
     }
   }
 
@@ -94,7 +97,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-  private loadDataByConsultant(consultant: string): void {
+  private loadDataByUser(consultant: string): void {
     this.service
       .findAdvisoryByConsultant(consultant)
       .pipe(

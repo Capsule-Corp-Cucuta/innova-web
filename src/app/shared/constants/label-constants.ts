@@ -52,6 +52,7 @@ export class LabelConstants {
         LINK: 'Volver a Inicio de Sesión',
       },
       LIST: {
+        TITLE: 'Listado de contactos',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
@@ -137,6 +138,7 @@ export class LabelConstants {
         UPDATE_BUTTON: 'Actualizar',
       },
       LIST: {
+        TITLE: 'Listado de asesores',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
@@ -232,6 +234,7 @@ export class LabelConstants {
         },
       },
       LIST: {
+        TITLE: 'Listado de clientes',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
@@ -292,6 +295,7 @@ export class LabelConstants {
         UPDATE_BUTTON: 'Actualizar',
       },
       LIST: {
+        TITLE: 'Listado de asesorias',
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
