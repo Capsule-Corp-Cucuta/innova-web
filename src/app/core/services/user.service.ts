@@ -35,15 +35,15 @@ export class UserService {
 
   public changePassword(
     id: string,
-    oldPass: string,
-    newPass: string,
+    oldPassword: string,
+    newPassword: string,
   ): Observable<Response> {
-    const formData = new FormData();
-    formData.append('oldPassword', oldPass);
-    formData.append('newPassword', newPass);
     return this.http.put<Response>(
       `${UserService.ENDPOINT}/${id}/change-password`,
-      formData,
+      {
+        oldPassword,
+        newPassword,
+      },
     );
   }
 
