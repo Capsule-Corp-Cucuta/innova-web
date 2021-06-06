@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { UserLogin } from 'src/app/core/models/user.model';
+import { User, UserLogin } from 'src/app/core/models/user.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
@@ -52,7 +52,18 @@ export class SigninComponent implements OnInit {
         (response) => {
           this.service.setToken(response.jwt);
           this.service.setAuthorities(response.authorities);
-          this.service.setUser(this.form.controls[SharedConstants.EMAIL].value);
+
+          this.service
+            .findByEmail(this.form.controls[SharedConstants.EMAIL].value)
+            .subscribe(
+              (user: User) => {
+                this.service.setUser(user);
+              },
+              () => {
+                // TODO error screen
+              },
+            );
+
           this.isLogged = true;
           this.isLoginFail = false;
           this.roles = this.service.getAuthorities();

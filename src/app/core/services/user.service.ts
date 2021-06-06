@@ -39,11 +39,15 @@ export class UserService {
     );
   }
 
-  public update(user: User): Observable<Boolean> {
-    return this.http.put<Boolean>(UserService.ENDPOINT + '/' + user.id, user);
+  public update(user: User): Observable<Response> {
+    return this.http.put<Response>(`${UserService.ENDPOINT}/${user.id}`, user);
   }
 
   public findByID(id: string): Observable<User> {
-    return this.http.get<User>(UserService.ENDPOINT + '/' + id);
+    return this.http.get<User>(`${UserService.ENDPOINT}/${id}`);
+  }
+
+  public findByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${UserService.ENDPOINT}/email/${email}`);
   }
 }

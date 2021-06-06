@@ -60,11 +60,22 @@ export class TableComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.enableAndDisableUser(id).subscribe(
-          (resp) => {
-            Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, 'success');
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTDISABLE +
+                SharedConstants.ALERTSUCCESS.CONSULTANT,
+              'success',
+            );
+            this.loadData();
           },
-          (err) => {
-            Swal.fire(SharedConstants.ALERTERROR.TITLE, 'error');
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTDISABLE +
+                SharedConstants.ALERTSUCCESS.CONSULTANT,
+              'error',
+            );
           },
         );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -75,7 +86,10 @@ export class TableComponent implements OnInit {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.consultant.data, this.FILENAME.CONSULTANT);
+      this.service.exporterToExcel(
+        this.consultant.data,
+        this.FILENAME.CONSULTANT,
+      );
     } else {
       this.service.exporterToExcel(
         this.consultant.filteredData,

@@ -30,7 +30,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.idEvent = this.data;
-    this.idUser = this.service.getUser();
+    this.idUser = this.service.getUser().id;
     this.loadEvent();
   }
 

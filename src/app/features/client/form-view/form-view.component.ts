@@ -19,7 +19,7 @@ export class FormViewComponent implements OnInit {
   constructor(private service: FacadeService) {}
 
   ngOnInit(): void {
-    this.client = this.service.getUser();
+    this.client = this.service.getUser().id;
     this.validateIsCreateForm();
   }
 
