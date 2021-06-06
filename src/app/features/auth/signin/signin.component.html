@@ -33,6 +33,11 @@
             type="password"
           />
         </mat-form-field>
+        <div *ngIf="isLoginFail" class="error">
+          <p>
+            {{ LABELS.ERROR }}
+          </p>
+        </div>
       </mat-card-content>
 
       <mat-card-actions class="form__actions">

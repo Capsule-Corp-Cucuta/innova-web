@@ -52,7 +52,11 @@
     &--group {
       display: flex;
       justify-content: space-between;
-      width: 100%;
+
+      &--item {
+        padding: 5px;
+        flex: 1 1 0px;
+      }
     }
 
     &--text {
@@ -92,7 +96,7 @@
     padding-bottom: 2rem;
 
     &--title {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
     }
   }
   .card {
