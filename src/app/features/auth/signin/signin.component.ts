@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -55,6 +56,14 @@ export class SigninComponent implements OnInit {
 
           this.service
             .findByEmail(this.form.controls[SharedConstants.EMAIL].value)
+            .pipe(
+              finalize(() => {
+                this.isLogged = true;
+                this.isLoginFail = false;
+                this.roles = this.service.getAuthorities();
+                this.router.navigate(['/']);
+              }),
+            )
             .subscribe(
               (user: User) => {
                 this.service.setUser(user);
@@ -63,11 +72,6 @@ export class SigninComponent implements OnInit {
                 // TODO error screen
               },
             );
-
-          this.isLogged = true;
-          this.isLoginFail = false;
-          this.roles = this.service.getAuthorities();
-          this.router.navigate(['/']);
         },
         () => {
           this.isLogged = false;
