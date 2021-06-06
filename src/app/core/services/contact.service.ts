@@ -15,7 +15,7 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   public create(contact: Contact): Observable<Response> {
-    return this.http.post<Response>(ContactService.ENDPOINT, contact);
+    return this.http.post<Response>(`${ContactService.ENDPOINT}`, contact);
   }
 
   public findAll(): Observable<Contact[]> {
@@ -23,7 +23,7 @@ export class ContactService {
   }
 
   public findById(id: string): Observable<Contact> {
-    return this.http.get<Contact>(ContactService.ENDPOINT + '/' + id);
+    return this.http.get<Contact>(`${ContactService.ENDPOINT}/${id}`);
   }
 
   public updateAccompaniment(id: string): Observable<Response> {

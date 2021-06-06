@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
+import { environment } from 'src/environments/environment';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 
 @Injectable({
   providedIn: 'root',
