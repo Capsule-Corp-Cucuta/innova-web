@@ -6,7 +6,7 @@ export class Advisory {
   type: AdvisoryType;
   area: AdvisoryArea;
   state: AdvisoryState;
-  date?: Date;
+  date: Date;
   durationInHours?: number;
   preparationTypeInHours?: number;
   notes?: string;
