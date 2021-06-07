@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { Event } from 'src/app/core/models/event.model';
 import { FacadeService } from '../../../shared/services/facade.service';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({

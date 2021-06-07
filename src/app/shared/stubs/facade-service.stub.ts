@@ -18,7 +18,7 @@ import { Event } from 'src/app/core/models/event.model';
 import { UserServiceStub } from './user-service.stub';
 import { ReportServiceStub } from './report-service.stub';
 import { AttendanceServiceStub } from './attendance-service.stub';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 
 @Injectable({
   providedIn: 'root',

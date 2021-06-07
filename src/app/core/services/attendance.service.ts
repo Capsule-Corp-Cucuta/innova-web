@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { environment } from 'src/environments/environment';
-import { Inscription } from '../models/attendance.model';
+import { Inscription } from '../models/inscription.model';
 
 @Injectable({
   providedIn: 'root',

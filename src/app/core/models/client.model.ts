@@ -1,8 +1,6 @@
 import { Contact } from './contact.model';
 
 export class Client extends Contact {
-  consultantId: string;
-
   contactDepartment?: string;
   contactCity?: string;
   contactPhone?: string;
@@ -36,6 +34,7 @@ export class Client extends Contact {
   servicesProductsOffered?: string;
   discoveryChannel?: DiscoveryChannel;
   observations?: string;
+  consultantId: string;
 }
 
 export enum EducationalLevel {

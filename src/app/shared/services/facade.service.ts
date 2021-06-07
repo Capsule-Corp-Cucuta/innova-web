@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User, UserLogin } from 'src/app/core/models/user.model';
 import { Consultant } from 'src/app/core/models/consultant.model';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 import { EventService } from 'src/app/core/services/event.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { ContactService } from 'src/app/core/services/contact.service';
@@ -67,16 +67,18 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService =
-        this.injector.get<ConsultantService>(ConsultantService);
+      this._consultantService = this.injector.get<ConsultantService>(
+        ConsultantService,
+      );
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService =
-        this.injector.get<AdvisoryService>(AdvisoryService);
+      this._advisoryService = this.injector.get<AdvisoryService>(
+        AdvisoryService,
+      );
     }
     return this._advisoryService;
   }
@@ -97,16 +99,18 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService =
-        this.injector.get<ExporterService>(ExporterService);
+      this._exporterService = this.injector.get<ExporterService>(
+        ExporterService,
+      );
     }
     return this._exporterService;
   }
 
   public get attendanceService(): AttendanceService {
     if (!this._attendanceService) {
-      this._attendanceService =
-        this.injector.get<AttendanceService>(AttendanceService);
+      this._attendanceService = this.injector.get<AttendanceService>(
+        AttendanceService,
+      );
     }
     return this._attendanceService;
   }
