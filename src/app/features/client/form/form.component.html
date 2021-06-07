@@ -85,7 +85,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.POSITION }}"
-              formControlName="position"
+              formControlName="positionInCompany"
             />
           </mat-form-field>
 
@@ -284,7 +284,7 @@
             matInput
             type="text"
             placeholder="{{ LABELS.PLACEHOLDER.LEGALREPRESENTATIVE }}"
-            formControlName="legalRepresentative"
+            formControlName="companyLegalRepresentative"
           />
         </mat-form-field>
 
@@ -292,7 +292,7 @@
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.LEGALCONSTITUTION }}"
-              formControlName="legalConstitution"
+              formControlName="companyLegalConstitution"
             >
               <mat-option *ngFor="let op of LEGALCONSTITUTION" [value]="op.id"
                 >{{ op.id | LegalConstitution }}
@@ -303,9 +303,9 @@
           <mat-form-field>
             <input
               matInput
-              type="text"
+              type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DATECONSTITUTION }}"
-              formControlName="constitutionDate"
+              formControlName="companyConstitutionDate"
             />
           </mat-form-field>
         </div>
@@ -316,7 +316,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.EMPLOYEES }}"
-              formControlName="numberOfEmployees"
+              formControlName="companyNumberOfEmployees"
             />
           </mat-form-field>
 
@@ -325,7 +325,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.TC }}"
-              formControlName="numberOfFullTimeEmployees"
+              formControlName="companyNumberOfFullTimeEmployees"
             />
           </mat-form-field>
           <mat-form-field>
@@ -333,7 +333,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.MT }}"
-              formControlName="numberOfPartTimeEmployees"
+              formControlName="companyNumberOfPartTimeEmployees"
             />
           </mat-form-field>
         </div>
@@ -390,7 +390,7 @@
               matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
-              formControlName="companyCellPhone"
+              formControlName="companyCellphone"
             />
           </mat-form-field>
         </div>
@@ -427,7 +427,7 @@
           <mat-form-field>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.TYPEOFCOMPANY }}"
-              formControlName="companyType"
+              formControlName="companySector"
             >
               <mat-option *ngFor="let op of COMPANYTYPE" [value]="op.id">
                 {{ op.id | CompanyType }}
@@ -446,12 +446,14 @@
         </div>
         <div class="form__content--group">
           <mat-form-field>
-            <input
-              matInput
-              type="text"
+            <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTER }}"
-              formControlName="hasComercialRegister"
-            />
+              formControlName="hasCommercialRegister"
+            >
+              <mat-option *ngFor="let op of OPTION" [value]="op.id"
+                >{{ op.id | Option }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field>
@@ -459,13 +461,13 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTERNUMBER }}"
-              formControlName="comercialRegisterNumber"
+              formControlName="commercialRegisterNumber"
             />
           </mat-form-field>
           <mat-form-field>
             <input
               matInput
-              type="text"
+              type="date"
               placeholder="{{ LABELS.PLACEHOLDER.YEARRENOVATION }}"
               formControlName="lastYearOfRenovation"
             />
@@ -477,7 +479,7 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.MAINCODECIIU }}"
-              formControlName="mainCodeCiiu"
+              formControlName="principalCodeCiiu"
             />
           </mat-form-field>
 
@@ -505,12 +507,14 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
+          <mat-select
             placeholder="{{ LABELS.PLACEHOLDER.INTERNETBUSINESS }}"
             formControlName="isEcommerce"
-          />
+          >
+            <mat-option *ngFor="let op of OPTION" [value]="op.id"
+              >{{ op.id | Option }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -524,7 +528,7 @@
         <mat-form-field>
           <mat-select
             placeholder="{{ LABELS.LABELEND }}"
-            formControlName="contactMedium"
+            formControlName="discoveryChannel"
           >
             <mat-option *ngFor="let op of CONTACTMEDIUM" [value]="op.id">
               {{ op.id | ContactMedium }}

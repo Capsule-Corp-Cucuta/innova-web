@@ -8,6 +8,7 @@ export class SharedConstants {
   static readonly INACTIVE = 'Inactivo';
   static readonly CHECK = 'check';
   static readonly ID = 'id';
+  static readonly DATE = 'registrationDate';
 
   static readonly PIPES = {
     CONTACTTYPE: {
