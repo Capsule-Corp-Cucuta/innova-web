@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { TestUtils } from './TestUtils';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 
 @Injectable({
   providedIn: 'root',
