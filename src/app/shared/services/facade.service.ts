@@ -229,11 +229,11 @@ export class FacadeService {
     return this.consultantService.findAllActive();
   }
 
-  public createAdvisory(advisory: Advisory): Observable<Boolean> {
+  public createAdvisory(advisory: Advisory): Observable<Response> {
     return this.advisoryService.create(advisory);
   }
 
-  public updateAdvisory(advisory: Advisory): Observable<Boolean> {
+  public updateAdvisory(advisory: Advisory): Observable<Response> {
     return this.advisoryService.update(advisory);
   }
   public findByIDAdvisory(id: number): Observable<Advisory> {

@@ -13,12 +13,12 @@ export class AdvisoryService {
 
   constructor(private http: HttpClient) {}
 
-  public create(advisory: Advisory): Observable<Boolean> {
-    return this.http.post<Boolean>(AdvisoryService.ENDPOINT, advisory);
+  public create(advisory: Advisory): Observable<Response> {
+    return this.http.post<Response>(AdvisoryService.ENDPOINT, advisory);
   }
 
-  public update(advisory: Advisory): Observable<Boolean> {
-    return this.http.put<Boolean>(
+  public update(advisory: Advisory): Observable<Response> {
+    return this.http.put<Response>(
       AdvisoryService.ENDPOINT + '/' + advisory,
       advisory,
     );
@@ -35,6 +35,6 @@ export class AdvisoryService {
   }
 
   public findAll(): Observable<Advisory[]> {
-    return this.http.get<Advisory[]>(AdvisoryService.ENDPOINT + '/all');
+    return this.http.get<Advisory[]>(AdvisoryService.ENDPOINT);
   }
 }

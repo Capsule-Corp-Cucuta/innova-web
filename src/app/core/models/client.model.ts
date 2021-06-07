@@ -22,10 +22,10 @@ export class Client extends Contact {
   companyNumberOfPartTimeEmployees?: number;
   companyNumberOfDirectEmployees?: number;
   companyNumberOfIndirectEmployees?: number;
-  ccompanySector?: CompanySector;
+  companySector?: CompanySector;
   otherCompanySector?: string;
-  hasComercialRegister?: boolean;
-  comercialRegisterNumber?: string;
+  hasCommercialRegister?: boolean;
+  commercialRegisterNumber?: string;
   principalCodeCiiu?: string;
   lastYearOfRenovation?: Date;
   internationalActivity?: InternationalActivity;

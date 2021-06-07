@@ -108,7 +108,12 @@
     <mat-divider></mat-divider>
 
     <mat-card-actions class="form__actions">
-      <button mat-raised-button color="primary" (click)="inscriptionEvent()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="inscriptionEvent()"
+        *ngIf="authority == ROLES.CLIENT || authority == ROLES.CONTACT"
+      >
         <span>{{ LABELS.INSCRIPTION_BUTTON }}</span>
       </button>
     </mat-card-actions>

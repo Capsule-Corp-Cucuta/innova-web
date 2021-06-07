@@ -55,12 +55,14 @@ export class FormComponent implements OnInit {
       this.service.findByIDClient(idClient).subscribe((resp) => {
         this.client = resp;
         this.form.patchValue(resp);
+        this.validateInput(true);
       });
     });
   }
 
   public update(e: Event): void {
     e.preventDefault();
+    this.validateInput(false);
     if (this.form.valid) {
       const client = this.form.value;
       client.consultantId = this.client.consultantId;
@@ -81,6 +83,7 @@ export class FormComponent implements OnInit {
               SharedConstants.ALERTERROR.CLIENT,
             'error',
           );
+          this.validateInput(true);
         },
       );
     }
@@ -96,58 +99,68 @@ export class FormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      id: [''],
-      registrationDate: [''],
-      type: [''],
-      name: [''],
-      lastname: [''],
-      position: [''],
-      dateOfEntryToCompany: [''],
-      birthplace: [''],
-      birthdate: [''],
-      educationalLevel: [''],
-      address: [''],
-      contactCity: [''],
-      contactDepartment: [''],
-      contactPhone: ['', [Validators.maxLength(10)]],
-      cellphone: ['', [Validators.maxLength(10)]],
-      email: ['', [Validators.email]],
-      gender: [''],
-      ethnicGroup: [''],
-      isDisplaced: [''],
-      isHandicapped: [''],
-      companyName: [''],
-      nit: [''],
-      companyDepartment: [''],
-      companyCity: [''],
-      companyAddress: [''],
-      companyEmail: ['', [Validators.email]],
-      companyPhone: ['', [Validators.maxLength(10)]],
-      companyCellPhone: ['', [Validators.maxLength(10)]],
-      companyWebsite: [''],
-      legalRepresentative: [''],
-      legalConstitution: [''],
-      otherLegalConstitution: [''],
-      constitutionDate: [''],
-      numberOfEmployees: [''],
-      numberOfFullTimeEmployees: [''],
-      numberOfPartTimeEmployees: [''],
-      companyNumberOfDirectEmployees: [''],
-      companyNumberOfIndirectEmployees: [''],
-      companyType: [''],
-      otherCompanySector: [''],
-      hasComercialRegister: [''],
-      comercialRegisterNumber: [''],
-      lastYearOfRenovation: [''],
-      mainCodeCiiu: [''],
-      internationalActivity: [''],
-      internationalActivityCountries: [''],
-      isEcommerce: [''],
-      servicesProductsOffered: [''],
-      contactMedium: [''],
-      observations: [''],
-      state: [''],
+      id: [null],
+      registrationDate: [null],
+      type: [null],
+      name: [null],
+      lastname: [null],
+      positionInCompany: [null],
+      dateOfEntryToCompany: [null],
+      birthplace: [null],
+      birthdate: [null],
+      educationalLevel: [null],
+      address: [null],
+      contactCity: [null],
+      contactDepartment: [null],
+      contactPhone: [null, [Validators.maxLength(10)]],
+      cellphone: [null, [Validators.maxLength(10)]],
+      email: [null, [Validators.email]],
+      gender: [null],
+      ethnicGroup: [null],
+      isDisplaced: [null],
+      isHandicapped: [null],
+      companyName: [null],
+      nit: [null],
+      companyDepartment: [null],
+      companyCity: [null],
+      companyAddress: [null],
+      companyEmail: [null, [Validators.email]],
+      companyPhone: [null, [Validators.maxLength(10)]],
+      companyCellphone: [null, [Validators.maxLength(10)]],
+      companyWebsite: [null],
+      companyLegalRepresentative: [null],
+      companyLegalConstitution: [null],
+      otherLegalConstitution: [null],
+      companyConstitutionDate: [null],
+      companyNumberOfEmployees: [null],
+      companyNumberOfFullTimeEmployees: [null],
+      companyNumberOfPartTimeEmployees: [null],
+      companyNumberOfDirectEmployees: [null],
+      companyNumberOfIndirectEmployees: [null],
+      companySector: [null],
+      otherCompanySector: [null],
+      hasCommercialRegister: [null],
+      commercialRegisterNumber: [null],
+      lastYearOfRenovation: [null],
+      principalCodeCiiu: [null],
+      internationalActivity: [null],
+      internationalActivityCountries: [null],
+      isEcommerce: [null],
+      servicesProductsOffered: [null],
+      discoveryChannel: [null],
+      observations: [null],
+      state: [null],
       consultant: null,
     });
+  }
+
+  private validateInput(exito: boolean) {
+    if (exito) {
+      this.form.controls[SharedConstants.ID].disable();
+      this.form.controls[SharedConstants.DATE].disable();
+    } else {
+      this.form.controls[SharedConstants.ID].enable();
+      this.form.controls[SharedConstants.DATE].enable();
+    }
   }
 }

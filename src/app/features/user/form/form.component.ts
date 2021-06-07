@@ -74,8 +74,11 @@ export class FormComponent implements OnInit {
             'success',
           );
           if (this.check) {
-            this.service.updateAccompaniment(this.idUser);
+            this.service.updateAccompaniment(this.idUser).subscribe(() => {
+              this.validateAccompaniment(this.authority);
+            });
           }
+          this.validateInput(true);
         },
         () => {
           Swal.fire(

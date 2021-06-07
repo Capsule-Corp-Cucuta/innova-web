@@ -16,11 +16,13 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
+  public readonly ROLES = SharedConstants.ROLES;
 
   public event: Event;
   public idEvent: number;
   public idUser: string;
   public inscription: Inscription;
+  public authority: string;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -30,6 +32,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.idEvent = this.data;
+    this.authority = this.service.getAuthorities()[0];
     this.idUser = this.service.getUser().id;
     this.loadEvent();
   }
