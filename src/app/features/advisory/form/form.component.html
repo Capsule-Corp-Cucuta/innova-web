@@ -20,14 +20,14 @@
               matInput
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.ADVISER }}"
-              formControlName="consultant"
+              formControlName="consultantId"
             />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.CLIENT }}"
-              formControlName="client"
+              formControlName="clientId"
             >
               <mat-option *ngFor="let op of clients" [value]="op.id">
                 {{ op.name }} {{ op.lastname }}

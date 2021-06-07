@@ -118,17 +118,16 @@ export class FormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      id: null,
-      consultant: this.consultant,
-      client: null,
-      date: [null, [Validators.required]],
-      type: [null, [Validators.required]],
-      durationInHours: [null, [Validators.required]],
-      preparationTypeInHours: [null, [Validators.required]],
-      area: [null, [Validators.required]],
+      consultantId: this.consultant,
+      clientId: [null, [Validators.required]],
       subject: [null, [Validators.required]],
-      notes: [null],
-      state: [null],
+      type: [null, [Validators.required]],
+      area: [null, [Validators.required]],
+      state: [null, [Validators.required]],
+      date: [null, [Validators.required]],
+      durationInHours: null,
+      preparationTypeInHours: null,
+      notes: null,
     });
   }
 
