@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
+import { Router } from '@angular/router';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 
 @Component({
   selector: 'app-modal',
@@ -15,6 +17,7 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.CHANGEPASSWORD;
+  public readonly ROUTES = UrlConstants.ROUTES;
 
   public form: FormGroup;
   public id: string;
@@ -25,6 +28,7 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: string,
     private formBuilder: FormBuilder,
     private service: FacadeService,
+    private router: Router,
   ) {
     this.buildForm();
   }
@@ -50,6 +54,8 @@ export class ModalComponent implements OnInit {
               'success',
             );
             this.service.signout();
+            this.onNoClick();
+            this.router.navigate([this.ROUTES.SECURITY]);
           },
           (err) => {
             Swal.fire(
@@ -62,6 +68,10 @@ export class ModalComponent implements OnInit {
     } else {
       this.error = true;
     }
+  }
+
+  public onNoClick(): void {
+    this.dialogRef.close();
   }
 
   private buildForm(): void {
