@@ -49,12 +49,13 @@ export class AdvisoryService {
     startDate: Date,
     endDate: Date,
   ): Observable<number> {
+    const criteria = { startDate, endDate };
     return this.http.get<number>(
-      `${AdvisoryService.ENDPOINT}/consultant/${idConsultant}/between-dates/count`,
-      {
-        endDate,
-        startDate,
-      },
+      `${
+        AdvisoryService.ENDPOINT
+      }/consultant/${idConsultant}/between-dates/count/?criteria=${encodeURIComponent(
+        JSON.stringify(criteria),
+      )}`,
     );
   }
 }
