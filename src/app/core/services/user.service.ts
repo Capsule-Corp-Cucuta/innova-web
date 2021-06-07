@@ -48,9 +48,8 @@ export class UserService {
   }
 
   public recoverPassword(email: string): Observable<Response> {
-    return this.http.put<Response>(
-      `${UserService.ENDPOINT}/${email}/recover-password`,
-      null,
-    );
+    return this.http.put<Response>(`${UserService.ENDPOINT}/recover-password`, {
+      email,
+    });
   }
 }
