@@ -51,10 +51,7 @@ export class AdvisoryService {
   ): Observable<number> {
     return this.http.get<number>(
       `${AdvisoryService.ENDPOINT}/consultant/${idConsultant}/between-dates/count`,
-      {
-        endDate,
-        startDate,
-      },
+      {},
     );
   }
 }

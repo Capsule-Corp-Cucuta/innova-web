@@ -62,6 +62,7 @@ export class FormComponent implements OnInit {
             state: resp.state,
           };
           this.form.patchValue(advisory);
+          this.validateInput(true);
         });
       }
     });
@@ -69,6 +70,7 @@ export class FormComponent implements OnInit {
 
   public create(e: Event): void {
     e.preventDefault();
+    this.validateInput(false);
     const advisory = this.form.value;
     if (this.form.valid) {
       advisory.consultantId = this.consultant;
@@ -90,6 +92,7 @@ export class FormComponent implements OnInit {
               SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
+          this.validateInput(false);
         },
       );
     }
@@ -141,5 +144,15 @@ export class FormComponent implements OnInit {
     this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
       this.clients = resp;
     });
+  }
+
+  private validateInput(exito: boolean) {
+    if (exito) {
+      this.form.controls[SharedConstants.CLIENT].disable();
+      this.form.controls[SharedConstants.CONSULTANT].disable();
+    } else {
+      this.form.controls[SharedConstants.CLIENT].enable();
+      this.form.controls[SharedConstants.CONSULTANT].enable();
+    }
   }
 }

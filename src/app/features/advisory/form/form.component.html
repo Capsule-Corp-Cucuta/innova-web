@@ -51,8 +51,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
               formControlName="type"
             >
-              <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.id">
-                {{ op.id | AdvisoryType }}
+              <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.value">
+                {{ op.value | AdvisoryType }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -84,8 +84,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
               formControlName="area"
             >
-              <mat-option *ngFor="let op of ADVISORYAREA" [value]="op.id">
-                {{ op.id | AdvisoryArea }}
+              <mat-option *ngFor="let op of ADVISORYAREA" [value]="op.value">
+                {{ op.value | AdvisoryArea }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -95,8 +95,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
               formControlName="state"
             >
-              <mat-option *ngFor="let op of ADVISORYSTATE" [value]="op.id">
-                {{ op.id | AdvisoryState }}
+              <mat-option *ngFor="let op of ADVISORYSTATE" [value]="op.value">
+                {{ op.value | AdvisoryState }}
               </mat-option>
             </mat-select>
           </mat-form-field>
