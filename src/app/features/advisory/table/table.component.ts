@@ -61,14 +61,24 @@ export class TableComponent implements OnInit {
     }
   }
 
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.advisory.data, this.FILENAME.ADVISER);
+    } else {
+      this.service.exporterToExcel(
+        this.advisory.filteredData,
+        this.FILENAME.ADVISER,
+      );
+    }
+  }
+
   private loadData(): void {
     if (this.authority == this.ROLES.ADMIN) {
       this.loadDataAdmin();
-    } else if (
-      this.authority == this.ROLES.CONSULTANT ||
-      this.authority == this.ROLES.CLIENT
-    ) {
-      this.loadDataByUser(this.user);
+    } else if (this.authority == this.ROLES.CONSULTANT) {
+      this.loadDataByConsultant(this.user);
+    } else if (this.authority == this.ROLES.CLIENT) {
+      this.loadDataByClient(this.user);
     }
   }
 
@@ -86,20 +96,23 @@ export class TableComponent implements OnInit {
       });
   }
 
-  public exportAsXLSX(): void {
-    if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.advisory.data, this.FILENAME.ADVISER);
-    } else {
-      this.service.exporterToExcel(
-        this.advisory.filteredData,
-        this.FILENAME.ADVISER,
-      );
-    }
-  }
-
-  private loadDataByUser(consultant: string): void {
+  private loadDataByConsultant(consultant: string): void {
     this.service
       .findAdvisoryByConsultant(consultant)
+      .pipe(
+        finalize(() => {
+          this.advisory.sort = this.sort;
+          this.advisory.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.advisory = new MatTableDataSource(resp);
+      });
+  }
+
+  private loadDataByClient(client: string): void {
+    this.service
+      .findAdvisoryByClient(client)
       .pipe(
         finalize(() => {
           this.advisory.sort = this.sort;

@@ -15,10 +15,11 @@ export class TableComponent implements OnInit {
   public readonly FILENAME = SharedConstants.FILENAMES;
 
   public reports: any[] = [];
+  public report: any;
   public consultants: Consultant[];
   public consultantId: string;
-  public startDate: Date;
-  public closeDate: Date;
+  public startDate: null;
+  public closeDate: null;
   public error = false;
   public empty = false;
 
@@ -31,11 +32,22 @@ export class TableComponent implements OnInit {
   public loadReport(e: Event): void {
     if (this.consultantId) {
       this.error = false;
-      this.empty = true;
       this.service
-        .reportHours(this.consultantId, this.startDate, this.closeDate)
+        .findAdvisoryByConsultantBetweenDates(
+          this.consultantId,
+          this.startDate,
+          this.closeDate,
+        )
         .subscribe((resp) => {
-          this.reports = resp;
+          console.log(resp);
+
+          this.report = {
+            consultand: this.consultantId,
+            startDate: this.startDate,
+            closeDate: this.closeDate,
+            hour: resp,
+          };
+          this.empty = true;
         });
     } else {
       this.error = true;
@@ -44,8 +56,8 @@ export class TableComponent implements OnInit {
   }
 
   public exportAsXLSX(): void {
-    if (this.reports.length > 0) {
-      this.service.exporterToExcel(this.reports, this.FILENAME.HOUR);
+    if (this.empty) {
+      this.service.exporterToExcel(this.report, this.FILENAME.HOUR);
     }
   }
 

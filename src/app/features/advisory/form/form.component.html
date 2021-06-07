@@ -40,7 +40,7 @@
           <mat-form-field class="form__content--group--item">
             <input
               matInput
-              type="date"
+              type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATEADVISORY }}"
               formControlName="date"
             />
@@ -71,7 +71,7 @@
           <mat-form-field class="form__content--group--item">
             <input
               matInput
-              type="text"
+              type="number"
               placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
               formControlName="preparationTypeInHours"
             />
@@ -119,14 +119,19 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
+        <button
+          *ngIf="isCreate"
+          mat-raised-button
+          color="primary"
+          (click)="create($event)"
+        >
           <span>{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
           *ngIf="!isCreate"
           mat-raised-button
-          color="accent"
+          color="primary"
           class="button-form"
           (click)="update($event)"
         >

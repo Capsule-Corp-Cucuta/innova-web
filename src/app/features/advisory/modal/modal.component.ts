@@ -8,7 +8,7 @@ import { Advisory } from '../../../core/models/advisory.model';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['../../../shared/styles/_form.component.scss'],
+  styleUrls: ['../../../shared/styles/_modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
@@ -21,7 +21,9 @@ export class ModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number,
     private service: FacadeService,
-  ) {}
+  ) {
+    this.buildAvisory();
+  }
 
   ngOnInit(): void {
     this.id = this.data;
@@ -36,5 +38,21 @@ export class ModalComponent implements OnInit {
     this.service.findByIDAdvisory(this.id).subscribe((resp) => {
       this.advisory = resp;
     });
+  }
+
+  private buildAvisory(): void {
+    this.advisory = {
+      id: null,
+      consultantId: null,
+      clientId: null,
+      date: null,
+      type: null,
+      durationInHours: null,
+      preparationTypeInHours: null,
+      area: null,
+      subject: null,
+      notes: null,
+      state: null,
+    };
   }
 }
