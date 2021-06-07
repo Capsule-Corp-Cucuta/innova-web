@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIUrl: 'http://localhost:8080/innova/api/',
+  APIUrl: 'https://innova-ufps.herokuapp.com/innova/api/',
   firebase: {
     apiKey: 'AIzaSyDWU0EcvZVxbazim6OeYDU7Dryk1MRPvd4',
     authDomain: 'innova-ufps.firebaseapp.com',
