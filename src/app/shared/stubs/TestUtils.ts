@@ -12,7 +12,7 @@ import {
   AdvisoryType,
 } from '../../core/models/advisory.model';
 import { User } from 'src/app/core/models/user.model';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 
 export class TestUtils {
   static JWT: JwtModel = {

@@ -1,15 +1,15 @@
 export class Advisory {
   id?: number;
-  clientId: string;
   consultantId: string;
-  date: Date;
+  clientId: string;
+  subject: string;
   type: AdvisoryType;
+  area: AdvisoryArea;
+  state: AdvisoryState;
+  date?: Date;
   durationInHours?: number;
   preparationTypeInHours?: number;
-  area: AdvisoryArea;
   notes?: string;
-  subject?: string;
-  state: AdvisoryState;
 }
 
 export enum AdvisoryType {

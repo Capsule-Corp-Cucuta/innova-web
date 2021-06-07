@@ -1,20 +1,20 @@
 export class Event {
   id?: number;
   title: string;
-  startDate: Date;
-  closeDate?: Date;
-  registrationDeadline?: Date;
-  eventTime: string;
-  eventDurationInHours?: number;
   theme: string;
   description: string;
   type: EventType;
   state: EventState;
-  department: string;
-  city: string;
-  place: string;
+  startDate: Date;
+  closeDate?: Date;
+  registrationDeadline: Date;
+  eventTime: string;
+  eventDurationInHours?: number;
+  department?: string;
+  city?: string;
+  place?: string;
   email: string;
-  link: string;
+  link?: string;
 }
 
 export enum EventType {

@@ -5,7 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
-import { Inscription } from 'src/app/core/models/attendance.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
