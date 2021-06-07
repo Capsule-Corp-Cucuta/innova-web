@@ -67,18 +67,16 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService = this.injector.get<ConsultantService>(
-        ConsultantService,
-      );
+      this._consultantService =
+        this.injector.get<ConsultantService>(ConsultantService);
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService = this.injector.get<AdvisoryService>(
-        AdvisoryService,
-      );
+      this._advisoryService =
+        this.injector.get<AdvisoryService>(AdvisoryService);
     }
     return this._advisoryService;
   }
@@ -99,18 +97,16 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService = this.injector.get<ExporterService>(
-        ExporterService,
-      );
+      this._exporterService =
+        this.injector.get<ExporterService>(ExporterService);
     }
     return this._exporterService;
   }
 
   public get attendanceService(): AttendanceService {
     if (!this._attendanceService) {
-      this._attendanceService = this.injector.get<AttendanceService>(
-        AttendanceService,
-      );
+      this._attendanceService =
+        this.injector.get<AttendanceService>(AttendanceService);
     }
     return this._attendanceService;
   }
@@ -243,9 +239,24 @@ export class FacadeService {
   public findAdvisoryByConsultant(id: string): Observable<Advisory[]> {
     return this.advisoryService.findByConsultant(id);
   }
+  public findAdvisoryByClient(id: string): Observable<Advisory[]> {
+    return this.advisoryService.findByClient(id);
+  }
 
   public findAllAdvisory(): Observable<Advisory[]> {
     return this.advisoryService.findAll();
+  }
+
+  public findAdvisoryByConsultantBetweenDates(
+    idConsultant: string,
+    startDate: Date,
+    closeDate: Date,
+  ): Observable<number> {
+    return this.advisoryService.findAdvisoryByConsultantBetweenDates(
+      idConsultant,
+      startDate,
+      closeDate,
+    );
   }
   public createEvent(event: Event): Observable<Response> {
     return this.eventService.create(event);
@@ -275,18 +286,6 @@ export class FacadeService {
 
   public exporterToExcel(data: any[], fileName: string): void {
     return this.exporterService.exportToExcel(data, fileName);
-  }
-
-  public reportHours(
-    idConsultant: string,
-    startDate: Date,
-    closeDate: Date,
-  ): Observable<any[]> {
-    return this.consultantService.reportHours(
-      idConsultant,
-      startDate,
-      closeDate,
-    );
   }
 
   public findAttendanceByEvent(eventId: number): Observable<Inscription[]> {

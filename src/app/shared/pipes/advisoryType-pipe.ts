@@ -5,11 +5,13 @@ import { SharedConstants } from '../constants/shared-constants';
   name: 'AdvisoryType',
 })
 export class AdvisoryTypePipe implements PipeTransform {
-  public transform(value: number): string {
+  public transform(value: number | string): string {
     switch (value) {
       case 0:
+      case 'INITIAL':
         return SharedConstants.PIPES.ADVISORYTYPE.INITIAL;
       case 1:
+      case 'FOLLOW_UP':
         return SharedConstants.PIPES.ADVISORYTYPE.FOLLOW_UP;
       default:
         return SharedConstants.PIPES.ADVISORYTYPE.CLOSING;

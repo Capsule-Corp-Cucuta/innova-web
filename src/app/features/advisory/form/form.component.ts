@@ -49,6 +49,7 @@ export class FormComponent implements OnInit {
       if (!this.isCreate) {
         this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
           const advisory = {
+            id: resp.id,
             consultantId: resp.consultantId,
             clientId: resp.clientId,
             date: resp.date,
@@ -70,24 +71,27 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     const advisory = this.form.value;
     if (this.form.valid) {
-      this.service.createAdvisory(advisory).subscribe((resp) => {
-        if (resp) {
+      advisory.consultantId = this.consultant;
+      this.service.createAdvisory(advisory).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
               SharedConstants.ALERTSUCCESS.ADVISER,
             'success',
           );
-        } else {
+
+          this.router.navigate(['./asesoria']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
               SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
-        }
-        this.router.navigate(['./asesoria']);
-      });
+        },
+      );
     }
   }
 
@@ -95,29 +99,31 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       const advisory = this.form.value;
-      this.service.updateAdvisory(advisory).subscribe((resp) => {
-        if (resp) {
+      this.service.updateAdvisory(advisory).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
               SharedConstants.ALERTSUCCESS.ADVISER,
             'success',
           );
-        } else {
+          this.router.navigate(['./asesoria']);
+        },
+        () => {
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
               SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
-        }
-        this.router.navigate(['./asesoria']);
-      });
+        },
+      );
     }
   }
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
+      id: [null],
       consultantId: this.consultant,
       clientId: [null, [Validators.required]],
       subject: [null, [Validators.required]],
