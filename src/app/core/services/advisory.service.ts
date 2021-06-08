@@ -44,7 +44,7 @@ export class AdvisoryService {
     return this.http.get<Advisory[]>(AdvisoryService.ENDPOINT);
   }
 
-  public findAdvisoryByConsultantBetweenDates(
+  public countFindAdvisoryByConsultantBetweenDates(
     idConsultant: string,
     startDate: Date,
     endDate: Date,
@@ -53,7 +53,30 @@ export class AdvisoryService {
     return this.http.get<number>(
       `${
         AdvisoryService.ENDPOINT
-      }/consultant/${idConsultant}/between-dates/count/?criteria=${encodeURIComponent(
+      }/consultant/${idConsultant}/count-advisory-hours/between-dates/?criteria=${encodeURIComponent(
+        JSON.stringify(criteria),
+      )}`,
+    );
+  }
+
+  public countFindAdvisoryByConsultant(
+    idConsultant: string,
+  ): Observable<number> {
+    return this.http.get<number>(
+      `${AdvisoryService.ENDPOINT}/consultant/${idConsultant}/count-advisory-hours`,
+    );
+  }
+
+  public countFindAdvisoryByConsultantBetweenDates2(
+    idConsultant: string,
+    startDate: Date,
+    endDate: Date,
+  ): Observable<Advisory[]> {
+    const criteria = { startDate, endDate };
+    return this.http.get<Advisory[]>(
+      `${
+        AdvisoryService.ENDPOINT
+      }/consultant/${idConsultant}/between-dates/?criteria=${encodeURIComponent(
         JSON.stringify(criteria),
       )}`,
     );

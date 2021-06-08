@@ -247,17 +247,35 @@ export class FacadeService {
     return this.advisoryService.findAll();
   }
 
-  public findAdvisoryByConsultantBetweenDates(
+  public countFindAdvisoryByConsultantBetweenDates(
     idConsultant: string,
     startDate: Date,
     closeDate: Date,
   ): Observable<number> {
-    return this.advisoryService.findAdvisoryByConsultantBetweenDates(
+    return this.advisoryService.countFindAdvisoryByConsultantBetweenDates(
       idConsultant,
       startDate,
       closeDate,
     );
   }
+  public countFindAdvisoryByConsultantBetweenDates2(
+    idConsultant: string,
+    startDate: Date,
+    closeDate: Date,
+  ): Observable<Advisory[]> {
+    return this.advisoryService.countFindAdvisoryByConsultantBetweenDates2(
+      idConsultant,
+      startDate,
+      closeDate,
+    );
+  }
+
+  public countFindAdvisoryByConsultant(
+    idConsultant: string,
+  ): Observable<number> {
+    return this.advisoryService.countFindAdvisoryByConsultant(idConsultant);
+  }
+
   public createEvent(event: Event): Observable<Response> {
     return this.eventService.create(event);
   }

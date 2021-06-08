@@ -9,6 +9,8 @@ export class SharedConstants {
   static readonly CHECK = 'check';
   static readonly ID = 'id';
   static readonly DATE = 'registrationDate';
+  static readonly CONSULTANT = 'consultantId';
+  static readonly CLIENT = 'clientId';
 
   static readonly PIPES = {
     CONTACTTYPE: {
