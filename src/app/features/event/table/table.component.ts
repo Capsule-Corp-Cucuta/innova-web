@@ -1,15 +1,16 @@
+import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material/table';
 import { Event } from 'src/app/core/models/event.model';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 
 @Component({
@@ -68,8 +69,7 @@ export class TableComponent implements OnInit {
   }
 
   private loadDataAdmin(): void {
-    this.service
-      .findAllEvent()
+    this.findAllEvents()
       .pipe(
         finalize(() => {
           this.events.sort = this.sort;
@@ -79,6 +79,12 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.events = new MatTableDataSource(resp);
       });
+  }
+
+  private findAllEvents(): Observable<Event[]> {
+    return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
+      ? this.service.findAllEvents()
+      : this.service.findAllEventsForContact();
   }
 
   private loadDataByClient(client: string): void {
