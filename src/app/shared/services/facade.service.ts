@@ -299,7 +299,7 @@ export class FacadeService {
     idUser: string,
     idEvent: number,
   ): Observable<Response> {
-    return this.eventService.eventInscription(idUser, idEvent);
+    return this.attendanceService.eventInscription(idUser, idEvent);
   }
 
   public exporterToExcel(data: any[], fileName: string): void {
@@ -311,9 +311,8 @@ export class FacadeService {
   }
 
   public createAttendanceByEvent(
-    eventId: number,
-    inscription: Inscription[],
+    inscriptions: Inscription[],
   ): Observable<Response> {
-    return this.attendanceService.createAttendanceByEvent(eventId, inscription);
+    return this.attendanceService.createAttendanceByEvent(inscriptions);
   }
 }

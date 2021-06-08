@@ -35,14 +35,4 @@ export class EventService {
   public findAll(): Observable<Event[]> {
     return this.http.get<Event[]>(EventService.ENDPOINT);
   }
-
-  public eventInscription(
-    idUser: string,
-    idEvent: number,
-  ): Observable<Response> {
-    return this.http.post<Response>(EventService.ENDPOINT + '-inscription', {
-      user: idUser,
-      event: idEvent,
-    });
-  }
 }

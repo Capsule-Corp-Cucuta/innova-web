@@ -208,8 +208,7 @@ export class TestUtils {
     title: 'Evento de prueba 1',
     startDate: new Date(),
     closeDate: new Date(),
-    registrationDeadline: new Date(),
-    eventTime: '2',
+    registrationDeadlineDate: new Date(),
     eventDurationInHours: 3,
     theme: 'Mocks',
     description:
@@ -229,8 +228,7 @@ export class TestUtils {
       title: 'Evento de prueba 1',
       startDate: new Date(),
       closeDate: new Date(),
-      registrationDeadline: new Date(),
-      eventTime: '2',
+      registrationDeadlineDate: new Date(),
       eventDurationInHours: 3,
       theme: 'Mocks',
       description:
@@ -248,8 +246,7 @@ export class TestUtils {
       title: 'Evento de prueba 2',
       startDate: new Date(),
       closeDate: new Date(),
-      registrationDeadline: new Date(),
-      eventTime: '5',
+      registrationDeadlineDate: new Date(),
       eventDurationInHours: 10,
       theme: 'Mocks parte 2',
       description:

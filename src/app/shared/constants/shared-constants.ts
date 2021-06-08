@@ -11,6 +11,7 @@ export class SharedConstants {
   static readonly DATE = 'registrationDate';
   static readonly CONSULTANT = 'consultantId';
   static readonly CLIENT = 'clientId';
+  static readonly DURATION = 'eventDurationInHours';
 
   static readonly PIPES = {
     CONTACTTYPE: {
@@ -137,7 +138,7 @@ export class SharedConstants {
       ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
     USER: 'usuario',
     ATTENDANCE: ' la asistencia',
-    EVENT_INSCRIPTION: 'Se ha registro inscrion a evento',
+    EVENT_INSCRIPTION: 'la inscripcion al evento',
     EMAIL: 'Se envio correo electrónico con la contraseña',
     TOACCEPT: 'OK',
   };

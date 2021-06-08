@@ -39,19 +39,7 @@
         <span>
           <b>{{ LABELS.PLACEHOLDER.DEADLINE }}</b>
         </span>
-        <span> {{ event.registrationDeadline }}</span>
-      </div>
-      <div>
-        <span>
-          <b>{{ LABELS.PLACEHOLDER.DATESTART }}</b>
-        </span>
-        <span> {{ event.startDate }}</span>
-      </div>
-      <div>
-        <span>
-          <b>{{ LABELS.PLACEHOLDER.HOUR }}</b>
-        </span>
-        <span> {{ event.eventTime }}</span>
+        <span> {{ event.registrationDeadlineDate }}</span>
       </div>
       <div>
         <span>
@@ -98,6 +86,12 @@
         </div>
       </div>
       <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.EMAIL }}</b>
+        </span>
+        <span> {{ event.email }}</span>
+      </div>
+      <div *ngIf="event.link != null">
         <span>
           <a href="{{ event.link }}" target="_blank">
             <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>

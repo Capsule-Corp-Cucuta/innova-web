@@ -20,6 +20,7 @@
             type="text"
             placeholder="{{ LABELS.PLACEHOLDER.TITLE }}"
             formControlName="title"
+            required
           />
         </mat-form-field>
 
@@ -27,18 +28,20 @@
           <mat-form-field>
             <input
               matInput
-              type="date"
+              type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
               formControlName="startDate"
+              required
             />
           </mat-form-field>
 
           <mat-form-field>
             <input
               matInput
-              type="date"
+              type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
-              formControlName="CloseDate"
+              formControlName="closeDate"
+              required
             />
           </mat-form-field>
         </div>
@@ -49,18 +52,10 @@
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DEADLINE }}"
-              formControlName="registrationDeadLine"
+              formControlName="registrationDeadlineDate"
             />
           </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.HOUR }}"
-              formControlName="eventTime"
-            />
-          </mat-form-field>
           <mat-form-field>
             <input
               matInput
@@ -86,8 +81,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
               formControlName="type"
             >
-              <mat-option *ngFor="let op of EVENTTYPE" [value]="op.id">
-                {{ op.id | EventType }}
+              <mat-option *ngFor="let op of EVENTTYPE" [value]="op.value">
+                {{ op.value | EventType }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -97,8 +92,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
               formControlName="state"
             >
-              <mat-option *ngFor="let op of EVENTSTATE" [value]="op.id">
-                {{ op.id | EventState }}
+              <mat-option *ngFor="let op of EVENTSTATE" [value]="op.value">
+                {{ op.value | EventState }}
               </mat-option>
             </mat-select>
           </mat-form-field>
