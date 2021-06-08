@@ -15,7 +15,8 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT:
+        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electrònico:',
       },
@@ -110,6 +111,7 @@ export class LabelConstants {
         EVENT: 'Eventos',
         CONTACT: 'Contactos',
         REPORT: 'Reportes',
+        ASSIGNED: 'Asesor asignado',
       },
       MENU: {
         PROFILE: 'Perfil',
@@ -340,6 +342,7 @@ export class LabelConstants {
           DEADLINE: 'Fecha limite de inscripcion: ',
           HOUR: 'Hora del evento: ',
           DURATION: 'Duracion del evento: ',
+          HOURS: ' hora(s)',
           THEME: 'Tema: ',
           EVENTTYPE: 'Tipo de evento: ',
           STATE: 'Estado: ',

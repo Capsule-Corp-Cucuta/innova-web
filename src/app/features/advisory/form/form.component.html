@@ -15,7 +15,17 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
         <div class="form__content--group">
-          <mat-form-field class="form__content--group--item">
+          <mat-form-field class="form__content--group--item" *ngIf="isCreate">
+            <input
+              matInput
+              disabled
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADVISER }}"
+              value="{{ consultant }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item" *ngIf="!isCreate">
             <input
               matInput
               type="text"
@@ -40,7 +50,7 @@
           <mat-form-field class="form__content--group--item">
             <input
               matInput
-              type="date"
+              type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATEADVISORY }}"
               formControlName="date"
             />
@@ -51,8 +61,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.CONSULTATNTYPE }}"
               formControlName="type"
             >
-              <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.id">
-                {{ op.id | AdvisoryType }}
+              <mat-option *ngFor="let op of ADVISORYTYPE" [value]="op.value">
+                {{ op.value | AdvisoryType }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -71,7 +81,7 @@
           <mat-form-field class="form__content--group--item">
             <input
               matInput
-              type="text"
+              type="number"
               placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
               formControlName="preparationTypeInHours"
             />
@@ -84,8 +94,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.AREA }}"
               formControlName="area"
             >
-              <mat-option *ngFor="let op of ADVISORYAREA" [value]="op.id">
-                {{ op.id | AdvisoryArea }}
+              <mat-option *ngFor="let op of ADVISORYAREA" [value]="op.value">
+                {{ op.value | AdvisoryArea }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -95,8 +105,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
               formControlName="state"
             >
-              <mat-option *ngFor="let op of ADVISORYSTATE" [value]="op.id">
-                {{ op.id | AdvisoryState }}
+              <mat-option *ngFor="let op of ADVISORYSTATE" [value]="op.value">
+                {{ op.value | AdvisoryState }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -119,14 +129,19 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button *ngIf="isCreate" mat-raised-button (click)="create($event)">
+        <button
+          *ngIf="isCreate"
+          mat-raised-button
+          color="primary"
+          (click)="create($event)"
+        >
           <span>{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
           *ngIf="!isCreate"
           mat-raised-button
-          color="accent"
+          color="primary"
           class="button-form"
           (click)="update($event)"
         >

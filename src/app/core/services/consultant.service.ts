@@ -36,15 +36,4 @@ export class ConsultantService {
   public findAllActive(): Observable<Consultant[]> {
     return this.http.get<Consultant[]>(ConsultantService.ENDPOINT + '/active');
   }
-
-  public reportHours(
-    idConsultant: string,
-    startDate: Date,
-    closeDate: Date,
-  ): Observable<any[]> {
-    return this.http.post<any[]>(
-      `${ConsultantService.ENDPOINT}/${idConsultant}/report?startDate=${startDate}&closeDate=${closeDate}`,
-      {},
-    );
-  }
 }

@@ -49,15 +49,11 @@
       </div>
       <div>
         <span>
-          <b>{{ LABELS.PLACEHOLDER.HOUR }}</b>
-        </span>
-        <!-- TODO calculate -->
-      </div>
-      <div>
-        <span>
           <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
         </span>
-        <span> {{ event.eventDurationInHours }}</span>
+        <span>
+          {{ event.eventDurationInHours }}{{ LABELS.PLACEHOLDER.HOURS }}
+        </span>
       </div>
       <div>
         <span>
@@ -98,6 +94,12 @@
         </div>
       </div>
       <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.EMAIL }}</b>
+        </span>
+        <span> {{ event.email }}</span>
+      </div>
+      <div *ngIf="event.link != null">
         <span>
           <a href="{{ event.link }}" target="_blank">
             <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>

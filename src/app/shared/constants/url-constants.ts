@@ -25,7 +25,7 @@ export class UrlConstants {
     CONSULTANT: 'consultant',
     EVENT: 'event',
     USER: 'user',
-    ATTENDANCE: 'attendance',
+    INSCRIPTION: 'inscription',
   };
 
   public static LINKS = {

@@ -25,8 +25,11 @@ export class TableComponent implements OnInit {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly LABELS = LabelConstants.LABELS.CLIENT.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly ROLES = SharedConstants.ROLES;
 
   public option: string;
+  public authority: string;
+  public user: string;
   public clients: [] = [];
   public client: MatTableDataSource<Client>;
   public filter = '';
@@ -34,6 +37,8 @@ export class TableComponent implements OnInit {
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
+    this.authority = this.service.getAuthorities()[0];
+    this.user = this.service.getUser().id;
     this.loadData();
   }
 
@@ -97,8 +102,30 @@ export class TableComponent implements OnInit {
   }
 
   private loadData(): void {
+    if (this.authority == this.ROLES.ADMIN) {
+      this.loadDataAdmin();
+    } else if (this.authority == this.ROLES.CONSULTANT) {
+      this.loadDataByConsultant(this.user);
+    }
+  }
+
+  private loadDataAdmin(): void {
     this.service
       .findAllClient()
+      .pipe(
+        finalize(() => {
+          this.client.sort = this.sort;
+          this.client.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.client = new MatTableDataSource(resp);
+      });
+  }
+
+  private loadDataByConsultant(consultant: string): void {
+    this.service
+      .findClientByConsultant(consultant)
       .pipe(
         finalize(() => {
           this.client.sort = this.sort;

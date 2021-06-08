@@ -19,7 +19,7 @@ export class AdvisoryService {
 
   public update(advisory: Advisory): Observable<Response> {
     return this.http.put<Response>(
-      AdvisoryService.ENDPOINT + '/' + advisory,
+      AdvisoryService.ENDPOINT + '/' + advisory.id,
       advisory,
     );
   }
@@ -34,7 +34,51 @@ export class AdvisoryService {
     );
   }
 
+  public findByClient(id: string): Observable<Advisory[]> {
+    return this.http.get<Advisory[]>(
+      AdvisoryService.ENDPOINT + '/client/' + id,
+    );
+  }
+
   public findAll(): Observable<Advisory[]> {
     return this.http.get<Advisory[]>(AdvisoryService.ENDPOINT);
+  }
+
+  public countFindAdvisoryByConsultantBetweenDates(
+    idConsultant: string,
+    startDate: Date,
+    endDate: Date,
+  ): Observable<number> {
+    const criteria = { startDate, endDate };
+    return this.http.get<number>(
+      `${
+        AdvisoryService.ENDPOINT
+      }/consultant/${idConsultant}/count-advisory-hours/between-dates/?criteria=${encodeURIComponent(
+        JSON.stringify(criteria),
+      )}`,
+    );
+  }
+
+  public countFindAdvisoryByConsultant(
+    idConsultant: string,
+  ): Observable<number> {
+    return this.http.get<number>(
+      `${AdvisoryService.ENDPOINT}/consultant/${idConsultant}/count-advisory-hours`,
+    );
+  }
+
+  public countFindAdvisoryByConsultantBetweenDates2(
+    idConsultant: string,
+    startDate: Date,
+    endDate: Date,
+  ): Observable<Advisory[]> {
+    const criteria = { startDate, endDate };
+    return this.http.get<Advisory[]>(
+      `${
+        AdvisoryService.ENDPOINT
+      }/consultant/${idConsultant}/between-dates/?criteria=${encodeURIComponent(
+        JSON.stringify(criteria),
+      )}`,
+    );
   }
 }

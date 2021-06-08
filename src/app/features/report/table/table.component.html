@@ -2,7 +2,10 @@
   <div class="mat-elevation-z8 table">
     <mat-card class="page__header">
       <div class="page__header--group">
-        <mat-form-field class="page__header--group--item">
+        <mat-form-field
+          class="page__header--group--item"
+          *ngIf="authority == ROLES.ADMIN"
+        >
           <mat-select
             placeholder="{{ LABELS.CONSULTANT }}"
             [(ngModel)]="consultantId"

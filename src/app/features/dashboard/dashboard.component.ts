@@ -39,10 +39,28 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.service.getUser().id;
     this.authority = this.service.getAuthorities()[0];
+    this.redirection();
   }
 
   public signout(): void {
     this.service.signout();
     this.router.navigate([this.ROUTES.SECURITY]);
+  }
+
+  private redirection(): void {
+    switch (this.authority) {
+      case this.ROLES.ADMIN:
+        this.router.navigateByUrl(this.ROUTES.CONSULTANT);
+        break;
+      case this.ROLES.CLIENT:
+        this.router.navigateByUrl(this.ROUTES.ADVISORY);
+        break;
+      case this.ROLES.CONSULTANT:
+        this.router.navigateByUrl(this.ROUTES.CLIENT);
+        break;
+      case this.ROLES.CONTACT:
+        this.router.navigateByUrl(this.ROUTES.EVENT);
+        break;
+    }
   }
 }

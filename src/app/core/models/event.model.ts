@@ -1,3 +1,5 @@
+import { Inscription } from './inscription.model';
+
 export class Event {
   id?: number;
   title: string;
@@ -14,6 +16,7 @@ export class Event {
   place?: string;
   email: string;
   link?: string;
+  inscriptions?: Inscription[];
 }
 
 export enum EventType {
