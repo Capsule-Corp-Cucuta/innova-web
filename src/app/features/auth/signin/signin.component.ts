@@ -67,6 +67,12 @@ export class SigninComponent implements OnInit {
             .subscribe(
               (user: User) => {
                 this.service.setUser(user);
+                if (!user.active) {
+                  this.isLogged = false;
+                  this.isLoginFail = true;
+                  this.service.signout();
+                  alert('El usuario no está activo'); // TODO
+                }
               },
               () => {
                 this.isLogged = false;

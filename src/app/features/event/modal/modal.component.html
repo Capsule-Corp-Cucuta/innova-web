@@ -43,9 +43,17 @@
       </div>
       <div>
         <span>
+          <b>{{ LABELS.PLACEHOLDER.DATESTART }}</b>
+        </span>
+        <span> {{ event.startDate }}</span>
+      </div>
+      <div>
+        <span>
           <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
         </span>
-        <span> {{ event.eventDurationInHours }}</span>
+        <span>
+          {{ event.eventDurationInHours }}{{ LABELS.PLACEHOLDER.HOURS }}
+        </span>
       </div>
       <div>
         <span>

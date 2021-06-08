@@ -8,7 +8,7 @@ export class Event {
   type: EventType;
   state: EventState;
   startDate: Date;
-  closeDate?: Date;
+  closeDate: Date;
   registrationDeadlineDate: Date;
   eventDurationInHours?: number;
   department?: string;

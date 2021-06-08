@@ -67,16 +67,18 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService =
-        this.injector.get<ConsultantService>(ConsultantService);
+      this._consultantService = this.injector.get<ConsultantService>(
+        ConsultantService,
+      );
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService =
-        this.injector.get<AdvisoryService>(AdvisoryService);
+      this._advisoryService = this.injector.get<AdvisoryService>(
+        AdvisoryService,
+      );
     }
     return this._advisoryService;
   }
@@ -97,16 +99,18 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService =
-        this.injector.get<ExporterService>(ExporterService);
+      this._exporterService = this.injector.get<ExporterService>(
+        ExporterService,
+      );
     }
     return this._exporterService;
   }
 
   public get attendanceService(): AttendanceService {
     if (!this._attendanceService) {
-      this._attendanceService =
-        this.injector.get<AttendanceService>(AttendanceService);
+      this._attendanceService = this.injector.get<AttendanceService>(
+        AttendanceService,
+      );
     }
     return this._attendanceService;
   }
@@ -291,8 +295,12 @@ export class FacadeService {
     return this.eventService.findByClient(id);
   }
 
-  public findAllEvent(): Observable<Event[]> {
+  public findAllEvents(): Observable<Event[]> {
     return this.eventService.findAll();
+  }
+
+  public findAllEventsForContact(): Observable<Event[]> {
+    return this.eventService.findAllForContact();
   }
 
   public eventInscription(
