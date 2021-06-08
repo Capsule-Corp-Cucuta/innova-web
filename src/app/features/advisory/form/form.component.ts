@@ -70,7 +70,7 @@ export class FormComponent implements OnInit {
 
   public create(e: Event): void {
     e.preventDefault();
-    this.validateInput(false);
+
     const advisory = this.form.value;
     if (this.form.valid) {
       advisory.consultantId = this.consultant;
@@ -92,7 +92,6 @@ export class FormComponent implements OnInit {
               SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
-          this.validateInput(false);
         },
       );
     }
@@ -100,6 +99,7 @@ export class FormComponent implements OnInit {
 
   public update(e: Event): void {
     e.preventDefault();
+    this.validateInput(false);
     if (this.form.valid) {
       const advisory = this.form.value;
       this.service.updateAdvisory(advisory).subscribe(
@@ -119,6 +119,7 @@ export class FormComponent implements OnInit {
               SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
+          this.validateInput(true);
         },
       );
     }

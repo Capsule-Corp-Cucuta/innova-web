@@ -49,6 +49,16 @@
         <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
         <span>{{ LABELS.MODULES.CONSULTANT }}</span></a
       >
+      <mat-divider></mat-divider>
+
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.CLIENT }}/{{ ROUTES.ASSIGNED }}"
+        *ngIf="authority == ROLES.CLIENT"
+      >
+        <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
+        <span>{{ LABELS.MODULES.ASSIGNED }}</span></a
+      >
 
       <mat-divider></mat-divider>
 

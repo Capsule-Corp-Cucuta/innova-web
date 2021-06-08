@@ -16,7 +16,9 @@ export class FormViewComponent implements OnInit {
   public consultant: Consultant;
   public client: string;
 
-  constructor(private service: FacadeService) {}
+  constructor(private service: FacadeService) {
+    this.buildAssigned();
+  }
 
   ngOnInit(): void {
     this.client = this.service.getUser().id;
@@ -31,5 +33,17 @@ export class FormViewComponent implements OnInit {
           this.consultant = response;
         });
     });
+  }
+
+  private buildAssigned(): void {
+    this.consultant = {
+      id: null,
+      lastname: null,
+      name: null,
+      code: null,
+      cellphone: null,
+      email: null,
+      address: null,
+    };
   }
 }

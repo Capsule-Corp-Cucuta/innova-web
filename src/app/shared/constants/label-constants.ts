@@ -110,6 +110,7 @@ export class LabelConstants {
         EVENT: 'Eventos',
         CONTACT: 'Contactos',
         REPORT: 'Reportes',
+        ASSIGNED: 'Asesor asignado',
       },
       MENU: {
         PROFILE: 'Perfil',
