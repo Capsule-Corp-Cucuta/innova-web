@@ -40,6 +40,7 @@ export class FormComponent implements OnInit {
     this.activeRoute.params.subscribe((params: Params) => {
       this.isCreate = params.id ? false : true;
       const idEvent = params.id;
+      this.validateInput(true);
       if (!this.isCreate) {
         this.service.findByIDEvent(idEvent).subscribe((resp) => {
           this.form.patchValue(resp);
@@ -50,8 +51,8 @@ export class FormComponent implements OnInit {
 
   public create(e: Event): void {
     e.preventDefault();
-    const event = this.form.value;
     if (this.form.valid) {
+      const event = this.form.value;
       this.service.createEvent(event).subscribe(
         () => {
           Swal.fire(
@@ -102,22 +103,29 @@ export class FormComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      id: [''],
-      title: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
-      CloseDate: ['', [Validators.required]],
-      registrationDeadLine: ['', [Validators.required]],
-      eventTime: ['', [Validators.required]],
-      eventDurationInHours: ['', [Validators.required]],
-      theme: ['', [Validators.required]],
-      type: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      description: [''],
-      place: [''],
-      city: [''],
-      department: [''],
-      email: ['', [Validators.email]],
-      link: [''],
+      id: [null],
+      title: [null, [Validators.required]],
+      startDate: [null, [Validators.required]],
+      closeDate: [null, [Validators.required]],
+      registrationDeadlineDate: [null, [Validators.required]],
+      eventDurationInHours: [null],
+      theme: [null, [Validators.required]],
+      type: [null, [Validators.required]],
+      state: [null, [Validators.required]],
+      description: [null],
+      place: [null],
+      city: [null],
+      department: [null],
+      email: [null, [Validators.email]],
+      link: [null],
     });
+  }
+
+  private validateInput(exito: boolean) {
+    if (exito) {
+      this.form.controls[SharedConstants.DURATION].disable();
+    } else {
+      this.form.controls[SharedConstants.DURATION].enable();
+    }
   }
 }

@@ -1,3 +1,5 @@
+import { Inscription } from './inscription.model';
+
 export class Event {
   id?: number;
   title: string;
@@ -7,14 +9,14 @@ export class Event {
   state: EventState;
   startDate: Date;
   closeDate?: Date;
-  registrationDeadline: Date;
-  eventTime: string;
+  registrationDeadlineDate: Date;
   eventDurationInHours?: number;
   department?: string;
   city?: string;
   place?: string;
   email: string;
   link?: string;
+  inscriptions?: Inscription[];
 }
 
 export enum EventType {

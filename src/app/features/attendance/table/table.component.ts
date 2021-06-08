@@ -60,27 +60,25 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public selected(): void {
     this.participant = this.participants.data;
-    this.service
-      .createAttendanceByEvent(this.eventId, this.participant)
-      .subscribe(
-        () => {
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE +
-              SharedConstants.ALERTSUCCESS.ATTENDANCE,
-            'success',
-          );
-          this.loadData();
-        },
-        () => {
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE +
-              SharedConstants.ALERTERROR.ATTENDANCE,
-            'error',
-          );
-        },
-      );
+    this.service.createAttendanceByEvent(this.participant).subscribe(
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTSUCCESS.TITLE,
+          SharedConstants.ALERTSUCCESS.TEXTCREATE +
+            SharedConstants.ALERTSUCCESS.ATTENDANCE,
+          'success',
+        );
+        this.loadData();
+      },
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTERROR.TITLE,
+          SharedConstants.ALERTERROR.TEXTCREATE +
+            SharedConstants.ALERTERROR.ATTENDANCE,
+          'error',
+        );
+      },
+    );
   }
 
   public exportAsXLSX(): void {

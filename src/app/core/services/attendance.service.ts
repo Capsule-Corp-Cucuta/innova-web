@@ -10,21 +10,29 @@ import { Inscription } from '../models/inscription.model';
   providedIn: 'root',
 })
 export class AttendanceService {
-  static ENDPOINT = `${environment.APIUrl}${UrlConstants.ENDPOINTS.ATTENDANCE}`;
+  static ENDPOINT = `${environment.APIUrl}${UrlConstants.ENDPOINTS.INSCRIPTION}`;
 
   constructor(private http: HttpClient) {}
 
   public findAttendanceByEvent(id: number): Observable<Inscription[]> {
-    return this.http.get<Inscription[]>(AttendanceService.ENDPOINT + '/' + id);
+    return this.http.get<Inscription[]>(
+      AttendanceService.ENDPOINT + '/event/' + id,
+    );
   }
 
   public createAttendanceByEvent(
-    id: number,
-    inscription: Inscription[],
+    inscriptions: Inscription[],
   ): Observable<Response> {
-    return this.http.post<Response>(
-      AttendanceService.ENDPOINT + '/' + id,
-      inscription,
-    );
+    return this.http.put<Response>(AttendanceService.ENDPOINT, inscriptions);
+  }
+
+  public eventInscription(
+    idUser: string,
+    idEvent: number,
+  ): Observable<Response> {
+    return this.http.post<Response>(AttendanceService.ENDPOINT, {
+      userId: idUser,
+      eventId: idEvent,
+    });
   }
 }

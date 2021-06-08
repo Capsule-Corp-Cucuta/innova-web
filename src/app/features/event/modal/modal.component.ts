@@ -28,7 +28,9 @@ export class ModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number,
     private service: FacadeService,
-  ) {}
+  ) {
+    this.buildEvent();
+  }
 
   ngOnInit(): void {
     this.idEvent = this.data;
@@ -66,5 +68,25 @@ export class ModalComponent implements OnInit {
     this.service.findByIDEvent(this.idEvent).subscribe((resp) => {
       this.event = resp;
     });
+  }
+
+  private buildEvent() {
+    this.event = {
+      id: null,
+      title: null,
+      theme: null,
+      description: null,
+      type: null,
+      state: null,
+      startDate: null,
+      closeDate: null,
+      registrationDeadlineDate: null,
+      eventDurationInHours: null,
+      department: null,
+      city: null,
+      place: null,
+      email: null,
+      link: null,
+    };
   }
 }
