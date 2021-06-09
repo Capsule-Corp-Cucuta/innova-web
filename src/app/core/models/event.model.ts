@@ -31,9 +31,9 @@ export enum EventType {
 }
 
 export enum EventState {
-  OPEN,
-  CLOSED,
-  COMPLETE,
-  CANCELED,
-  POSTPONED,
+  OPEN = 'OPEN',
+  CLOSED = 'CLOSED',
+  COMPLETE = 'COMPLETE',
+  CANCELED = 'CANCELED',
+  POSTPONED = 'POSTPONED',
 }

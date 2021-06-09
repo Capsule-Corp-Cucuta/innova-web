@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { Event } from 'src/app/core/models/event.model';
-import { FacadeService } from '../../../shared/services/facade.service';
 import { Inscription } from 'src/app/core/models/inscription.model';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
@@ -15,27 +15,31 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 })
 export class ModalComponent implements OnInit {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
   public readonly ROLES = SharedConstants.ROLES;
+  public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
 
   public event: Event;
-  public idEvent: number;
   public idUser: string;
-  public inscription: Inscription;
   public authority: string;
+  public showButton: boolean;
+  public inscription: Inscription;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private service: FacadeService,
   ) {
     this.buildEvent();
   }
 
   ngOnInit(): void {
-    this.idEvent = this.data;
+    this.event = this.data.event;
     this.authority = this.service.getAuthorities()[0];
     this.idUser = this.service.getUser().id;
+    this.showButton =
+      this.data.showButton &&
+      (this.authority === this.ROLES.CLIENT ||
+        this.authority === this.ROLES.CONTACT);
     this.loadEvent();
   }
 
@@ -44,7 +48,7 @@ export class ModalComponent implements OnInit {
   }
 
   public inscriptionEvent(): void {
-    this.service.eventInscription(this.idUser, this.idEvent).subscribe(
+    this.service.eventInscription(this.idUser, this.event.id).subscribe(
       () => {
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
@@ -65,9 +69,7 @@ export class ModalComponent implements OnInit {
   }
 
   private loadEvent() {
-    this.service.findByIDEvent(this.idEvent).subscribe((resp) => {
-      this.event = resp;
-    });
+    this.event = this.data.event;
   }
 
   private buildEvent() {

@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCheckboxModule,
     MatGridListModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     LayoutModule,
@@ -59,6 +61,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCheckboxModule,
     MatGridListModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

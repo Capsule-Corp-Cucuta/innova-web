@@ -19,8 +19,8 @@
           <input
             placeholder="{{ LABELS.PLACEHOLDER.USER }}"
             formControlName="email"
-            matInput
             type="email"
+            matInput
           />
         </mat-form-field>
 
@@ -29,13 +29,13 @@
           <input
             placeholder="{{ LABELS.PLACEHOLDER.PASS }}"
             formControlName="password"
-            matInput
             type="password"
+            matInput
           />
         </mat-form-field>
         <div *ngIf="isLoginFail" class="error">
           <p>
-            {{ LABELS.ERROR }}
+            {{ errorMessage }}
           </p>
         </div>
       </mat-card-content>
@@ -48,7 +48,11 @@
           (click)="onLogin()"
           [disabled]="form.invalid"
         >
-          {{ LABELS.BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+
+          <span *ngIf="!isLoading">{{ LABELS.BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>
