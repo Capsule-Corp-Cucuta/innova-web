@@ -97,7 +97,7 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadDataByClient(client: string): void {
-    this.service
+    const subscription = this.service
       .findEventByClient(client)
       .pipe(
         finalize(() => {
@@ -108,5 +108,6 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((resp) => {
         this.events = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 }
