@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { User, UserLogin } from 'src/app/core/models/user.model';
@@ -23,7 +24,9 @@ export class SigninComponent implements OnInit {
   public user: UserLogin;
   public form: FormGroup;
   public isLogged = false;
+  public isLoading = false;
   public isLoginFail = false;
+  public errorMessage: string;
   public roles: string[] = [];
 
   constructor(
@@ -49,6 +52,7 @@ export class SigninComponent implements OnInit {
         this.form.controls[SharedConstants.PASSWORD].value,
       );
 
+      this.isLoading = true;
       this.service.signin(this.user).subscribe(
         (response) => {
           this.service.setToken(response.jwt);
@@ -59,6 +63,7 @@ export class SigninComponent implements OnInit {
             .pipe(
               finalize(() => {
                 this.isLogged = true;
+                this.isLoading = false;
                 this.isLoginFail = false;
                 this.roles = this.service.getAuthorities();
                 this.router.navigate(['/']);
@@ -68,25 +73,29 @@ export class SigninComponent implements OnInit {
               (user: User) => {
                 this.service.setUser(user);
                 if (!user.active) {
-                  this.isLogged = false;
-                  this.isLoginFail = true;
-                  this.service.signout();
-                  alert('El usuario no está activo'); // TODO
+                  this.signInError();
                 }
               },
-              () => {
-                this.isLogged = false;
-                this.isLoginFail = true;
-                this.service.signout();
-              },
+              () => this.signInError(),
             );
         },
-        () => {
-          this.isLogged = false;
-          this.isLoginFail = true;
+        (error: HttpErrorResponse) => {
+          this.errorMessage =
+            error && error.status === 401
+              ? this.LABELS.ERROR
+              : this.LABELS.ERROR_NOT_FOUND;
+
+          this.signInError();
         },
       );
     }
+  }
+
+  private signInError(): void {
+    this.isLogged = false;
+    this.isLoading = false;
+    this.isLoginFail = true;
+    this.service.signout();
   }
 
   private buildForm() {

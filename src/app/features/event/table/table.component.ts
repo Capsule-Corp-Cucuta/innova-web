@@ -5,9 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
-import { Event } from 'src/app/core/models/event.model';
 import { ModalComponent } from '../modal/modal.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { Event, EventState } from 'src/app/core/models/event.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
@@ -39,7 +39,7 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
     this.client = this.service.getUser().id;
-    this.loadDataAdmin();
+    this.loadData();
   }
 
   ngOnDestroy(): void {
@@ -57,26 +57,33 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openDialog(idEvent: number): void {
-    if (idEvent) {
-      this.dialog.open(ModalComponent, {
-        data: idEvent,
-      });
-    }
+  public isEnrolled(event: Event): boolean {
+    let enrolled = false;
+    event.inscriptions.find((inscription) => {
+      enrolled = inscription.userId === this.client ? true : false;
+    });
+    return enrolled;
+  }
+
+  public openDialog(event: Event): void {
+    const enrolled = this.isEnrolled(event);
+    const showButton =
+      (event.state === EventState.OPEN ||
+        event.state === EventState.POSTPONED) &&
+      !enrolled
+        ? true
+        : false;
+    const dialog = this.dialog.open(ModalComponent, {
+      data: {
+        event,
+        enrolled,
+        showButton,
+      },
+    });
+    dialog.afterClosed().subscribe(() => this.loadData());
   }
 
   private loadData(): void {
-    if (this.authority === this.ROLES.ADMIN) {
-      this.loadDataAdmin();
-    } else if (
-      this.authority === this.ROLES.CLIENT ||
-      this.authority === this.ROLES.CONTACT
-    ) {
-      this.loadDataByClient(this.client);
-    }
-  }
-
-  private loadDataAdmin(): void {
     const subscription = this.findAllEvents()
       .pipe(
         finalize(() => {
@@ -94,20 +101,5 @@ export class TableComponent implements OnInit, OnDestroy {
     return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
       ? this.service.findAllEvents()
       : this.service.findAllEventsForContact();
-  }
-
-  private loadDataByClient(client: string): void {
-    const subscription = this.service
-      .findEventByClient(client)
-      .pipe(
-        finalize(() => {
-          this.events.sort = this.sort;
-          this.events.paginator = this.paginator;
-        }),
-      )
-      .subscribe((resp) => {
-        this.events = new MatTableDataSource(resp);
-      });
-    this.subscriptions.push(subscription);
   }
 }

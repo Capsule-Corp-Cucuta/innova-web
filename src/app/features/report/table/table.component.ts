@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Consultant } from 'src/app/core/models/consultant.model';
+import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { FacadeService } from 'src/app/shared/services/facade.service';
 
 @Component({
   selector: 'app-table',
@@ -10,20 +11,20 @@ import { FacadeService } from 'src/app/shared/services/facade.service';
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  public readonly LABELS = LabelConstants.LABELS.REPORT.LIST;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly FILENAME = SharedConstants.FILENAMES;
   public readonly ROLES = SharedConstants.ROLES;
+  public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.REPORT.LIST;
 
-  public reports: any[] = [];
   public report: any;
-  public consultants: Consultant[];
-  public consultantId: string;
-  public startDate: null;
-  public closeDate: null;
   public error = false;
   public empty = false;
+  public startDate: null;
+  public closeDate: null;
   public authority: string;
+  public reports: any[] = [];
+  public consultantId: string;
+  public consultants: Consultant[];
 
   constructor(private service: FacadeService) {}
 
