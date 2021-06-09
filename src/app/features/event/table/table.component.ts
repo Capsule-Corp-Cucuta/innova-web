@@ -1,9 +1,9 @@
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Event } from 'src/app/core/models/event.model';
 import { ModalComponent } from '../modal/modal.component';
@@ -18,19 +18,21 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.EVENT.LIST;
   public readonly ROLES = SharedConstants.ROLES;
+  public readonly LABELS = LabelConstants.LABELS.EVENT.LIST;
 
-  public authority: string;
   public client: string;
   public filter: string;
+  public authority: string;
   public events: MatTableDataSource<Event>;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
@@ -38,6 +40,12 @@ export class TableComponent implements OnInit {
     this.authority = this.service.getAuthorities()[0];
     this.client = this.service.getUser().id;
     this.loadDataAdmin();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public applyFilter(): void {
@@ -69,7 +77,7 @@ export class TableComponent implements OnInit {
   }
 
   private loadDataAdmin(): void {
-    this.findAllEvents()
+    const subscription = this.findAllEvents()
       .pipe(
         finalize(() => {
           this.events.sort = this.sort;
@@ -79,6 +87,7 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.events = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 
   private findAllEvents(): Observable<Event[]> {

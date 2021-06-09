@@ -5,11 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { ModalComponent } from '../modal/modal.component';
 import { Advisory } from '../../../core/models/advisory.model';
+import { AdvisoryState } from '../../../core/models/advisory.model';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
@@ -70,6 +71,13 @@ export class TableComponent implements OnInit {
         this.FILENAME.ADVISER,
       );
     }
+  }
+
+  public showEdit(advisory: Advisory): boolean {
+    return (
+      this.authority === this.ROLES.CONSULTANT &&
+      advisory.state !== AdvisoryState.COMPLETE
+    );
   }
 
   private loadData(): void {
