@@ -106,7 +106,7 @@
             color="accent"
             routerLink="{{ ROUTES.UPDATE }}/{{ advisory.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
-            *ngIf="authority == ROLES.CONSULTANT"
+            *ngIf="showEdit(advisory)"
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
           </button>

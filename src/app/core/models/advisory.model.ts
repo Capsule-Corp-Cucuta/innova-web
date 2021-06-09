@@ -26,7 +26,7 @@ export enum AdvisoryArea {
 }
 
 export enum AdvisoryState {
-  PENDING,
-  REJECTED,
-  COMPLETE,
+  PENDING = 'PENDING',
+  REJECTED = 'REJECTED',
+  COMPLETE = 'COMPLETE',
 }
