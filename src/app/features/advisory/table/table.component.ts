@@ -1,9 +1,10 @@
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { ModalComponent } from '../modal/modal.component';
 import { Advisory } from '../../../core/models/advisory.model';
@@ -18,7 +19,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,12 +34,20 @@ export class TableComponent implements OnInit {
   public advisory: MatTableDataSource<Advisory>;
   public filter = '';
 
+  private subscriptions: Subscription[] = [];
+
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
     this.user = this.service.getUser().id;
     this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public applyFilter(): void {
@@ -50,7 +59,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-  public openDialog(advisory: number): void {
+  public openDialog(advisory: Advisory): void {
     if (advisory) {
       const dialogRef = this.dialog.open(ModalComponent, {
         data: advisory,
@@ -91,7 +100,7 @@ export class TableComponent implements OnInit {
   }
 
   private loadDataAdmin(): void {
-    this.service
+    const subscription = this.service
       .findAllAdvisory()
       .pipe(
         finalize(() => {
@@ -102,10 +111,11 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.advisory = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 
   private loadDataByConsultant(consultant: string): void {
-    this.service
+    const subscription = this.service
       .findAdvisoryByConsultant(consultant)
       .pipe(
         finalize(() => {
@@ -116,10 +126,11 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.advisory = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 
   private loadDataByClient(client: string): void {
-    this.service
+    const subscription = this.service
       .findAdvisoryByClient(client)
       .pipe(
         finalize(() => {
@@ -130,5 +141,6 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.advisory = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 }

@@ -49,7 +49,9 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.DATE }}
         </th>
-        <td mat-cell *matCellDef="let advisory">{{ advisory.date }}</td>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.date | date: 'dd/MM/yyyy hh:mm a' }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
@@ -103,7 +105,7 @@
         <td mat-cell *matCellDef="let advisory">
           <button
             mat-stroked-button
-            color="accent"
+            color="primary"
             routerLink="{{ ROUTES.UPDATE }}/{{ advisory.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
             *ngIf="showEdit(advisory)"
@@ -112,8 +114,8 @@
           </button>
           <button
             mat-stroked-button
-            color="accent"
-            (click)="openDialog(advisory.id)"
+            color="success"
+            (click)="openDialog(advisory)"
             matTooltip="{{ LABELS.TOOLTIP.VIEW }}"
           >
             <mat-icon>{{ ICONS.VIEW }}</mat-icon>

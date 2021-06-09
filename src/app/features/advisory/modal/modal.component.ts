@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { LabelConstants } from '../../../shared/constants/label-constants';
-import { FacadeService } from '../../../shared/services/facade.service';
 import { Advisory } from '../../../core/models/advisory.model';
 
 @Component({
@@ -19,14 +18,12 @@ export class ModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
-    private service: FacadeService,
+    @Inject(MAT_DIALOG_DATA) public data: Advisory,
   ) {
     this.buildAvisory();
   }
 
   ngOnInit(): void {
-    this.id = this.data;
     this.loadAdvisory();
   }
 
@@ -35,9 +32,7 @@ export class ModalComponent implements OnInit {
   }
 
   private loadAdvisory() {
-    this.service.findByIDAdvisory(this.id).subscribe((resp) => {
-      this.advisory = resp;
-    });
+    this.advisory = this.data;
   }
 
   private buildAvisory(): void {
