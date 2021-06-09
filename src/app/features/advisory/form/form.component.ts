@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -14,7 +15,7 @@ import { Client } from '../../../core/models/client.model';
   templateUrl: './form.component.html',
   styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
@@ -26,6 +27,7 @@ export class FormComponent implements OnInit {
   public form: FormGroup;
   public isCreate: boolean;
   public clients: Client[];
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -40,6 +42,12 @@ export class FormComponent implements OnInit {
     this.consultant = this.service.getUser().id;
     this.validateIsCreateForm();
     this.loadClients(this.consultant);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public validateIsCreateForm(): void {
@@ -74,7 +82,7 @@ export class FormComponent implements OnInit {
     const advisory = this.form.value;
     if (this.form.valid) {
       advisory.consultantId = this.consultant;
-      this.service.createAdvisory(advisory).subscribe(
+      const subscription = this.service.createAdvisory(advisory).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -94,6 +102,7 @@ export class FormComponent implements OnInit {
           );
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 
@@ -102,7 +111,7 @@ export class FormComponent implements OnInit {
     this.validateInput(false);
     if (this.form.valid) {
       const advisory = this.form.value;
-      this.service.updateAdvisory(advisory).subscribe(
+      const subscription = this.service.updateAdvisory(advisory).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -122,6 +131,7 @@ export class FormComponent implements OnInit {
           this.validateInput(true);
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 
@@ -142,9 +152,12 @@ export class FormComponent implements OnInit {
   }
 
   private loadClients(idConsultant: string): void {
-    this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
-      this.clients = resp;
-    });
+    const subscription = this.service
+      .findClientByConsultant(idConsultant)
+      .subscribe((resp) => {
+        this.clients = resp;
+      });
+    this.subscriptions.push(subscription);
   }
 
   private validateInput(exito: boolean) {

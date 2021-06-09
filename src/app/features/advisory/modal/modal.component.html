@@ -28,7 +28,7 @@
         <span>
           <b>{{ LABELS.PLACEHOLDER.DATEADVISORY }}</b>
         </span>
-        <span> {{ advisory.date }} </span>
+        <span> {{ advisory.date | date: 'dd/MM/yyyy hh:mm a' }} </span>
       </div>
       <div>
         <span>
@@ -60,7 +60,7 @@
         </span>
         <span> {{ advisory.subject }} </span>
       </div>
-      <div class="header__justify">
+      <div class="header__justify" *ngIf="advisory.notes">
         <span>
           <b>{{ LABELS.PLACEHOLDER.NOTES }}</b>
         </span>

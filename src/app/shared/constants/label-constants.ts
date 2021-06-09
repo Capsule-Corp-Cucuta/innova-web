@@ -17,8 +17,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
-      TEXT:
-        'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
+      TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electrònico:',
       },
@@ -286,14 +285,14 @@ export class LabelConstants {
         PLACEHOLDER: {
           ADVISER: 'Asesor: ',
           CLIENT: 'Cliente: ',
-          DATEADVISORY: 'Fecha Asesoria: ',
+          DATEADVISORY: 'Fecha de Asesoria: ',
           CONSULTATNTYPE: 'Tipo de asesoria: ',
           DURATION: 'Duracion(Horas): ',
           PREPARATION: 'Tiempo de preparacion: ',
           AREA: 'Area: ',
           AFFAIR: 'Asunto: ',
           NOTES: 'Notas: ',
-          STATE: 'Estado: ',
+          STATE: 'Estado de la asesoria: ',
         },
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
@@ -317,11 +316,11 @@ export class LabelConstants {
         CELLS: {
           ADVISER: 'Asesor',
           CLIENT: 'Cliente',
-          DATE: 'Fecha asesoria:',
+          DATE: 'Fecha de asesoria:',
           TYPE: 'Tipo de asesoria:',
           AREA: 'Area',
           AFFAIR: 'Asunto:',
-          STATE: 'Estado',
+          STATE: 'Estado de asesoria',
         },
         TOOLTIP: {
           NEW: 'Nueva asesoria',

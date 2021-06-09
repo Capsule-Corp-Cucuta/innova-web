@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   public readonly ROLES = SharedConstants.ROLES;
 
   public id: string;
+  public userName: string;
   public authority: string;
   public isHandset$: Observable<boolean>;
 
@@ -38,6 +39,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.service.getUser().id;
+    this.userName =
+      this.service.getUser().name + ' ' + this.service.getUser().lastname;
     this.authority = this.service.getAuthorities()[0];
     this.redirection();
   }
