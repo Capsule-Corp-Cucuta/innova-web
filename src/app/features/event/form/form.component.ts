@@ -23,9 +23,11 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public isCreate: boolean;
-  private subscriptions: Subscription[] = [];
   public today = new Date();
   public endDate: Date;
+  public isLoading = false;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,21 +56,25 @@ export class FormComponent implements OnInit, OnDestroy {
       if (!this.isCreate) {
         this.service.findByIDEvent(idEvent).subscribe((resp) => {
           this.form.patchValue(resp);
+          this.endDate = resp.closeDate;
         });
       }
     });
   }
 
-  public validateDates(e: Event): void {
+  public validateDates(): void {
     this.endDate = this.form.value['startDate'];
+    console.log(this.endDate);
   }
 
   public create(e: Event): void {
     e.preventDefault();
     if (this.form.valid) {
       const event = this.form.value;
+      this.isLoading = true;
       const subscription = this.service.createEvent(event).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
@@ -78,6 +84,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./evento']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
@@ -94,8 +101,10 @@ export class FormComponent implements OnInit, OnDestroy {
     e.preventDefault();
     if (this.form.valid) {
       const event = this.form.value;
+      this.isLoading = true;
       const subscription = this.service.updateEvent(event).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -105,6 +114,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./evento']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +

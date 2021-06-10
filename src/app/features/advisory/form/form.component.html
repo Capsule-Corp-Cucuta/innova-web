@@ -134,8 +134,12 @@
           mat-raised-button
           color="primary"
           (click)="create($event)"
+          class="form__actions--button"
         >
-          <span>{{ LABELS.REGISTER_BUTTON }}</span>
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
@@ -144,8 +148,12 @@
           color="primary"
           class="button-form"
           (click)="update($event)"
+          class="form__actions--button"
         >
-          {{ LABELS.UPDATE_BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading"> {{ LABELS.UPDATE_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

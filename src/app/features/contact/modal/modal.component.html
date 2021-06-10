@@ -34,8 +34,12 @@
           color="primary"
           (click)="assign($event)"
           [disabled]="form.invalid"
+          class="form__actions--button"
         >
-          <span>{{ LABELS.ASSIGN_BUTTON }}</span>
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.ASSIGN_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

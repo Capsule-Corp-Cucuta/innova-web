@@ -53,11 +53,14 @@
         <button
           mat-raised-button
           color="primary"
-          class="button-form"
+          class="form__actions--button"
           (click)="changePassword()"
           [disabled]="form.invalid"
         >
-          {{ LABELS.ASSIGN_BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading"> {{ LABELS.ASSIGN_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

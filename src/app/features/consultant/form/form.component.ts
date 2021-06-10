@@ -21,7 +21,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public isCreate: boolean;
-
+  public isLoading = false;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -60,8 +60,10 @@ export class FormComponent implements OnInit, OnDestroy {
     e.preventDefault();
     const consultant = this.form.value;
     if (this.form.valid) {
+      this.isLoading = true;
       const subscription = this.service.createConsultant(consultant).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
@@ -71,6 +73,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./asesor']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
@@ -88,8 +91,10 @@ export class FormComponent implements OnInit, OnDestroy {
     this.validateInput(false);
     if (this.form.valid) {
       const consultant = this.form.value;
+      this.isLoading = true;
       const subscription = this.service.updateConsultant(consultant).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -99,6 +104,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./asesor']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +

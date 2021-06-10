@@ -14,6 +14,15 @@
   margin: 0 auto;
 }
 
+.button-spinner {
+  align-content: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding: 0.3rem 0;
+  width: 100%;
+}
+
 .card {
   border-top: 4px solid $primary-red;
   width: 40rem;
@@ -56,6 +65,9 @@
   &__actions {
     display: flex;
     justify-content: space-around;
+    &--button {
+      width: 25rem;
+    }
   }
   .span {
     &__justify {

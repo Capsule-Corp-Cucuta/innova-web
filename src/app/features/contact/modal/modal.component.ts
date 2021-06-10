@@ -22,6 +22,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   public id: string;
   public idConsultant: string;
   public consultants: Consultant[];
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -47,10 +48,12 @@ export class ModalComponent implements OnInit, OnDestroy {
   public assign(e: Event): void {
     e.preventDefault();
     this.idConsultant = this.form.value['consultant'];
+    this.isLoading = true;
     const subscription = this.service
       .assignConsultant(this.id, this.idConsultant)
       .subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTASSIGN,
@@ -58,6 +61,7 @@ export class ModalComponent implements OnInit, OnDestroy {
           );
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTASSIGN,

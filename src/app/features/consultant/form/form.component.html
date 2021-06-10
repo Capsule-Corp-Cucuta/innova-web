@@ -92,17 +92,23 @@
           (click)="create($event)"
           [disabled]="form.invalid"
         >
-          <span>{{ LABELS.REGISTER_BUTTON }}</span>
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
           *ngIf="!isCreate"
           mat-raised-button
           color="primary"
-          class="button-form"
+          class="form__actions--button"
           (click)="update($event)"
         >
-          {{ LABELS.UPDATE_BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.UPDATE_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

@@ -27,6 +27,8 @@ export class FormComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isCreate: boolean;
   public clients: Client[];
+  public isLoading = false;
+
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -82,8 +84,10 @@ export class FormComponent implements OnInit, OnDestroy {
     const advisory = this.form.value;
     if (this.form.valid) {
       advisory.consultantId = this.consultant;
+      this.isLoading = true;
       const subscription = this.service.createAdvisory(advisory).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTCREATE +
@@ -94,6 +98,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./asesoria']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTCREATE +
@@ -111,8 +116,10 @@ export class FormComponent implements OnInit, OnDestroy {
     this.validateInput(false);
     if (this.form.valid) {
       const advisory = this.form.value;
+      this.isLoading = true;
       const subscription = this.service.updateAdvisory(advisory).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -122,6 +129,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./asesoria']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +

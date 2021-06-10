@@ -33,6 +33,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isWatch: boolean;
   public step = 0;
+  public isLoading = false;
 
   private client: Client;
   private subscriptions: Subscription[] = [];
@@ -74,8 +75,10 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const client = this.form.value;
       client.consultantId = this.client.consultantId;
+      this.isLoading = true;
       const subscription = this.service.updateClient(client).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -85,6 +88,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.router.navigate(['./cliente']);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +
