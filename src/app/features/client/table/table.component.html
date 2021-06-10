@@ -96,7 +96,7 @@
             mat-stroked-button
             color="danger"
             matTooltip="{{ LABELS.TOOLTIP.DEACTIVATE }}"
-            (click)="Deactivate(client.id)"
+            (click)="Deactivate(client.id, client.active)"
           >
             <mat-icon>{{ ICONS.OFFLINE }}</mat-icon>
           </button>

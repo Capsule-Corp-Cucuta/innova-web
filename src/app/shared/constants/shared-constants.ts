@@ -4,8 +4,8 @@ export class SharedConstants {
   static readonly BUSINESS = 'Empresa';
   static readonly ACTIVATE = 'activar';
   static readonly DEACTIVATE = 'inactivar';
-  static readonly ACTIVE = 'Activo';
-  static readonly INACTIVE = 'Inactivo';
+  static readonly ACTIVE = 'Se activo ';
+  static readonly INACTIVE = 'Se inactivo ';
   static readonly CHECK = 'check';
   static readonly ID = 'id';
   static readonly DATE = 'registrationDate';
