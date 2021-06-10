@@ -104,6 +104,12 @@
           </a>
         </span>
       </div>
+      <div class="header__justify" *ngIf="event.description">
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DESCRIPTION }}</b>
+        </span>
+        <span> {{ event.description }} </span>
+      </div>
     </mat-card-content>
 
     <mat-divider *ngIf="showButton"></mat-divider>
