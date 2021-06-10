@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['../../../shared/styles/_form.component.scss'],
+  styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
@@ -24,6 +24,8 @@ export class FormComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isCreate: boolean;
   private subscriptions: Subscription[] = [];
+  public today = new Date();
+  public endDate: Date;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +57,10 @@ export class FormComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  public validateDates(e: Event): void {
+    this.endDate = this.form.value['startDate'];
   }
 
   public create(e: Event): void {
@@ -121,7 +127,7 @@ export class FormComponent implements OnInit, OnDestroy {
       eventDurationInHours: [null],
       theme: [null, [Validators.required]],
       type: [null, [Validators.required]],
-      state: [null, [Validators.required]],
+      state: [null],
       description: [null],
       place: [null],
       city: [null],

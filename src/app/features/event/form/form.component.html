@@ -14,49 +14,57 @@
 
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.TITLE }}"
-            formControlName="title"
-            required
-          />
-        </mat-form-field>
-
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
-              type="datetime-local"
-              placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
-              formControlName="startDate"
-              required
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <input
-              matInput
-              type="datetime-local"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
-              formControlName="closeDate"
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.TITLE }}"
+              formControlName="title"
               required
             />
           </mat-form-field>
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="datetime-local"
+              placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
+              formControlName="startDate"
+              min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
+              (change)="validateDates($event)"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="datetime-local"
+              placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
+              formControlName="closeDate"
+              min="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
+              max="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
+              required
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DEADLINE }}"
               formControlName="registrationDeadlineDate"
+              min="{{ today | date: 'yyyy-MM-dd' }}"
+              max="{{ endDate | date: 'yyyy-MM-dd' }}"
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item" *ngIf="!isCreate">
             <input
               matInput
               type="number"
@@ -65,18 +73,18 @@
             />
           </mat-form-field>
         </div>
-
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.THEME }}"
-            formControlName="theme"
-          />
-        </mat-form-field>
-
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.THEME }}"
+              formControlName="theme"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
               formControlName="type"
@@ -87,7 +95,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item" *ngIf="!isCreate">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
               formControlName="state"
@@ -139,6 +147,7 @@
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
               formControlName="email"
+              required
             />
           </mat-form-field>
 
