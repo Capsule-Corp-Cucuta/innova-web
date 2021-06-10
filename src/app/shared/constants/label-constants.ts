@@ -59,12 +59,12 @@ export class LabelConstants {
         SEARCH: 'Buscar...',
         NOTDATA: 'No hay datos',
         COLUMNS: [
-          'active',
           'type',
           'id',
           'name',
           'lastname',
           'cellphone',
+          'email',
           'companyName',
           'nit',
           'actions',
@@ -77,7 +77,7 @@ export class LabelConstants {
           CELLPHONE: 'Celular',
           BUSINESSNAME: 'Empresa:',
           NIT: 'Nit:',
-          STATE: 'Estado',
+          EMAIL: 'Correo electrónico',
           ACTIONS: 'Opciones',
         },
         TOOLTIP: {
@@ -262,7 +262,7 @@ export class LabelConstants {
         },
         TOOLTIP: {
           ASSIGN: 'Asignar Asesor',
-          DEACTIVATE: 'Inactivar Cliente',
+          DEACTIVATE: 'Activar/Inactivar',
           EDIT: 'Actualizar Cliente',
           EXPORT: 'Exportar datos',
         },
@@ -559,5 +559,6 @@ export class LabelConstants {
     EXPORT: 'get_app',
     ADDCONSULTANT: 'person_add_alt',
     SEARCH: 'search',
+    ASSIGNED: 'assignment_turned_in',
   };
 }

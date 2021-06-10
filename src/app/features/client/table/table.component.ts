@@ -60,8 +60,9 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public Deactivate(idClient: string): void {
-    this.option = SharedConstants.DEACTIVATE;
+  public Deactivate(idClient: string, state: boolean): void {
+    this.option =
+      state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
 
     Swal.fire({
       title: SharedConstants.ALERTACTIVATE.TITLE,
@@ -75,22 +76,24 @@ export class TableComponent implements OnInit, OnDestroy {
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
+        this.option =
+          state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
+
         const subscription = this.service
           .enableAndDisableUser(idClient)
+          .pipe(finalize(() => this.loadData()))
           .subscribe(
             () => {
               Swal.fire(
                 SharedConstants.ALERTSUCCESS.TITLE,
-                SharedConstants.ALERTSUCCESS.TEXTDISABLE +
-                  SharedConstants.ALERTSUCCESS.CLIENT,
+                this.option + SharedConstants.ALERTSUCCESS.CLIENT,
                 'success',
               );
             },
             () => {
               Swal.fire(
                 SharedConstants.ALERTERROR.TITLE,
-                SharedConstants.ALERTERROR.TEXTDISABLE +
-                  SharedConstants.ALERTERROR.CLIENT,
+                this.option + SharedConstants.ALERTERROR.CLIENT,
                 'error',
               );
             },

@@ -66,25 +66,28 @@ export class TableComponent implements OnInit, OnDestroy {
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        const subscription = this.service.enableAndDisableUser(id).subscribe(
-          () => {
-            Swal.fire(
-              SharedConstants.ALERTSUCCESS.TITLE,
-              SharedConstants.ALERTSUCCESS.TEXTDISABLE +
-                SharedConstants.ALERTSUCCESS.CONSULTANT,
-              'success',
-            );
-            this.loadData();
-          },
-          () => {
-            Swal.fire(
-              SharedConstants.ALERTERROR.TITLE,
-              SharedConstants.ALERTSUCCESS.TEXTDISABLE +
-                SharedConstants.ALERTSUCCESS.CONSULTANT,
-              'error',
-            );
-          },
-        );
+        this.option =
+          state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
+        const subscription = this.service
+          .enableAndDisableUser(id)
+          .pipe(finalize(() => this.loadData()))
+          .subscribe(
+            () => {
+              Swal.fire(
+                SharedConstants.ALERTSUCCESS.TITLE,
+                this.option + SharedConstants.ALERTSUCCESS.CONSULTANT,
+                'success',
+              );
+              this.loadData();
+            },
+            () => {
+              Swal.fire(
+                SharedConstants.ALERTERROR.TITLE,
+                this.option + SharedConstants.ALERTSUCCESS.CONSULTANT,
+                'error',
+              );
+            },
+          );
         this.subscriptions.push(subscription);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //TODO
