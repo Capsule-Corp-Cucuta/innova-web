@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,19 +7,22 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
 
   public form: FormGroup;
   public isCreate: boolean;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +35,12 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateIsCreateForm();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public validateIsCreateForm(): void {
@@ -51,7 +60,7 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     const consultant = this.form.value;
     if (this.form.valid) {
-      this.service.createConsultant(consultant).subscribe(
+      const subscription = this.service.createConsultant(consultant).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -70,6 +79,7 @@ export class FormComponent implements OnInit {
           );
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 
@@ -78,8 +88,8 @@ export class FormComponent implements OnInit {
     this.validateInput(false);
     if (this.form.valid) {
       const consultant = this.form.value;
-      this.service.updateConsultant(consultant).subscribe(
-        (resp) => {
+      const subscription = this.service.updateConsultant(consultant).subscribe(
+        () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -98,6 +108,7 @@ export class FormComponent implements OnInit {
           this.validateInput(true);
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 

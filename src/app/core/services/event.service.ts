@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Event } from '../models/event.model';
+import { EventInnova } from '../models/event-innova.model';
 import { environment } from 'src/environments/environment';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 
@@ -14,27 +14,32 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  public create(event: Event): Observable<Response> {
+  public create(event: EventInnova): Observable<Response> {
     return this.http.post<Response>(EventService.ENDPOINT, event);
   }
 
-  public update(event: Event): Observable<Response> {
-    return this.http.put<Response>(`${EventService.ENDPOINT}/event.id`, event);
+  public update(event: EventInnova): Observable<Response> {
+    return this.http.put<Response>(
+      `${EventService.ENDPOINT}/${event.id}`,
+      event,
+    );
   }
 
-  public findByID(id: number): Observable<Event> {
-    return this.http.get<Event>(`${EventService.ENDPOINT}/${id}`);
+  public findByID(id: number): Observable<EventInnova> {
+    return this.http.get<EventInnova>(`${EventService.ENDPOINT}/${id}`);
   }
 
-  public findByClient(id: string): Observable<Event[]> {
-    return this.http.get<Event[]>(`${EventService.ENDPOINT}/client/${id}`);
+  public findByClient(id: string): Observable<EventInnova[]> {
+    return this.http.get<EventInnova[]>(
+      `${EventService.ENDPOINT}/client/${id}`,
+    );
   }
 
-  public findAll(): Observable<Event[]> {
-    return this.http.get<Event[]>(EventService.ENDPOINT);
+  public findAll(): Observable<EventInnova[]> {
+    return this.http.get<EventInnova[]>(EventService.ENDPOINT);
   }
 
-  public findAllForContact(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${EventService.ENDPOINT}/after-now`);
+  public findAllForContact(): Observable<EventInnova[]> {
+    return this.http.get<EventInnova[]>(`${EventService.ENDPOINT}/after-now`);
   }
 }

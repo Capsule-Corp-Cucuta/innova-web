@@ -1,12 +1,12 @@
 import { Inscription } from './inscription.model';
 
-export class Event {
+export class EventInnova {
   id?: number;
   title: string;
   theme: string;
   description: string;
   type: EventType;
-  state: EventState;
+  state?: EventState;
   startDate: Date;
   closeDate: Date;
   registrationDeadlineDate: Date;

@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,13 +9,14 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { ModalComponent } from '../modal/modal.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
@@ -25,6 +26,8 @@ export class FormComponent implements OnInit {
   public check: boolean;
   public authority: string;
   public isAccompaniment = false;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +44,12 @@ export class FormComponent implements OnInit {
     this.validateAccompaniment(this.authority);
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.idUser = params.id;
@@ -53,9 +62,13 @@ export class FormComponent implements OnInit {
 
   public validateAccompaniment(authority: string): void {
     if (authority === SharedConstants.ROLES.CONTACT) {
-      this.service.findByIDContact(this.idUser).subscribe((resp) => {
-        this.isAccompaniment = resp.requestAccompaniment == true ? false : true;
-      });
+      const subscription = this.service
+        .findByIDContact(this.idUser)
+        .subscribe((resp) => {
+          this.isAccompaniment =
+            resp.requestAccompaniment == true ? false : true;
+        });
+      this.subscriptions.push(subscription);
     }
   }
 
@@ -65,7 +78,7 @@ export class FormComponent implements OnInit {
     this.check = this.form.value[SharedConstants.CHECK];
     if (this.form.valid) {
       const user = this.form.value;
-      this.service.updateUser(user).subscribe(
+      const subscription = this.service.updateUser(user).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -90,6 +103,7 @@ export class FormComponent implements OnInit {
           this.validateInput(true);
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 

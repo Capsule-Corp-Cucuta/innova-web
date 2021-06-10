@@ -2,7 +2,7 @@ import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { UrlConstants } from '../../../shared/constants/url-constants';
@@ -10,13 +10,14 @@ import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import { Consultant } from '../../../core/models/consultant.model';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -28,6 +29,7 @@ export class TableComponent implements OnInit {
   public option: string;
   public consultant: MatTableDataSource<Consultant>;
   public filter = '';
+  private subscriptions: Subscription[] = [];
 
   constructor(private service: FacadeService) {}
 
@@ -35,6 +37,11 @@ export class TableComponent implements OnInit {
     this.loadData();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
   public applyFilter(): void {
     const filterValue = this.filter;
     this.consultant.filter = filterValue.trim().toLowerCase();
@@ -59,7 +66,7 @@ export class TableComponent implements OnInit {
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        this.service.enableAndDisableUser(id).subscribe(
+        const subscription = this.service.enableAndDisableUser(id).subscribe(
           () => {
             Swal.fire(
               SharedConstants.ALERTSUCCESS.TITLE,
@@ -78,6 +85,7 @@ export class TableComponent implements OnInit {
             );
           },
         );
+        this.subscriptions.push(subscription);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //TODO
       }
@@ -99,7 +107,7 @@ export class TableComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.service
+    const subscription = this.service
       .findAllConsultant()
       .pipe(
         finalize(() => {
@@ -110,5 +118,6 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.consultant = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 }

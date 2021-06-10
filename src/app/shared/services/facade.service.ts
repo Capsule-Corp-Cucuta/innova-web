@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 
 import { TokenService } from './token.service';
 import { ExporterService } from './exporter.service';
-import { Event } from 'src/app/core/models/event.model';
+import { EventInnova } from 'src/app/core/models/event-innova.model';
 import { JwtModel } from 'src/app/core/models/jwt.model';
 import { Client } from 'src/app/core/models/client.model';
 import { Contact } from 'src/app/core/models/contact.model';
@@ -67,18 +67,16 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService = this.injector.get<ConsultantService>(
-        ConsultantService,
-      );
+      this._consultantService =
+        this.injector.get<ConsultantService>(ConsultantService);
     }
     return this._consultantService;
   }
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService = this.injector.get<AdvisoryService>(
-        AdvisoryService,
-      );
+      this._advisoryService =
+        this.injector.get<AdvisoryService>(AdvisoryService);
     }
     return this._advisoryService;
   }
@@ -99,18 +97,16 @@ export class FacadeService {
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService = this.injector.get<ExporterService>(
-        ExporterService,
-      );
+      this._exporterService =
+        this.injector.get<ExporterService>(ExporterService);
     }
     return this._exporterService;
   }
 
   public get attendanceService(): AttendanceService {
     if (!this._attendanceService) {
-      this._attendanceService = this.injector.get<AttendanceService>(
-        AttendanceService,
-      );
+      this._attendanceService =
+        this.injector.get<AttendanceService>(AttendanceService);
     }
     return this._attendanceService;
   }
@@ -280,26 +276,26 @@ export class FacadeService {
     return this.advisoryService.countFindAdvisoryByConsultant(idConsultant);
   }
 
-  public createEvent(event: Event): Observable<Response> {
+  public createEvent(event: EventInnova): Observable<Response> {
     return this.eventService.create(event);
   }
 
-  public updateEvent(event: Event): Observable<Response> {
+  public updateEvent(event: EventInnova): Observable<Response> {
     return this.eventService.update(event);
   }
-  public findByIDEvent(id: number): Observable<Event> {
+  public findByIDEvent(id: number): Observable<EventInnova> {
     return this.eventService.findByID(id);
   }
 
-  public findEventByClient(id: string): Observable<Event[]> {
+  public findEventByClient(id: string): Observable<EventInnova[]> {
     return this.eventService.findByClient(id);
   }
 
-  public findAllEvents(): Observable<Event[]> {
+  public findAllEvents(): Observable<EventInnova[]> {
     return this.eventService.findAll();
   }
 
-  public findAllEventsForContact(): Observable<Event[]> {
+  public findAllEventsForContact(): Observable<EventInnova[]> {
     return this.eventService.findAllForContact();
   }
 

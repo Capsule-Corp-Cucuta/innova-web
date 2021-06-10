@@ -2,20 +2,23 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { Inscription } from 'src/app/core/models/inscription.model';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { EventState } from 'src/app/core/models/event-innova.model';
+import { finalize } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -25,9 +28,11 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public participants: MatTableDataSource<Inscription>;
   public eventId: number;
+  public state: boolean;
   public participant: Inscription[];
   public filter = '';
 
+  private subscriptions: Subscription[] = [];
   constructor(
     private service: FacadeService,
     private activeRoute: ActivatedRoute,
@@ -37,15 +42,16 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.validateEvent();
     this.loadData();
   }
-
-  ngAfterViewInit(): void {
-    this.participants.sort = this.sort;
-    this.participants.paginator = this.paginator;
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public validateEvent(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.eventId = params.id;
+      this.state = params.state === EventState.COMPLETE ? false : true;
     });
   }
 
@@ -60,25 +66,29 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public selected(): void {
     this.participant = this.participants.data;
-    this.service.createAttendanceByEvent(this.participant).subscribe(
-      () => {
-        Swal.fire(
-          SharedConstants.ALERTSUCCESS.TITLE,
-          SharedConstants.ALERTSUCCESS.TEXTCREATE +
-            SharedConstants.ALERTSUCCESS.ATTENDANCE,
-          'success',
-        );
-        this.loadData();
-      },
-      () => {
-        Swal.fire(
-          SharedConstants.ALERTERROR.TITLE,
-          SharedConstants.ALERTERROR.TEXTCREATE +
-            SharedConstants.ALERTERROR.ATTENDANCE,
-          'error',
-        );
-      },
-    );
+    const subscription = this.service
+      .createAttendanceByEvent(this.participant)
+      .subscribe(
+        () => {
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE +
+              SharedConstants.ALERTSUCCESS.ATTENDANCE,
+            'success',
+          );
+          this.loadData();
+        },
+        () => {
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTCREATE +
+              SharedConstants.ALERTERROR.ATTENDANCE,
+            'error',
+          );
+        },
+      );
+
+    this.subscriptions.push(subscription);
   }
 
   public exportAsXLSX(): void {
@@ -96,8 +106,18 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   private loadData(): void {
-    this.service.findAttendanceByEvent(this.eventId).subscribe((resp) => {
-      this.participants = new MatTableDataSource(resp);
-    });
+    const subscription = this.service
+      .findAttendanceByEvent(this.eventId)
+      .pipe(
+        finalize(() => {
+          this.participants.sort = this.sort;
+          this.participants.paginator = this.paginator;
+        }),
+      )
+      .subscribe((resp) => {
+        this.participants = new MatTableDataSource(resp);
+      });
+
+    this.subscriptions.push(subscription);
   }
 }
