@@ -3,7 +3,11 @@ import { JwtModel } from 'src/app/core/models/jwt.model';
 import { Client } from '../../core/models/client.model';
 import { Consultant } from '../../core/models/consultant.model';
 import { Contact } from '../../core/models/contact.model';
-import { Event, EventState, EventType } from '../../core/models/event.model';
+import {
+  EventInnova,
+  EventState,
+  EventType,
+} from '../../core/models/event-innova.model';
 
 import {
   Advisory,
@@ -203,7 +207,7 @@ export class TestUtils {
     },
   ];
 
-  static event: Event = {
+  static event: EventInnova = {
     id: 1,
     title: 'Evento de prueba 1',
     startDate: new Date(),
@@ -222,7 +226,7 @@ export class TestUtils {
     link: 'https://ww2.ufps.edu.co/',
   };
 
-  static events: Event[] = [
+  static events: EventInnova[] = [
     {
       id: 1,
       title: 'Evento de prueba 1',

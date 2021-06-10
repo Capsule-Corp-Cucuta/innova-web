@@ -2,7 +2,7 @@ import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,13 +11,14 @@ import { LabelConstants } from '../../../shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { Client } from '../../../core/models/client.model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['../../../shared/styles/_table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -34,12 +35,20 @@ export class TableComponent implements OnInit {
   public client: MatTableDataSource<Client>;
   public filter = '';
 
+  private subscriptions: Subscription[] = [];
+
   constructor(public dialog: MatDialog, private service: FacadeService) {}
 
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
     this.user = this.service.getUser().id;
     this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public applyFilter(): void {
@@ -66,24 +75,27 @@ export class TableComponent implements OnInit {
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        this.service.enableAndDisableUser(idClient).subscribe(
-          (resp) => {
-            Swal.fire(
-              SharedConstants.ALERTSUCCESS.TITLE,
-              SharedConstants.ALERTSUCCESS.TEXTDISABLE +
-                SharedConstants.ALERTSUCCESS.CLIENT,
-              'success',
-            );
-          },
-          (err) => {
-            Swal.fire(
-              SharedConstants.ALERTERROR.TITLE,
-              SharedConstants.ALERTERROR.TEXTDISABLE +
-                SharedConstants.ALERTERROR.CLIENT,
-              'error',
-            );
-          },
-        );
+        const subscription = this.service
+          .enableAndDisableUser(idClient)
+          .subscribe(
+            () => {
+              Swal.fire(
+                SharedConstants.ALERTSUCCESS.TITLE,
+                SharedConstants.ALERTSUCCESS.TEXTDISABLE +
+                  SharedConstants.ALERTSUCCESS.CLIENT,
+                'success',
+              );
+            },
+            () => {
+              Swal.fire(
+                SharedConstants.ALERTERROR.TITLE,
+                SharedConstants.ALERTERROR.TEXTDISABLE +
+                  SharedConstants.ALERTERROR.CLIENT,
+                'error',
+              );
+            },
+          );
+        this.subscriptions.push(subscription);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         //TODO
       }
@@ -102,16 +114,7 @@ export class TableComponent implements OnInit {
   }
 
   private loadData(): void {
-    if (this.authority == this.ROLES.ADMIN) {
-      this.loadDataAdmin();
-    } else if (this.authority == this.ROLES.CONSULTANT) {
-      this.loadDataByConsultant(this.user);
-    }
-  }
-
-  private loadDataAdmin(): void {
-    this.service
-      .findAllClient()
+    const subscription = this.findAllEvents()
       .pipe(
         finalize(() => {
           this.client.sort = this.sort;
@@ -121,19 +124,12 @@ export class TableComponent implements OnInit {
       .subscribe((resp) => {
         this.client = new MatTableDataSource(resp);
       });
+    this.subscriptions.push(subscription);
   }
 
-  private loadDataByConsultant(consultant: string): void {
-    this.service
-      .findClientByConsultant(consultant)
-      .pipe(
-        finalize(() => {
-          this.client.sort = this.sort;
-          this.client.paginator = this.paginator;
-        }),
-      )
-      .subscribe((resp) => {
-        this.client = new MatTableDataSource(resp);
-      });
+  private findAllEvents(): Observable<Client[]> {
+    return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
+      ? this.service.findAllClient()
+      : this.service.findClientByConsultant(this.user);
   }
 }

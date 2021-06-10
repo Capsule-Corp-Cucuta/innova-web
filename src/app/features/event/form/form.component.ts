@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,13 +7,14 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['../../../shared/styles/_form.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
@@ -22,6 +23,7 @@ export class FormComponent implements OnInit {
 
   public form: FormGroup;
   public isCreate: boolean;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +36,12 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateIsCreateForm();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public validateIsCreateForm(): void {
@@ -53,7 +61,7 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       const event = this.form.value;
-      this.service.createEvent(event).subscribe(
+      const subscription = this.service.createEvent(event).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -72,6 +80,7 @@ export class FormComponent implements OnInit {
           );
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 
@@ -79,7 +88,7 @@ export class FormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       const event = this.form.value;
-      this.service.updateEvent(event).subscribe(
+      const subscription = this.service.updateEvent(event).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -98,6 +107,7 @@ export class FormComponent implements OnInit {
           );
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 

@@ -109,7 +109,7 @@
             color="primary"
             routerLink="{{ ROUTES.UPDATE }}/{{ event.id }}"
             matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
-            *ngIf="authority == ROLES.ADMIN"
+            *ngIf="showEdit(event)"
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
           </button>
@@ -126,7 +126,7 @@
             color="warn"
             routerLink="../{{ ROUTES.ATTENDANCE }}/{{ ROUTES.UPDATE }}/{{
               event.id
-            }}"
+            }}/{{ event.state }}"
             matTooltip="{{ LABELS.TOOLTIP.ATTENDANCE }}"
             *ngIf="authority == ROLES.ADMIN"
           >

@@ -19,7 +19,7 @@ const routes: Routes = [
     canActivate: [SessionGuardService],
   },
   {
-    path: UrlConstants.ROUTES.UPDATE + '/:id',
+    path: UrlConstants.ROUTES.UPDATE + '/:id/:state',
     component: TableComponent,
     canActivate: [SessionGuardService],
   },

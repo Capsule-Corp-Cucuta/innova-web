@@ -7,7 +7,10 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { ModalComponent } from '../modal/modal.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { Event, EventState } from 'src/app/core/models/event.model';
+import {
+  EventInnova,
+  EventState,
+} from 'src/app/core/models/event-innova.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
@@ -30,7 +33,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public client: string;
   public filter: string;
   public authority: string;
-  public events: MatTableDataSource<Event>;
+  public events: MatTableDataSource<EventInnova>;
 
   private subscriptions: Subscription[] = [];
 
@@ -57,7 +60,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public isEnrolled(event: Event): boolean {
+  public isEnrolled(event: EventInnova): boolean {
     let enrolled = false;
     event.inscriptions.find((inscription) => {
       enrolled = inscription.userId === this.client ? true : false;
@@ -65,7 +68,7 @@ export class TableComponent implements OnInit, OnDestroy {
     return enrolled;
   }
 
-  public openDialog(event: Event): void {
+  public openDialog(event: EventInnova): void {
     const enrolled = this.isEnrolled(event);
     const showButton =
       (event.state === EventState.OPEN ||
@@ -83,6 +86,12 @@ export class TableComponent implements OnInit, OnDestroy {
     dialog.afterClosed().subscribe(() => this.loadData());
   }
 
+  public showEdit(event: EventInnova): boolean {
+    return (
+      this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE
+    );
+  }
+
   private loadData(): void {
     const subscription = this.findAllEvents()
       .pipe(
@@ -97,7 +106,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  private findAllEvents(): Observable<Event[]> {
+  private findAllEvents(): Observable<EventInnova[]> {
     return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
       ? this.service.findAllEvents()
       : this.service.findAllEventsForContact();

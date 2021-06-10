@@ -14,7 +14,7 @@ import { Consultant } from '../../core/models/consultant.model';
 import { AdvisoryServiceStub } from './advisory-service.stub';
 import { Advisory } from '../../core/models/advisory.model';
 import { EventServiceStub } from './event-service.stub';
-import { Event } from 'src/app/core/models/event.model';
+import { EventInnova } from 'src/app/core/models/event-innova.model';
 import { UserServiceStub } from './user-service.stub';
 import { ReportServiceStub } from './report-service.stub';
 import { AttendanceServiceStub } from './attendance-service.stub';
@@ -154,14 +154,14 @@ export class FacadeServiceStub {
     return this.eventServiceStub.update(event);
   }
 
-  public findByIDEvent(id: number): Observable<Event> {
+  public findByIDEvent(id: number): Observable<EventInnova> {
     return this.eventServiceStub.findByID(id);
   }
 
-  public findEventByClient(id: string): Observable<Event[]> {
+  public findEventByClient(id: string): Observable<EventInnova[]> {
     return this.eventServiceStub.findByClient(id);
   }
-  public findAllEvent(): Observable<Event[]> {
+  public findAllEvent(): Observable<EventInnova[]> {
     return this.eventServiceStub.findAll();
   }
 

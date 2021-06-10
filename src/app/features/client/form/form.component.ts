@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,13 +8,14 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { Client } from 'src/app/core/models/client.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['../../../shared/styles/_form2.component.scss'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CLIENT.FORM;
@@ -34,6 +35,7 @@ export class FormComponent implements OnInit {
   public step = 0;
 
   private client: Client;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
@@ -46,6 +48,12 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateIsCreateForm();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public validateIsCreateForm(): void {
@@ -66,7 +74,7 @@ export class FormComponent implements OnInit {
     if (this.form.valid) {
       const client = this.form.value;
       client.consultantId = this.client.consultantId;
-      this.service.updateClient(client).subscribe(
+      const subscription = this.service.updateClient(client).subscribe(
         () => {
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
@@ -86,6 +94,7 @@ export class FormComponent implements OnInit {
           this.validateInput(true);
         },
       );
+      this.subscriptions.push(subscription);
     }
   }
 

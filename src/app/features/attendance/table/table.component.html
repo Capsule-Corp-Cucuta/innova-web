@@ -21,6 +21,7 @@
           (click)="selected()"
           matTooltip="{{ LABELS.TOOLTIP.SAVE }}"
           color="warn"
+          *ngIf="state"
         >
           <mat-icon>{{ ICONS.SAVE }}</mat-icon>
         </button>
