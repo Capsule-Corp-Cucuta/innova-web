@@ -26,6 +26,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public check: boolean;
   public authority: string;
   public isAccompaniment = false;
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -78,8 +79,10 @@ export class FormComponent implements OnInit, OnDestroy {
     this.check = this.form.value[SharedConstants.CHECK];
     if (this.form.valid) {
       const user = this.form.value;
+      this.isLoading = true;
       const subscription = this.service.updateUser(user).subscribe(
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
             SharedConstants.ALERTSUCCESS.TEXTUPDATE +
@@ -94,6 +97,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.validateInput(true);
         },
         () => {
+          this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
             SharedConstants.ALERTERROR.TEXTUPDATE +

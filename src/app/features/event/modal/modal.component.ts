@@ -23,6 +23,7 @@ export class ModalComponent implements OnInit {
   public authority: string;
   public showButton: boolean;
   public inscription: Inscription;
+  public isLoading = false;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -48,8 +49,10 @@ export class ModalComponent implements OnInit {
   }
 
   public inscriptionEvent(): void {
+    this.isLoading = true;
     this.service.eventInscription(this.idUser, this.event.id).subscribe(
       () => {
+        this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
           SharedConstants.ALERTSUCCESS.TEXTCREATE +
@@ -58,6 +61,7 @@ export class ModalComponent implements OnInit {
         );
       },
       () => {
+        this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTERROR.TITLE,
           SharedConstants.ALERTERROR.TEXTCREATE +

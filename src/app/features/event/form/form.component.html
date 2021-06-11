@@ -34,12 +34,15 @@
               placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
               formControlName="startDate"
               min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
-              (change)="validateDates($event)"
+              (change)="validateDates()"
               required
             />
           </mat-form-field>
 
-          <mat-form-field class="form__content--group--item">
+          <mat-form-field
+            class="form__content--group--item"
+            *ngIf="form.value['startDate']"
+          >
             <input
               matInput
               type="datetime-local"
@@ -53,7 +56,10 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field class="form__content--group--item">
+          <mat-form-field
+            class="form__content--group--item"
+            *ngIf="form.value['closeDate']"
+          >
             <input
               matInput
               type="date"
@@ -167,19 +173,26 @@
           *ngIf="isCreate"
           color="primary"
           mat-raised-button
+          class="form__actions--button"
           (click)="create($event)"
         >
-          <span>{{ LABELS.REGISTER_BUTTON }}</span>
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.REGISTER_BUTTON }}</span>
         </button>
 
         <button
           *ngIf="!isCreate"
           mat-raised-button
           color="primary"
-          class="button-form"
+          class="form__actions--button"
           (click)="update($event)"
         >
-          {{ LABELS.UPDATE_BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading"> {{ LABELS.UPDATE_BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

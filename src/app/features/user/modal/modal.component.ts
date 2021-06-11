@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -8,13 +8,14 @@ import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { Router } from '@angular/router';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['../../../shared/styles/_modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.CHANGEPASSWORD;
   public readonly ROUTES = UrlConstants.ROUTES;
@@ -22,6 +23,9 @@ export class ModalComponent implements OnInit {
   public form: FormGroup;
   public id: string;
   public error = false;
+  public isLoading = false;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -36,18 +40,25 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.data;
   }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
 
   public changePassword(): void {
     if (this.validatePassword()) {
       this.error = false;
-      this.service
+      this.isLoading = true;
+      const subscription = this.service
         .changePassword(
           this.id,
           this.getFormValue('oldPassword'),
           this.getFormValue('newPassword'),
         )
         .subscribe(
-          (resp) => {
+          () => {
+            this.isLoading = false;
             Swal.fire(
               SharedConstants.ALERTSUCCESS.TITLE,
               SharedConstants.ALERTSUCCESS.TEXTCHANGE,
@@ -57,7 +68,8 @@ export class ModalComponent implements OnInit {
             this.onNoClick();
             this.router.navigate([this.ROUTES.SECURITY]);
           },
-          (err) => {
+          () => {
+            this.isLoading = false;
             Swal.fire(
               SharedConstants.ALERTERROR.TITLE,
               SharedConstants.ALERTERROR.TEXTCHANGE,
@@ -65,6 +77,7 @@ export class ModalComponent implements OnInit {
             );
           },
         );
+      this.subscriptions.push(subscription);
     } else {
       this.error = true;
     }
