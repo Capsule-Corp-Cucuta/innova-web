@@ -90,7 +90,7 @@ export class FormComponent implements OnInit, OnDestroy {
             'success',
           );
           if (this.check) {
-            this.service.updateAccompaniment(this.idUser).subscribe(() => {
+            this.service.requestAccompaniment(this.idUser).subscribe(() => {
               this.validateAccompaniment(this.authority);
             });
           }

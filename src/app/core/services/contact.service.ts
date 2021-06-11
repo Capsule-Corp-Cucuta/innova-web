@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Contact } from '../models/contact.model';
 import { environment } from 'src/environments/environment';
@@ -26,7 +26,7 @@ export class ContactService {
     return this.http.get<Contact>(`${ContactService.ENDPOINT}/${id}`);
   }
 
-  public updateAccompaniment(id: string): Observable<Response> {
+  public requestAccompaniment(id: string): Observable<Response> {
     return this.http.put<Response>(
       `${ContactService.ENDPOINT}/${id}/request-accompaniment`,
       null,

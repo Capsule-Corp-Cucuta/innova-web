@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
-import { EventInnova } from 'src/app/core/models/event-innova.model';
+import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { Inscription } from 'src/app/core/models/inscription.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit {
   public readonly ROLES = SharedConstants.ROLES;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
 
-  public event: EventInnova;
+  public event: InnovaEvent;
   public idUser: string;
   public authority: string;
   public showButton: boolean;
@@ -50,7 +50,7 @@ export class ModalComponent implements OnInit {
 
   public inscriptionEvent(): void {
     this.isLoading = true;
-    this.service.eventInscription(this.idUser, this.event.id).subscribe(
+    this.service.inscriptToEvent(this.idUser, this.event.id).subscribe(
       () => {
         this.isLoading = false;
         Swal.fire(

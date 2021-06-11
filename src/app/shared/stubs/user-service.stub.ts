@@ -8,8 +8,8 @@ import { User } from 'src/app/core/models/user.model';
   providedIn: 'root',
 })
 export class UserServiceStub {
-  public update(user: User): Observable<Boolean> {
-    return of(true);
+  public update(user: User): Observable<Response> {
+    return of(null);
   }
 
   public findByID(id: string): Observable<User> {

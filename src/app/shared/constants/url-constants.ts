@@ -22,6 +22,7 @@ export class UrlConstants {
     CONTACT: 'contact',
     CLIENT: 'client',
     ADVISORY: 'advisory',
+    ADVISORY_REPORT: 'advisory-report',
     CONSULTANT: 'consultant',
     EVENT: 'event',
     USER: 'user',
@@ -29,7 +30,8 @@ export class UrlConstants {
   };
 
   public static LINKS = {
-    UFPS: 'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
+    UFPS:
+      'https://ww2.ufps.edu.co/public/archivos/elementos_corporativos/logo-horizontal.jpg',
     INNOVA: 'https://i.imgur.com/Vlml12n.png',
   };
 }

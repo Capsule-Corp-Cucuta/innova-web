@@ -1,10 +1,11 @@
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Consultant } from 'src/app/core/models/consultant.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -23,10 +24,10 @@ export class TableComponent implements OnInit, OnDestroy {
   public startDate: null;
   public closeDate: null;
   public authority: string;
+  public isLoading = false;
   public reports: any[] = [];
   public consultantId: string;
   public consultants: Consultant[];
-  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -34,7 +35,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authority = this.service.getAuthorities()[0];
-    this.loadConsultants();
+    this.loadData();
   }
 
   ngOnDestroy(): void {
@@ -45,26 +46,23 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public loadReport(e: Event): void {
     e.preventDefault();
-    if (this.startDate != null && this.closeDate != null) {
-      const id =
-        this.authority == this.ROLES.ADMIN
-          ? this.consultantId
-          : this.service.getUser().id;
-      this.countFindAdvisoryByConsultantBetweenDates(id);
-    } else {
-      const id =
-        this.authority == this.ROLES.ADMIN
-          ? this.consultantId
-          : this.service.getUser().id;
-      this.countFindAdvisoryByConsultant(id);
-    }
+    const id =
+      this.authority == this.ROLES.ADMIN
+        ? this.consultantId
+        : this.service.getUser().id;
+
+    this.startDate != null && this.closeDate != null
+      ? this.countHoursByConsultantWithoutPreparationBetweenDates(id)
+      : this.countHoursByConsultantWithoutPreparation(id);
   }
 
-  private countFindAdvisoryByConsultantBetweenDates(id: string): void {
+  private countHoursByConsultantWithoutPreparationBetweenDates(
+    id: string,
+  ): void {
     if (id) {
       this.error = false;
       const subscription = this.service
-        .countFindAdvisoryByConsultantBetweenDates(
+        .countHoursByConsultantWithoutPreparationBetweenDates(
           id,
           this.startDate,
           this.closeDate,
@@ -87,12 +85,12 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private countFindAdvisoryByConsultant(id: string): void {
+  private countHoursByConsultantWithoutPreparation(id: string): void {
     if (id) {
       this.error = false;
       this.isLoading = true;
       const subscription = this.service
-        .countFindAdvisoryByConsultant(id)
+        .countHoursByConsultantWithoutPreparation(id)
         .subscribe((resp) => {
           this.isLoading = false;
           this.reports = [
@@ -118,9 +116,33 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private loadConsultants() {
-    this.service.findAllConsultant().subscribe((resp) => {
-      this.consultants = resp;
-    });
+  private loadData() {
+    this.isLoading = true;
+    const findConsultantsSubscription = this.service
+      .findAllConsultant()
+      .subscribe((resp) => {
+        this.consultants = resp;
+        const reportSubscription = this.service
+          .getGeneralReport()
+          .pipe(
+            finalize(() => {
+              this.isLoading = false;
+            }),
+          )
+          .subscribe((reports) => {
+            this.reports = [];
+            reports.forEach((report) => {
+              this.reports.push({
+                consultant: report.consultant.id,
+                startDate: null,
+                closeDate: null,
+                hour: report.advisoryHours,
+              });
+            });
+            this.empty = true;
+          });
+        this.subscriptions.push(reportSubscription);
+      });
+    this.subscriptions.push(findConsultantsSubscription);
   }
 }

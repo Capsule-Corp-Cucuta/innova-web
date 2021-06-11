@@ -1,13 +1,13 @@
+import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -17,15 +17,15 @@ import { Subscription } from 'rxjs';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
   public readonly EVENTTYPE = LabelConstants.EVENTTYPE;
   public readonly EVENTSTATE = LabelConstants.EVENTSTATE;
+  public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
 
+  public endDate: Date;
   public form: FormGroup;
+  public isLoading = false;
   public isCreate: boolean;
   public today = new Date();
-  public endDate: Date;
-  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -138,7 +138,7 @@ export class FormComponent implements OnInit, OnDestroy {
       theme: [null, [Validators.required]],
       type: [null, [Validators.required]],
       state: [null],
-      description: [null],
+      description: [null, [Validators.required]],
       place: [null],
       city: [null],
       department: [null],
@@ -147,11 +147,9 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
-  private validateInput(exito: boolean) {
-    if (exito) {
-      this.form.controls[SharedConstants.DURATION].disable();
-    } else {
-      this.form.controls[SharedConstants.DURATION].enable();
-    }
+  private validateInput(exito: boolean): void {
+    exito
+      ? this.form.controls[SharedConstants.DURATION].disable()
+      : this.form.controls[SharedConstants.DURATION].enable();
   }
 }
