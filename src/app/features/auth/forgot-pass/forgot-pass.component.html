@@ -28,13 +28,15 @@
       <mat-card-actions class="form__actions">
         <button
           mat-raised-button
-          color="warn"
-          class="full-width"
+          color="primary"
           class="form__actions--button"
           (click)="request($event)"
           [disabled]="form.invalid"
         >
-          {{ LABELS.BUTTON }}
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.BUTTON }}</span>
         </button>
       </mat-card-actions>
     </form>

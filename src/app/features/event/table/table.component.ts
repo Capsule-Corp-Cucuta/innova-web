@@ -34,6 +34,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public filter: string;
   public authority: string;
   public events: MatTableDataSource<EventInnova>;
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -93,9 +94,11 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
+    this.isLoading = true;
     const subscription = this.findAllEvents()
       .pipe(
         finalize(() => {
+          this.isLoading = false;
           this.events.sort = this.sort;
           this.events.paginator = this.paginator;
         }),

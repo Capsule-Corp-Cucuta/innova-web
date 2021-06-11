@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -10,13 +10,14 @@ import { ContactState } from '../../../core/models/contact.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
-export class SignupComponent {
+export class SignupComponent implements OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
@@ -26,6 +27,8 @@ export class SignupComponent {
   public form: FormGroup;
   public isBusiness = false;
   public state: number;
+  public isLoading = false;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +36,12 @@ export class SignupComponent {
     private router: Router,
   ) {
     this.buildForm();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   public loadDataBusiness(type: ContactType): void {
@@ -45,9 +54,13 @@ export class SignupComponent {
       contact.state === true
         ? ContactState.PENDING_ADVISOR
         : ContactState.NO_ADVISORY;
+
     contact.state = this.state;
-    this.service.createContact(contact).subscribe(
-      (resp) => {
+
+    this.isLoading = true;
+    const subscription = this.service.createContact(contact).subscribe(
+      () => {
+        this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
           SharedConstants.ALERTSUCCESS.TEXTCREATE +
@@ -56,7 +69,8 @@ export class SignupComponent {
         );
         this.router.navigate(['./seguridad']);
       },
-      (err) => {
+      () => {
+        this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTERROR.TITLE,
           SharedConstants.ALERTERROR.TEXTCREATE +
@@ -65,6 +79,7 @@ export class SignupComponent {
         );
       },
     );
+    this.subscriptions.push(subscription);
   }
 
   private buildForm() {

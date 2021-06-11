@@ -29,6 +29,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public contact: MatTableDataSource<Contact>;
   public filter = '';
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -77,6 +78,7 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
+    this.isLoading = true;
     const subscription = this.service
       .findAllContact()
       .pipe(
@@ -86,6 +88,7 @@ export class TableComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe((resp) => {
+        this.isLoading = false;
         this.contact = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);

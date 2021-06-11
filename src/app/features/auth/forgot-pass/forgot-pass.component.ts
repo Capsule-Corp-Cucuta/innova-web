@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import Swal from 'sweetalert2';
@@ -7,20 +9,21 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
   styleUrls: ['../../../shared/styles/_auth.scss'],
 })
-export class ForgotPassComponent {
+export class ForgotPassComponent implements OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.FORGOT_PASSWORD;
 
   public form: FormGroup;
+  public isLoading = false;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,25 +33,37 @@ export class ForgotPassComponent {
     this.buildForm();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
   public request(e: Event): void {
     e.preventDefault();
-    this.service.recoverPassword(this.form.value['email']).subscribe(
-      (resp) => {
-        Swal.fire(
-          SharedConstants.ALERTSUCCESS.TITLE,
-          SharedConstants.ALERTSUCCESS.TEXTEMAIL,
-          'success',
-        );
-        this.router.navigate(['./seguridad']);
-      },
-      (err) => {
-        Swal.fire(
-          SharedConstants.ALERTERROR.TITLE,
-          SharedConstants.ALERTERROR.TEXTEMAIL,
-          'error',
-        );
-      },
-    );
+    this.isLoading = true;
+    const subscription = this.service
+      .recoverPassword(this.form.value['email'])
+      .subscribe(
+        () => {
+          this.isLoading = false;
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTEMAIL,
+            'success',
+          );
+          this.router.navigate(['./seguridad']);
+        },
+        () => {
+          this.isLoading = false;
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTEMAIL,
+            'error',
+          );
+        },
+      );
+    this.subscriptions.push(subscription);
   }
 
   private buildForm() {

@@ -26,6 +26,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public reports: any[] = [];
   public consultantId: string;
   public consultants: Consultant[];
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -64,7 +65,7 @@ export class TableComponent implements OnInit, OnDestroy {
       this.error = false;
       const subscription = this.service
         .countFindAdvisoryByConsultantBetweenDates(
-          this.consultantId,
+          id,
           this.startDate,
           this.closeDate,
         )
@@ -89,9 +90,11 @@ export class TableComponent implements OnInit, OnDestroy {
   private countFindAdvisoryByConsultant(id: string): void {
     if (id) {
       this.error = false;
+      this.isLoading = true;
       const subscription = this.service
         .countFindAdvisoryByConsultant(id)
         .subscribe((resp) => {
+          this.isLoading = false;
           this.reports = [
             {
               consultant: id,
