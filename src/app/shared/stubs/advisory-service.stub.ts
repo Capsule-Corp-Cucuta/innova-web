@@ -8,12 +8,12 @@ import { Advisory } from '../../core/models/advisory.model';
   providedIn: 'root',
 })
 export class AdvisoryServiceStub {
-  public create(advisory: Advisory): Observable<Boolean> {
-    return of(true);
+  public create(advisory: Advisory): Observable<Response> {
+    return of(null);
   }
 
-  public update(advisory: Advisory): Observable<Boolean> {
-    return of(true);
+  public update(advisory: Advisory): Observable<Response> {
+    return of(null);
   }
 
   public findByID(id: number): Observable<Advisory> {

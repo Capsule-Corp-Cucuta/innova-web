@@ -8,16 +8,16 @@ import { TestUtils } from './TestUtils';
   providedIn: 'root',
 })
 export class ContactServiceStub {
-  public create(contact: Contact): Observable<Boolean> {
-    return of(true);
+  public create(contact: Contact): Observable<Response> {
+    return of(null);
   }
 
   public findAll(): Observable<Contact[]> {
     return of(TestUtils.contacts);
   }
 
-  public assign(contacto: string, asesor: string): Observable<Boolean> {
-    return of(true);
+  public assign(contacto: string, asesor: string): Observable<Response> {
+    return of(null);
   }
 
   public findById(id: string): Observable<Contact> {

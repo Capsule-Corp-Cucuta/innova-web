@@ -2,29 +2,29 @@ import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { TestUtils } from './TestUtils';
-import { EventInnova } from 'src/app/core/models/event-innova.model';
+import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventServiceStub {
-  public create(event: Event): Observable<Boolean> {
-    return of(true);
+  public create(event: Event): Observable<Response> {
+    return of(null);
   }
 
-  public update(event: Event): Observable<Boolean> {
-    return of(true);
+  public update(event: Event): Observable<Response> {
+    return of(null);
   }
 
-  public findByID(id: number): Observable<EventInnova> {
+  public findByID(id: number): Observable<InnovaEvent> {
     return of(TestUtils.event);
   }
 
-  public findByClient(id: string): Observable<EventInnova[]> {
+  public findByClient(id: string): Observable<InnovaEvent[]> {
     return of(TestUtils.events);
   }
 
-  public findAll(): Observable<EventInnova[]> {
+  public findAll(): Observable<InnovaEvent[]> {
     return of(TestUtils.events);
   }
 }

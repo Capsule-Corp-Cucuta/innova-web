@@ -1,17 +1,17 @@
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
-import { Inscription } from 'src/app/core/models/inscription.model';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { FacadeService } from 'src/app/shared/services/facade.service';
-import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { EventState } from 'src/app/core/models/event-innova.model';
-import { finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { EventState } from 'src/app/core/models/innova-event.model';
+import { Inscription } from 'src/app/core/models/inscription.model';
+import { FacadeService } from 'src/app/shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 
 @Component({
   selector: 'app-table',
@@ -26,12 +26,12 @@ export class TableComponent implements OnInit, OnDestroy {
   public readonly LABELS = LabelConstants.LABELS.ATTENDANCE.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
 
-  public participants: MatTableDataSource<Inscription>;
-  public eventId: number;
-  public state: boolean;
-  public participant: Inscription[];
   public filter = '';
+  public state: boolean;
+  public eventId: number;
   public isLoading = false;
+  public participantsList: Inscription[];
+  public participants: MatTableDataSource<Inscription>;
 
   private subscriptions: Subscription[] = [];
 
@@ -44,6 +44,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.validateEvent();
     this.loadData();
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
@@ -67,9 +68,9 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public selected(): void {
-    this.participant = this.participants.data;
+    this.participantsList = this.participants.data;
     const subscription = this.service
-      .createAttendanceByEvent(this.participant)
+      .takeAttendance(this.participantsList)
       .subscribe(
         () => {
           Swal.fire(
@@ -110,7 +111,7 @@ export class TableComponent implements OnInit, OnDestroy {
   private loadData(): void {
     this.isLoading = true;
     const subscription = this.service
-      .findAttendanceByEvent(this.eventId)
+      .findInscriptionsByEvent(this.eventId)
       .pipe(
         finalize(() => {
           this.isLoading = false;

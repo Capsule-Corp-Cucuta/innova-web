@@ -1,6 +1,6 @@
 import { Inscription } from './inscription.model';
 
-export class EventInnova {
+export class InnovaEvent {
   id?: number;
   title: string;
   theme: string;

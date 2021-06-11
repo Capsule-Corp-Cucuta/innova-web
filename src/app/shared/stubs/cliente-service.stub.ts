@@ -1,15 +1,15 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { Client } from '../../core/models/client.model';
 import { TestUtils } from './TestUtils';
+import { Client } from '../../core/models/client.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientServiceStub {
-  public update(client: Client): Observable<Boolean> {
-    return of(true);
+  public update(client: Client): Observable<Response> {
+    return of(null);
   }
 
   public findByID(id: string): Observable<Client> {

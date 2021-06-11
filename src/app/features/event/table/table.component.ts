@@ -7,14 +7,14 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { ModalComponent } from '../modal/modal.component';
 import { MatTableDataSource } from '@angular/material/table';
-import {
-  EventInnova,
-  EventState,
-} from 'src/app/core/models/event-innova.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
+import {
+  InnovaEvent,
+  EventState,
+} from 'src/app/core/models/innova-event.model';
 
 @Component({
   selector: 'app-table',
@@ -33,8 +33,8 @@ export class TableComponent implements OnInit, OnDestroy {
   public client: string;
   public filter: string;
   public authority: string;
-  public events: MatTableDataSource<EventInnova>;
   public isLoading = false;
+  public events: MatTableDataSource<InnovaEvent>;
 
   private subscriptions: Subscription[] = [];
 
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public isEnrolled(event: EventInnova): boolean {
+  public isEnrolled(event: InnovaEvent): boolean {
     let enrolled = false;
     event.inscriptions.find((inscription) => {
       enrolled = inscription.userId === this.client ? true : false;
@@ -69,7 +69,7 @@ export class TableComponent implements OnInit, OnDestroy {
     return enrolled;
   }
 
-  public openDialog(event: EventInnova): void {
+  public openDialog(event: InnovaEvent): void {
     const enrolled = this.isEnrolled(event);
     const showButton =
       (event.state === EventState.OPEN ||
@@ -87,7 +87,7 @@ export class TableComponent implements OnInit, OnDestroy {
     dialog.afterClosed().subscribe(() => this.loadData());
   }
 
-  public showEdit(event: EventInnova): boolean {
+  public showEdit(event: InnovaEvent): boolean {
     return (
       this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE
     );
@@ -109,9 +109,9 @@ export class TableComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  private findAllEvents(): Observable<EventInnova[]> {
+  private findAllEvents(): Observable<InnovaEvent[]> {
     return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
       ? this.service.findAllEvents()
-      : this.service.findAllEventsForContact();
+      : this.service.findAllAfterNow();
   }
 }
