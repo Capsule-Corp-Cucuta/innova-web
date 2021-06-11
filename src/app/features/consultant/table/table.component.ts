@@ -29,6 +29,8 @@ export class TableComponent implements OnInit, OnDestroy {
   public option: string;
   public consultant: MatTableDataSource<Consultant>;
   public filter = '';
+  public isLoading = false;
+
   private subscriptions: Subscription[] = [];
 
   constructor(private service: FacadeService) {}
@@ -110,10 +112,12 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
+    this.isLoading = true;
     const subscription = this.service
       .findAllConsultant()
       .pipe(
         finalize(() => {
+          this.isLoading = false;
           this.consultant.sort = this.sort;
           this.consultant.paginator = this.paginator;
         }),

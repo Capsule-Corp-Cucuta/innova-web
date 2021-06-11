@@ -34,6 +34,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public clients: [] = [];
   public client: MatTableDataSource<Client>;
   public filter = '';
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -117,9 +118,11 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
+    this.isLoading = true;
     const subscription = this.findAllEvents()
       .pipe(
         finalize(() => {
+          this.isLoading = false;
           this.client.sort = this.sort;
           this.client.paginator = this.paginator;
         }),

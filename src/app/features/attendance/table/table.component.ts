@@ -31,8 +31,10 @@ export class TableComponent implements OnInit, OnDestroy {
   public state: boolean;
   public participant: Inscription[];
   public filter = '';
+  public isLoading = false;
 
   private subscriptions: Subscription[] = [];
+
   constructor(
     private service: FacadeService,
     private activeRoute: ActivatedRoute,
@@ -106,10 +108,12 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData(): void {
+    this.isLoading = true;
     const subscription = this.service
       .findAttendanceByEvent(this.eventId)
       .pipe(
         finalize(() => {
+          this.isLoading = false;
           this.participants.sort = this.sort;
           this.participants.paginator = this.paginator;
         }),
