@@ -68,6 +68,16 @@
       text-align: justify;
     }
   }
+
+  .button-next {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .button-step {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 @media (max-width: 480px) {
   .card {

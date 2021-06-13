@@ -18,6 +18,7 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
+  public readonly ROUTES = UrlConstants.ROUTES;
   public readonly STEP = SharedConstants.STETP;
   public readonly GENDER = LabelConstants.GENDER;
   public readonly OPTION = LabelConstants.OPTION;

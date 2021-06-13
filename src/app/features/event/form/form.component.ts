@@ -17,6 +17,7 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
+  public readonly ROUTES = UrlConstants.ROUTES;
   public readonly EVENT_TYPE = LabelConstants.EVENT_TYPE;
   public readonly EVENT_STATE = LabelConstants.EVENT_STATE;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
@@ -64,7 +65,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateDates(): void {
     this.endDate = this.form.value['startDate'];
-    console.log(this.endDate);
   }
 
   public create(e: Event): void {

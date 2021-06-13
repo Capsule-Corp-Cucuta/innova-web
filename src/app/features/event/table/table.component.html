@@ -10,7 +10,13 @@
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
+      <button
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+        *ngIf="authority == ROLES.ADMIN"
+      >
         <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
       </button>
     </mat-card>
@@ -120,7 +126,7 @@
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
+        <td class="mat-cell" colspan="12">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
     <div class="table-spinner" *ngIf="isLoading">

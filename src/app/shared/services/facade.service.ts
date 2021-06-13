@@ -284,6 +284,10 @@ export class FacadeService {
     return this.reportsService.getGeneralReport();
   }
 
+  public getGeneralReportBetweenDates(startDate: Date, closeDate: Date): Observable<AdvisoryReport[]> {
+    return this.reportsService.getGeneralReportBetweenDates(startDate, closeDate);
+  }
+
   public countHoursByConsultantWithoutPreparation(idConsultant: string): Observable<number> {
     return this.reportsService.countHoursByConsultantWithoutPreparation(idConsultant);
   }

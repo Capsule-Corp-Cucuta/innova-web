@@ -44,44 +44,61 @@ export class TableComponent implements OnInit, OnDestroy {
     });
   }
 
+  public clear(): void {
+    this.closeDate = null;
+    this.consultantId = null;
+    this.startDate = null;
+  }
+
   public loadReport(e: Event): void {
     e.preventDefault();
     const id = this.authority == this.ROLES.ADMIN ? this.consultantId : this.service.getUser().id;
 
-    this.startDate != null && this.closeDate != null
-      ? this.countHoursByConsultantWithoutPreparationBetweenDates(id)
-      : this.countHoursByConsultantWithoutPreparation(id);
-  }
-
-  private countHoursByConsultantWithoutPreparationBetweenDates(id: string): void {
-    if (id) {
-      this.error = false;
-      const subscription = this.service
-        .countHoursByConsultantWithoutPreparationBetweenDates(id, this.startDate, this.closeDate)
-        .subscribe((resp) => {
-          this.reports = [
-            {
-              consultant: id,
-              startDate: this.startDate,
-              closeDate: this.closeDate,
-              hour: resp,
-            },
-          ];
-          this.empty = true;
-        });
-      this.subscriptions.push(subscription);
-    } else {
-      this.error = true;
-      this.empty = false;
+    if (id == null && this.startDate == null && this.closeDate == null) {
+      this.countGeneralReport();
+    } else if (id == null && this.startDate != null && this.closeDate != null) {
+      this.countGeneralReportBetweenDates();
+    } else if (id != null && this.startDate == null && this.closeDate == null) {
+      this.countHoursByConsultantWithoutPreparation(id);
+    } else if (id != null && this.startDate != null && this.closeDate != null) {
+      this.countHoursByConsultantWithoutPreparationBetweenDates(id);
     }
   }
 
+  private countHoursByConsultantWithoutPreparationBetweenDates(id: string): void {
+    this.isLoading = true;
+    const subscription = this.service
+      .countHoursByConsultantWithoutPreparationBetweenDates(id, this.startDate, this.closeDate)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+      )
+      .subscribe((resp) => {
+        this.reports = [];
+        this.reports = [
+          {
+            consultant: id,
+            startDate: this.startDate,
+            closeDate: this.closeDate,
+            hour: resp,
+          },
+        ];
+      });
+    this.subscriptions.push(subscription);
+  }
+
   private countHoursByConsultantWithoutPreparation(id: string): void {
-    if (id) {
-      this.error = false;
-      this.isLoading = true;
-      const subscription = this.service.countHoursByConsultantWithoutPreparation(id).subscribe((resp) => {
-        this.isLoading = false;
+    this.isLoading = true;
+    const subscription = this.service
+      .countHoursByConsultantWithoutPreparation(id)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+      )
+      .subscribe((resp) => {
+        this.reports = [];
         this.reports = [
           {
             consultant: id,
@@ -90,45 +107,66 @@ export class TableComponent implements OnInit, OnDestroy {
             hour: resp,
           },
         ];
-        this.empty = true;
       });
-      this.subscriptions.push(subscription);
-    } else {
-      this.error = true;
-      this.empty = false;
-    }
+    this.subscriptions.push(subscription);
+  }
+
+  private countGeneralReport(): void {
+    this.isLoading = true;
+    const reportSubscription = this.service
+      .getGeneralReport()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+      )
+      .subscribe((reports) => {
+        this.reports = [];
+        reports.forEach((report) => {
+          this.reports.push({
+            consultant: report.consultant.id,
+            startDate: null,
+            closeDate: null,
+            hour: report.advisoryHours,
+          });
+        });
+      });
+    this.subscriptions.push(reportSubscription);
+  }
+
+  private countGeneralReportBetweenDates(): void {
+    this.isLoading = true;
+    const reportSubscription = this.service
+      .getGeneralReportBetweenDates(this.startDate, this.closeDate)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+      )
+      .subscribe((reports) => {
+        this.reports = [];
+        reports.forEach((report) => {
+          this.reports.push({
+            consultant: report.consultant.id,
+            startDate: this.startDate,
+            closeDate: this.closeDate,
+            hour: report.advisoryHours,
+          });
+        });
+      });
+    this.subscriptions.push(reportSubscription);
   }
 
   public exportAsXLSX(): void {
-    if (this.empty) {
-      this.service.exporterToExcel(this.reports, this.FILENAME.HOUR);
-    }
+    this.service.exporterToExcel(this.reports, this.FILENAME.HOUR);
   }
 
   private loadData() {
-    this.isLoading = true;
     const findConsultantsSubscription = this.service.findAllConsultant().subscribe((resp) => {
       this.consultants = resp;
-      const reportSubscription = this.service
-        .getGeneralReport()
-        .pipe(
-          finalize(() => {
-            this.isLoading = false;
-          }),
-        )
-        .subscribe((reports) => {
-          this.reports = [];
-          reports.forEach((report) => {
-            this.reports.push({
-              consultant: report.consultant.id,
-              startDate: null,
-              closeDate: null,
-              hour: report.advisoryHours,
-            });
-          });
-          this.empty = true;
-        });
-      this.subscriptions.push(reportSubscription);
+      this.authority == this.ROLES.ADMIN
+        ? this.countGeneralReport()
+        : this.countHoursByConsultantWithoutPreparation(this.service.getUser().id);
     });
     this.subscriptions.push(findConsultantsSubscription);
   }
