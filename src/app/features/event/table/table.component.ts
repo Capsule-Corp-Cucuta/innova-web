@@ -29,9 +29,10 @@ export class TableComponent implements OnInit, OnDestroy {
   public readonly ROUTES = UrlConstants.ROUTES;
   public readonly ROLES = SharedConstants.ROLES;
   public readonly LABELS = LabelConstants.LABELS.EVENT.LIST;
+  public readonly FILENAME = SharedConstants.FILENAMES;
 
   public client: string;
-  public filter: string;
+  public filter = '';
   public authority: string;
   public isLoading = false;
   public events: MatTableDataSource<InnovaEvent>;
@@ -91,6 +92,17 @@ export class TableComponent implements OnInit, OnDestroy {
     return (
       this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE
     );
+  }
+
+  public exportAsXLSX(): void {
+    if (this.filter.length == 0) {
+      this.service.exporterToExcel(this.events.data, this.FILENAME.EVENT);
+    } else {
+      this.service.exporterToExcel(
+        this.events.filteredData,
+        this.FILENAME.EVENT,
+      );
+    }
   }
 
   private loadData(): void {

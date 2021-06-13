@@ -16,6 +16,15 @@
           #input
         />
       </mat-form-field>
+      <button
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+      >
+        <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
+      </button>
+
     </mat-card>
 
     <table mat-table [dataSource]="events" matSort class="table--content">
