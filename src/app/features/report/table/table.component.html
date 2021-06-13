@@ -12,19 +12,19 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="page__header--group--item">
-          <mat-label>{{ LABELS.STARTDATE }}</mat-label>
-          <input matInput type="date" placeholder="{{ LABELS.STARTDATE }}" [(ngModel)]="startDate" #input />
+          <mat-label>{{ LABELS.START_DATE }}</mat-label>
+          <input matInput type="date" placeholder="{{ LABELS.START_DATE }}" [(ngModel)]="startDate" #input />
         </mat-form-field>
         <mat-form-field class="page__header--group--item">
-          <mat-label>{{ LABELS.CLOSEDATE }}</mat-label>
-          <input matInput type="date" placeholder="{{ LABELS.CLOSEDATE }}" [(ngModel)]="closeDate" #input />
+          <mat-label>{{ LABELS.CLOSE_DATE }}</mat-label>
+          <input matInput type="date" placeholder="{{ LABELS.CLOSE_DATE }}" [(ngModel)]="closeDate" #input />
         </mat-form-field>
         <button mat-stroked-button color="success" class="page__header--group--item" (click)="loadReport($event)">
           <mat-icon>{{ ICONS.SEARCH }}</mat-icon>
         </button>
         <div *ngIf="error" class="error">
           <p>
-            {{ LABELS.ERRORCONSULTANT }}
+            {{ LABELS.ERROR_CONSULTANT }}
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
       <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef>
-          {{ LABELS.CELLS.STARTDATE }}
+          {{ LABELS.CELLS.START_DATE }}
         </th>
         <td mat-cell *matCellDef="let report">
           {{ report.startDate }}
@@ -56,7 +56,7 @@
 
       <ng-container matColumnDef="closeDate">
         <th mat-header-cell *matHeaderCellDef>
-          {{ LABELS.CELLS.CLOSEDATE }}
+          {{ LABELS.CELLS.CLOSE_DATE }}
         </th>
         <td mat-cell *matCellDef="let report">{{ report.closeDate }}</td>
       </ng-container>

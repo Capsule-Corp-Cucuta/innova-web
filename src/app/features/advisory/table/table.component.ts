@@ -24,9 +24,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
-  public readonly FILENAME = SharedConstants.FILENAMES;
   public readonly ROLES = SharedConstants.ROLES;
+  public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
 
   public authority: string;
   public user: string;

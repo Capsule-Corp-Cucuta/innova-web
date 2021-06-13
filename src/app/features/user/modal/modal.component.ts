@@ -17,8 +17,8 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.CHANGEPASSWORD;
   public readonly ROUTES = UrlConstants.ROUTES;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.CHANGE_PASSWORD;
 
   public form: FormGroup;
   public id: string;

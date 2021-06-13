@@ -1,17 +1,17 @@
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { Contact } from '../../../core/models/contact.model';
 import { ModalComponent } from '../modal/modal.component';
+import { Contact } from '../../../core/models/contact.model';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
-import { finalize } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -24,7 +24,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.LIST;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
 
   public contact: MatTableDataSource<Contact>;

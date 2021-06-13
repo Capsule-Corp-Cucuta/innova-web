@@ -16,26 +16,26 @@
       <mat-card-content class="form__content" *ngIf="step == STEP.ZERO">
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.ID }}" formControlName="id" />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATION_CARD }}" formControlName="id" />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEREGISTER }}"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_REGISTER }}"
               formControlName="registrationDate"
             />
           </mat-form-field>
         </div>
 
         <div>
-          <span>{{ LABELS.LABELCLASSIFICATION }}</span>
+          <span>{{ LABELS.LABEL_CLASSIFICATION }}</span>
         </div>
         <br />
         <mat-form-field>
-          <mat-select placeholder="{{ LABELS.PLACEHOLDER.CLIENTTYPE }}" formControlName="type">
-            <mat-option *ngFor="let op of CONTACTTYPES" [value]="op.value">{{ op.value | ContactType }} </mat-option>
+          <mat-select placeholder="{{ LABELS.PLACEHOLDER.CLIENT_TYPE }}" formControlName="type">
+            <mat-option *ngFor="let op of CONTACT_TYPES" [value]="op.value">{{ op.value | ContactType }} </mat-option>
           </mat-select>
         </mat-form-field>
         <div>
@@ -46,7 +46,7 @@
       </mat-card-content>
       <mat-card-content class="form__content" *ngIf="step == STEP.ONE">
         <div>
-          <span>{{ LABELS.LABELCONTACT }}</span>
+          <span>{{ LABELS.LABEL_CONTACT }}</span>
         </div>
         <br />
         <div class="form__content--group">
@@ -84,7 +84,7 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.PLACEOFBIRTH }}"
+              placeholder="{{ LABELS.PLACEHOLDER.PLACE_OF_BIRTH }}"
               formControlName="birthplace"
             />
           </mat-form-field>
@@ -93,7 +93,7 @@
             <input
               matInput
               type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEOFBIRTH }}"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_OF_BIRTH }}"
               formControlName="birthdate"
             />
           </mat-form-field>
@@ -104,14 +104,14 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}"
+              placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATION_CARD }}"
               formControlName="id"
             />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONALLEVEL }}" formControlName="educationalLevel">
-              <mat-option *ngFor="let op of EDUCATIONALLEVEL" [value]="op.id">{{ op.id | EducationLevel }} </mat-option>
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONAL_LEVEL }}" formControlName="educationalLevel">
+              <mat-option *ngFor="let op of EDUCATIONAL_LEVEL" [value]="op.id">{{ op.id | EducationLevel }} </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -121,13 +121,9 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.ADDRESSCONTACT }}"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_CONTACT }}"
               formControlName="address"
             />
-          </mat-form-field>
-
-          <mat-form-field class="form__content--group--item">
-            <input />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
@@ -161,8 +157,8 @@
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.ETHNICGROUP }}" formControlName="ethnicGroup">
-              <mat-option *ngFor="let op of ETHNICGROUP" [value]="op.id">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.ETHNIC_GROUP }}" formControlName="ethnicGroup">
+              <mat-option *ngFor="let op of ETHNIC_GROUP" [value]="op.id">
                 {{ op.id | EthnicGroup }}
               </mat-option>
             </mat-select>
@@ -192,7 +188,7 @@
       </mat-card-content>
       <mat-card-content class="form__content" *ngIf="step == STEP.TWO">
         <div>
-          <span>{{ LABELS.LABELBUSINESS }}</span>
+          <span>{{ LABELS.LABEL_BUSINESS }}</span>
         </div>
         <br />
         <div class="form__content--group">
@@ -200,7 +196,7 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.BUSINESSNAME }}"
+              placeholder="{{ LABELS.PLACEHOLDER.BUSINESS_NAME }}"
               formControlName="companyName"
             />
           </mat-form-field>
@@ -214,7 +210,7 @@
           <input
             matInput
             type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.LEGALREPRESENTATIVE }}"
+            placeholder="{{ LABELS.PLACEHOLDER.LEGAL_REPRESENTATIVE }}"
             formControlName="companyLegalRepresentative"
           />
         </mat-form-field>
@@ -222,10 +218,10 @@
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
             <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.LEGALCONSTITUTION }}"
+              placeholder="{{ LABELS.PLACEHOLDER.LEGAL_CONSTITUTION }}"
               formControlName="companyLegalConstitution"
             >
-              <mat-option *ngFor="let op of LEGALCONSTITUTION" [value]="op.id"
+              <mat-option *ngFor="let op of LEGAL_CONSTITUTION" [value]="op.id"
                 >{{ op.id | LegalConstitution }}
               </mat-option>
             </mat-select>
@@ -235,7 +231,7 @@
             <input
               matInput
               type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.DATECONSTITUTION }}"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_CONSTITUTION }}"
               formControlName="companyConstitutionDate"
             />
           </mat-form-field>
@@ -293,7 +289,7 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.ADDRESSBUSINESS }}"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_BUSINESS }}"
               formControlName="companyAddress"
             />
           </mat-form-field>
@@ -341,8 +337,8 @@
       <mat-card-content class="form__content" *ngIf="step == STEP.THREE">
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.TYPEOFCOMPANY }}" formControlName="companySector">
-              <mat-option *ngFor="let op of COMPANYTYPE" [value]="op.id">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.TYPE_OF_COMPANY }}" formControlName="companySector">
+              <mat-option *ngFor="let op of COMPANY_TYPE" [value]="op.id">
                 {{ op.id | CompanyType }}
               </mat-option>
             </mat-select>
@@ -352,7 +348,7 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.ANOTHERTYPE }}"
+              placeholder="{{ LABELS.PLACEHOLDER.ANOTHER_TYPE }}"
               formControlName="otherCompanySector"
             />
           </mat-form-field>
@@ -360,7 +356,7 @@
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
             <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTER }}"
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIAL_REGISTER }}"
               formControlName="hasCommercialRegister"
             >
               <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
@@ -371,7 +367,7 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTERNUMBER }}"
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIAL_REGISTER_NUMBER }}"
               formControlName="commercialRegisterNumber"
             />
           </mat-form-field>
@@ -379,7 +375,7 @@
             <input
               matInput
               type="date"
-              placeholder="{{ LABELS.PLACEHOLDER.YEARRENOVATION }}"
+              placeholder="{{ LABELS.PLACEHOLDER.YEAR_RENOVATION }}"
               formControlName="lastYearOfRenovation"
             />
           </mat-form-field>
@@ -389,17 +385,17 @@
             <input
               matInput
               type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.MAINCODECIIU }}"
+              placeholder="{{ LABELS.PLACEHOLDER.MAIN_CODE_CIIU }}"
               formControlName="principalCodeCiiu"
             />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
             <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONALACTIVITY }}"
+              placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONAL_ACTIVITY }}"
               formControlName="internationalActivity"
             >
-              <mat-option *ngFor="let op of INTERNATIONALACTIVITY" [value]="op.id"
+              <mat-option *ngFor="let op of INTERNATIONAL_ACTIVITY" [value]="op.id"
                 >{{ op.id | InternationalActivity }}
               </mat-option>
             </mat-select>
@@ -416,7 +412,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="{{ LABELS.PLACEHOLDER.INTERNETBUSINESS }}" formControlName="isEcommerce">
+          <mat-select placeholder="{{ LABELS.PLACEHOLDER.INTERNET_BUSINESS }}" formControlName="isEcommerce">
             <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -427,8 +423,8 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="{{ LABELS.LABELEND }}" formControlName="discoveryChannel">
-            <mat-option *ngFor="let op of CONTACTMEDIUM" [value]="op.id">
+          <mat-select placeholder="{{ LABELS.LABEL_END }}" formControlName="discoveryChannel">
+            <mat-option *ngFor="let op of CONTACT_MEDIUM" [value]="op.id">
               {{ op.id | ContactMedium }}
             </mat-option>
           </mat-select>

@@ -14,8 +14,8 @@ export class FormViewComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
 
-  public consultant: Consultant;
   public client: string;
+  public consultant: Consultant;
   private subscriptions: Subscription[] = [];
 
   constructor(private service: FacadeService) {
@@ -32,14 +32,15 @@ export class FormViewComponent implements OnInit, OnDestroy {
       subscription.unsubscribe();
     });
   }
+
   public validateIsCreateForm(): void {
-    const subscription = this.service.findByIDClient(this.client).subscribe((resp) => {
-      this.service.findByIDConsultant(resp.consultantId).subscribe((response) => {
+    const findByIDClient = this.service.findByIDClient(this.client).subscribe((resp) => {
+      const findByIDConsultant = this.service.findByIDConsultant(resp.consultantId).subscribe((response) => {
         this.consultant = response;
       });
+      this.subscriptions.push(findByIDConsultant);
     });
-
-    this.subscriptions.push(subscription);
+    this.subscriptions.push(findByIDClient);
   }
 
   private buildAssigned(): void {

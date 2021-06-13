@@ -20,14 +20,14 @@
 
       <div>
         <span>
-          <b>{{ LABELS.PLACEHOLDER.DATESTART }}</b>
+          <b>{{ LABELS.PLACEHOLDER.DATE_START }}</b>
         </span>
         <span> {{ event.startDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
       </div>
 
       <div>
         <span>
-          <b>{{ LABELS.PLACEHOLDER.DATEEND }}</b>
+          <b>{{ LABELS.PLACEHOLDER.DATE_END }}</b>
         </span>
         <span> {{ event.closeDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
       </div>
@@ -55,7 +55,7 @@
 
       <div>
         <span>
-          <b>{{ LABELS.PLACEHOLDER.EVENTTYPE }}</b>
+          <b>{{ LABELS.PLACEHOLDER.EVENT_TYPE }}</b>
         </span>
         <span> {{ event.type | EventType }}</span>
       </div>

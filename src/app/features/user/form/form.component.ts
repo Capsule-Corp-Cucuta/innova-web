@@ -1,15 +1,15 @@
+import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { ModalComponent } from '../modal/modal.component';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { ModalComponent } from '../modal/modal.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.FORM;
 
   public form: FormGroup;
   public idUser: string;

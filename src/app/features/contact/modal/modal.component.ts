@@ -8,6 +8,7 @@ import { Consultant } from 'src/app/core/models/consultant.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal',
@@ -16,7 +17,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.ASSIGNADVISOR;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.ASSIGN_ADVISOR;
 
   public form: FormGroup;
   public id: string;
@@ -50,18 +51,24 @@ export class ModalComponent implements OnInit, OnDestroy {
     e.preventDefault();
     this.idConsultant = this.form.value['consultant'];
     this.isLoading = true;
-    const subscription = this.service.assignConsultant(this.id, this.idConsultant).subscribe(
-      () => {
-        this.isLoading = false;
-        Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, SharedConstants.ALERTSUCCESS.TEXTASSIGN, 'success');
-      },
-      () => {
-        this.isLoading = false;
-        Swal.fire(SharedConstants.ALERTERROR.TITLE, SharedConstants.ALERTERROR.TEXTASSIGN, 'error');
-      },
-    );
+    const subscription = this.service
+      .assignConsultant(this.id, this.idConsultant)
+      .pipe(
+        finalize(() => {
+          this.onNoClick();
+        }),
+      )
+      .subscribe(
+        () => {
+          this.isLoading = false;
+          Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, SharedConstants.ALERTSUCCESS.TEXTASSIGN, 'success');
+        },
+        () => {
+          this.isLoading = false;
+          Swal.fire(SharedConstants.ALERTERROR.TITLE, SharedConstants.ALERTERROR.TEXTASSIGN, 'error');
+        },
+      );
     this.subscriptions.push(subscription);
-    this.onNoClick();
   }
 
   public onNoClick(): void {

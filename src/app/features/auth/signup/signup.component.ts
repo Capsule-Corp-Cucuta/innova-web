@@ -21,7 +21,7 @@ export class SignupComponent implements OnDestroy {
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.FORM;
 
   public form: FormGroup;
   public isBusiness = false;
