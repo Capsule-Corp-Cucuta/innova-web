@@ -15,7 +15,7 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content" *ngIf="step == STEP.ZERO">
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -24,7 +24,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -60,7 +60,7 @@
         </div>
         <br />
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -69,7 +69,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -80,7 +80,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -89,7 +89,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -100,7 +100,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -109,7 +109,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -120,7 +120,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -129,7 +129,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONALLEVEL }}"
               formControlName="educationalLevel"
@@ -142,7 +142,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -151,7 +151,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -160,7 +160,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -171,7 +171,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="tel"
@@ -180,7 +180,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="tel"
@@ -200,7 +200,7 @@
         </mat-form-field>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.GENDER }}"
               formControlName="gender"
@@ -211,7 +211,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.ETHNICGROUP }}"
               formControlName="ethnicGroup"
@@ -224,7 +224,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}"
               formControlName="isDisplaced"
@@ -234,7 +234,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}"
               formControlName="isHandicapped"
@@ -260,7 +260,7 @@
         </div>
         <br />
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -269,7 +269,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -289,7 +289,7 @@
         </mat-form-field>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.LEGALCONSTITUTION }}"
               formControlName="companyLegalConstitution"
@@ -300,7 +300,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -311,7 +311,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -320,7 +320,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -328,7 +328,7 @@
               formControlName="companyNumberOfFullTimeEmployees"
             />
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -339,7 +339,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -347,7 +347,7 @@
               formControlName="companyNumberOfDirectEmployees"
             />
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="number"
@@ -358,7 +358,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -366,7 +366,7 @@
               formControlName="companyAddress"
             />
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -376,7 +376,7 @@
           </mat-form-field>
         </div>
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="tel"
@@ -385,7 +385,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="tel"
@@ -395,7 +395,7 @@
           </mat-form-field>
         </div>
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="email"
@@ -404,7 +404,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -424,7 +424,7 @@
       </mat-card-content>
       <mat-card-content class="form__content" *ngIf="step == STEP.THREE">
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.TYPEOFCOMPANY }}"
               formControlName="companySector"
@@ -435,7 +435,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -445,7 +445,7 @@
           </mat-form-field>
         </div>
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.COMMERCIALREGISTER }}"
               formControlName="hasCommercialRegister"
@@ -456,7 +456,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -464,7 +464,7 @@
               formControlName="commercialRegisterNumber"
             />
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="date"
@@ -474,7 +474,7 @@
           </mat-form-field>
         </div>
         <div class="form__content--group">
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <input
               matInput
               type="text"
@@ -483,7 +483,7 @@
             />
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="form__content--group--item">
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONALACTIVITY }}"
               formControlName="internationalActivity"
