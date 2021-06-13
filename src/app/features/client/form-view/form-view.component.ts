@@ -33,15 +33,11 @@ export class FormViewComponent implements OnInit, OnDestroy {
     });
   }
   public validateIsCreateForm(): void {
-    const subscription = this.service
-      .findByIDClient(this.client)
-      .subscribe((resp) => {
-        this.service
-          .findByIDConsultant(resp.consultantId)
-          .subscribe((response) => {
-            this.consultant = response;
-          });
+    const subscription = this.service.findByIDClient(this.client).subscribe((resp) => {
+      this.service.findByIDConsultant(resp.consultantId).subscribe((response) => {
+        this.consultant = response;
       });
+    });
 
     this.subscriptions.push(subscription);
   }

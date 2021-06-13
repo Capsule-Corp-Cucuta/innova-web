@@ -1,22 +1,12 @@
-import { ContactType } from 'src/app/core/models/contact.model';
-import { JwtModel } from 'src/app/core/models/jwt.model';
-import { Client } from '../../core/models/client.model';
-import { Consultant } from '../../core/models/consultant.model';
-import { Contact } from '../../core/models/contact.model';
-import {
-  InnovaEvent,
-  EventState,
-  EventType,
-} from '../../core/models/innova-event.model';
-
-import {
-  Advisory,
-  AdvisoryArea,
-  AdvisoryState,
-  AdvisoryType,
-} from '../../core/models/advisory.model';
 import { User } from 'src/app/core/models/user.model';
+import { Client } from '../../core/models/client.model';
+import { JwtModel } from 'src/app/core/models/jwt.model';
+import { Contact } from '../../core/models/contact.model';
+import { Consultant } from '../../core/models/consultant.model';
+import { ContactType } from 'src/app/core/models/contact.model';
 import { Inscription } from 'src/app/core/models/inscription.model';
+import { EventState, EventType, InnovaEvent } from '../../core/models/innova-event.model';
+import { Advisory, AdvisoryArea, AdvisoryState, AdvisoryType } from '../../core/models/advisory.model';
 
 export class TestUtils {
   static JWT: JwtModel = {

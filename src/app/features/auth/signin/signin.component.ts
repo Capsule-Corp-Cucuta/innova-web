@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User, UserLogin } from 'src/app/core/models/user.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
@@ -29,11 +29,7 @@ export class SigninComponent implements OnInit {
   public errorMessage: string;
   public roles: string[] = [];
 
-  constructor(
-    private router: Router,
-    private service: FacadeService,
-    private formBuilder: FormBuilder,
-  ) {
+  constructor(private router: Router, private service: FacadeService, private formBuilder: FormBuilder) {
     this.buildForm();
   }
 
@@ -80,10 +76,7 @@ export class SigninComponent implements OnInit {
             );
         },
         (error: HttpErrorResponse) => {
-          this.errorMessage =
-            error && error.status === 401
-              ? this.LABELS.ERROR
-              : this.LABELS.ERROR_NOT_FOUND;
+          this.errorMessage = error && error.status === 401 ? this.LABELS.ERROR : this.LABELS.ERROR_NOT_FOUND;
 
           this.signInError();
         },

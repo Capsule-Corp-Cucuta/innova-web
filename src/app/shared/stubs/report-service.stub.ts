@@ -7,11 +7,7 @@ import { TestUtils } from './TestUtils';
   providedIn: 'root',
 })
 export class ReportServiceStub {
-  public reportHours(
-    idConsultant: string,
-    startDate: Date,
-    closeDate: Date,
-  ): Observable<any[]> {
+  public reportHours(idConsultant: string, startDate: Date, closeDate: Date): Observable<any[]> {
     return of(TestUtils.report);
   }
 }

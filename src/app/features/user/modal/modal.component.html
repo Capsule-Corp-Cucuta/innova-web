@@ -14,23 +14,11 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
         <mat-form-field>
-          <input
-            matInput
-            type="password"
-            placeholder="{{ LABELS.OLDPASS }}"
-            formControlName="oldPassword"
-            required
-          />
+          <input matInput type="password" placeholder="{{ LABELS.OLDPASS }}" formControlName="oldPassword" required />
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="password"
-            placeholder="{{ LABELS.NEWPASS }}"
-            formControlName="newPassword"
-            required
-          />
+          <input matInput type="password" placeholder="{{ LABELS.NEWPASS }}" formControlName="newPassword" required />
         </mat-form-field>
 
         <mat-form-field>

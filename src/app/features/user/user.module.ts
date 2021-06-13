@@ -9,12 +9,6 @@ import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [FormComponent, ModalComponent],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    CommonModule,
-    UserRoutingModule,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, SharedModule, CommonModule, UserRoutingModule],
 })
 export class UserModule {}

@@ -92,10 +92,7 @@ export class FacadeServiceStub {
     return this.contactServiceStub.findAll();
   }
 
-  public assignConsultant(
-    contacto: string,
-    asesor: string,
-  ): Observable<Response> {
+  public assignConsultant(contacto: string, asesor: string): Observable<Response> {
     return this.contactServiceStub.assign(contacto, asesor);
   }
 
@@ -173,16 +170,8 @@ export class FacadeServiceStub {
     return this.userServiceStub.findByID(id);
   }
 
-  public reportHours(
-    idConsultant: string,
-    startDate: Date,
-    closeDate: Date,
-  ): Observable<any[]> {
-    return this.reportServiceStub.reportHours(
-      idConsultant,
-      startDate,
-      closeDate,
-    );
+  public reportHours(idConsultant: string, startDate: Date, closeDate: Date): Observable<any[]> {
+    return this.reportServiceStub.reportHours(idConsultant, startDate, closeDate);
   }
 
   public findAttendanceByEvent(id: number): Observable<Inscription[]> {

@@ -90,8 +90,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE +
-              SharedConstants.ALERTSUCCESS.ADVISER,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.ADVISER,
             'success',
           );
 
@@ -101,8 +100,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE +
-              SharedConstants.ALERTERROR.ADVISER,
+            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
         },
@@ -122,8 +120,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.ADVISER,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.ADVISER,
             'success',
           );
           this.router.navigate(['./asesoria']);
@@ -132,8 +129,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.ADVISER,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.ADVISER,
             'error',
           );
           this.validateInput(true);
@@ -160,11 +156,9 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   private loadClients(idConsultant: string): void {
-    const subscription = this.service
-      .findClientByConsultant(idConsultant)
-      .subscribe((resp) => {
-        this.clients = resp;
-      });
+    const subscription = this.service.findClientByConsultant(idConsultant).subscribe((resp) => {
+      this.clients = resp;
+    });
     this.subscriptions.push(subscription);
   }
 

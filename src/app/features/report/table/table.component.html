@@ -6,45 +6,20 @@
     <mat-divider></mat-divider>
     <mat-card class="page__header">
       <div class="page__header--group">
-        <mat-form-field
-          class="page__header--group--item"
-          *ngIf="authority == ROLES.ADMIN"
-        >
-          <mat-select
-            placeholder="{{ LABELS.CONSULTANT }}"
-            [(ngModel)]="consultantId"
-          >
-            <mat-option *ngFor="let op of consultants" [value]="op.id">
-              {{ op.name }} {{ op.lastname }}
-            </mat-option>
+        <mat-form-field class="page__header--group--item" *ngIf="authority == ROLES.ADMIN">
+          <mat-select placeholder="{{ LABELS.CONSULTANT }}" [(ngModel)]="consultantId">
+            <mat-option *ngFor="let op of consultants" [value]="op.id"> {{ op.name }} {{ op.lastname }} </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="page__header--group--item">
           <mat-label>{{ LABELS.STARTDATE }}</mat-label>
-          <input
-            matInput
-            type="date"
-            placeholder="{{ LABELS.STARTDATE }}"
-            [(ngModel)]="startDate"
-            #input
-          />
+          <input matInput type="date" placeholder="{{ LABELS.STARTDATE }}" [(ngModel)]="startDate" #input />
         </mat-form-field>
         <mat-form-field class="page__header--group--item">
           <mat-label>{{ LABELS.CLOSEDATE }}</mat-label>
-          <input
-            matInput
-            type="date"
-            placeholder="{{ LABELS.CLOSEDATE }}"
-            [(ngModel)]="closeDate"
-            #input
-          />
+          <input matInput type="date" placeholder="{{ LABELS.CLOSEDATE }}" [(ngModel)]="closeDate" #input />
         </mat-form-field>
-        <button
-          mat-stroked-button
-          color="success"
-          class="page__header--group--item"
-          (click)="loadReport($event)"
-        >
+        <button mat-stroked-button color="success" class="page__header--group--item" (click)="loadReport($event)">
           <mat-icon>{{ ICONS.SEARCH }}</mat-icon>
         </button>
         <div *ngIf="error" class="error">
@@ -54,12 +29,7 @@
         </div>
       </div>
       <div class="page__header--group" *ngIf="empty">
-        <button
-          mat-stroked-button
-          color="primary"
-          class="page__header--group--item"
-          (click)="exportAsXLSX()"
-        >
+        <button mat-stroked-button color="primary" class="page__header--group--item" (click)="exportAsXLSX()">
           <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
         </button>
       </div>

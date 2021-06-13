@@ -19,10 +19,7 @@ export class AdvisoryService {
   }
 
   public update(advisory: Advisory): Observable<Response> {
-    return this.http.put<Response>(
-      `${AdvisoryService.ENDPOINT}/${advisory.id}`,
-      advisory,
-    );
+    return this.http.put<Response>(`${AdvisoryService.ENDPOINT}/${advisory.id}`, advisory);
   }
 
   public findAll(): Observable<Advisory[]> {
@@ -34,14 +31,10 @@ export class AdvisoryService {
   }
 
   public findByConsultant(id: string): Observable<Advisory[]> {
-    return this.http.get<Advisory[]>(
-      `${AdvisoryService.ENDPOINT}/consultant/${id}`,
-    );
+    return this.http.get<Advisory[]>(`${AdvisoryService.ENDPOINT}/consultant/${id}`);
   }
 
   public findByClient(id: string): Observable<Advisory[]> {
-    return this.http.get<Advisory[]>(
-      AdvisoryService.ENDPOINT + '/client/' + id,
-    );
+    return this.http.get<Advisory[]>(AdvisoryService.ENDPOINT + '/client/' + id);
   }
 }

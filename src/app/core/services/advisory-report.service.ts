@@ -22,12 +22,8 @@ export class AdvisoryReportService {
     return null; // TODO
   }
 
-  public countHoursByConsultantWithoutPreparation(
-    idConsultant: string,
-  ): Observable<number> {
-    return this.http.get<number>(
-      `${AdvisoryReportService.ENDPOINT}/count-hours/consultant/${idConsultant}`,
-    );
+  public countHoursByConsultantWithoutPreparation(idConsultant: string): Observable<number> {
+    return this.http.get<number>(`${AdvisoryReportService.ENDPOINT}/count-hours/consultant/${idConsultant}`);
   }
 
   public countHoursByConsultantWithoutPreparationBetweenDates(
@@ -39,9 +35,7 @@ export class AdvisoryReportService {
     return this.http.get<number>(
       `${
         AdvisoryReportService.ENDPOINT
-      }/count-hours/consultant/${consultantId}/between-dates?criteria=${encodeURIComponent(
-        JSON.stringify(criteria),
-      )}`,
+      }/count-hours/consultant/${consultantId}/between-dates?criteria=${encodeURIComponent(JSON.stringify(criteria))}`,
     );
   }
 

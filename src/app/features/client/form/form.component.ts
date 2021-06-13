@@ -81,8 +81,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.CLIENT,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.CLIENT,
             'success',
           );
           this.router.navigate(['./cliente']);
@@ -91,8 +90,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.CLIENT,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.CLIENT,
             'error',
           );
           this.validateInput(true);

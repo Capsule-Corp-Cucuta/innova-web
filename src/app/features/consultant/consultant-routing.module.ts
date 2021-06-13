@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';

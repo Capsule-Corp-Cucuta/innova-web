@@ -19,10 +19,7 @@ export class EventService {
   }
 
   public update(event: InnovaEvent): Observable<Response> {
-    return this.http.put<Response>(
-      `${EventService.ENDPOINT}/${event.id}`,
-      event,
-    );
+    return this.http.put<Response>(`${EventService.ENDPOINT}/${event.id}`, event);
   }
 
   public findAll(): Observable<InnovaEvent[]> {

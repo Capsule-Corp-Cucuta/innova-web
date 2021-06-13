@@ -19,10 +19,7 @@ export class ConsultantService {
   }
 
   public update(consultant: Consultant): Observable<Response> {
-    return this.http.put<Response>(
-      `${ConsultantService.ENDPOINT}/${consultant.id}`,
-      consultant,
-    );
+    return this.http.put<Response>(`${ConsultantService.ENDPOINT}/${consultant.id}`, consultant);
   }
 
   public findAll(): Observable<Consultant[]> {

@@ -27,24 +27,14 @@ export class UserService {
   }
 
   public disable(id: string): Observable<Response> {
-    return this.http.put<Response>(
-      `${UserService.ENDPOINT}/${id}/change-state`,
-      null,
-    );
+    return this.http.put<Response>(`${UserService.ENDPOINT}/${id}/change-state`, null);
   }
 
-  public changePassword(
-    id: string,
-    oldPassword: string,
-    newPassword: string,
-  ): Observable<Response> {
-    return this.http.put<Response>(
-      `${UserService.ENDPOINT}/${id}/change-password`,
-      {
-        oldPassword,
-        newPassword,
-      },
-    );
+  public changePassword(id: string, oldPassword: string, newPassword: string): Observable<Response> {
+    return this.http.put<Response>(`${UserService.ENDPOINT}/${id}/change-password`, {
+      oldPassword,
+      newPassword,
+    });
   }
 
   public recoverPassword(email: string): Observable<Response> {
