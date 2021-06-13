@@ -18,6 +18,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
+  public readonly ROUTES = UrlConstants.ROUTES;
 
   public form: FormGroup;
   public isCreate: boolean;

@@ -119,6 +119,10 @@
 
       <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="12">{{ LABELS.NOT_DATA }}</td>
+      </tr>
     </table>
     <div class="table-spinner" *ngIf="isLoading">
       <mat-spinner color="primary" diameter="70"></mat-spinner>
