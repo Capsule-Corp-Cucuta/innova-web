@@ -80,7 +80,7 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public showEdit(advisory: Advisory): boolean {
-    return this.authority === this.ROLES.CONSULTANT && advisory.state !== AdvisoryState.COMPLETE;
+    return this.authority === this.ROLES.CONSULTANT && advisory.state !== AdvisoryState.COMPLETADA;
   }
 
   private loadData(): void {

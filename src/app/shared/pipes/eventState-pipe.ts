@@ -8,16 +8,16 @@ export class EventStatePipe implements PipeTransform {
   public transform(value: number | string): string {
     switch (value) {
       case 0:
-      case 'OPEN':
+      case 'ABIERTO':
         return SharedConstants.PIPES.EVENTSTATE.OPEN;
       case 1:
-      case 'CLOSED':
+      case 'CERRADO':
         return SharedConstants.PIPES.EVENTSTATE.CLOSED;
       case 2:
-      case 'COMPLETE':
+      case 'COMPLETADO':
         return SharedConstants.PIPES.EVENTSTATE.COMPLETE;
       case 3:
-      case 'CANCELED':
+      case 'CANCELADO':
         return SharedConstants.PIPES.EVENTSTATE.CANCELED;
       default:
         return SharedConstants.PIPES.EVENTSTATE.POSTPONED;

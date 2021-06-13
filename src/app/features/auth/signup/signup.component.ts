@@ -5,7 +5,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ContactType } from 'src/app/core/models/contact.model';
-import { ContactState } from '../../../core/models/contact.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
@@ -23,10 +22,10 @@ export class SignupComponent implements OnDestroy {
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
   public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.FORM;
 
+  public state: boolean;
   public form: FormGroup;
-  public isBusiness = false;
-  public state: number;
   public isLoading = false;
+  public isBusiness = false;
   private subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder, private service: FacadeService, private router: Router) {
@@ -40,12 +39,12 @@ export class SignupComponent implements OnDestroy {
   }
 
   public loadDataBusiness(type: ContactType): void {
-    this.isBusiness = type === ContactType.COMPANY ? true : false;
+    this.isBusiness = type === ContactType.EMPRESA ? true : false;
   }
 
   public create(): void {
     const contact = this.form.value;
-    this.state = contact.state === true ? ContactState.PENDING_ADVISOR : ContactState.NO_ADVISORY;
+    this.state = contact.state === true;
 
     contact.state = this.state;
 
