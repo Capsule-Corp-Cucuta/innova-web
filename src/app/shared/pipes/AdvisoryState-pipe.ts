@@ -8,10 +8,10 @@ export class AdvisoryStatePipe implements PipeTransform {
   public transform(value: number | string): string {
     switch (value) {
       case 0:
-      case 'PENDING':
+      case 'PENDIENTE':
         return SharedConstants.PIPES.ADVISORYSTATE.PENDING;
       case 1:
-      case 'REJECTED':
+      case 'RECHAZADA':
         return SharedConstants.PIPES.ADVISORYSTATE.REJECTED;
       default:
         return SharedConstants.PIPES.ADVISORYSTATE.COMPLETE;

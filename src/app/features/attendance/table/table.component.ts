@@ -1,12 +1,12 @@
+import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
-import Swal from 'sweetalert2';
-import { Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { EventState } from 'src/app/core/models/innova-event.model';
 import { Inscription } from 'src/app/core/models/inscription.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
@@ -23,8 +23,8 @@ export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.ATTENDANCE.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.ATTENDANCE.LIST;
 
   public filter = '';
   public state: boolean;
@@ -51,7 +51,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public validateEvent(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.eventId = params.id;
-      this.state = params.state === EventState.COMPLETE ? false : true;
+      this.state = params.state !== EventState.COMPLETADO;
     });
   }
 

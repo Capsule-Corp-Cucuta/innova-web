@@ -17,13 +17,6 @@ export class Contact extends User {
 }
 
 export enum ContactType {
-  COMPANY = 'COMPANY',
-  ENTREPRENEUR = 'ENTREPRENEUR',
-}
-
-export enum ContactState {
-  NO_ADVISORY,
-  PENDING_ADVISOR,
-  ENABLED,
-  DISABLED,
+  EMPRESA = 'EMPRESA',
+  EMPRENDEDOR = 'EMPRENDEDOR',
 }

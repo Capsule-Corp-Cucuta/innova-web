@@ -38,57 +38,57 @@ export class Client extends Contact {
 }
 
 export enum EducationalLevel {
-  PRIMARY,
-  BACHELOR,
-  TECHNICAL,
-  PROFESSIONAL,
-  POSTGRADUATE,
-  OTHERS,
+  PRIMARIA,
+  BACHILLER,
+  TECNICO,
+  PROFESIONAL,
+  POSGRADO,
+  OTRO,
 }
 
 export enum Gender {
-  MALE,
-  FEMALE,
-  OTHER,
+  MASCULINO,
+  FEMENINO,
+  OTRO,
 }
 
 export enum EthnicGroup {
-  GYPSY,
-  INDIGENOUS,
-  AFRO_COLOMBIAN,
+  GITANO,
+  INDIGENA,
+  AFRO_COLOMBIANO,
   RAIZALES,
-  OTHER,
+  OTRO,
 }
 
 export enum LegalConstitution {
   SAS,
-  LIMITED,
-  ANONYMOUS,
-  LEGAL_PERSON,
-  OTHER,
+  LIMITADA,
+  ANONIMO,
+  PERSONA_LEGAL,
+  OTRO,
 }
 
 export enum CompanySector {
   INDUSTRIAL,
-  WHOLESALE,
-  RETAIL,
-  SERVICES,
+  VENTAS_AL_MAYOR,
+  VENTAS_AL_DETAL,
+  SERVICIOS,
   AGROINDUSTRIAL,
 }
 
 export enum InternationalActivity {
-  IMPORT,
-  EXPORT,
-  BOTH,
-  DOES_NO_APPLY,
+  IMPORTACIONES,
+  EXPORTACIONES,
+  AMBAS,
+  NO_APLICA,
 }
 
 export enum DiscoveryChannel {
-  MINISTRY_REFERRAL,
-  BUSINESS_REFERRAL,
-  UNIVERSITY,
-  MASS_MEDIA,
-  WEBSITE,
-  SOCIAL_MEDIA,
-  OTHERS,
+  REFERIDO_DEL_MINISTERIO,
+  REFERIDO_DE_EMPRESA,
+  UNIVERSIADA,
+  MEDIOS_DE_COMUNICAION,
+  SITIO_WEB,
+  REDES_SOCIALES,
+  OTROS,
 }

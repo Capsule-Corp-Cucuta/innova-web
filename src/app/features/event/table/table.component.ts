@@ -70,7 +70,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public openDialog(event: InnovaEvent): void {
     const enrolled = this.isEnrolled(event);
     const showButton =
-      (event.state === EventState.OPEN || event.state === EventState.POSTPONED) && !enrolled ? true : false;
+      (event.state === EventState.ABIERTO || event.state === EventState.POSPUESTO) && !enrolled ? true : false;
     const dialog = this.dialog.open(ModalComponent, {
       data: {
         event,
@@ -82,7 +82,7 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public showEdit(event: InnovaEvent): boolean {
-    return this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE;
+    return this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETADO;
   }
 
   public exportAsXLSX(): void {

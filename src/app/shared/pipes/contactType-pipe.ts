@@ -8,7 +8,7 @@ export class ContactTypePipe implements PipeTransform {
   public transform(value: number | string): string {
     switch (value) {
       case 0:
-      case 'COMPANY':
+      case 'EMPRESA':
         return SharedConstants.PIPES.CONTACTTYPE.COMPANY;
       default:
         return SharedConstants.PIPES.CONTACTTYPE.ENTREPRENEUR;
