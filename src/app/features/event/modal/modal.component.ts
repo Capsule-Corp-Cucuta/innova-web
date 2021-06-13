@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Inscription } from 'src/app/core/models/inscription.model';
@@ -7,13 +7,15 @@ import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['../../../shared/styles/_modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROLES = SharedConstants.ROLES;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
@@ -24,6 +26,8 @@ export class ModalComponent implements OnInit {
   public showButton: boolean;
   public inscription: Inscription;
   public isLoading = false;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -42,30 +46,45 @@ export class ModalComponent implements OnInit {
     this.loadEvent();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
+  }
+
   public onNoClick(): void {
     this.dialogRef.close();
   }
 
   public inscriptionEvent(): void {
     this.isLoading = true;
-    this.service.inscriptToEvent(this.idUser, this.event.id).subscribe(
-      () => {
-        this.isLoading = false;
-        Swal.fire(
-          SharedConstants.ALERTSUCCESS.TITLE,
-          SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT_INSCRIPTION,
-          'success',
-        );
-      },
-      () => {
-        this.isLoading = false;
-        Swal.fire(
-          SharedConstants.ALERTERROR.TITLE,
-          SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT_INSCRIPTION,
-          'error',
-        );
-      },
-    );
+    const subscription = this.service
+      .inscriptToEvent(this.idUser, this.event.id)
+      .pipe(
+        finalize(() => {
+          this.onNoClick();
+        }),
+      )
+      .subscribe(
+        () => {
+          this.isLoading = false;
+          Swal.fire(
+            SharedConstants.ALERTSUCCESS.TITLE,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT_INSCRIPTION,
+            'success',
+          );
+        },
+        () => {
+          this.isLoading = false;
+          Swal.fire(
+            SharedConstants.ALERTERROR.TITLE,
+            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT_INSCRIPTION,
+            'error',
+          );
+        },
+      );
+
+    this.subscriptions.push(subscription);
   }
 
   private loadEvent() {

@@ -135,7 +135,7 @@ export class SharedConstants {
     CONSULTANT: ' el asesor',
     EVENT: ' el evento',
     CONTACT: ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
-    USER: 'usuario',
+    USER: ' el usuario',
     ATTENDANCE: ' la asistencia',
     EVENT_INSCRIPTION: 'la inscripcion al evento',
     EMAIL: 'Se envio correo electrónico con la contraseña',

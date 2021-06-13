@@ -115,12 +115,12 @@ export class FormComponent implements OnInit, OnDestroy {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      id: ['', [Validators.required, Validators.maxLength(10)]],
-      cellphone: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
-      address: [''],
+      name: [null, [Validators.required]],
+      lastname: [null, [Validators.required]],
+      id: [null, [Validators.required, Validators.maxLength(10)]],
+      cellphone: [null, [Validators.required, Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]],
+      email: [null, [Validators.required, Validators.email]],
+      address: [null],
       check: false,
     });
   }

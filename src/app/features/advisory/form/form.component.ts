@@ -29,6 +29,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public isCreate: boolean;
   public clients: Client[];
   public isLoading = false;
+  public today = new Date();
 
   private subscriptions: Subscription[] = [];
 

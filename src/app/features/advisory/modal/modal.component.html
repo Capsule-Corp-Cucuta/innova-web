@@ -67,5 +67,12 @@
         <span> {{ advisory.notes }} </span>
       </div>
     </mat-card-content>
+    <mat-divider></mat-divider>
+
+    <mat-card-actions class="form__actions">
+      <button mat-raised-button (click)="onNoClick()">
+        <span>{{ LABELS.CLOSE }}</span>
+      </button>
+    </mat-card-actions>
   </mat-card>
 </section>

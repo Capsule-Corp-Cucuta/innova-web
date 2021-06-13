@@ -60,11 +60,11 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public isEnrolled(event: InnovaEvent): boolean {
-    let enrolled = false;
-    event.inscriptions.find((inscription) => {
-      enrolled = inscription.userId === this.client ? true : false;
-    });
-    return enrolled;
+    return event.inscriptions.find((inscription) => {
+      return inscription.userId === this.client;
+    })
+      ? true
+      : false;
   }
 
   public openDialog(event: InnovaEvent): void {
@@ -104,6 +104,8 @@ export class TableComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe((resp) => {
+        console.log(resp);
+
         this.events = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);
