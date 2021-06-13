@@ -7,12 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { ModalComponent } from '../modal/modal.component';
-import { Advisory } from '../../../core/models/advisory.model';
-import { AdvisoryState } from '../../../core/models/advisory.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { Advisory, AdvisoryState } from '../../../core/models/advisory.model';
 
 @Component({
   selector: 'app-table',
@@ -25,9 +24,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
-  public readonly FILENAME = SharedConstants.FILENAMES;
   public readonly ROLES = SharedConstants.ROLES;
+  public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.ADVISORY.LIST;
 
   public authority: string;
   public user: string;
@@ -76,18 +75,12 @@ export class TableComponent implements OnInit, OnDestroy {
     if (this.filter.length == 0) {
       this.service.exporterToExcel(this.advisory.data, this.FILENAME.ADVISER);
     } else {
-      this.service.exporterToExcel(
-        this.advisory.filteredData,
-        this.FILENAME.ADVISER,
-      );
+      this.service.exporterToExcel(this.advisory.filteredData, this.FILENAME.ADVISER);
     }
   }
 
   public showEdit(advisory: Advisory): boolean {
-    return (
-      this.authority === this.ROLES.CONSULTANT &&
-      advisory.state !== AdvisoryState.COMPLETE
-    );
+    return this.authority === this.ROLES.CONSULTANT && advisory.state !== AdvisoryState.COMPLETE;
   }
 
   private loadData(): void {

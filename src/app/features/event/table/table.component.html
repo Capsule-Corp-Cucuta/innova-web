@@ -8,13 +8,7 @@
     <mat-card class="page__header">
       <mat-form-field>
         <mat-label>{{ LABELS.FILTER }}</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter()"
-          placeholder="{{ LABELS.SEARCH }}"
-          [(ngModel)]="filter"
-          #input
-        />
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
       <button
         mat-stroked-button
@@ -39,7 +33,7 @@
 
       <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.DATESTART }}
+          {{ LABELS.CELLS.DATE_START }}
         </th>
         <td mat-cell *matCellDef="let event">
           {{ event.startDate | date: 'yyyy-MM-dd hh:mm a' }}
@@ -48,7 +42,7 @@
 
       <ng-container matColumnDef="closeDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.DATEEND }}
+          {{ LABELS.CELLS.DATE_END }}
         </th>
         <td mat-cell *matCellDef="let event">
           {{ event.closeDate | date: 'yyyy-MM-dd hh:mm a' }}
@@ -66,7 +60,7 @@
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.EVENTTYPE }}
+          {{ LABELS.CELLS.EVENT_TYPE }}
         </th>
         <td mat-cell *matCellDef="let event">
           {{ event.type | EventType }}
@@ -83,19 +77,10 @@
       </ng-container>
 
       <ng-container matColumnDef="enrolled">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          [hidden]="authority === ROLES.ADMIN"
-        >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header [hidden]="authority === ROLES.ADMIN">
           {{ LABELS.CELLS.ENROLLED }}
         </th>
-        <td
-          mat-cell
-          [hidden]="authority === ROLES.ADMIN"
-          *matCellDef="let event"
-        >
+        <td mat-cell [hidden]="authority === ROLES.ADMIN" *matCellDef="let event">
           {{ isEnrolled(event) | Option }}
         </td>
       </ng-container>
@@ -122,20 +107,13 @@
           >
             <mat-icon>{{ ICONS.EDIT }}</mat-icon>
           </button>
-          <button
-            mat-stroked-button
-            color="success"
-            (click)="openDialog(event)"
-            matTooltip="{{ LABELS.TOOLTIP.VIEW }}"
-          >
+          <button mat-stroked-button color="success" (click)="openDialog(event)" matTooltip="{{ LABELS.TOOLTIP.VIEW }}">
             <mat-icon>{{ ICONS.VIEW }}</mat-icon>
           </button>
           <button
             mat-stroked-button
             color="warn"
-            routerLink="../{{ ROUTES.ATTENDANCE }}/{{ ROUTES.UPDATE }}/{{
-              event.id
-            }}/{{ event.state }}"
+            routerLink="../{{ ROUTES.ATTENDANCE }}/{{ ROUTES.UPDATE }}/{{ event.id }}/{{ event.state }}"
             matTooltip="{{ LABELS.TOOLTIP.ATTENDANCE }}"
             *ngIf="authority == ROLES.ADMIN"
           >
@@ -146,17 +124,10 @@
 
       <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="12">{{ LABELS.NOTDATA }}</td>
-      </tr>
     </table>
     <div class="table-spinner" *ngIf="isLoading">
       <mat-spinner color="primary" diameter="70"></mat-spinner>
     </div>
-    <mat-paginator
-      class="paginator"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-    ></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>

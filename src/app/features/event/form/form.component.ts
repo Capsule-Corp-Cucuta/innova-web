@@ -17,8 +17,8 @@ import { SharedConstants } from '../../../shared/constants/shared-constants';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly EVENTTYPE = LabelConstants.EVENTTYPE;
-  public readonly EVENTSTATE = LabelConstants.EVENTSTATE;
+  public readonly EVENT_TYPE = LabelConstants.EVENT_TYPE;
+  public readonly EVENT_STATE = LabelConstants.EVENT_STATE;
   public readonly LABELS = LabelConstants.LABELS.EVENT.FORM;
 
   public endDate: Date;
@@ -76,8 +76,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE +
-              SharedConstants.ALERTSUCCESS.EVENT,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT,
             'success',
           );
           this.router.navigate(['./evento']);
@@ -86,8 +85,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE +
-              SharedConstants.ALERTERROR.EVENT,
+            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT,
             'error',
           );
         },
@@ -106,8 +104,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.EVENT,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.EVENT,
             'success',
           );
           this.router.navigate(['./evento']);
@@ -116,8 +113,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.EVENT,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.EVENT,
             'error',
           );
         },

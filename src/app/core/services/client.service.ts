@@ -14,18 +14,12 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  public assign(contact: string, consultant: string): Observable<Response> {
-    return this.http.post<Response>(
-      `${ClientService.ENDPOINT}/${contact}/consultant/${consultant}`,
-      {},
-    );
+  public assign(contactId: string, consultantId: string): Observable<Response> {
+    return this.http.post<Response>(ClientService.ENDPOINT, JSON.stringify({ contactId, consultantId }));
   }
 
   public update(client: Client): Observable<Response> {
-    return this.http.put<Response>(
-      `${ClientService.ENDPOINT}/${client.id}`,
-      client,
-    );
+    return this.http.put<Response>(`${ClientService.ENDPOINT}/${client.id}`, client);
   }
 
   public findAll(): Observable<Client[]> {
@@ -37,8 +31,6 @@ export class ClientService {
   }
 
   public findByConsultant(id: string): Observable<Client[]> {
-    return this.http.get<Client[]>(
-      `${ClientService.ENDPOINT}/consultant/${id}`,
-    );
+    return this.http.get<Client[]>(`${ClientService.ENDPOINT}/consultant/${id}`);
   }
 }

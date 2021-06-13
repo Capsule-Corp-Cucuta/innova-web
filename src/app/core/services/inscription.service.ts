@@ -14,10 +14,7 @@ export class InscriptionService {
 
   constructor(private http: HttpClient) {}
 
-  public inscriptToEvent(
-    idUser: string,
-    idEvent: number,
-  ): Observable<Response> {
+  public inscriptToEvent(idUser: string, idEvent: number): Observable<Response> {
     return this.http.post<Response>(InscriptionService.ENDPOINT, {
       userId: idUser,
       eventId: idEvent,
@@ -29,8 +26,6 @@ export class InscriptionService {
   }
 
   public findInscriptionsByEvent(id: number): Observable<Inscription[]> {
-    return this.http.get<Inscription[]>(
-      InscriptionService.ENDPOINT + '/event/' + id,
-    );
+    return this.http.get<Inscription[]>(InscriptionService.ENDPOINT + '/event/' + id);
   }
 }

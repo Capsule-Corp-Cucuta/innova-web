@@ -16,13 +16,7 @@
       <mat-card-content class="form__content">
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.TITLE }}"
-              formControlName="title"
-              required
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.TITLE }}" formControlName="title" required />
           </mat-form-field>
         </div>
 
@@ -31,7 +25,7 @@
             <input
               matInput
               type="datetime-local"
-              placeholder="{{ LABELS.PLACEHOLDER.DATESTART }}"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_START }}"
               formControlName="startDate"
               min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
               (change)="validateDates()"
@@ -39,14 +33,11 @@
             />
           </mat-form-field>
 
-          <mat-form-field
-            class="form__content--group--item"
-            *ngIf="form.value['startDate']"
-          >
+          <mat-form-field class="form__content--group--item" *ngIf="form.value['startDate']">
             <input
               matInput
               type="datetime-local"
-              placeholder="{{ LABELS.PLACEHOLDER.DATEEND }}"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_END }}"
               formControlName="closeDate"
               min="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
               max="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
@@ -56,10 +47,7 @@
         </div>
 
         <div class="form__content--group">
-          <mat-form-field
-            class="form__content--group--item"
-            *ngIf="form.value['closeDate']"
-          >
+          <mat-form-field class="form__content--group--item" *ngIf="form.value['closeDate']">
             <input
               matInput
               type="date"
@@ -81,32 +69,21 @@
         </div>
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.THEME }}"
-              formControlName="theme"
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.THEME }}" formControlName="theme" />
           </mat-form-field>
         </div>
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.EVENTTYPE }}"
-              formControlName="type"
-            >
-              <mat-option *ngFor="let op of EVENTTYPE" [value]="op.value">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.EVENT_TYPE }}" formControlName="type">
+              <mat-option *ngFor="let op of EVENT_TYPE" [value]="op.value">
                 {{ op.value | EventType }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item" *ngIf="!isCreate">
-            <mat-select
-              placeholder="{{ LABELS.PLACEHOLDER.STATE }}"
-              formControlName="state"
-            >
-              <mat-option *ngFor="let op of EVENTSTATE" [value]="op.value">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.STATE }}" formControlName="state">
+              <mat-option *ngFor="let op of EVENT_STATE" [value]="op.value">
                 {{ op.value | EventState }}
               </mat-option>
             </mat-select>
@@ -120,21 +97,11 @@
 
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.PLACE }}"
-              formControlName="place"
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.PLACE }}" formControlName="place" />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-              formControlName="city"
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CITY }}" formControlName="city" />
           </mat-form-field>
           <mat-form-field class="form__content--group--item">
             <input
@@ -148,22 +115,11 @@
 
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-              formControlName="email"
-              required
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" required />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
-              formControlName="link"
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}" formControlName="link" />
           </mat-form-field>
         </div>
       </mat-card-content>

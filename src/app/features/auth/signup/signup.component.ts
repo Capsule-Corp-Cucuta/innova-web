@@ -1,16 +1,15 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FormGroup, FormBuilder } from '@angular/forms';
-
 import Swal from 'sweetalert2';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ContactType } from 'src/app/core/models/contact.model';
 import { ContactState } from '../../../core/models/contact.model';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +21,7 @@ export class SignupComponent implements OnDestroy {
   public readonly LINKS = UrlConstants.LINKS;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly TYPES = LabelConstants.CONTACTS_TYPES;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.FORM;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.FORM;
 
   public form: FormGroup;
   public isBusiness = false;
@@ -30,11 +29,7 @@ export class SignupComponent implements OnDestroy {
   public isLoading = false;
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private service: FacadeService,
-    private router: Router,
-  ) {
+  constructor(private formBuilder: FormBuilder, private service: FacadeService, private router: Router) {
     this.buildForm();
   }
 
@@ -50,10 +45,7 @@ export class SignupComponent implements OnDestroy {
 
   public create(): void {
     const contact = this.form.value;
-    this.state =
-      contact.state === true
-        ? ContactState.PENDING_ADVISOR
-        : ContactState.NO_ADVISORY;
+    this.state = contact.state === true ? ContactState.PENDING_ADVISOR : ContactState.NO_ADVISORY;
 
     contact.state = this.state;
 
@@ -63,8 +55,7 @@ export class SignupComponent implements OnDestroy {
         this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
-          SharedConstants.ALERTSUCCESS.TEXTCREATE +
-            SharedConstants.ALERTSUCCESS.CONTACT,
+          SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.CONTACT,
           'success',
         );
         this.router.navigate(['./seguridad']);
@@ -73,8 +64,7 @@ export class SignupComponent implements OnDestroy {
         this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTERROR.TITLE,
-          SharedConstants.ALERTERROR.TEXTCREATE +
-            SharedConstants.ALERTERROR.CONTACT,
+          SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.CONTACT,
           'error',
         );
       },

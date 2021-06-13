@@ -16,11 +16,7 @@
     </mat-toolbar>
 
     <mat-nav-list>
-      <a
-        mat-list-item
-        routerLink="/{{ ROUTES.CONTACT }}"
-        *ngIf="authority == ROLES.ADMIN"
-      >
+      <a mat-list-item routerLink="/{{ ROUTES.CONTACT }}" *ngIf="authority == ROLES.ADMIN">
         <mat-icon> {{ ICONS.CONTACT }}</mat-icon>
         <span>{{ LABELS.MODULES.CONTACT }}</span></a
       >
@@ -29,11 +25,7 @@
       <a
         mat-list-item
         routerLink="/{{ ROUTES.ADVISORY }}"
-        *ngIf="
-          authority == ROLES.ADMIN ||
-          authority == ROLES.CONSULTANT ||
-          authority == ROLES.CLIENT
-        "
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT || authority == ROLES.CLIENT"
       >
         <mat-icon> {{ ICONS.BOOK }}</mat-icon>
         <span>{{ LABELS.MODULES.ADVISORY }}</span></a
@@ -41,21 +33,13 @@
 
       <mat-divider></mat-divider>
 
-      <a
-        mat-list-item
-        routerLink="/{{ ROUTES.CONSULTANT }}"
-        *ngIf="authority == ROLES.ADMIN"
-      >
+      <a mat-list-item routerLink="/{{ ROUTES.CONSULTANT }}" *ngIf="authority == ROLES.ADMIN">
         <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
         <span>{{ LABELS.MODULES.CONSULTANT }}</span></a
       >
       <mat-divider></mat-divider>
 
-      <a
-        mat-list-item
-        routerLink="/{{ ROUTES.CLIENT }}/{{ ROUTES.ASSIGNED }}"
-        *ngIf="authority == ROLES.CLIENT"
-      >
+      <a mat-list-item routerLink="/{{ ROUTES.CLIENT }}/{{ ROUTES.ASSIGNED }}" *ngIf="authority == ROLES.CLIENT">
         <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
         <span>{{ LABELS.MODULES.ASSIGNED }}</span></a
       >
@@ -76,11 +60,7 @@
       <a
         mat-list-item
         routerLink="/{{ ROUTES.EVENT }}"
-        *ngIf="
-          authority == ROLES.ADMIN ||
-          authority == ROLES.CLIENT ||
-          authority == ROLES.CONTACT
-        "
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CLIENT || authority == ROLES.CONTACT"
       >
         <mat-icon> {{ ICONS.EVENT }}</mat-icon>
         <span>{{ LABELS.MODULES.EVENT }}</span></a
@@ -120,10 +100,7 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <button
-          mat-menu-item
-          routerLink="/{{ ROUTES.USER }}/{{ ROUTES.UPDATE }}/{{ id }}"
-        >
+        <button mat-menu-item routerLink="/{{ ROUTES.USER }}/{{ ROUTES.UPDATE }}/{{ id }}">
           <mat-icon> {{ ICONS.PERSON }}</mat-icon>
           {{ LABELS.MENU.PROFILE }}
         </button>

@@ -1,13 +1,14 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import Swal from 'sweetalert2';
-import { Consultant } from 'src/app/core/models/consultant.model';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { FacadeService } from 'src/app/shared/services/facade.service';
-import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+import { Consultant } from 'src/app/core/models/consultant.model';
+import { FacadeService } from 'src/app/shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal',
@@ -16,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.ASSIGNADVISOR;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.ASSIGN_ADVISOR;
 
   public form: FormGroup;
   public id: string;
@@ -39,6 +40,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.id = this.data;
     this.loadConsultants();
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
@@ -51,26 +53,22 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     const subscription = this.service
       .assignConsultant(this.id, this.idConsultant)
+      .pipe(
+        finalize(() => {
+          this.onNoClick();
+        }),
+      )
       .subscribe(
         () => {
           this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTASSIGN,
-            'success',
-          );
+          Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, SharedConstants.ALERTSUCCESS.TEXTASSIGN, 'success');
         },
         () => {
           this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTASSIGN,
-            'error',
-          );
+          Swal.fire(SharedConstants.ALERTERROR.TITLE, SharedConstants.ALERTERROR.TEXTASSIGN, 'error');
         },
       );
     this.subscriptions.push(subscription);
-    this.onNoClick();
   }
 
   public onNoClick(): void {
@@ -78,11 +76,9 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   private loadConsultants() {
-    const subscription = this.service
-      .findAllConsultantActive()
-      .subscribe((resp) => {
-        this.consultants = resp;
-      });
+    const subscription = this.service.findAllConsultantActive().subscribe((resp) => {
+      this.consultants = resp;
+    });
     this.subscriptions.push(subscription);
   }
 

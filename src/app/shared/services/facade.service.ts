@@ -66,8 +66,7 @@ export class FacadeService {
 
   public get consultantService(): ConsultantService {
     if (!this._consultantService) {
-      this._consultantService =
-        this.injector.get<ConsultantService>(ConsultantService);
+      this._consultantService = this.injector.get<ConsultantService>(ConsultantService);
     }
     return this._consultantService;
   }
@@ -88,17 +87,14 @@ export class FacadeService {
 
   public get advisoryService(): AdvisoryService {
     if (!this._advisoryService) {
-      this._advisoryService =
-        this.injector.get<AdvisoryService>(AdvisoryService);
+      this._advisoryService = this.injector.get<AdvisoryService>(AdvisoryService);
     }
     return this._advisoryService;
   }
 
   public get reportsService(): AdvisoryReportService {
     if (!this._reportsService) {
-      this._reportsService = this.injector.get<AdvisoryReportService>(
-        AdvisoryReportService,
-      );
+      this._reportsService = this.injector.get<AdvisoryReportService>(AdvisoryReportService);
     }
     return this._reportsService;
   }
@@ -112,16 +108,14 @@ export class FacadeService {
 
   public get inscriptionService(): InscriptionService {
     if (!this._inscriptionService) {
-      this._inscriptionService =
-        this.injector.get<InscriptionService>(InscriptionService);
+      this._inscriptionService = this.injector.get<InscriptionService>(InscriptionService);
     }
     return this._inscriptionService;
   }
 
   public get exporterService(): ExporterService {
     if (!this._exporterService) {
-      this._exporterService =
-        this.injector.get<ExporterService>(ExporterService);
+      this._exporterService = this.injector.get<ExporterService>(ExporterService);
     }
     return this._exporterService;
   }
@@ -183,11 +177,7 @@ export class FacadeService {
     return this.userService.disable(user);
   }
 
-  public changePassword(
-    id: string,
-    oldPass: string,
-    newPass: string,
-  ): Observable<Response> {
+  public changePassword(id: string, oldPass: string, newPass: string): Observable<Response> {
     return this.userService.changePassword(id, oldPass, newPass);
   }
 
@@ -244,10 +234,7 @@ export class FacadeService {
   /**
    * Client Service Methods
    */
-  public assignConsultant(
-    contact: string,
-    consultant: string,
-  ): Observable<Response> {
+  public assignConsultant(contact: string, consultant: string): Observable<Response> {
     return this.clientService.assign(contact, consultant);
   }
 
@@ -297,22 +284,12 @@ export class FacadeService {
     return this.reportsService.getGeneralReport();
   }
 
-  public getGeneralReportBetweenDates(
-    startDate: Date,
-    closeDate: Date,
-  ): Observable<AdvisoryReport[]> {
-    return this.reportsService.getGeneralReportBetweenDates(
-      startDate,
-      closeDate,
-    );
+  public getGeneralReportBetweenDates(startDate: Date, closeDate: Date): Observable<AdvisoryReport[]> {
+    return this.reportsService.getGeneralReportBetweenDates(startDate, closeDate);
   }
 
-  public countHoursByConsultantWithoutPreparation(
-    idConsultant: string,
-  ): Observable<number> {
-    return this.reportsService.countHoursByConsultantWithoutPreparation(
-      idConsultant,
-    );
+  public countHoursByConsultantWithoutPreparation(idConsultant: string): Observable<number> {
+    return this.reportsService.countHoursByConsultantWithoutPreparation(idConsultant);
   }
 
   public countHoursByConsultantWithoutPreparationBetweenDates(
@@ -320,11 +297,7 @@ export class FacadeService {
     startDate: Date,
     closeDate: Date,
   ): Observable<number> {
-    return this.reportsService.countHoursByConsultantWithoutPreparationBetweenDates(
-      idConsultant,
-      startDate,
-      closeDate,
-    );
+    return this.reportsService.countHoursByConsultantWithoutPreparationBetweenDates(idConsultant, startDate, closeDate);
   }
 
   /**
@@ -353,10 +326,7 @@ export class FacadeService {
   /**
    * Inscription Service methods
    */
-  public inscriptToEvent(
-    idUser: string,
-    idEvent: number,
-  ): Observable<Response> {
+  public inscriptToEvent(idUser: string, idEvent: number): Observable<Response> {
     return this.inscriptionService.inscriptToEvent(idUser, idEvent);
   }
 

@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import Swal from 'sweetalert2';
-import { InnovaEvent } from 'src/app/core/models/innova-event.model';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import { Inscription } from 'src/app/core/models/inscription.model';
+import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
@@ -38,9 +38,7 @@ export class ModalComponent implements OnInit {
     this.authority = this.service.getAuthorities()[0];
     this.idUser = this.service.getUser().id;
     this.showButton =
-      this.data.showButton &&
-      (this.authority === this.ROLES.CLIENT ||
-        this.authority === this.ROLES.CONTACT);
+      this.data.showButton && (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT);
     this.loadEvent();
   }
 
@@ -55,8 +53,7 @@ export class ModalComponent implements OnInit {
         this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTSUCCESS.TITLE,
-          SharedConstants.ALERTSUCCESS.TEXTCREATE +
-            SharedConstants.ALERTSUCCESS.EVENT_INSCRIPTION,
+          SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT_INSCRIPTION,
           'success',
         );
       },
@@ -64,8 +61,7 @@ export class ModalComponent implements OnInit {
         this.isLoading = false;
         Swal.fire(
           SharedConstants.ALERTERROR.TITLE,
-          SharedConstants.ALERTERROR.TEXTCREATE +
-            SharedConstants.ALERTERROR.EVENT_INSCRIPTION,
+          SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT_INSCRIPTION,
           'error',
         );
       },

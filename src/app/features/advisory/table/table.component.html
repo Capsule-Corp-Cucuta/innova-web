@@ -7,13 +7,7 @@
     <mat-card class="page__header">
       <mat-form-field>
         <mat-label>{{ LABELS.FILTER }}</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter()"
-          placeholder="{{ LABELS.SEARCH }}"
-          [(ngModel)]="filter"
-          #input
-        />
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
       <button
         mat-stroked-button
@@ -125,17 +119,10 @@
 
       <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="12">{{ LABELS.NOTDATA }}</td>
-      </tr>
     </table>
     <div class="table-spinner" *ngIf="isLoading">
       <mat-spinner color="primary" diameter="70"></mat-spinner>
     </div>
-    <mat-paginator
-      class="paginator"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-    ></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>

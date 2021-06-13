@@ -26,11 +26,7 @@ export class DashboardComponent implements OnInit {
   public authority: string;
   public isHandset$: Observable<boolean>;
 
-  constructor(
-    private router: Router,
-    private service: FacadeService,
-    private breakpointObserver: BreakpointObserver,
-  ) {
+  constructor(private router: Router, private service: FacadeService, private breakpointObserver: BreakpointObserver) {
     this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
       map((result) => result.matches),
       shareReplay(),
@@ -39,8 +35,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.service.getUser().id;
-    this.userName =
-      this.service.getUser().name + ' ' + this.service.getUser().lastname;
+    this.userName = this.service.getUser().name + ' ' + this.service.getUser().lastname;
     this.authority = this.service.getAuthorities()[0];
     this.redirection();
   }

@@ -10,12 +10,6 @@ import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 @NgModule({
   declarations: [SigninComponent, SignupComponent, ForgotPassComponent],
-  imports: [
-    FormsModule,
-    CommonModule,
-    SharedModule,
-    AuthRoutingModule,
-    ReactiveFormsModule,
-  ],
+  imports: [FormsModule, CommonModule, SharedModule, AuthRoutingModule, ReactiveFormsModule],
 })
 export class AuthModule {}

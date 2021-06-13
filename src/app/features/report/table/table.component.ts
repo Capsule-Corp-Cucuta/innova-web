@@ -52,10 +52,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public loadReport(e: Event): void {
     e.preventDefault();
-    const id =
-      this.authority == this.ROLES.ADMIN
-        ? this.consultantId
-        : this.service.getUser().id;
+    const id = this.authority == this.ROLES.ADMIN ? this.consultantId : this.service.getUser().id;
 
     if (id == null && this.startDate == null && this.closeDate == null) {
       this.countGeneralReport();
@@ -66,25 +63,12 @@ export class TableComponent implements OnInit, OnDestroy {
     } else if (id != null && this.startDate != null && this.closeDate != null) {
       this.countHoursByConsultantWithoutPreparationBetweenDates(id);
     }
-
-    // this.clear();
-    /*
-    this.startDate != null && this.closeDate != null
-      ? this.countHoursByConsultantWithoutPreparationBetweenDates(id)
-      : this.countHoursByConsultantWithoutPreparation(id);
-      */
   }
 
-  private countHoursByConsultantWithoutPreparationBetweenDates(
-    id: string,
-  ): void {
+  private countHoursByConsultantWithoutPreparationBetweenDates(id: string): void {
     this.isLoading = true;
     const subscription = this.service
-      .countHoursByConsultantWithoutPreparationBetweenDates(
-        id,
-        this.startDate,
-        this.closeDate,
-      )
+      .countHoursByConsultantWithoutPreparationBetweenDates(id, this.startDate, this.closeDate)
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -178,16 +162,12 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
-    const findConsultantsSubscription = this.service
-      .findAllConsultant()
-      .subscribe((resp) => {
-        this.consultants = resp;
-        this.authority == this.ROLES.ADMIN
-          ? this.countGeneralReport()
-          : this.countHoursByConsultantWithoutPreparation(
-              this.service.getUser().id,
-            );
-      });
+    const findConsultantsSubscription = this.service.findAllConsultant().subscribe((resp) => {
+      this.consultants = resp;
+      this.authority == this.ROLES.ADMIN
+        ? this.countGeneralReport()
+        : this.countHoursByConsultantWithoutPreparation(this.service.getUser().id);
+    });
     this.subscriptions.push(findConsultantsSubscription);
   }
 }

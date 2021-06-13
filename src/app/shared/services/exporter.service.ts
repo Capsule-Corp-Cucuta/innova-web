@@ -28,9 +28,6 @@ export class ExporterService {
 
   private saveAsExcel(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], { type: this.EXCEL_TYPE });
-    FileSaver.saveAs(
-      data,
-      fileName + SharedConstants.EXPORTSERVICE._EXPORT_ + this.EXCEL_EXT,
-    );
+    FileSaver.saveAs(data, fileName + SharedConstants.EXPORTSERVICE._EXPORT_ + this.EXCEL_EXT);
   }
 }

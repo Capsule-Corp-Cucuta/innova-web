@@ -66,8 +66,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE +
-              SharedConstants.ALERTSUCCESS.CONSULTANT,
+            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.CONSULTANT,
             'success',
           );
           this.router.navigate(['./asesor']);
@@ -76,8 +75,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE +
-              SharedConstants.ALERTERROR.CONSULTANT,
+            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.CONSULTANT,
             'error',
           );
         },
@@ -97,8 +95,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.CONSULTANT,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.CONSULTANT,
             'success',
           );
           this.router.navigate(['./asesor']);
@@ -107,8 +104,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.CONSULTANT,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.CONSULTANT,
             'error',
           );
           this.validateInput(true);

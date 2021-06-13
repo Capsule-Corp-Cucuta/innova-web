@@ -14,22 +14,11 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}"
-            formControlName="id"
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}" formControlName="id" />
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
-            formControlName="name"
-            required
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" required />
         </mat-form-field>
 
         <mat-form-field>
@@ -53,26 +42,13 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="email"
-            placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-            formControlName="email"
-            required
-          />
+          <input matInput type="email" placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" required />
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.ADDRESS }}"
-            formControlName="address"
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.ADDRESS }}" formControlName="address" />
         </mat-form-field>
-        <mat-checkbox formControlName="check" *ngIf="isAccompaniment">
-          {{ LABELS.PLACEHOLDER.APPLYFOR }}</mat-checkbox
-        >
+        <mat-checkbox formControlName="check" *ngIf="isAccompaniment"> {{ LABELS.PLACEHOLDER.APPLY_FOR }}</mat-checkbox>
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
@@ -88,12 +64,7 @@
           </div>
           <span *ngIf="!isLoading">{{ LABELS.UPDATE_BUTTON }}</span>
         </button>
-        <button
-          mat-raised-button
-          color="warn"
-          class="form__actions--button"
-          (click)="openDialog($event)"
-        >
+        <button mat-raised-button color="warn" class="form__actions--button" (click)="openDialog($event)">
           {{ LABELS.CHANGE_BUTTON }}
         </button>
       </mat-card-actions>

@@ -1,14 +1,14 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { Router } from '@angular/router';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -17,8 +17,8 @@ import { Subscription } from 'rxjs';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONTACTREGISTER.CHANGEPASSWORD;
   public readonly ROUTES = UrlConstants.ROUTES;
+  public readonly LABELS = LabelConstants.LABELS.CONTACT_REGISTER.CHANGE_PASSWORD;
 
   public form: FormGroup;
   public id: string;
@@ -40,6 +40,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.id = this.data;
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
@@ -51,30 +52,18 @@ export class ModalComponent implements OnInit, OnDestroy {
       this.error = false;
       this.isLoading = true;
       const subscription = this.service
-        .changePassword(
-          this.id,
-          this.getFormValue('oldPassword'),
-          this.getFormValue('newPassword'),
-        )
+        .changePassword(this.id, this.getFormValue('oldPassword'), this.getFormValue('newPassword'))
         .subscribe(
           () => {
             this.isLoading = false;
-            Swal.fire(
-              SharedConstants.ALERTSUCCESS.TITLE,
-              SharedConstants.ALERTSUCCESS.TEXTCHANGE,
-              'success',
-            );
+            Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, SharedConstants.ALERTSUCCESS.TEXTCHANGE, 'success');
             this.service.signout();
             this.onNoClick();
             this.router.navigate([this.ROUTES.SECURITY]);
           },
           () => {
             this.isLoading = false;
-            Swal.fire(
-              SharedConstants.ALERTERROR.TITLE,
-              SharedConstants.ALERTERROR.TEXTCHANGE,
-              'error',
-            );
+            Swal.fire(SharedConstants.ALERTERROR.TITLE, SharedConstants.ALERTERROR.TEXTCHANGE, 'error');
           },
         );
       this.subscriptions.push(subscription);

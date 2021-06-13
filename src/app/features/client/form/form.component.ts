@@ -1,14 +1,14 @@
+import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
-import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { FacadeService } from '../../../shared/services/facade.service';
 import { Client } from 'src/app/core/models/client.model';
-import { Subscription } from 'rxjs';
+import { UrlConstants } from 'src/app/shared/constants/url-constants';
+import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { SharedConstants } from '../../../shared/constants/shared-constants';
 
 @Component({
   selector: 'app-form',
@@ -18,21 +18,21 @@ import { Subscription } from 'rxjs';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CLIENT.FORM;
   public readonly STEP = SharedConstants.STETP;
-  public readonly CONTACTTYPES = LabelConstants.CONTACTS_TYPES;
-  public readonly EDUCATIONALLEVEL = LabelConstants.EUCATIONAL_LEVEL;
   public readonly GENDER = LabelConstants.GENDER;
-  public readonly ETHNICGROUP = LabelConstants.ETHNICGROUP;
-  public readonly LEGALCONSTITUTION = LabelConstants.LEGALCONSTITUTION;
-  public readonly COMPANYTYPE = LabelConstants.COMPANYTYPE;
-  public readonly INTERNATIONALACTIVITY = LabelConstants.INTERNATIONALACTIVITY;
-  public readonly CONTACTMEDIUM = LabelConstants.CONTACTMEDIUM;
   public readonly OPTION = LabelConstants.OPTION;
+  public readonly COMPANY_TYPE = LabelConstants.COMPANY_TYPE;
+  public readonly ETHNIC_GROUP = LabelConstants.ETHNIC_GROUP;
+  public readonly LABELS = LabelConstants.LABELS.CLIENT.FORM;
+  public readonly CONTACT_TYPES = LabelConstants.CONTACTS_TYPES;
+  public readonly CONTACT_MEDIUM = LabelConstants.CONTACT_MEDIUM;
+  public readonly EDUCATIONAL_LEVEL = LabelConstants.EUCATIONAL_LEVEL;
+  public readonly LEGAL_CONSTITUTION = LabelConstants.LEGAL_CONSTITUTION;
+  public readonly INTERNATIONAL_ACTIVITY = LabelConstants.INTERNATIONAL_ACTIVITY;
 
+  public step = 0;
   public form: FormGroup;
   public isWatch: boolean;
-  public step = 0;
   public isLoading = false;
 
   private client: Client;
@@ -81,8 +81,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.CLIENT,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.CLIENT,
             'success',
           );
           this.router.navigate(['./cliente']);
@@ -91,8 +90,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.CLIENT,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.CLIENT,
             'error',
           );
           this.validateInput(true);

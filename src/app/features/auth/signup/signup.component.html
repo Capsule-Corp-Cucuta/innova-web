@@ -14,13 +14,7 @@
       <mat-card-content class="form__content">
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
-              formControlName="name"
-              required
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" required />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
@@ -35,13 +29,7 @@
         </div>
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input
-              matInput
-              type="text"
-              placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}"
-              formControlName="id"
-              required
-            />
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}" formControlName="id" required />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
@@ -67,16 +55,14 @@
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
-            <mat-label>{{ LABELS.CONTACTTYPE }}</mat-label>
+            <mat-label>{{ LABELS.CONTACT_TYPE }}</mat-label>
             <mat-select
               placeholder="{{ LABELS.PLACEHOLDER.TYPE }}"
               formControlName="type"
               (selectionChange)="loadDataBusiness($event.value)"
               required
             >
-              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{
-                type.id | ContactType
-              }}</mat-option>
+              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{ type.id | ContactType }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -90,18 +76,13 @@
               <input
                 matInput
                 type="text"
-                placeholder="{{ LABELS.PLACEHOLDER.EMPRESA }}"
+                placeholder="{{ LABELS.PLACEHOLDER.COMPANY_NAME }}"
                 formControlName="companyName"
               />
             </mat-form-field>
 
             <mat-form-field class="form__content--group--item">
-              <input
-                matInput
-                type="text"
-                placeholder="{{ LABELS.PLACEHOLDER.NIT }}"
-                formControlName="nit"
-              />
+              <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NIT }}" formControlName="nit" />
             </mat-form-field>
           </div>
           <div class="form__content--group">
@@ -109,29 +90,19 @@
               <input
                 matInput
                 type="text"
-                placeholder="{{ LABELS.PLACEHOLDER.ADDRESSBUSINESS }}"
+                placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_BUSINESS }}"
                 formControlName="companyAddress"
               />
             </mat-form-field>
 
             <mat-form-field class="form__content--group--item">
-              <input
-                matInput
-                type="text"
-                placeholder="{{ LABELS.PLACEHOLDER.CITY }}"
-                formControlName="companyCity"
-              />
+              <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CITY }}" formControlName="companyCity" />
             </mat-form-field>
           </div>
 
           <div class="form__content--group">
             <mat-form-field class="form__content--group--item">
-              <input
-                matInput
-                type="tel"
-                placeholder="{{ LABELS.PLACEHOLDER.PHONE }}"
-                formControlName="companyPhone"
-              />
+              <input matInput type="tel" placeholder="{{ LABELS.PLACEHOLDER.PHONE }}" formControlName="companyPhone" />
             </mat-form-field>
 
             <mat-form-field class="form__content--group--item">
@@ -165,9 +136,7 @@
           </div>
         </mat-card-content>
 
-        <mat-checkbox formControlName="requestAccompaniment">
-          {{ LABELS.PLACEHOLDER.APPLYFOR }}</mat-checkbox
-        >
+        <mat-checkbox formControlName="requestAccompaniment"> {{ LABELS.PLACEHOLDER.APPLY_FOR }}</mat-checkbox>
       </mat-card-content>
 
       <mat-divider></mat-divider>
@@ -190,19 +159,13 @@
 
     <mat-card-footer class="card--footer">
       <p>
-        <a class="card--footer--link" routerLink="/{{ URIS.SECURITY }}">{{
-          LABELS.LINK
-        }}</a>
+        <a class="card--footer--link" routerLink="/{{ URIS.SECURITY }}">{{ LABELS.LINK }}</a>
       </p>
     </mat-card-footer>
 
     <mat-card-footer class="form__content">
       <div class="form__content--avatar">
-        <img
-          src="{{ LINKS.UFPS }}"
-          alt="logo UFPS"
-          class="form__content--avatar-img"
-        />
+        <img src="{{ LINKS.UFPS }}" alt="logo UFPS" class="form__content--avatar-img" />
       </div>
     </mat-card-footer>
   </mat-card>

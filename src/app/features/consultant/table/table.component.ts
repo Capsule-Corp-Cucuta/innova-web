@@ -23,13 +23,13 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
 
-  public option: string;
-  public consultant: MatTableDataSource<Consultant>;
   public filter = '';
+  public option: string;
   public isLoading = false;
+  public consultant: MatTableDataSource<Consultant>;
 
   private subscriptions: Subscription[] = [];
 
@@ -54,22 +54,17 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public activateAndDeactivate(id: string, state: boolean): void {
-    this.option =
-      state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
+    this.option = state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
     Swal.fire({
       title: SharedConstants.ALERTACTIVATE.TITLE,
-      text:
-        SharedConstants.ALERTACTIVATE.TEXT +
-        this.option +
-        SharedConstants.ALERTACTIVATE.TEXTADVISER,
+      text: SharedConstants.ALERTACTIVATE.TEXT + this.option + SharedConstants.ALERTACTIVATE.TEXTADVISER,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: SharedConstants.ALERTACTIVATE.TOACCEPT,
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        this.option =
-          state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
+        this.option = state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
         const subscription = this.service
           .enableAndDisableUser(id)
           .pipe(finalize(() => this.loadData()))
@@ -99,15 +94,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(
-        this.consultant.data,
-        this.FILENAME.CONSULTANT,
-      );
+      this.service.exporterToExcel(this.consultant.data, this.FILENAME.CONSULTANT);
     } else {
-      this.service.exporterToExcel(
-        this.consultant.filteredData,
-        this.FILENAME.CONSULTANT,
-      );
+      this.service.exporterToExcel(this.consultant.filteredData, this.FILENAME.CONSULTANT);
     }
   }
 

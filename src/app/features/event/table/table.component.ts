@@ -11,10 +11,7 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import {
-  InnovaEvent,
-  EventState,
-} from 'src/app/core/models/innova-event.model';
+import { EventState, InnovaEvent } from 'src/app/core/models/innova-event.model';
 
 @Component({
   selector: 'app-table',
@@ -73,11 +70,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public openDialog(event: InnovaEvent): void {
     const enrolled = this.isEnrolled(event);
     const showButton =
-      (event.state === EventState.OPEN ||
-        event.state === EventState.POSTPONED) &&
-      !enrolled
-        ? true
-        : false;
+      (event.state === EventState.OPEN || event.state === EventState.POSTPONED) && !enrolled ? true : false;
     const dialog = this.dialog.open(ModalComponent, {
       data: {
         event,
@@ -89,19 +82,14 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public showEdit(event: InnovaEvent): boolean {
-    return (
-      this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE
-    );
+    return this.authority === this.ROLES.ADMIN && event.state !== EventState.COMPLETE;
   }
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
       this.service.exporterToExcel(this.events.data, this.FILENAME.EVENT);
     } else {
-      this.service.exporterToExcel(
-        this.events.filteredData,
-        this.FILENAME.EVENT,
-      );
+      this.service.exporterToExcel(this.events.filteredData, this.FILENAME.EVENT);
     }
   }
 

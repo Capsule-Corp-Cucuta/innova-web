@@ -35,10 +35,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(
-    private service: FacadeService,
-    private activeRoute: ActivatedRoute,
-  ) {}
+  constructor(private service: FacadeService, private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.validateEvent();
@@ -69,42 +66,32 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public selected(): void {
     this.participantsList = this.participants.data;
-    const subscription = this.service
-      .takeAttendance(this.participantsList)
-      .subscribe(
-        () => {
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE +
-              SharedConstants.ALERTSUCCESS.ATTENDANCE,
-            'success',
-          );
-          this.loadData();
-        },
-        () => {
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE +
-              SharedConstants.ALERTERROR.ATTENDANCE,
-            'error',
-          );
-        },
-      );
+    const subscription = this.service.takeAttendance(this.participantsList).subscribe(
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTSUCCESS.TITLE,
+          SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.ATTENDANCE,
+          'success',
+        );
+        this.loadData();
+      },
+      () => {
+        Swal.fire(
+          SharedConstants.ALERTERROR.TITLE,
+          SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.ATTENDANCE,
+          'error',
+        );
+      },
+    );
 
     this.subscriptions.push(subscription);
   }
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(
-        this.participants.data,
-        this.FILENAME.ATTENDANCE,
-      );
+      this.service.exporterToExcel(this.participants.data, this.FILENAME.ATTENDANCE);
     } else {
-      this.service.exporterToExcel(
-        this.participants.filteredData,
-        this.FILENAME.ATTENDANCE,
-      );
+      this.service.exporterToExcel(this.participants.filteredData, this.FILENAME.ATTENDANCE);
     }
   }
 

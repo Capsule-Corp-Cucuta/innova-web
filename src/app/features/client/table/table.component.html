@@ -7,20 +7,9 @@
     <mat-card class="page__header">
       <mat-form-field>
         <mat-label>{{ LABELS.FILTER }}</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter()"
-          placeholder="{{ LABELS.SEARCH }}"
-          [(ngModel)]="filter"
-          #input
-        />
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <button
-        mat-stroked-button
-        (click)="exportAsXLSX()"
-        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
-        color="primary"
-      >
+      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
         <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
       </button>
     </mat-card>
@@ -28,7 +17,7 @@
     <table mat-table [dataSource]="client" matSort class="table--content">
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.BUSINESSTYPE }}
+          {{ LABELS.CELLS.BUSINESS_TYPE }}
         </th>
         <td mat-cell *matCellDef="let client">
           {{ client.type | ContactType }}
@@ -37,7 +26,7 @@
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.IDENTIFICATIONCARD }}
+          {{ LABELS.CELLS.IDENTIFICATION_CARD }}
         </th>
         <td mat-cell *matCellDef="let client">
           {{ client.id }}
@@ -60,7 +49,7 @@
 
       <ng-container matColumnDef="companyName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{ LABELS.CELLS.BUSINESSNAME }}
+          {{ LABELS.CELLS.COMPANY }}
         </th>
         <td mat-cell *matCellDef="let client">{{ client.companyName }}</td>
       </ng-container>
@@ -107,15 +96,12 @@
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">{{ LABELS.NOTDATA }}</td>
+        <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
     <div class="table-spinner" *ngIf="isLoading">
       <mat-spinner color="primary" diameter="70"></mat-spinner>
     </div>
-    <mat-paginator
-      class="paginator"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-    ></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>
