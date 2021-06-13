@@ -18,8 +18,16 @@ export class AdvisoryReportService {
     return this.http.get<AdvisoryReport[]>(`${AdvisoryReportService.ENDPOINT}`);
   }
 
-  public getGeneralReportBetweenDates(): Observable<AdvisoryReport[]> {
-    return null; // TODO
+  public getGeneralReportBetweenDates(
+    startDate: Date,
+    endDate: Date,
+  ): Observable<AdvisoryReport[]> {
+    const criteria = { startDate, endDate };
+    return this.http.get<AdvisoryReport[]>(
+      `${
+        AdvisoryReportService.ENDPOINT
+      }/between-dates?criteria=${encodeURIComponent(JSON.stringify(criteria))}`,
+    );
   }
 
   public countHoursByConsultantWithoutPreparation(

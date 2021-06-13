@@ -43,8 +43,9 @@
   }
 
   &--image {
-    background-image: url('../../../assets/Logo-vertical.jpg');
-    background-size: cover;
+    height: 3rem;
+    padding-top: 1.5rem;
+    width: 5rem;
   }
 
   &--title {

@@ -85,6 +85,14 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
+        <button mat-raised-button routerLink="../../" *ngIf="!isCreate">
+          <span>{{ LABELS.BACK_BUTTON }}</span>
+        </button>
+
+        <button mat-raised-button routerLink="../" *ngIf="isCreate">
+          <span>{{ LABELS.BACK_BUTTON }}</span>
+        </button>
+
         <button
           *ngIf="isCreate"
           mat-raised-button

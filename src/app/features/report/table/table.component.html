@@ -43,9 +43,19 @@
           mat-stroked-button
           color="success"
           class="page__header--group--item"
+          matTooltip="{{ LABELS.TOOLTIP.SEARCH }}"
           (click)="loadReport($event)"
         >
           <mat-icon>{{ ICONS.SEARCH }}</mat-icon>
+        </button>
+        <button
+          mat-stroked-button
+          color="accent"
+          class="page__header--group--item"
+          matTooltip="{{ LABELS.TOOLTIP.CLEAR }}"
+          (click)="clear()"
+        >
+          <mat-icon>{{ ICONS.CLEAR }}</mat-icon>
         </button>
         <div *ngIf="error" class="error">
           <p>
@@ -53,11 +63,12 @@
           </p>
         </div>
       </div>
-      <div class="page__header--group" *ngIf="empty">
+      <div class="page__header--group">
         <button
           mat-stroked-button
           color="primary"
           class="page__header--group--item"
+          matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
           (click)="exportAsXLSX()"
         >
           <mat-icon>{{ ICONS.EXPORT }}</mat-icon>

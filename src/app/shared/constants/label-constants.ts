@@ -17,6 +17,7 @@ export class LabelConstants {
     },
     FORGOT_PASSWORD: {
       TITLE: '¿Olvidaste tu contraseña?',
+      SUBTITLE: 'Innova UFPS',
       TEXT: 'Te enviaremos una nueva al correo para que puedas cambiar la contraseña',
       PLACEHOLDER: {
         EMAIL: 'Correo electrònico:',
@@ -139,6 +140,7 @@ export class LabelConstants {
         },
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
+        BACK_BUTTON: 'Volver',
       },
       LIST: {
         TITLE: 'Listado de asesores',
@@ -297,6 +299,7 @@ export class LabelConstants {
         },
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
+        BACK_BUTTON: 'Volver',
       },
       LIST: {
         TITLE: 'Listado de asesorias',
@@ -359,6 +362,7 @@ export class LabelConstants {
         DESIST_BUTTON: 'Desistir',
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
+        BACK_BUTTON: 'Volver',
       },
       LIST: {
         TITLE: 'Listado de eventos',
@@ -428,6 +432,11 @@ export class LabelConstants {
           STARTDATE: 'Fecha inicial',
           CLOSEDATE: 'Fecha final',
           HOUR: 'Horas',
+        },
+        TOOLTIP: {
+          EXPORT: 'Exportar datos',
+          SEARCH: 'Buscar',
+          CLEAR: 'Limpiar campos',
         },
       },
     },
@@ -561,5 +570,6 @@ export class LabelConstants {
     ADDCONSULTANT: 'person_add_alt',
     SEARCH: 'search',
     ASSIGNED: 'assignment_turned_in',
+    CLEAR: 'clear_all',
   };
 }

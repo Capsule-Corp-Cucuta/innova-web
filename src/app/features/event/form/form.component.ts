@@ -64,7 +64,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateDates(): void {
     this.endDate = this.form.value['startDate'];
-    console.log(this.endDate);
   }
 
   public create(e: Event): void {

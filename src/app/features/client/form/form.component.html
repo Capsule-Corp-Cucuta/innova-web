@@ -48,7 +48,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div>
+        <div class="button-next">
           <button mat-button color="primary" (click)="nextStep()">
             {{ LABELS.STEP.NEXT }}
           </button>
@@ -245,7 +245,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div>
+        <div class="button-step">
           <button mat-button color="warn" (click)="prevStep()">
             {{ LABELS.STEP.PREVIOUS }}
           </button>
@@ -413,7 +413,7 @@
             />
           </mat-form-field>
         </div>
-        <div>
+        <div class="button-step">
           <button mat-button color="warn" (click)="prevStep()">
             {{ LABELS.STEP.PREVIOUS }}
           </button>
@@ -550,12 +550,7 @@
       <mat-divider></mat-divider>
 
       <mat-card-actions class="form__actions">
-        <button
-          mat-raised-button
-          [disabled]="form.invalid"
-          *ngIf="isWatch"
-          routerLink="../"
-        >
+        <button mat-raised-button [disabled]="form.invalid" routerLink="../../">
           <span>{{ LABELS.BACK_BUTTON }}</span>
         </button>
 
