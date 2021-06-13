@@ -343,6 +343,7 @@ export class LabelConstants {
           VIEW: 'Ver evento',
           EDIT: 'Actualizar evento',
           ATTENDANCE: 'Asistencia',
+          EXPORT: 'Exportar datos',
         },
       },
     },

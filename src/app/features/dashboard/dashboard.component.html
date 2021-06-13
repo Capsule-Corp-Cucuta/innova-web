@@ -100,10 +100,6 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <span class="id-user"> {{ userName }} </span>
-
-        <mat-divider></mat-divider>
-
         <button mat-menu-item routerLink="/{{ ROUTES.USER }}/{{ ROUTES.UPDATE }}/{{ id }}">
           <mat-icon> {{ ICONS.PERSON }}</mat-icon>
           {{ LABELS.MENU.PROFILE }}
