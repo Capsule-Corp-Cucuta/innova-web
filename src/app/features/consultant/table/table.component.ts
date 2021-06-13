@@ -23,13 +23,13 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public readonly ICONS = LabelConstants.ICONS;
   public readonly ROUTES = UrlConstants.ROUTES;
-  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
   public readonly FILENAME = SharedConstants.FILENAMES;
+  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.LIST;
 
-  public option: string;
-  public consultant: MatTableDataSource<Consultant>;
   public filter = '';
+  public option: string;
   public isLoading = false;
+  public consultant: MatTableDataSource<Consultant>;
 
   private subscriptions: Subscription[] = [];
 

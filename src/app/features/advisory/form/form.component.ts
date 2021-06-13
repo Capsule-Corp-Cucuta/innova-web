@@ -1,14 +1,14 @@
+import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { Client } from '../../../core/models/client.model';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { Client } from '../../../core/models/client.model';
 
 @Component({
   selector: 'app-form',
@@ -19,9 +19,9 @@ export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
   public readonly LABELS = LabelConstants.LABELS.ADVISORY.FORM;
-  public readonly ADVISORYTYPE = LabelConstants.ADVISORYTYPE;
-  public readonly ADVISORYAREA = LabelConstants.ADVISORYAREA;
-  public readonly ADVISORYSTATE = LabelConstants.ADVISORYSTATE;
+  public readonly ADVISORY_TYPE = LabelConstants.ADVISORY_TYPE;
+  public readonly ADVISORY_AREA = LabelConstants.ADVISORY_AREA;
+  public readonly ADVISORY_STATE = LabelConstants.ADVISORY_STATE;
 
   public consultant: string;
   public form: FormGroup;

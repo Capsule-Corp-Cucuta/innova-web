@@ -2,8 +2,8 @@ import Swal from 'sweetalert2';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { Inscription } from 'src/app/core/models/inscription.model';
+import { InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
