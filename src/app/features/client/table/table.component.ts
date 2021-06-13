@@ -62,23 +62,18 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   public Deactivate(idClient: string, state: boolean): void {
-    this.option =
-      state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
+    this.option = state === false ? SharedConstants.ACTIVATE : SharedConstants.DEACTIVATE;
 
     Swal.fire({
       title: SharedConstants.ALERTACTIVATE.TITLE,
-      text:
-        SharedConstants.ALERTACTIVATE.TEXT +
-        this.option +
-        SharedConstants.ALERTACTIVATE.TEXTCLIENT,
+      text: SharedConstants.ALERTACTIVATE.TEXT + this.option + SharedConstants.ALERTACTIVATE.TEXTCLIENT,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: SharedConstants.ALERTACTIVATE.TOACCEPT,
       cancelButtonText: SharedConstants.ALERTACTIVATE.CANCEL,
     }).then((result) => {
       if (result.value) {
-        this.option =
-          state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
+        this.option = state === false ? SharedConstants.ACTIVE : SharedConstants.INACTIVE;
 
         const subscription = this.service
           .enableAndDisableUser(idClient)
@@ -92,11 +87,7 @@ export class TableComponent implements OnInit, OnDestroy {
               );
             },
             () => {
-              Swal.fire(
-                SharedConstants.ALERTERROR.TITLE,
-                this.option + SharedConstants.ALERTERROR.CLIENT,
-                'error',
-              );
+              Swal.fire(SharedConstants.ALERTERROR.TITLE, this.option + SharedConstants.ALERTERROR.CLIENT, 'error');
             },
           );
         this.subscriptions.push(subscription);
@@ -110,10 +101,7 @@ export class TableComponent implements OnInit, OnDestroy {
     if (this.filter.length == 0) {
       this.service.exporterToExcel(this.client.data, this.FILENAME.CLIENT);
     } else {
-      this.service.exporterToExcel(
-        this.client.filteredData,
-        this.FILENAME.CLIENT,
-      );
+      this.service.exporterToExcel(this.client.filteredData, this.FILENAME.CLIENT);
     }
   }
 

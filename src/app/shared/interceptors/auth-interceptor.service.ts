@@ -3,15 +3,13 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import {
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
-  HttpRequest,
   HttpInterceptor,
-  HttpErrorResponse,
+  HttpRequest,
 } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { UrlConstants } from '../constants/url-constants';
 import { FacadeService } from '../services/facade.service';
 
 @Injectable({
@@ -20,10 +18,7 @@ import { FacadeService } from '../services/facade.service';
 export class AuthInterceptorService implements HttpInterceptor {
   constructor(private service: FacadeService, private router: Router) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = this.service.getToken();
 
     let request = req;
@@ -48,6 +43,4 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 }
 
-export const interceptorProvider = [
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-];
+export const interceptorProvider = [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }];

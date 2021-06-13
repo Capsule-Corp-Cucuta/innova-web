@@ -46,27 +46,18 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public loadReport(e: Event): void {
     e.preventDefault();
-    const id =
-      this.authority == this.ROLES.ADMIN
-        ? this.consultantId
-        : this.service.getUser().id;
+    const id = this.authority == this.ROLES.ADMIN ? this.consultantId : this.service.getUser().id;
 
     this.startDate != null && this.closeDate != null
       ? this.countHoursByConsultantWithoutPreparationBetweenDates(id)
       : this.countHoursByConsultantWithoutPreparation(id);
   }
 
-  private countHoursByConsultantWithoutPreparationBetweenDates(
-    id: string,
-  ): void {
+  private countHoursByConsultantWithoutPreparationBetweenDates(id: string): void {
     if (id) {
       this.error = false;
       const subscription = this.service
-        .countHoursByConsultantWithoutPreparationBetweenDates(
-          id,
-          this.startDate,
-          this.closeDate,
-        )
+        .countHoursByConsultantWithoutPreparationBetweenDates(id, this.startDate, this.closeDate)
         .subscribe((resp) => {
           this.reports = [
             {
@@ -89,20 +80,18 @@ export class TableComponent implements OnInit, OnDestroy {
     if (id) {
       this.error = false;
       this.isLoading = true;
-      const subscription = this.service
-        .countHoursByConsultantWithoutPreparation(id)
-        .subscribe((resp) => {
-          this.isLoading = false;
-          this.reports = [
-            {
-              consultant: id,
-              startDate: null,
-              closeDate: null,
-              hour: resp,
-            },
-          ];
-          this.empty = true;
-        });
+      const subscription = this.service.countHoursByConsultantWithoutPreparation(id).subscribe((resp) => {
+        this.isLoading = false;
+        this.reports = [
+          {
+            consultant: id,
+            startDate: null,
+            closeDate: null,
+            hour: resp,
+          },
+        ];
+        this.empty = true;
+      });
       this.subscriptions.push(subscription);
     } else {
       this.error = true;
@@ -118,31 +107,29 @@ export class TableComponent implements OnInit, OnDestroy {
 
   private loadData() {
     this.isLoading = true;
-    const findConsultantsSubscription = this.service
-      .findAllConsultant()
-      .subscribe((resp) => {
-        this.consultants = resp;
-        const reportSubscription = this.service
-          .getGeneralReport()
-          .pipe(
-            finalize(() => {
-              this.isLoading = false;
-            }),
-          )
-          .subscribe((reports) => {
-            this.reports = [];
-            reports.forEach((report) => {
-              this.reports.push({
-                consultant: report.consultant.id,
-                startDate: null,
-                closeDate: null,
-                hour: report.advisoryHours,
-              });
+    const findConsultantsSubscription = this.service.findAllConsultant().subscribe((resp) => {
+      this.consultants = resp;
+      const reportSubscription = this.service
+        .getGeneralReport()
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe((reports) => {
+          this.reports = [];
+          reports.forEach((report) => {
+            this.reports.push({
+              consultant: report.consultant.id,
+              startDate: null,
+              closeDate: null,
+              hour: report.advisoryHours,
             });
-            this.empty = true;
           });
-        this.subscriptions.push(reportSubscription);
-      });
+          this.empty = true;
+        });
+      this.subscriptions.push(reportSubscription);
+    });
     this.subscriptions.push(findConsultantsSubscription);
   }
 }

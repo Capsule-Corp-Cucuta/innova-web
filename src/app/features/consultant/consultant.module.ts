@@ -9,12 +9,6 @@ import { ConsultantRoutingModule } from './consultant-routing.module';
 
 @NgModule({
   declarations: [FormComponent, TableComponent],
-  imports: [
-    FormsModule,
-    CommonModule,
-    SharedModule,
-    ReactiveFormsModule,
-    ConsultantRoutingModule,
-  ],
+  imports: [FormsModule, CommonModule, SharedModule, ReactiveFormsModule, ConsultantRoutingModule],
 })
 export class ConsultantModule {}

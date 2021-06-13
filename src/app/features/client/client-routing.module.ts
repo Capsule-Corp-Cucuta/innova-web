@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
+import { FormViewComponent } from './form-view/form-view.component';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { SessionGuardService } from 'src/app/shared/guards/session-guard.service';
-import { FormViewComponent } from './form-view/form-view.component';
 
 const routes: Routes = [
   {

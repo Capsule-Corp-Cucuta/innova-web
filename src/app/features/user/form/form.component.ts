@@ -63,12 +63,9 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateAccompaniment(authority: string): void {
     if (authority === SharedConstants.ROLES.CONTACT) {
-      const subscription = this.service
-        .findByIDContact(this.idUser)
-        .subscribe((resp) => {
-          this.isAccompaniment =
-            resp.requestAccompaniment == true ? false : true;
-        });
+      const subscription = this.service.findByIDContact(this.idUser).subscribe((resp) => {
+        this.isAccompaniment = resp.requestAccompaniment == true ? false : true;
+      });
       this.subscriptions.push(subscription);
     }
   }
@@ -85,8 +82,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE +
-              SharedConstants.ALERTSUCCESS.USER,
+            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.USER,
             'success',
           );
           if (this.check) {
@@ -100,8 +96,7 @@ export class FormComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           Swal.fire(
             SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE +
-              SharedConstants.ALERTERROR.USER,
+            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.USER,
             'error',
           );
           this.validateInput(true);

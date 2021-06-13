@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { LabelConstants } from '../../../shared/constants/label-constants';
 import { Advisory } from '../../../core/models/advisory.model';
+import { LabelConstants } from '../../../shared/constants/label-constants';
 
 @Component({
   selector: 'app-modal',
@@ -16,10 +16,7 @@ export class ModalComponent implements OnInit {
   public advisory: Advisory;
   public id: number;
 
-  constructor(
-    public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Advisory,
-  ) {
+  constructor(public dialogRef: MatDialogRef<ModalComponent>, @Inject(MAT_DIALOG_DATA) public data: Advisory) {
     this.buildAvisory();
   }
 

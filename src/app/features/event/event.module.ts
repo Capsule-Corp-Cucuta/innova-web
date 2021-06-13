@@ -10,12 +10,6 @@ import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [TableComponent, FormComponent, ModalComponent],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    CommonModule,
-    EventRoutingModule,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, SharedModule, CommonModule, EventRoutingModule],
 })
 export class EventModule {}

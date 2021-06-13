@@ -7,20 +7,9 @@
     <mat-card class="page__header">
       <mat-form-field>
         <mat-label>{{ LABELS.FILTER }}</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter()"
-          placeholder="{{ LABELS.SEARCH }}"
-          [(ngModel)]="filter"
-          #input
-        />
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <button
-        mat-stroked-button
-        (click)="exportAsXLSX()"
-        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
-        color="primary"
-      >
+      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
         <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
       </button>
     </mat-card>
@@ -114,9 +103,6 @@
     <div class="table-spinner" *ngIf="isLoading">
       <mat-spinner color="primary" diameter="30"></mat-spinner>
     </div>
-    <mat-paginator
-      class="paginator"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-    ></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>

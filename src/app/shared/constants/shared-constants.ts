@@ -134,8 +134,7 @@ export class SharedConstants {
     CLIENT: ' el cliente',
     CONSULTANT: ' el asesor',
     EVENT: ' el evento',
-    CONTACT:
-      ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
+    CONTACT: ' el contacto, revisa tu correo electrónico, se te ha asignado una contraseña de ingreso.',
     USER: 'usuario',
     ATTENDANCE: ' la asistencia',
     EVENT_INSCRIPTION: 'la inscripcion al evento',
@@ -183,8 +182,7 @@ export class SharedConstants {
   };
 
   static readonly EXPORTSERVICE = {
-    EXCEL_TYPE:
-      'application/vnd.openxmlformats-officedocument.spreadsheetml; charset=UTF-8',
+    EXCEL_TYPE: 'application/vnd.openxmlformats-officedocument.spreadsheetml; charset=UTF-8',
     EXCEL_EXT: '.xlsx',
     SHEETNAMES: {
       DATA: 'data',

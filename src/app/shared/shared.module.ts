@@ -43,13 +43,7 @@ import { InternationalActivityPipe } from './pipes/internacionalActivity-pipe';
     InternationalActivityPipe,
   ],
   imports: [CoreModule, CommonModule, MaterialModule],
-  providers: [
-    TokenService,
-    FacadeService,
-    ExporterService,
-    SessionGuardService,
-    interceptorProvider,
-  ],
+  providers: [TokenService, FacadeService, ExporterService, SessionGuardService, interceptorProvider],
   exports: [
     StatePipe,
     OptionPipe,

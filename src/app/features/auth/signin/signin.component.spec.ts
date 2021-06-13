@@ -64,9 +64,7 @@ describe('SigninComponent', () => {
 
   describe('When onLogin is invoked', () => {
     it('should request to signin', () => {
-      component.form.controls[SharedConstants.EMAIL].setValue(
-        'test@mail.com.co',
-      );
+      component.form.controls[SharedConstants.EMAIL].setValue('test@mail.com.co');
       component.form.controls[SharedConstants.PASSWORD].setValue('miClave_123');
       const spy = spyOn(service, 'signin').and.returnValue(of(TestUtils.JWT));
 
@@ -79,9 +77,7 @@ describe('SigninComponent', () => {
     });
 
     it('should mark isLoginFail as true', () => {
-      component.form.controls[SharedConstants.EMAIL].setValue(
-        'test@mail.com.co',
-      );
+      component.form.controls[SharedConstants.EMAIL].setValue('test@mail.com.co');
       component.form.controls[SharedConstants.PASSWORD].setValue('miClave_123');
       spyOn(service, 'signin').and.returnValue(throwError({}));
 

@@ -70,10 +70,7 @@ export class TableComponent implements OnInit, OnDestroy {
     if (this.filter.length == 0) {
       this.service.exporterToExcel(this.contact.data, this.FILENAME.CONTACT);
     } else {
-      this.service.exporterToExcel(
-        this.contact.filteredData,
-        this.FILENAME.CONTACT,
-      );
+      this.service.exporterToExcel(this.contact.filteredData, this.FILENAME.CONTACT);
     }
   }
 

@@ -15,32 +15,15 @@
     <form [formGroup]="form" class="form">
       <mat-card-content class="form__content">
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}"
-            formControlName="id"
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATIONCARD }}" formControlName="id" />
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.CODE }}"
-            formControlName="code"
-            required
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CODE }}" formControlName="code" required />
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
-            formControlName="name"
-            required
-          />
+          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" required />
         </mat-form-field>
 
         <mat-form-field>
@@ -64,13 +47,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="email"
-            placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
-            formControlName="email"
-            required
-          />
+          <input matInput type="email" placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" required />
         </mat-form-field>
 
         <mat-form-field>
@@ -85,13 +62,7 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button
-          *ngIf="isCreate"
-          mat-raised-button
-          color="primary"
-          (click)="create($event)"
-          [disabled]="form.invalid"
-        >
+        <button *ngIf="isCreate" mat-raised-button color="primary" (click)="create($event)" [disabled]="form.invalid">
           <div class="button-spinner" *ngIf="isLoading">
             <mat-spinner color="accent" diameter="30"></mat-spinner>
           </div>

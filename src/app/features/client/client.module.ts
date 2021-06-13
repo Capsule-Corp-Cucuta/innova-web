@@ -10,12 +10,6 @@ import { FormViewComponent } from './form-view/form-view.component';
 
 @NgModule({
   declarations: [TableComponent, FormComponent, FormViewComponent],
-  imports: [
-    FormsModule,
-    CommonModule,
-    SharedModule,
-    ClientRoutingModule,
-    ReactiveFormsModule,
-  ],
+  imports: [FormsModule, CommonModule, SharedModule, ClientRoutingModule, ReactiveFormsModule],
 })
 export class ClientModule {}
