@@ -78,9 +78,9 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      oldPassword: [undefined, [Validators.required]],
-      newPassword: [undefined, [Validators.required]],
-      repeatPassword: [undefined, [Validators.required]],
+      oldPassword: [undefined, [Validators.required, Validators.minLength(8)]],
+      newPassword: [undefined, [Validators.required, Validators.minLength(8)]],
+      repeatPassword: [undefined, [Validators.required, Validators.minLength(8)]],
     });
   }
 

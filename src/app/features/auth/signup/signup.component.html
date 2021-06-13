@@ -14,7 +14,14 @@
       <mat-card-content class="form__content">
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" required />
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
+              formControlName="name"
+              pattern="[a-zA-Z ]*"
+              required
+            />
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
@@ -23,6 +30,7 @@
               type="text"
               placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
               formControlName="lastname"
+              pattern="[a-zA-Z ]*"
               required
             />
           </mat-form-field>

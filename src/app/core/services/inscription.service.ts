@@ -22,7 +22,7 @@ export class InscriptionService {
   }
 
   public takeAttendance(inscriptions: Inscription[]): Observable<Response> {
-    return this.http.put<Response>(InscriptionService.ENDPOINT, inscriptions);
+    return this.http.put<Response>(InscriptionService.ENDPOINT + '/take-attendance', inscriptions);
   }
 
   public findInscriptionsByEvent(id: number): Observable<Inscription[]> {

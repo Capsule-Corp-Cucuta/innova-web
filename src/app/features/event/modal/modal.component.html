@@ -22,21 +22,21 @@
         <span>
           <b>{{ LABELS.PLACEHOLDER.DATE_START }}</b>
         </span>
-        <span> {{ event.startDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
+        <span> {{ event.startDate | date: 'yyyy-MM-dd hh:mm a' }}</span>
       </div>
 
       <div>
         <span>
           <b>{{ LABELS.PLACEHOLDER.DATE_END }}</b>
         </span>
-        <span> {{ event.closeDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
+        <span> {{ event.closeDate | date: 'yyyy-MM-dd hh:mm a' }}</span>
       </div>
 
       <div>
         <span>
           <b>{{ LABELS.PLACEHOLDER.DEADLINE }}</b>
         </span>
-        <span> {{ event.registrationDeadlineDate | date: 'dd/MM/yyyy' }}</span>
+        <span> {{ event.registrationDeadlineDate | date: 'yyyy-MM-dd' }}</span>
       </div>
 
       <div>
@@ -113,6 +113,9 @@
     <mat-divider *ngIf="showButton"></mat-divider>
 
     <mat-card-actions class="form__actions">
+      <button mat-raised-button (click)="onNoClick()">
+        <span>{{ LABELS.CLOSE }}</span>
+      </button>
       <button
         mat-raised-button
         color="primary"

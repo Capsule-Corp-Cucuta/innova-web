@@ -43,6 +43,7 @@
               type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATE_ADVISORY }}"
               formControlName="date"
+              min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
             />
           </mat-form-field>
 

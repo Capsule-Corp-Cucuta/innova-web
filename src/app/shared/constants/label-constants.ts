@@ -82,6 +82,7 @@ export class LabelConstants {
         LABEL_ASSIGN: 'Asesores',
         ADVISER: 'Seleccionar asesor',
         ASSIGN_BUTTON: 'Asignar',
+        CLOSE: 'Cerrar',
       },
       CHANGE_PASSWORD: {
         TITLE: 'Cambiar contraseña',
@@ -90,6 +91,7 @@ export class LabelConstants {
         NEW_PASS: 'Ingresa contraseña nueva',
         REPEAT_NEW_PASS: 'Confirmar contraseña nueva',
         ASSIGN_BUTTON: 'Enviar datos',
+        CLOSE: 'Cerrar',
       },
     },
     PRINCIPAL: {
@@ -245,6 +247,7 @@ export class LabelConstants {
         LABEL_ASSIGN: 'Asesores',
         ADVISER: 'Seleccionar asesor',
         ASSIGN_BUTTON: 'Asignar',
+        CLOSE: 'Cerrar',
       },
     },
     ADVISORY: {
@@ -269,6 +272,7 @@ export class LabelConstants {
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
         BACK_BUTTON: 'Volver',
+        CLOSE: 'Cerrar',
       },
       LIST: {
         TITLE: 'Listado de asesorías',
@@ -322,6 +326,7 @@ export class LabelConstants {
         REGISTER_BUTTON: 'Registrar',
         UPDATE_BUTTON: 'Actualizar',
         BACK_BUTTON: 'Volver',
+        CLOSE: 'Cerrar',
       },
       LIST: {
         TITLE: 'Listado de eventos',

@@ -18,7 +18,14 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" required />
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
+            formControlName="name"
+            pattern="[a-zA-Z ]*"
+            required
+          />
         </mat-form-field>
 
         <mat-form-field>
@@ -27,6 +34,7 @@
             type="text"
             placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
             formControlName="lastname"
+            pattern="[a-zA-Z ]*"
             required
           />
         </mat-form-field>
