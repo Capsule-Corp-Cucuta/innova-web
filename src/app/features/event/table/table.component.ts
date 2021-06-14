@@ -104,8 +104,6 @@ export class TableComponent implements OnInit, OnDestroy {
         }),
       )
       .subscribe((resp) => {
-        console.log(resp);
-
         this.events = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);
