@@ -27,13 +27,13 @@
               type="datetime-local"
               placeholder="{{ LABELS.PLACEHOLDER.DATE_START }}"
               formControlName="startDate"
-              min="{{ today | date: 'yyyy-MM-ddTHH:mm' }}"
-              (change)="validateDates()"
+              min="{{ tomorrow | date: 'yyyy-MM-ddTHH:mm' }}"
+              (change)="initializeEndDate()"
               required
             />
           </mat-form-field>
 
-          <mat-form-field class="form__content--group--item" *ngIf="form.value['startDate']">
+          <mat-form-field class="form__content--group--item" *ngIf="initializeEndDate() || !isCreate">
             <input
               matInput
               type="datetime-local"
@@ -41,19 +41,20 @@
               formControlName="closeDate"
               min="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
               max="{{ endDate | date: 'yyyy-MM-ddTHH:mm' }}"
+              (change)="validateEndDate()"
               required
             />
           </mat-form-field>
         </div>
 
         <div class="form__content--group">
-          <mat-form-field class="form__content--group--item" *ngIf="form.value['closeDate']">
+          <mat-form-field class="form__content--group--item" *ngIf="form.value['closeDate'] || !isCreate">
             <input
               matInput
               type="date"
               placeholder="{{ LABELS.PLACEHOLDER.DEADLINE }}"
               formControlName="registrationDeadlineDate"
-              min="{{ today | date: 'yyyy-MM-dd' }}"
+              min="{{ tomorrow | date: 'yyyy-MM-dd' }}"
               max="{{ endDate | date: 'yyyy-MM-dd' }}"
             />
           </mat-form-field>
