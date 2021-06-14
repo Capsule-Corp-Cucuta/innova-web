@@ -39,7 +39,7 @@ export class SignupComponent implements OnDestroy {
   }
 
   public loadDataBusiness(type: ContactType): void {
-    this.isBusiness = type === ContactType.EMPRESA ? true : false;
+    this.isBusiness = type === ContactType.EMPRESA;
   }
 
   public create(): void {
