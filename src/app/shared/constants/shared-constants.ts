@@ -191,9 +191,9 @@ export class SharedConstants {
   };
 
   static readonly ROLES = {
-    ADMIN: 'ADMIN',
-    CONSULTANT: 'CONSULTANT',
-    CONTACT: 'CONTACT',
-    CLIENT: 'CLIENT',
+    ADMIN: 'ADMINISTRADOR',
+    CONSULTANT: 'ASESOR',
+    CONTACT: 'CONTACTO',
+    CLIENT: 'CLIENTE',
   };
 }

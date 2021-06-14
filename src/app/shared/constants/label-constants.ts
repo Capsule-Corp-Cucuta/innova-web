@@ -398,64 +398,64 @@ export class LabelConstants {
   };
 
   public static CONTACTS_TYPES = [
-    { id: 1, value: 'ENTREPRENEUR' },
-    { id: 0, value: 'COMPANY' },
+    { id: 1, value: 'EMPRENDEDOR' },
+    { id: 0, value: 'EMPRESA' },
   ];
 
   public static EUCATIONAL_LEVEL = [
-    { id: 0, value: 'PRIMARY' },
-    { id: 1, value: 'BACHELOR' },
-    { id: 2, value: 'TECHNICAL' },
-    { id: 3, value: 'PROFESSIONAL' },
-    { id: 4, value: 'POSTGRADUATE' },
-    { id: 5, value: 'OTHERS' },
+    { id: 0, value: 'PRIMARIA' },
+    { id: 1, value: 'BACHILLER' },
+    { id: 2, value: 'TECNICO' },
+    { id: 3, value: 'PROFESIONAL' },
+    { id: 4, value: 'POSGRADO' },
+    { id: 5, value: 'OTRO' },
   ];
 
   public static GENDER = [
-    { id: 0, value: 'MALE' },
-    { id: 1, value: 'FEMALE' },
-    { id: 2, value: 'OTHER' },
+    { id: 0, value: 'MASCULINO' },
+    { id: 1, value: 'FEMENINO' },
+    { id: 2, value: 'OTRO' },
   ];
 
   public static ETHNIC_GROUP = [
-    { id: 0, value: 'GYPSY' },
-    { id: 1, value: 'INDIGENOUS' },
-    { id: 2, value: 'AFRO_COLOMBIAN' },
+    { id: 0, value: 'GITANO' },
+    { id: 1, value: 'INDIGENA' },
+    { id: 2, value: 'AFRO_COLOMBIANO' },
     { id: 3, value: 'RAIZALES' },
-    { id: 4, value: 'OTHER' },
+    { id: 4, value: 'OTRO' },
   ];
 
   public static LEGAL_CONSTITUTION = [
     { id: 0, value: 'SAS' },
-    { id: 1, value: 'LIMITED' },
-    { id: 2, value: 'ANONYMOUS' },
-    { id: 3, value: 'LEGAL_PERSON' },
-    { id: 4, value: 'OTHER' },
+    { id: 1, value: 'LIMITADA' },
+    { id: 2, value: 'ANONIMO' },
+    { id: 3, value: 'PERSONA_LEGAL' },
+    { id: 4, value: 'OTRO' },
   ];
 
   public static COMPANY_TYPE = [
     { id: 0, value: 'INDUSTRIAL' },
-    { id: 1, value: 'WHOLESALE' },
-    { id: 2, value: 'RETAIL' },
-    { id: 3, value: 'SERVICES' },
+    { id: 1, value: 'VENTAS_AL_MAYOR' },
+    { id: 2, value: 'VENTAS_AL_DETAL' },
+    { id: 3, value: 'SERVICIOS' },
     { id: 4, value: 'AGROINDUSTRIAL' },
   ];
 
   public static INTERNATIONAL_ACTIVITY = [
-    { id: 0, value: 'IMPORT' },
-    { id: 1, value: 'EXPORT' },
-    { id: 2, value: 'BOTH' },
-    { id: 3, value: 'DOES_NO_APPLY' },
+    { id: 0, value: 'IMPORTACIONES' },
+    { id: 1, value: 'EXPORTACIONES' },
+    { id: 2, value: 'AMBAS' },
+    { id: 3, value: 'NO_APLICA' },
   ];
 
   public static CONTACT_MEDIUM = [
-    { id: 0, value: 'MINISTRY_REFERRAL' },
-    { id: 1, value: 'BUSINESS_REFERRAL' },
-    { id: 2, value: 'UNIVERSITY' },
-    { id: 3, value: 'MASS_MEDIA' },
-    { id: 4, value: 'WEBSITE' },
-    { id: 5, value: 'SOCIAL_MEDIA' },
-    { id: 6, value: 'OTHERS' },
+    { id: 0, value: 'REFERIDO_DEL_MINISTERIO' },
+    { id: 1, value: 'REFERIDO_DE_EMPRESA' },
+    { id: 2, value: 'UNIVERSIADA' },
+    { id: 3, value: 'MEDIOS_DE_COMUNICAION' },
+    { id: 4, value: 'SITIO_WEB' },
+    { id: 5, value: 'REDES_SOCIALES' },
+    { id: 6, value: 'OTROS' },
   ];
 
   public static OPTION = [
@@ -464,41 +464,41 @@ export class LabelConstants {
   ];
 
   public static ADVISORY_TYPE = [
-    { id: 0, value: 'INITIAL' },
-    { id: 1, value: 'FOLLOW_UP' },
-    { id: 2, value: 'UCLOSING' },
+    { id: 0, value: 'INICIAL' },
+    { id: 1, value: 'SEGUIMIENTO' },
+    { id: 2, value: 'DE_CIERRE' },
   ];
 
   public static ADVISORY_AREA = [
-    { id: 0, value: 'BUSINESS_PLAN' },
-    { id: 1, value: 'HUMAN_RESOURCES' },
-    { id: 2, value: 'BUSINESS_ADMINISTRATION' },
-    { id: 3, value: 'FINANCING' },
+    { id: 0, value: 'PLAN_DE_NEGOCIOS' },
+    { id: 1, value: 'RECURSOS_HUMANOS' },
+    { id: 2, value: 'ADMINISTRACION_DE_EMPRESAS' },
+    { id: 3, value: 'FINANCIAMIENTO' },
   ];
 
   public static ADVISORY_STATE = [
-    { id: 0, value: 'PENDING' },
-    { id: 1, value: 'REJECTED' },
-    { id: 2, value: 'COMPLETE' },
+    { id: 0, value: 'PENDIENTE' },
+    { id: 1, value: 'RECHAZADA' },
+    { id: 2, value: 'COMPLETADA' },
   ];
 
   public static EVENT_TYPE = [
-    { id: 0, value: 'TALK' },
-    { id: 1, value: 'BUSINESS_FAIR' },
-    { id: 2, value: 'COURSE' },
-    { id: 3, value: 'ONLINE_COURSE' },
-    { id: 4, value: 'BUSINESS_CONFERENCE' },
-    { id: 5, value: 'TELECONFERENCE' },
-    { id: 6, value: 'SEMINAR' },
+    { id: 0, value: 'CHARLA' },
+    { id: 1, value: 'FERIA_DE_NEGOCIOS' },
+    { id: 2, value: 'CURSO' },
+    { id: 3, value: 'CURSO_EN_LINEA' },
+    { id: 4, value: 'CONFERENCIA_DE_NEGOCIOS' },
+    { id: 5, value: 'TELECONFERENCIA' },
+    { id: 6, value: 'SEMINARIO' },
     { id: 7, value: 'WEBINAR' },
   ];
 
   public static EVENT_STATE = [
-    { id: 0, value: 'OPEN' },
-    { id: 1, value: 'CLOSED' },
-    { id: 2, value: 'COMPLETE' },
-    { id: 3, value: 'CANCELED' },
-    { id: 4, value: 'POSTPONED' },
+    { id: 0, value: 'ABIERTO' },
+    { id: 1, value: 'CERRADO' },
+    { id: 2, value: 'COMPLETADO' },
+    { id: 3, value: 'CANCELADO' },
+    { id: 4, value: 'POSPUESTO' },
   ];
 
   public static ICONS = {
