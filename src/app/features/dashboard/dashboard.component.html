@@ -1,0 +1,119 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav-class"
+    fixedInViewport
+    [opened]="(isHandset$ | async) === false"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  >
+    <mat-toolbar>
+      <div>
+        <a mat-list-item>
+          <img src="{{ LINKS.INNOVA }}" alt="Logo UFPS" class="icon-ufps" />
+        </a>
+      </div>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/{{ ROUTES.CONTACT }}" *ngIf="authority == ROLES.ADMIN">
+        <mat-icon> {{ ICONS.CONTACT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CONTACT }}</span></a
+      >
+      <mat-divider></mat-divider>
+
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.ADVISORY }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT || authority == ROLES.CLIENT"
+      >
+        <mat-icon> {{ ICONS.BOOK }}</mat-icon>
+        <span>{{ LABELS.MODULES.ADVISORY }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/{{ ROUTES.CONSULTANT }}" *ngIf="authority == ROLES.ADMIN">
+        <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CONSULTANT }}</span></a
+      >
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/{{ ROUTES.CLIENT }}/{{ ROUTES.ASSIGNED }}" *ngIf="authority == ROLES.CLIENT">
+        <mat-icon> {{ ICONS.CONSULTANT }}</mat-icon>
+        <span>{{ LABELS.MODULES.ASSIGNED }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.CLIENT }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT"
+      >
+        <mat-icon> {{ ICONS.CLIENT }}</mat-icon>
+        <span>{{ LABELS.MODULES.CLIENT }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.EVENT }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CLIENT || authority == ROLES.CONTACT"
+      >
+        <mat-icon> {{ ICONS.EVENT }}</mat-icon>
+        <span>{{ LABELS.MODULES.EVENT }}</span></a
+      >
+
+      <mat-divider></mat-divider>
+
+      <a
+        mat-list-item
+        routerLink="/{{ ROUTES.REPORT }}"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT"
+      >
+        <mat-icon> {{ ICONS.REPORT }}</mat-icon>
+        <span>{{ LABELS.MODULES.REPORT }}</span></a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar title">
+      <button
+        type="button"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+        aria-label="Toggle sidenav"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <span class="title-innova">{{ LABELS.TITLE }}</span>
+
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon aria-hidden="true">
+          {{ ICONS.PERSON2 }}
+        </mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/{{ ROUTES.USER }}/{{ ROUTES.UPDATE }}/{{ id }}">
+          <mat-icon> {{ ICONS.PERSON }}</mat-icon>
+          {{ LABELS.MENU.PROFILE }}
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item (click)="signout()">
+          <mat-icon> {{ ICONS.LOGOUT }}</mat-icon>
+          {{ LABELS.MENU.LOGOUT }}
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

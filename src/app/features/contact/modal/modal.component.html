@@ -1,0 +1,41 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.ADD_CONSULTANT }}</mat-icon>
+        <p class="header__title--text">
+          {{ LABELS.TITLE }}
+        </p>
+      </mat-card-title>
+      <button class="close" mat-button (click)="onNoClick()">X</button>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <mat-form-field>
+          <mat-select placeholder="{{ LABELS.ADVISER }}" formControlName="consultant">
+            <mat-option *ngFor="let op of consultants" [value]="op.id"> {{ op.name }} {{ op.lastname }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="assign($event)"
+          [disabled]="form.invalid"
+          class="form__actions--button"
+        >
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.ASSIGN_BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

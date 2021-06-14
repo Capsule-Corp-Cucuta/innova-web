@@ -1,0 +1,180 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header mat-card-avatar class="header">
+      <div mat-card-avatar>
+        <img src="{{ LINKS.INNOVA }}" class="header--image" />
+      </div>
+      <mat-card-title class="header--title">{{ LABELS.TITLE }}</mat-card-title>
+      <mat-card-subtitle>{{ LABELS.SUBTITLE }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.NAME }}"
+              formControlName="name"
+              pattern="[a-zA-Z ]*"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}"
+              formControlName="lastname"
+              pattern="[a-zA-Z ]*"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CEDULA }}" formControlName="id" required />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+              formControlName="cellphone"
+              required
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="email"
+              placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
+              formControlName="email"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <mat-label>{{ LABELS.CONTACT_TYPE }}</mat-label>
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.TYPE }}"
+              formControlName="type"
+              (selectionChange)="loadDataBusiness($event.value)"
+              required
+            >
+              <mat-option *ngFor="let type of TYPES" [value]="type.value">{{ type.id | ContactType }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-card-content class="form__content" *ngIf="isBusiness">
+          <div>
+            <span>{{ LABELS.TEXT }}</span>
+          </div>
+          <div class="form__content--group">
+            <mat-form-field class="form__content--group--item">
+              <input
+                matInput
+                type="text"
+                placeholder="{{ LABELS.PLACEHOLDER.COMPANY_NAME }}"
+                formControlName="companyName"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="form__content--group--item">
+              <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NIT }}" formControlName="nit" />
+            </mat-form-field>
+          </div>
+          <div class="form__content--group">
+            <mat-form-field class="form__content--group--item">
+              <input
+                matInput
+                type="text"
+                placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_BUSINESS }}"
+                formControlName="companyAddress"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="form__content--group--item">
+              <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CITY }}" formControlName="companyCity" />
+            </mat-form-field>
+          </div>
+
+          <div class="form__content--group">
+            <mat-form-field class="form__content--group--item">
+              <input matInput type="tel" placeholder="{{ LABELS.PLACEHOLDER.PHONE }}" formControlName="companyPhone" />
+            </mat-form-field>
+
+            <mat-form-field class="form__content--group--item">
+              <input
+                matInput
+                type="tel"
+                placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+                formControlName="companyCellPhone"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="form__content--group">
+            <mat-form-field class="form__content--group--item">
+              <input
+                matInput
+                type="email"
+                placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}"
+                formControlName="companyEmail"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="form__content--group--item">
+              <input
+                matInput
+                type="text"
+                placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
+                formControlName="companyWebsite"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+
+        <mat-checkbox formControlName="requestAccompaniment"> {{ LABELS.PLACEHOLDER.APPLY_FOR }}</mat-checkbox>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="create()"
+          [disabled]="form.invalid"
+          class="form__actions--button"
+        >
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading">{{ LABELS.REGISTER_BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+
+    <mat-card-footer class="card--footer">
+      <p>
+        <a class="card--footer--link" routerLink="/{{ URIS.SECURITY }}">{{ LABELS.LINK }}</a>
+      </p>
+    </mat-card-footer>
+
+    <mat-card-footer class="form__content">
+      <div class="form__content--avatar">
+        <img src="{{ LINKS.UFPS }}" alt="logo UFPS" class="form__content--avatar-img" />
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</section>

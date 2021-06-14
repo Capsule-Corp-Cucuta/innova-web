@@ -4,17 +4,54 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "pretty": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@angular-eslint/builder": ["packages/builder/dist/index"],
+      "@angular-eslint/builder/*": ["packages/builder/*"],
+      "@angular-eslint/eslint-plugin": ["packages/eslint-plugin/dist/index"],
+      "@angular-eslint/eslint-plugin/*": ["packages/eslint-plugin/*"],
+      "@angular-eslint/eslint-plugin-template": [
+        "packages/eslint-plugin-template/dist/index"
+      ],
+      "@angular-eslint/eslint-plugin-template/*": [
+        "packages/eslint-plugin-template/*"
+      ],
+      "@angular-eslint/integration-tests": ["packages/integration-tests"],
+      "@angular-eslint/integration-tests/*": ["packages/integration-tests/*"],
+      "@angular-eslint/schematics": ["packages/schematics/dist/index"],
+      "@angular-eslint/schematics/*": ["packages/schematics/*"],
+      "@angular-eslint/template-parser": [
+        "packages/template-parser/dist/index"
+      ],
+      "@angular-eslint/template-parser/*": ["packages/template-parser/*"],
+      "@angular-eslint/utils": ["packages/utils/dist/index"],
+      "@angular-eslint/utils/*": ["packages/utils/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInputAccessModifiers": true,
+    "strictInjectionParameters": true,
+    "strictTemplates": true
   }
 }

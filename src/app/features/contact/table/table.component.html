@@ -1,0 +1,108 @@
+<section class="page">
+  <div class="mat-elevation-z8 table">
+    <mat-card class="page__header">
+      <h3>{{ LABELS.TITLE }}</h3>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="page__header">
+      <mat-form-field>
+        <mat-label>{{ LABELS.FILTER }}</mat-label>
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
+      </mat-form-field>
+      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
+        <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
+      </button>
+    </mat-card>
+
+    <table mat-table [dataSource]="contact" matSort class="table--content">
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.BUSINESS_TYPE }}
+        </th>
+        <td mat-cell *matCellDef="let contact">
+          {{ contact.type | ContactType }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.IDENTIFICATION_CARD }}
+        </th>
+        <td mat-cell *matCellDef="let contact">
+          {{ contact.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.NAME }}
+        </th>
+        <td mat-cell *matCellDef="let contact">{{ contact.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.LASTNAME }}
+        </th>
+        <td mat-cell *matCellDef="let contact">{{ contact.lastname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cellphone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.CELLPHONE }}
+        </th>
+        <td mat-cell *matCellDef="let contact">{{ contact.cellphone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.EMAIL }}
+        </th>
+        <td mat-cell *matCellDef="let contact">
+          {{ contact.email }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.BUSINESS_NAME }}
+        </th>
+        <td mat-cell *matCellDef="let contact">{{ contact.companyName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.NIT }}
+        </th>
+        <td mat-cell *matCellDef="let contact">{{ contact.nit }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ LABELS.CELLS.ACTIONS }}
+        </th>
+        <td mat-cell *matCellDef="let contact">
+          <button
+            *ngIf="contact.requestAccompaniment"
+            mat-stroked-button
+            color="primary"
+            matTooltip="{{ LABELS.TOOLTIP.ASSIGN }}"
+            (click)="openDialog(contact.id)"
+          >
+            <mat-icon>{{ ICONS.ASSIGNED }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
+      <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
+      </tr>
+    </table>
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</section>

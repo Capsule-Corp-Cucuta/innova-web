@@ -1,0 +1,132 @@
+<section class="page">
+  <div class="mat-elevation-z8 table">
+    <mat-card class="page__header">
+      <h3>{{ LABELS.TITLE }}</h3>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="page__header">
+      <mat-form-field>
+        <mat-label>{{ LABELS.FILTER }}</mat-label>
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+        *ngIf="authority == ROLES.ADMIN || authority == ROLES.CONSULTANT"
+      >
+        <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
+      </button>
+    </mat-card>
+
+    <table mat-table [dataSource]="advisory" matSort class="table--content">
+      <ng-container matColumnDef="consultant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.ADVISER }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.consultantId }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="client">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.CLIENT }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.clientId }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.DATE }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.date | date: 'yyyy-MM-dd hh:mm a' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.TYPE }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.type | AdvisoryType }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.AREA }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.area | AdvisoryArea }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.AFFAIR }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.subject }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.STATE }}
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          {{ advisory.state | AdvisoryState }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          <button
+            mat-stroked-button
+            color="primary"
+            routerLink="{{ ROUTES.CREATE }}"
+            matTooltip="{{ LABELS.TOOLTIP.NEW }}"
+            *ngIf="authority == ROLES.CONSULTANT"
+          >
+            <mat-icon>{{ ICONS.ADD }}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let advisory">
+          <button
+            mat-stroked-button
+            color="primary"
+            routerLink="{{ ROUTES.UPDATE }}/{{ advisory.id }}"
+            matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
+            *ngIf="showEdit(advisory)"
+          >
+            <mat-icon>{{ ICONS.EDIT }}</mat-icon>
+          </button>
+          <button
+            mat-stroked-button
+            color="success"
+            (click)="openDialog(advisory)"
+            matTooltip="{{ LABELS.TOOLTIP.VIEW }}"
+          >
+            <mat-icon>{{ ICONS.VIEW }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
+      <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="12">{{ LABELS.NOT_DATA }}</td>
+      </tr>
+    </table>
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</section>

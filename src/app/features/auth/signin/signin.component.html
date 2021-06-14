@@ -1,0 +1,63 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header mat-card-avatar class="header">
+      <div mat-card-avatar>
+        <img src="{{ LINKS.INNOVA }}" class="header--image" />
+      </div>
+
+      <mat-card-title class="header--title">{{ LABELS.TITLE }}</mat-card-title>
+
+      <mat-card-subtitle>{{ LABELS.SUBTITLE }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <div class="form__content--avatar">{{ LABELS.TEXT }}</div>
+
+        <mat-form-field>
+          <mat-icon matSuffix>{{ ICONS.EMAIL }}</mat-icon>
+          <input placeholder="{{ LABELS.PLACEHOLDER.USER }}" formControlName="email" type="email" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-icon matSuffix>{{ ICONS.VPN_KEY }}</mat-icon>
+          <input placeholder="{{ LABELS.PLACEHOLDER.PASS }}" formControlName="password" type="password" matInput />
+        </mat-form-field>
+        <div *ngIf="isLoginFail" class="error">
+          <p>
+            {{ errorMessage }}
+          </p>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          class="form__actions--button"
+          (click)="onLogin()"
+          [disabled]="form.invalid"
+        >
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+
+          <span *ngIf="!isLoading">{{ LABELS.BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+
+    <mat-card-footer class="card--footer">
+      <a class="card--footer--link" routerLink="../{{ ROUTES.FORGOT_PASS }}">{{ LABELS.LINK }}</a>
+
+      <a class="card--footer--link" routerLink="../{{ ROUTES.SIGNUP }}">{{ LABELS.LINK_REGISTER }}</a>
+    </mat-card-footer>
+    <mat-card-footer class="form__content">
+      <div class="form__content--avatar">
+        <img src="{{ LINKS.UFPS }}" alt="AVATAR" class="form__content--avatar-img" />
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</section>

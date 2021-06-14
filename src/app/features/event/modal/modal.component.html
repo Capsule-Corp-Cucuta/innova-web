@@ -1,0 +1,131 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.EVENT }}</mat-icon>
+        <p class="header__title--text">{{ LABELS.TITLE_VIEW }}</p>
+      </mat-card-title>
+      <button class="close" mat-button (click)="onNoClick()">X</button>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="content">
+      <br />
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.TITLE }}</b>
+        </span>
+        <span> {{ event.title }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DATE_START }}</b>
+        </span>
+        <span> {{ event.startDate | date: 'yyyy-MM-dd hh:mm a' }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DATE_END }}</b>
+        </span>
+        <span> {{ event.closeDate | date: 'yyyy-MM-dd hh:mm a' }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DEADLINE }}</b>
+        </span>
+        <span> {{ event.registrationDeadlineDate | date: 'yyyy-MM-dd' }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DURATION }}</b>
+        </span>
+        <span> {{ event.eventDurationInHours }}{{ LABELS.PLACEHOLDER.HOURS }} </span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.THEME }}</b>
+        </span>
+        <span> {{ event.theme }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.EVENT_TYPE }}</b>
+        </span>
+        <span> {{ event.type | EventType }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.STATE }}</b>
+        </span>
+        <span> {{ event.state | EventState }}</span>
+      </div>
+
+      <div *ngIf="event.place">
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.PLACE }}</b>
+        </span>
+        <span> {{ event.place }}</span>
+      </div>
+
+      <div *ngIf="event.city">
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.CITY }}</b>
+        </span>
+        <span> {{ event.city }}</span>
+      </div>
+
+      <div *ngIf="event.department">
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DEPARTMENT }}</b>
+        </span>
+        <span> {{ event.department }}</span>
+      </div>
+
+      <div>
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.EMAIL }}</b>
+        </span>
+        <span> {{ event.email }}</span>
+      </div>
+
+      <div *ngIf="event.link">
+        <span>
+          <a href="{{ event.link }}" target="_blank">
+            <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>
+          </a>
+        </span>
+      </div>
+      <div class="header__justify" *ngIf="event.description">
+        <span>
+          <b>{{ LABELS.PLACEHOLDER.DESCRIPTION }}</b>
+        </span>
+        <span> {{ event.description }} </span>
+      </div>
+    </mat-card-content>
+
+    <mat-divider *ngIf="showButton"></mat-divider>
+
+    <mat-card-actions class="form__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="inscriptionEvent()"
+        *ngIf="showButton"
+        class="form__actions--button"
+      >
+        <div class="button-spinner" *ngIf="isLoading">
+          <mat-spinner color="accent" diameter="30"></mat-spinner>
+        </div>
+        <span *ngIf="!isLoading">{{ LABELS.INSCRIPTION_BUTTON }}</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

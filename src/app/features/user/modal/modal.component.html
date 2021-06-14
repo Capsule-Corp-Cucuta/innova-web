@@ -1,0 +1,57 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.VPN_KEY }}</mat-icon>
+        <p class="header__title--text">
+          {{ LABELS.TITLE }}
+        </p>
+      </mat-card-title>
+      <button class="close" mat-button (click)="onNoClick()">X</button>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content">
+        <mat-form-field>
+          <input matInput type="password" placeholder="{{ LABELS.OLD_PASS }}" formControlName="oldPassword" required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="{{ LABELS.NEW_PASS }}" formControlName="newPassword" required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="{{ LABELS.REPEAT_NEW_PASS }}"
+            formControlName="repeatPassword"
+            required
+          />
+        </mat-form-field>
+        <div *ngIf="error" class="error">
+          <p>
+            {{ LABELS.ERROR }}
+          </p>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="form__actions">
+        <button
+          mat-raised-button
+          color="primary"
+          class="form__actions--button"
+          (click)="changePassword()"
+          [disabled]="form.invalid"
+        >
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading"> {{ LABELS.ASSIGN_BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

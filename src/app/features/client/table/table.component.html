@@ -1,0 +1,107 @@
+<section class="page">
+  <div class="mat-elevation-z8 table">
+    <mat-card class="page__header">
+      <h3>{{ LABELS.TITLE }}</h3>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="page__header">
+      <mat-form-field>
+        <mat-label>{{ LABELS.FILTER }}</mat-label>
+        <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
+      </mat-form-field>
+      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
+        <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
+      </button>
+    </mat-card>
+
+    <table mat-table [dataSource]="client" matSort class="table--content">
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.BUSINESS_TYPE }}
+        </th>
+        <td mat-cell *matCellDef="let client">
+          {{ client.type | ContactType }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.IDENTIFICATION_CARD }}
+        </th>
+        <td mat-cell *matCellDef="let client">
+          {{ client.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.NAME }}
+        </th>
+        <td mat-cell *matCellDef="let client">{{ client.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.LASTNAME }}
+        </th>
+        <td mat-cell *matCellDef="let client">{{ client.lastname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.COMPANY }}
+        </th>
+        <td mat-cell *matCellDef="let client">{{ client.companyName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.NIT }}
+        </th>
+        <td mat-cell *matCellDef="let client">{{ client.nit }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.STATE }}
+        </th>
+        <td mat-cell *matCellDef="let client">
+          {{ client.active | State }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let client">
+          <button
+            mat-stroked-button
+            color="primary"
+            matTooltip="{{ LABELS.TOOLTIP.EDIT }}"
+            routerLink="{{ ROUTES.UPDATE }}/{{ client.id }}"
+          >
+            <mat-icon>{{ ICONS.CREATE }}</mat-icon>
+          </button>
+          <button
+            mat-stroked-button
+            color="danger"
+            matTooltip="{{ LABELS.TOOLTIP.DEACTIVATE }}"
+            (click)="Deactivate(client.id, client.active)"
+          >
+            <mat-icon>{{ ICONS.OFFLINE }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
+      <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
+      </tr>
+    </table>
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</section>

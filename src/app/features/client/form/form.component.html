@@ -1,0 +1,471 @@
+<section class="page">
+  <mat-card class="mat-elevation-z8 card">
+    <mat-card-header class="header">
+      <mat-card-title class="header__title">
+        <mat-icon class="header__title--icon">{{ ICONS.PERSON }}</mat-icon>
+        <p *ngIf="isWatch" class="header__title--text">{{ LABELS.TITLE }}</p>
+        <p *ngIf="!isWatch" class="header__title--text">
+          {{ LABELS.TITLE_UPDATE }}
+        </p>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="form" class="form">
+      <mat-card-content class="form__content" *ngIf="step == STEP.ZERO">
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATION_CARD }}"
+              formControlName="id"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_REGISTER }}"
+              formControlName="registrationDate"
+            />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <span>{{ LABELS.LABEL_CLASSIFICATION }}</span>
+        </div>
+        <br />
+        <mat-form-field>
+          <mat-select placeholder="{{ LABELS.PLACEHOLDER.CLIENT_TYPE }}" formControlName="type">
+            <mat-option *ngFor="let op of CONTACT_TYPES" [value]="op.value">{{ op.value | ContactType }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="button-next">
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.ONE">
+        <div>
+          <span>{{ LABELS.LABEL_CONTACT }}</span>
+        </div>
+        <br />
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NAME }}" formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.LASTNAME }}" formControlName="lastname" />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.POSITION }}"
+              formControlName="positionInCompany"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.ANTIQUITY }}"
+              formControlName="dateOfEntryToCompany"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.PLACE_OF_BIRTH }}"
+              formControlName="birthplace"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_OF_BIRTH }}"
+              formControlName="birthdate"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.IDENTIFICATION_CARD }}"
+              formControlName="id"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONAL_LEVEL }}" formControlName="educationalLevel">
+              <mat-option *ngFor="let op of EDUCATIONAL_LEVEL" [value]="op.id"
+                >{{ op.id | EducationLevel }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_CONTACT }}"
+              formControlName="address"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input matInput placeholder="{{ LABELS.PLACEHOLDER.DEPARTMENT }}" formControlName="contactDepartment" />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+              formControlName="cellphone"
+            />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input matInput type="email" placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="email" />
+        </mat-form-field>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.GENDER }}" formControlName="gender">
+              <mat-option *ngFor="let op of GENDER" [value]="op.id">
+                {{ op.id | Gender }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.ETHNIC_GROUP }}" formControlName="ethnicGroup">
+              <mat-option *ngFor="let op of ETHNIC_GROUP" [value]="op.id">
+                {{ op.id | EthnicGroup }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}" formControlName="displaced">
+              <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}" formControlName="handicapped">
+              <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="button-step">
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.TWO">
+        <div>
+          <span>{{ LABELS.LABEL_BUSINESS }}</span>
+        </div>
+        <br />
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.BUSINESS_NAME }}"
+              formControlName="companyName"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.NIT }}" formControlName="nit" />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.LEGAL_REPRESENTATIVE }}"
+            formControlName="companyLegalRepresentative"
+          />
+        </mat-form-field>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.LEGAL_CONSTITUTION }}"
+              formControlName="companyLegalConstitution"
+            >
+              <mat-option *ngFor="let op of LEGAL_CONSTITUTION" [value]="op.id"
+                >{{ op.id | LegalConstitution }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.DATE_CONSTITUTION }}"
+              formControlName="companyConstitutionDate"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.EMPLOYEES }}"
+              formControlName="companyNumberOfEmployees"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.TC }}"
+              formControlName="companyNumberOfFullTimeEmployees"
+            />
+          </mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.MT }}"
+              formControlName="companyNumberOfPartTimeEmployees"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.DIRECT }}"
+              formControlName="companyNumberOfDirectEmployees"
+            />
+          </mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="number"
+              placeholder="{{ LABELS.PLACEHOLDER.INDIRECT }}"
+              formControlName="companyNumberOfIndirectEmployees"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ADDRESS_BUSINESS }}"
+              formControlName="companyAddress"
+            />
+          </mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="text" placeholder="{{ LABELS.PLACEHOLDER.CITY }}" formControlName="companyCity" />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="tel" placeholder="{{ LABELS.PLACEHOLDER.PHONE }}" formControlName="companyPhone" />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="tel"
+              placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
+              formControlName="companyCellphone"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input matInput type="email" placeholder="{{ LABELS.PLACEHOLDER.EMAIL }}" formControlName="companyEmail" />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.WEBSITE }}"
+              formControlName="companyWebsite"
+            />
+          </mat-form-field>
+        </div>
+        <div class="button-step">
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+          <button mat-button color="primary" (click)="nextStep()">
+            {{ LABELS.STEP.NEXT }}
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="form__content" *ngIf="step == STEP.THREE">
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.TYPE_OF_COMPANY }}" formControlName="companySector">
+              <mat-option *ngFor="let op of COMPANY_TYPE" [value]="op.id">
+                {{ op.id | CompanyType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.ANOTHER_TYPE }}"
+              formControlName="otherCompanySector"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIAL_REGISTER }}"
+              formControlName="hasCommercialRegister"
+            >
+              <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.COMMERCIAL_REGISTER_NUMBER }}"
+              formControlName="commercialRegisterNumber"
+            />
+          </mat-form-field>
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="date"
+              placeholder="{{ LABELS.PLACEHOLDER.YEAR_RENOVATION }}"
+              formControlName="lastYearOfRenovation"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form__content--group">
+          <mat-form-field class="form__content--group--item">
+            <input
+              matInput
+              type="text"
+              placeholder="{{ LABELS.PLACEHOLDER.MAIN_CODE_CIIU }}"
+              formControlName="principalCodeCiiu"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form__content--group--item">
+            <mat-select
+              placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONAL_ACTIVITY }}"
+              formControlName="internationalActivity"
+            >
+              <mat-option *ngFor="let op of INTERNATIONAL_ACTIVITY" [value]="op.id"
+                >{{ op.id | InternationalActivity }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="{{ LABELS.PLACEHOLDER.COUNTRIES }}"
+            formControlName="internationalActivityCountries"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="{{ LABELS.PLACEHOLDER.INTERNET_BUSINESS }}" formControlName="ecommerce">
+            <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{ LABELS.PLACEHOLDER.SERVICES }} </mat-label>
+          <textarea matInput formControlName="servicesProductsOffered"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="{{ LABELS.LABEL_END }}" formControlName="discoveryChannel">
+            <mat-option *ngFor="let op of CONTACT_MEDIUM" [value]="op.id">
+              {{ op.id | ContactMedium }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{ LABELS.PLACEHOLDER.OBSERVATIONS }} </mat-label>
+          <textarea matInput formControlName="observations"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button color="warn" (click)="prevStep()">
+            {{ LABELS.STEP.PREVIOUS }}
+          </button>
+        </div>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="form__actions">
+        <button mat-raised-button routerLink="/{{ ROUTES.CLIENT }}">
+          <span>{{ LABELS.BACK_BUTTON }}</span>
+        </button>
+        <button
+          *ngIf="!isWatch"
+          mat-raised-button
+          color="primary"
+          class="form__actions--button"
+          (click)="update($event)"
+        >
+          <div class="button-spinner" *ngIf="isLoading">
+            <mat-spinner color="accent" diameter="30"></mat-spinner>
+          </div>
+          <span *ngIf="!isLoading"> {{ LABELS.UPDATE_BUTTON }}</span>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
