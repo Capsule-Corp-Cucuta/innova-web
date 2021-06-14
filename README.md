@@ -1,27 +1,111 @@
-# SiiuWeb
+[![N|Solid](https://i.imgur.com/Vlml12n.png)](https:nodesource.com/products/nsolid)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+# INNOVA UFPS 
+### Aplicacion Web que apoya el proceso de gestión de información de clientes para la unidad de emprendimiento INNOVA UFPS (SIU).  
+***
+## Índice
+1. [Características](#características)
+3. [Tecnologías](#tecnologías)
+4. [IDE](#ide)
+5. [Instalación](#instalación)
+6. [Demo](#demo)
+7. [Autor(es)](#autores)
+8. [Institución Académica](#institución-académica)
+***
+### Características:
 
-## Development server
+  - Registrar Contacto
+  - Recuperacion Contraseña
+  - Generar Contraseña aleatoria
+  - Enviar Solicitud Acompañamiento Profesional
+  - Aprobar Solicitud Acompañamiento
+  - Asignar Asesor
+  - Registrar Asesor
+  - Registrar Asesoria
+  - Registrar Eventos
+  - Tomar Asistencias Inscritos a Eventos
+  - Notificar Agendamiento de Asesorias
+  - Reporte Asesorias
+  - Reporte Clientes
+***
+### Tecnologías
+  
+  ##### BackEnd:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Java v11
+- spring-boot v2.4.5 
+- spring-boot-starter-web v2.4.5
+- spring-boot-starter-mail v2.4.5
+- spring-boot-starter-security v2.4.5
+- spring-boot-starter-data-jpa v2.4.5
+- jjwt v0.9.1
+- gson v2.8.7
+- commons-text v1.9
+- lombok v1.18.12
+- mapstruct v1.3.1.Final
+- springfox-swagger2 v2.9.2
 
-## Code scaffolding
+ ##### FrontEnd
+  - Angular 11
+  - Node.js  v.14.17
+  - Angular material
+  - TypeScript
+  - Sass
+  - file-saver
+  - rxjs
+  - sweetalert2
+  - xlsx
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ ##### Gestor Base de Datos
+  - MySql
 
-## Build
+ ##### Herramienta de Diseño de Bases De Datos
+  - WorkBench 8.0 [Descargar](https://www.mysql.com/products/workbench/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+ #### Herramientas de Despliegue
+  - Heroku
+  - PhpMyAdmin
+  - Firebase 
 
-## Running unit tests
+  
+  ***
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### IDE
 
-## Running end-to-end tests
+-Visual Studio Code es un editor de código fuente[Visual Studio Code](https://code.visualstudio.com/)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+-IntelliJ IDE [IntelliJ IDE](https://www.jetbrains.com/es-es/idea/)
 
-## Further help
+***
+### Instalación
+- Node.js V 14.17.0 -> [descargar](https://nodejs.org/es/).
+- Base de Datos -> [Mysql](http://www.madarme.co/phpmyadmin/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```sh
+- Instalar Node.js  
+- Instalar Angular (npm install -g @angular/cli) 
+- Descargar Proyecto o Clonar Proyecto   [GitHub](https://github.com/Capsule-Corp-Cucuta/innova-web)
+- nmp install
+- ng serve
+```
+
+
+***
+### Demo
+
+Para ver el demo de la aplicación puede dirigirse a: [INNOVA UFPS](https://innova-ufps.web.app/seguridad/iniciar-sesion).
+
+***
+### Autor(es)
+
+Proyecto desarrollado por:
+
+- [Sergio Andrés Rodriguez Ramirez] (<sergioandresrr@ufps.edu.co>).
+- [José Guillermo Parada Corredor] (<joseguillermopc@ufps.edu.co>).
+- [Edwar Yesid Camargo Roa] (<edwaryesidcr@ufps.edu.co>).
+
+***
+### Institución Académica 
+[Universidad Francisco de Paula Santander]
+Curso de Profundización Desarrollo de Software
+[Programa de Ingeniería de Sistemas]
