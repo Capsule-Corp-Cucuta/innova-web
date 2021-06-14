@@ -60,7 +60,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.isWatch = params.id ? false : true;
+      this.isWatch = !params.id;
       const idClient = params.id;
       this.service.findByIDClient(idClient).subscribe((resp) => {
         this.client = resp;
@@ -129,8 +129,8 @@ export class FormComponent implements OnInit, OnDestroy {
       email: [null, [Validators.email]],
       gender: [null],
       ethnicGroup: [null],
-      isDisplaced: [null],
-      isHandicapped: [null],
+      displaced: [null],
+      handicapped: [null],
       companyName: [null],
       nit: [null],
       companyDepartment: [null],
@@ -157,7 +157,7 @@ export class FormComponent implements OnInit, OnDestroy {
       principalCodeCiiu: [null],
       internationalActivity: [null],
       internationalActivityCountries: [null],
-      isEcommerce: [null],
+      ecommerce: [null],
       servicesProductsOffered: [null],
       discoveryChannel: [null],
       observations: [null],

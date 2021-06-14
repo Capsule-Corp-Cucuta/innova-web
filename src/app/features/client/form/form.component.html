@@ -142,7 +142,6 @@
           <mat-form-field class="form__content--group--item">
             <input
               matInput
-              matInput
               type="tel"
               placeholder="{{ LABELS.PLACEHOLDER.MOBILE }}"
               formControlName="cellphone"
@@ -174,12 +173,12 @@
 
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}" formControlName="isDisplaced">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}" formControlName="displaced">
               <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}" formControlName="isHandicapped">
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}" formControlName="handicapped">
               <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
             </mat-select>
           </mat-form-field>
@@ -419,7 +418,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="{{ LABELS.PLACEHOLDER.INTERNET_BUSINESS }}" formControlName="isEcommerce">
+          <mat-select placeholder="{{ LABELS.PLACEHOLDER.INTERNET_BUSINESS }}" formControlName="ecommerce">
             <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
           </mat-select>
         </mat-form-field>

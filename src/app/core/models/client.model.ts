@@ -11,8 +11,8 @@ export class Client extends Contact {
   educationalLevel?: EducationalLevel;
   gender?: Gender;
   ethnicGroup?: EthnicGroup;
-  isDisplaced?: boolean;
-  isHandicapped?: boolean;
+  displaced?: boolean;
+  handicapped?: boolean;
   companyLegalRepresentative?: Contact;
   companyLegalConstitution?: LegalConstitution;
   otherLegalConstitution?: string;
@@ -30,7 +30,7 @@ export class Client extends Contact {
   lastYearOfRenovation?: Date;
   internationalActivity?: InternationalActivity;
   internationalActivityCountries?: string;
-  isEcommerce?: boolean;
+  ecommerce?: boolean;
   servicesProductsOffered?: string;
   discoveryChannel?: DiscoveryChannel;
   observations?: string;
