@@ -116,8 +116,8 @@
 
           <mat-form-field class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.EDUCATIONAL_LEVEL }}" formControlName="educationalLevel">
-              <mat-option *ngFor="let op of EDUCATIONAL_LEVEL" [value]="op.id"
-                >{{ op.id | EducationLevel }}
+              <mat-option *ngFor="let op of EDUCATIONAL_LEVEL" [value]="op.value"
+                >{{ op.value | EducationLevel }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -157,16 +157,16 @@
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.GENDER }}" formControlName="gender">
-              <mat-option *ngFor="let op of GENDER" [value]="op.id">
-                {{ op.id | Gender }}
+              <mat-option *ngFor="let op of GENDER" [value]="op.value">
+                {{ op.value | Gender }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.ETHNIC_GROUP }}" formControlName="ethnicGroup">
-              <mat-option *ngFor="let op of ETHNIC_GROUP" [value]="op.id">
-                {{ op.id | EthnicGroup }}
+              <mat-option *ngFor="let op of ETHNIC_GROUP" [value]="op.value">
+                {{ op.value | EthnicGroup }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -174,13 +174,13 @@
 
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
-            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}" formControlName="isDisplaced">
-              <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+            <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISPLACED }}" formControlName="idDisplaced">
+              <mat-option *ngFor="let op of OPTION" [value]="op.value">{{ op.id | Option }} </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.DISABLED }}" formControlName="isHandicapped">
-              <mat-option *ngFor="let op of OPTION" [value]="op.id">{{ op.id | Option }} </mat-option>
+              <mat-option *ngFor="let op of OPTION" [value]="op.value">{{ op.id | Option }} </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -345,8 +345,8 @@
         <div class="form__content--group">
           <mat-form-field class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.TYPE_OF_COMPANY }}" formControlName="companySector">
-              <mat-option *ngFor="let op of COMPANY_TYPE" [value]="op.id">
-                {{ op.id | CompanyType }}
+              <mat-option *ngFor="let op of COMPANY_TYPE" [value]="op.value">
+                {{ op.value | CompanyType }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -402,8 +402,8 @@
               placeholder="{{ LABELS.PLACEHOLDER.INTERNATIONAL_ACTIVITY }}"
               formControlName="internationalActivity"
             >
-              <mat-option *ngFor="let op of INTERNATIONAL_ACTIVITY" [value]="op.id"
-                >{{ op.id | InternationalActivity }}
+              <mat-option *ngFor="let op of INTERNATIONAL_ACTIVITY" [value]="op.value"
+                >{{ op.value | InternationalActivity }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -431,8 +431,8 @@
 
         <mat-form-field>
           <mat-select placeholder="{{ LABELS.LABEL_END }}" formControlName="discoveryChannel">
-            <mat-option *ngFor="let op of CONTACT_MEDIUM" [value]="op.id">
-              {{ op.id | ContactMedium }}
+            <mat-option *ngFor="let op of CONTACT_MEDIUM" [value]="op.value">
+              {{ op.value | ContactMedium }}
             </mat-option>
           </mat-select>
         </mat-form-field>
