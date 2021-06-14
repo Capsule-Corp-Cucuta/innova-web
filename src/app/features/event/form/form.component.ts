@@ -26,7 +26,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isLoading = false;
   public isCreate: boolean;
-  public today = new Date();
+  public tomorrow = new Date();
 
   private subscriptions: Subscription[] = [];
 
@@ -37,6 +37,8 @@ export class FormComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {
     this.buildForm();
+    const today = new Date();
+    this.tomorrow.setDate(today.getDate() + 1);
   }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.isCreate = params.id ? false : true;
+      this.isCreate = !params.id;
       const idEvent = params.id;
       this.validateInput(true);
       if (!this.isCreate) {
@@ -63,8 +65,20 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
-  public validateDates(): void {
-    this.endDate = this.form.value['startDate'];
+  public initializeEndDate(): boolean {
+    if (this.form.value['startDate']) {
+      this.endDate = new Date(this.form.value['startDate']);
+      return true;
+    }
+    return false;
+  }
+
+  public validateEndDate(): void {
+    if (this.form.value['startDate'] && this.form.value['closeDate']) {
+      const startDateTime: Date = new Date(this.form.value['startDate']);
+      const endDate: Date = new Date(this.form.value['closeDate']);
+      if (startDateTime.getHours() >= endDate.getHours()) this.form.controls['closeDate'].setValue(null);
+    }
   }
 
   public create(e: Event): void {
