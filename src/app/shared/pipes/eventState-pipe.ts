@@ -20,6 +20,7 @@ export class EventStatePipe implements PipeTransform {
       case 'CANCELADO':
         return SharedConstants.PIPES.EVENTSTATE.CANCELED;
       default:
+      case 'POSPUESTO':
         return SharedConstants.PIPES.EVENTSTATE.POSTPONED;
     }
   }

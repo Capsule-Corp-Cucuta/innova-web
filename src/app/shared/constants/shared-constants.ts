@@ -108,7 +108,7 @@ export class SharedConstants {
       CLOSED: 'Cerrado',
       COMPLETE: 'Completo',
       CANCELED: 'Cancelado',
-      POSTPONED: 'Aplazado',
+      POSTPONED: 'Pospuesto',
     },
   };
 

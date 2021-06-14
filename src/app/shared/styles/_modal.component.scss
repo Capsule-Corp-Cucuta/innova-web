@@ -45,6 +45,18 @@
   &__justify {
     text-align: justify;
   }
+
+  .close.mat-button {
+    background-color: $white;
+    color: $accent-red;
+    line-height: 1.4rem;
+    margin-right: 0.5rem;
+    min-width: auto;
+    padding: 0.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 .form {
