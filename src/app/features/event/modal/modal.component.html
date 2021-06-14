@@ -5,6 +5,7 @@
         <mat-icon class="header__title--icon">{{ ICONS.EVENT }}</mat-icon>
         <p class="header__title--text">{{ LABELS.TITLE_VIEW }}</p>
       </mat-card-title>
+      <button class="close" mat-button (click)="onNoClick()">X</button>
     </mat-card-header>
 
     <mat-divider></mat-divider>
@@ -113,9 +114,6 @@
     <mat-divider *ngIf="showButton"></mat-divider>
 
     <mat-card-actions class="form__actions">
-      <button mat-raised-button (click)="onNoClick()">
-        <span>{{ LABELS.CLOSE }}</span>
-      </button>
       <button
         mat-raised-button
         color="primary"
