@@ -48,9 +48,10 @@
     &--group {
       display: flex;
       justify-content: space-between;
+
       &--item {
-        padding: 5px;
         flex: 1 1 0px;
+        padding: 5px;
       }
     }
   }
@@ -63,6 +64,7 @@
       width: 25rem;
     }
   }
+
   .span {
     &__justify {
       text-align: justify;
@@ -87,6 +89,7 @@
   .form {
     &__content {
       display: grid;
+
       &--group {
         flex-direction: column;
       }
