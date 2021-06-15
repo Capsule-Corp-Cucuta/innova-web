@@ -24,6 +24,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   public idUser: string;
   public authority: string;
   public showButton: boolean;
+  public showButtonDesist: boolean;
   public inscription: Inscription;
   public isLoading = false;
 
@@ -43,6 +44,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.idUser = this.service.getUser().id;
     this.showButton =
       this.data.showButton && (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT);
+    this.showButtonDesist =
+      !this.data.showButton && (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT);
     this.loadEvent();
   }
 
@@ -84,6 +87,28 @@ export class ModalComponent implements OnInit, OnDestroy {
         },
       );
 
+    this.subscriptions.push(subscription);
+  }
+
+  public desistEvent(): void {
+    this.isLoading = true;
+    const subscription = this.service
+      .deleteInscriptToEvent(this.idUser, this.event.id)
+      .pipe(
+        finalize(() => {
+          this.onNoClick();
+        }),
+      )
+      .subscribe(
+        () => {
+          this.isLoading = false;
+          Swal.fire(SharedConstants.ALERTSUCCESS.TITLE, SharedConstants.ALERTSUCCESS.TEXTDESIST, 'success');
+        },
+        () => {
+          this.isLoading = false;
+          Swal.fire(SharedConstants.ALERTERROR.TITLE, SharedConstants.ALERTERROR.TEXTDESIST, 'error');
+        },
+      );
     this.subscriptions.push(subscription);
   }
 
