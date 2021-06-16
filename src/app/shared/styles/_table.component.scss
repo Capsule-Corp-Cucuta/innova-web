@@ -6,6 +6,7 @@
   margin-top: 1rem;
 
   &__header {
+    align-items: center;
     display: flex;
     justify-content: space-between;
 
@@ -13,7 +14,7 @@
       justify-content: space-between;
 
       &--item {
-        flex: 1 1 0px;
+        flex: 1 1 0;
         padding: 5px;
       }
     }
@@ -35,6 +36,30 @@
       }
     }
   }
+
+  &__header-report {
+    &--group {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &--item-button {
+      margin-right: 1rem;
+      max-width: 6.4rem;
+    }
+  }
+}
+
+.search-input {
+  margin-left: 1rem;
+  width: 90%;
+}
+
+.button-export {
+  @media (min-width: 768px) {
+    margin-right: 7rem;
+  }
 }
 
 .table {
@@ -55,7 +80,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   table {
     display: block;
     overflow-x: auto;
@@ -71,7 +96,7 @@
         flex-direction: column;
 
         &--item {
-          flex: 1 1 0px;
+          flex: 1 1 0;
         }
       }
     }
@@ -87,7 +112,7 @@
 .table-spinner {
   align-items: center;
   display: flex;
-  height: 50vh;
+  height: 65vh;
   justify-content: center;
   padding: 0.3rem 0;
   width: 100%;

@@ -138,9 +138,9 @@ export class LabelConstants {
         SEARCH: 'Buscar...',
         NOT_DATA: 'No hay datos',
         EXPORT: 'Exportar datos',
-        COLUMNS: ['id', 'name', 'lastname', 'email', 'cellphone', 'active', 'actions'],
+        COLUMNS: ['code', 'id', 'name', 'lastname', 'email', 'cellphone', 'active', 'actions'],
         CELLS: {
-          USERNAME: 'Usuario:',
+          CODE: 'Código:',
           IDENTIFICATION_CARD: 'Cédula:',
           NAME: 'Nombres:',
           LASTNAME: 'Apellidos:',
