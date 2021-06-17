@@ -44,8 +44,8 @@
       justify-content: space-around;
 
       @media (max-width: 768px) {
-        display: grid;
         align-items: center;
+        display: grid;
         justify-items: center;
       }
     }
@@ -78,8 +78,8 @@
     }
 
     @media (max-width: 768px) {
-      display: grid;
       align-items: center;
+      display: grid;
       justify-items: center;
 
       .search-input {
