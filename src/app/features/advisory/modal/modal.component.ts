@@ -40,7 +40,7 @@ export class ModalComponent implements OnInit {
       date: null,
       type: null,
       durationInHours: null,
-      preparationTypeInHours: null,
+      preparationTimeInHours: null,
       area: null,
       subject: null,
       notes: null,

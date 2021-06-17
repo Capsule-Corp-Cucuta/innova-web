@@ -155,8 +155,8 @@ export class TableComponent implements OnInit, OnDestroy {
         estado_asesoria: advisory.state,
         fecha: advisory.date ? advisory.date.toString() : '',
         duracion_en_horas: advisory.durationInHours ? advisory.durationInHours.toString() : '',
-        tiempo_de_preparacion_en_horas: advisory.preparationTypeInHours
-          ? advisory.preparationTypeInHours.toString()
+        tiempo_de_preparacion_en_horas: advisory.preparationTimeInHours
+          ? advisory.preparationTimeInHours.toString()
           : '',
         notas: advisory.notes,
       });

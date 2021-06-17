@@ -320,6 +320,7 @@ export class LabelConstants {
           DEPARTMENT: 'Departamento:',
           EMAIL: 'Correo de contacto:',
           WEBSITE: 'Link del evento:',
+          GO_TO_WEBSITE: 'Click aquí',
         },
         INSCRIPTION_BUTTON: 'Inscribirse',
         DESIST_BUTTON: 'Desistír',

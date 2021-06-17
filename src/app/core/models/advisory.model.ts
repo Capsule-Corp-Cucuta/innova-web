@@ -5,10 +5,10 @@ export class Advisory {
   subject: string;
   type: AdvisoryType;
   area: AdvisoryArea;
-  state: AdvisoryState;
+  state?: AdvisoryState;
   date: Date;
   durationInHours?: number;
-  preparationTypeInHours?: number;
+  preparationTimeInHours?: number;
   notes?: string;
 }
 

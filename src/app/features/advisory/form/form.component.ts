@@ -69,7 +69,7 @@ export class FormComponent implements OnInit, OnDestroy {
             date: resp.date,
             type: resp.type,
             durationInHours: resp.durationInHours,
-            preparationTypeInHours: resp.preparationTypeInHours,
+            preparationTimeInHours: resp.preparationTimeInHours,
             area: resp.area,
             subject: resp.subject,
             notes: resp.notes,
@@ -151,10 +151,10 @@ export class FormComponent implements OnInit, OnDestroy {
       subject: [null, [Validators.required]],
       type: [null, [Validators.required]],
       area: [null, [Validators.required]],
-      state: [null, [Validators.required]],
+      state: [null],
       date: [null, [Validators.required]],
       durationInHours: null,
-      preparationTypeInHours: null,
+      preparationTimeInHours: null,
       notes: null,
     });
   }

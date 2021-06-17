@@ -3,7 +3,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Inscription } from 'src/app/core/models/inscription.model';
-import { InnovaEvent } from 'src/app/core/models/innova-event.model';
+import { EventState, InnovaEvent } from 'src/app/core/models/innova-event.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
@@ -43,9 +43,17 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.authority = this.service.getAuthorities()[0];
     this.idUser = this.service.getUser().id;
     this.showButton =
-      this.data.showButton && (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT);
+      this.data.showButton &&
+      (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT) &&
+      this.data.event.state !== EventState.COMPLETADO &&
+      this.data.event.state !== EventState.CERRADO &&
+      this.data.event.state !== EventState.CANCELADO;
     this.showButtonDesist =
-      !this.data.showButton && (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT);
+      !this.data.showButton &&
+      (this.authority === this.ROLES.CLIENT || this.authority === this.ROLES.CONTACT) &&
+      this.data.event.state !== EventState.COMPLETADO &&
+      this.data.event.state !== EventState.CERRADO &&
+      this.data.event.state !== EventState.CANCELADO;
     this.loadEvent();
   }
 
