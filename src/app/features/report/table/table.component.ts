@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Consultant } from 'src/app/core/models/consultant.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
