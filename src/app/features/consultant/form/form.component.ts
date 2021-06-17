@@ -1,13 +1,14 @@
+import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Swal from 'sweetalert2';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -17,12 +18,14 @@ import { Subscription } from 'rxjs';
 export class FormComponent implements OnInit, OnDestroy {
   public readonly URIS = UrlConstants.ROUTES;
   public readonly ICONS = LabelConstants.ICONS;
-  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
   public readonly ROUTES = UrlConstants.ROUTES;
+  public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
 
   public form: FormGroup;
   public isCreate: boolean;
   public isLoading = false;
+  public showComponent = false;
+
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -46,13 +49,21 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.isCreate = params.id ? false : true;
+      this.isCreate = !params.id;
       const idConsultant = params.id;
+      this.showComponent = this.isCreate;
       if (!this.isCreate) {
-        this.service.findByIDConsultant(idConsultant).subscribe((resp) => {
-          this.form.patchValue(resp);
-          this.validateInput(true);
-        });
+        this.service
+          .findByIDConsultant(idConsultant)
+          .pipe(
+            finalize(() => {
+              this.showComponent = true;
+            }),
+          )
+          .subscribe((resp) => {
+            this.form.patchValue(resp);
+            this.validateInput(true);
+          });
       }
     });
   }
@@ -62,25 +73,30 @@ export class FormComponent implements OnInit, OnDestroy {
     const consultant = this.form.value;
     if (this.form.valid) {
       this.isLoading = true;
-      const subscription = this.service.createConsultant(consultant).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.CONSULTANT,
-            'success',
-          );
-          this.router.navigate(['./asesor']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.CONSULTANT,
-            'error',
-          );
-        },
-      );
+      const subscription = this.service
+        .createConsultant(consultant)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.CONSULTANT,
+              'success',
+            );
+            this.router.navigate(['./asesor']);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.CONSULTANT,
+              'error',
+            );
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }

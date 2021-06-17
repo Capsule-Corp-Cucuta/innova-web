@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Consultant } from 'src/app/core/models/consultant.model';
-import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { FacadeService } from 'src/app/shared/services/facade.service';
+import { LabelConstants } from 'src/app/shared/constants/label-constants';
 
 @Component({
   selector: 'app-form-view',
@@ -15,6 +16,7 @@ export class FormViewComponent implements OnInit, OnDestroy {
   public readonly LABELS = LabelConstants.LABELS.CONSULTANT.FORM;
 
   public client: string;
+  public showComponent = false;
   public consultant: Consultant;
   private subscriptions: Subscription[] = [];
 
@@ -35,9 +37,16 @@ export class FormViewComponent implements OnInit, OnDestroy {
 
   public validateIsCreateForm(): void {
     const findByIDClient = this.service.findByIDClient(this.client).subscribe((resp) => {
-      const findByIDConsultant = this.service.findByIDConsultant(resp.consultantId).subscribe((response) => {
-        this.consultant = response;
-      });
+      const findByIDConsultant = this.service
+        .findByIDConsultant(resp.consultantId)
+        .pipe(
+          finalize(() => {
+            this.showComponent = true;
+          }),
+        )
+        .subscribe((response) => {
+          this.consultant = response;
+        });
       this.subscriptions.push(findByIDConsultant);
     });
     this.subscriptions.push(findByIDClient);
