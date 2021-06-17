@@ -11,6 +11,7 @@ import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import { Consultant } from '../../../core/models/consultant.model';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { Subscription } from 'rxjs';
+import { ConsultantExcel } from 'src/app/core/models/consultant-excel.model';
 
 @Component({
   selector: 'app-table',
@@ -94,9 +95,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.consultant.data, this.FILENAME.CONSULTANT);
+      this.service.exporterToExcel(this.convertToExcel(this.consultant.data), this.FILENAME.CONSULTANT);
     } else {
-      this.service.exporterToExcel(this.consultant.filteredData, this.FILENAME.CONSULTANT);
+      this.service.exporterToExcel(this.convertToExcel(this.consultant.filteredData), this.FILENAME.CONSULTANT);
     }
   }
 
@@ -115,5 +116,22 @@ export class TableComponent implements OnInit, OnDestroy {
         this.consultant = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);
+  }
+
+  private convertToExcel(consultants: Consultant[]): ConsultantExcel[] {
+    const consultantsConverted: ConsultantExcel[] = [];
+    consultants.forEach((consultant) => {
+      consultantsConverted.push({
+        cedula: consultant.id,
+        nombres: consultant.name,
+        apellidos: consultant.lastname,
+        email: consultant.email,
+        celular: consultant.cellphone,
+        direccion: consultant.address,
+        estado: consultant.active ? 'Activo' : 'Inactivo',
+        codigo: consultant.code,
+      });
+    });
+    return consultantsConverted;
   }
 }
