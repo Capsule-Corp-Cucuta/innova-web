@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Consultant } from 'src/app/core/models/consultant.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
@@ -78,10 +78,10 @@ export class TableComponent implements OnInit, OnDestroy {
         this.reports = [];
         this.reports = [
           {
-            consultant: id,
-            startDate: this.startDate,
-            closeDate: this.closeDate,
-            hour: resp,
+            asesor: id,
+            fecha_inicial: this.startDate,
+            fecha_fin: this.closeDate,
+            horas: resp,
           },
         ];
       });
@@ -101,10 +101,10 @@ export class TableComponent implements OnInit, OnDestroy {
         this.reports = [];
         this.reports = [
           {
-            consultant: id,
-            startDate: null,
-            closeDate: null,
-            hour: resp,
+            asesor: id,
+            fecha_inicial: null,
+            fecha_fin: null,
+            horas: resp,
           },
         ];
       });
@@ -124,10 +124,10 @@ export class TableComponent implements OnInit, OnDestroy {
         this.reports = [];
         reports.forEach((report) => {
           this.reports.push({
-            consultant: report.consultant.id,
-            startDate: null,
-            closeDate: null,
-            hour: report.advisoryHours,
+            asesor: report.consultant.id,
+            fecha_inicial: null,
+            fecha_fin: null,
+            horas: report.advisoryHours,
           });
         });
       });
@@ -147,10 +147,10 @@ export class TableComponent implements OnInit, OnDestroy {
         this.reports = [];
         reports.forEach((report) => {
           this.reports.push({
-            consultant: report.consultant.id,
-            startDate: this.startDate,
-            closeDate: this.closeDate,
-            hour: report.advisoryHours,
+            asesor: report.consultant.id,
+            fecha_inicial: this.startDate,
+            fecha_fin: this.closeDate,
+            horas: report.advisoryHours,
           });
         });
       });

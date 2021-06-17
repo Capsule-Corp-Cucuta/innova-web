@@ -65,7 +65,7 @@
           {{ LABELS.CELLS.CONSULTANT }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.consultant }}
+          {{ report.asesor }}
         </td>
       </ng-container>
 
@@ -74,7 +74,7 @@
           {{ LABELS.CELLS.START_DATE }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.startDate }}
+          {{ report.fecha_inicial }}
         </td>
       </ng-container>
 
@@ -82,7 +82,7 @@
         <th mat-header-cell *matHeaderCellDef>
           {{ LABELS.CELLS.CLOSE_DATE }}
         </th>
-        <td mat-cell *matCellDef="let report">{{ report.closeDate }}</td>
+        <td mat-cell *matCellDef="let report">{{ report.fecha_fin }}</td>
       </ng-container>
 
       <ng-container matColumnDef="hour">
@@ -90,7 +90,7 @@
           {{ LABELS.CELLS.HOUR }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.hour }}
+          {{ report.horas }}
         </td>
       </ng-container>
 

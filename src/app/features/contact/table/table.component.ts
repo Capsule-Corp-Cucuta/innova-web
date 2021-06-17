@@ -12,6 +12,7 @@ import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { ContactExcel } from 'src/app/core/models/contact-excel.model';
 
 @Component({
   selector: 'app-table',
@@ -68,9 +69,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.contact.data, this.FILENAME.CONTACT);
+      this.service.exporterToExcel(this.convertToExcel(this.contact.data), this.FILENAME.CONTACT);
     } else {
-      this.service.exporterToExcel(this.contact.filteredData, this.FILENAME.CONTACT);
+      this.service.exporterToExcel(this.convertToExcel(this.contact.filteredData), this.FILENAME.CONTACT);
     }
   }
 
@@ -89,5 +90,33 @@ export class TableComponent implements OnInit, OnDestroy {
         this.contact = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);
+  }
+
+  private convertToExcel(contacts: Contact[]): ContactExcel[] {
+    const contactsConverted: ContactExcel[] = [];
+    contacts.forEach((contact) => {
+      contactsConverted.push({
+        cedula: contact.id,
+        nombres: contact.name,
+        apellidos: contact.lastname,
+        email: contact.email,
+        celular: contact.cellphone,
+        direccion: contact.address ? contact.address : '',
+        estado: contact.active ? 'Activo' : 'Inactivo',
+        tipo_contacto: contact.type,
+        solicito_acompañamiento: contact.requestAccompaniment ? 'si' : 'no',
+        fecha_registro: contact.registrationDate.toString(),
+        nit: contact.nit ? contact.nit : '',
+        nombre_empresa: contact.companyName ? contact.companyName : '',
+        departamento_empresa: contact.companyDepartment ? contact.companyDepartment : '',
+        ciudad_empresa: contact.companyCity ? contact.companyCity : '',
+        direccion_empresa: contact.companyAddress ? contact.companyAddress : '',
+        email_empresa: contact.companyEmail ? contact.companyEmail : '',
+        telefono_empresa: contact.companyPhone ? contact.companyPhone : '',
+        celular_empresa: contact.companyCellphone ? contact.companyCellphone : '',
+        sitio_web: contact.companyWebsite ? contact.companyWebsite : '',
+      });
+    });
+    return contactsConverted;
   }
 }
