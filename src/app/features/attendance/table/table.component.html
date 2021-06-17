@@ -5,12 +5,13 @@
     </mat-card>
     <mat-divider></mat-divider>
     <mat-card class="page__header">
-      <mat-form-field>
+      <mat-form-field class="search-input">
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
       <div class="page__header--group">
         <button
+          class="button-export"
           mat-stroked-button
           (click)="selected()"
           matTooltip="{{ LABELS.TOOLTIP.SAVE }}"
@@ -25,7 +26,11 @@
       </div>
     </mat-card>
 
-    <table mat-table [dataSource]="participants" matSort class="table--content">
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+
+    <table *ngIf="!isLoading" mat-table [dataSource]="participants" matSort class="table--content">
       <ng-container matColumnDef="userId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.USERID }}
@@ -60,9 +65,6 @@
         <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
     <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>

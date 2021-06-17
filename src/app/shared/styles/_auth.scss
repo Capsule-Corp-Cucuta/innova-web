@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   margin: 2rem;
+  min-height: 95vh;
 }
 
 .button-spinner {
@@ -64,7 +65,7 @@
       justify-content: space-between;
 
       &--item {
-        flex: 1 1 0px;
+        flex: 1 1 0;
         padding: 5px;
       }
     }

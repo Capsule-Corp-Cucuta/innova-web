@@ -10,6 +10,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { UrlConstants } from 'src/app/shared/constants/url-constants';
 import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
+import { AdvisoryExcel } from '../../../core/models/advisory-excel.model';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
 import { Advisory, AdvisoryState } from '../../../core/models/advisory.model';
 
@@ -73,9 +74,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.advisory.data, this.FILENAME.ADVISER);
+      this.service.exporterToExcel(this.convertToExcel(this.advisory.data), this.FILENAME.ADVISER);
     } else {
-      this.service.exporterToExcel(this.advisory.filteredData, this.FILENAME.ADVISER);
+      this.service.exporterToExcel(this.convertToExcel(this.advisory.filteredData), this.FILENAME.ADVISER);
     }
   }
 
@@ -140,5 +141,26 @@ export class TableComponent implements OnInit, OnDestroy {
         this.advisory = new MatTableDataSource(resp);
       });
     this.subscriptions.push(subscription);
+  }
+
+  private convertToExcel(advisories: Advisory[]): AdvisoryExcel[] {
+    const advisoriesConverted: AdvisoryExcel[] = [];
+    advisories.forEach((advisory) => {
+      advisoriesConverted.push({
+        cedula_asesor: advisory.consultantId,
+        cedula_cliente: advisory.clientId,
+        asunto: advisory.subject,
+        tipo_asesoria: advisory.type,
+        area_asesoria: advisory.area,
+        estado_asesoria: advisory.state,
+        fecha: advisory.date ? advisory.date.toString() : '',
+        duracion_en_horas: advisory.durationInHours ? advisory.durationInHours.toString() : '',
+        tiempo_de_preparacion_en_horas: advisory.preparationTimeInHours
+          ? advisory.preparationTimeInHours.toString()
+          : '',
+        notas: advisory.notes,
+      });
+    });
+    return advisoriesConverted;
   }
 }

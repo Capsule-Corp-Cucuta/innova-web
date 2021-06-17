@@ -98,10 +98,11 @@
 
       <div *ngIf="event.link">
         <span>
-          <a href="{{ event.link }}" target="_blank">
-            <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>
-          </a>
+          <b>{{ LABELS.PLACEHOLDER.WEBSITE }} </b>
         </span>
+        <a href="{{ event.link }}" target="_blank">
+          <b>{{ LABELS.PLACEHOLDER.GO_TO_WEBSITE }}</b>
+        </a>
       </div>
       <div class="header__justify" *ngIf="event.description">
         <span>
