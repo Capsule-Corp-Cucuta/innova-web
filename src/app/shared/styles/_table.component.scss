@@ -60,6 +60,40 @@
       }
     }
   }
+
+  &__header-attendance {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .search-input {
+      margin-left: 1rem;
+      width: 80%;
+    }
+
+    &--group {
+      display: flex;
+      justify-content: space-around;
+      width: 20%;
+    }
+
+    @media (max-width: 768px) {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+
+      .search-input {
+        margin: 0;
+        width: 100%;
+      }
+
+      &--group {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .search-input {

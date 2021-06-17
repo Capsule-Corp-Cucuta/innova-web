@@ -5,13 +5,13 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { EventState } from 'src/app/core/models/innova-event.model';
+
 import { Inscription } from 'src/app/core/models/inscription.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { EventState, InnovaEvent } from 'src/app/core/models/innova-event.model';
 
 @Component({
   selector: 'app-table',
@@ -30,6 +30,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public state: boolean;
   public eventId: number;
   public isLoading = false;
+  public event: InnovaEvent;
   public participantsList: Inscription[];
   public participants: MatTableDataSource<Inscription>;
 
@@ -83,7 +84,6 @@ export class TableComponent implements OnInit, OnDestroy {
         );
       },
     );
-
     this.subscriptions.push(subscription);
   }
 
@@ -97,18 +97,21 @@ export class TableComponent implements OnInit, OnDestroy {
 
   private loadData(): void {
     this.isLoading = true;
-    const subscription = this.service
-      .findInscriptionsByEvent(this.eventId)
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-          this.participants.sort = this.sort;
-          this.participants.paginator = this.paginator;
-        }),
-      )
-      .subscribe((resp) => {
-        this.participants = new MatTableDataSource(resp);
-      });
+    const subscription = this.service.findInscriptionsByEvent(this.eventId).subscribe((resp) => {
+      this.participants = new MatTableDataSource(resp);
+      this.service
+        .findByIDEvent(this.eventId)
+        .pipe(
+          finalize(() => {
+            this.participants.sort = this.sort;
+            this.participants.paginator = this.paginator;
+            this.isLoading = false;
+          }),
+        )
+        .subscribe((eventResponse) => {
+          this.event = eventResponse;
+        });
+    });
 
     this.subscriptions.push(subscription);
   }
