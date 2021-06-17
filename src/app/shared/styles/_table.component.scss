@@ -42,11 +42,22 @@
       align-items: center;
       display: flex;
       justify-content: space-around;
+
+      @media (max-width: 768px) {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
     }
 
     &--item-button {
       margin-right: 1rem;
-      max-width: 6.4rem;
+      width: 6.4rem;
+
+      @media (max-width: 768px) {
+        margin: 0 0 0.5rem;
+        width: 18rem;
+      }
     }
   }
 }
