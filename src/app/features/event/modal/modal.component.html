@@ -96,7 +96,7 @@
         <span> {{ event.email }}</span>
       </div>
 
-      <div *ngIf="event.link">
+      <div *ngIf="event.link && showButtonDesist">
         <span>
           <b>{{ LABELS.PLACEHOLDER.WEBSITE }} </b>
         </span>

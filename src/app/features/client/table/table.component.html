@@ -9,7 +9,13 @@
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <button class="button-export" mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
+      <button
+        class="button-export"
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+      >
         <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
       </button>
     </mat-card>
@@ -112,6 +118,6 @@
         <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[15]"></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[12]"></mat-paginator>
   </div>
 </section>

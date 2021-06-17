@@ -12,6 +12,7 @@ import { FacadeService } from '../../../shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from '../../../shared/constants/shared-constants';
 import { EventState, InnovaEvent } from 'src/app/core/models/innova-event.model';
+import { InnovaEventExcel } from 'src/app/core/models/innova-event-excel.model';
 
 @Component({
   selector: 'app-table',
@@ -87,9 +88,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.events.data, this.FILENAME.EVENT);
+      this.service.exporterToExcel(this.convertToExcel(this.events.data), this.FILENAME.EVENT);
     } else {
-      this.service.exporterToExcel(this.events.filteredData, this.FILENAME.EVENT);
+      this.service.exporterToExcel(this.convertToExcel(this.events.filteredData), this.FILENAME.EVENT);
     }
   }
 
@@ -113,5 +114,29 @@ export class TableComponent implements OnInit, OnDestroy {
     return this.service.getAuthorities()[0] === SharedConstants.ROLES.ADMIN
       ? this.service.findAllEvents()
       : this.service.findAllAfterNow();
+  }
+
+  private convertToExcel(events: InnovaEvent[]): InnovaEventExcel[] {
+    const eventsConverted: InnovaEventExcel[] = [];
+    events.forEach((event) => {
+      eventsConverted.push({
+        id: event.id.toString(),
+        titulo: event.title,
+        tema: event.theme,
+        descripcion: event.description,
+        tipo_evento: event.type,
+        estado_evento: event.state,
+        fecha_inicial: event.startDate.toString(),
+        fecha_fin: event.closeDate.toString(),
+        fecha_limite_inscripcion: event.registrationDeadlineDate.toString(),
+        duracion_evento: event.eventDurationInHours.toString(),
+        departamento: event.department ? event.department : '',
+        ciudad: event.city ? event.city : '',
+        lugar: event.place ? event.place : '',
+        email_contacto: event.email,
+        link_evento: event.link ? event.link : '',
+      });
+    });
+    return eventsConverted;
   }
 }

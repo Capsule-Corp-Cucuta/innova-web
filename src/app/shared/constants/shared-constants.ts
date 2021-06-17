@@ -80,7 +80,7 @@ export class SharedConstants {
     ADVISORYTYPE: {
       INITIAL: 'Inicial',
       FOLLOW_UP: 'Seguimiento',
-      CLOSING: 'Clausura',
+      CLOSING: 'Cierre',
     },
     ADVISORYAREA: {
       BUSINESS_PLAN: 'Plan de negocios',

@@ -11,6 +11,7 @@ import { Inscription } from 'src/app/core/models/inscription.model';
 import { FacadeService } from 'src/app/shared/services/facade.service';
 import { LabelConstants } from 'src/app/shared/constants/label-constants';
 import { SharedConstants } from 'src/app/shared/constants/shared-constants';
+import { InscriptionExcel } from 'src/app/core/models/inscription-excel.model';
 import { EventState, InnovaEvent } from 'src/app/core/models/innova-event.model';
 
 @Component({
@@ -89,9 +90,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
   public exportAsXLSX(): void {
     if (this.filter.length == 0) {
-      this.service.exporterToExcel(this.participants.data, this.FILENAME.ATTENDANCE);
+      this.service.exporterToExcel(this.convertToExcel(this.participants.data), this.FILENAME.ATTENDANCE);
     } else {
-      this.service.exporterToExcel(this.participants.filteredData, this.FILENAME.ATTENDANCE);
+      this.service.exporterToExcel(this.convertToExcel(this.participants.filteredData), this.FILENAME.ATTENDANCE);
     }
   }
 
@@ -114,5 +115,18 @@ export class TableComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(subscription);
+  }
+
+  private convertToExcel(inscriptions: Inscription[]): InscriptionExcel[] {
+    const inscriptionsConverted: InscriptionExcel[] = [];
+    inscriptions.forEach((inscription) => {
+      inscriptionsConverted.push({
+        evento_Id: inscription.eventId.toString(),
+        participante: inscription.userId,
+        fecha_inscripcion: inscription.inscriptionDate.toString(),
+        asistio: inscription.attended ? 'Si' : 'No',
+      });
+    });
+    return inscriptionsConverted;
   }
 }
