@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,12 +25,13 @@ export class FormComponent implements OnInit, OnDestroy {
   public readonly ADVISORY_AREA = LabelConstants.ADVISORY_AREA;
   public readonly ADVISORY_STATE = LabelConstants.ADVISORY_STATE;
 
-  public consultant: string;
   public form: FormGroup;
   public isCreate: boolean;
   public clients: Client[];
   public isLoading = false;
+  public consultant: string;
   public tomorrow = new Date();
+  public showComponent = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -59,25 +61,33 @@ export class FormComponent implements OnInit, OnDestroy {
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.isCreate = !params.id;
-      const idAdvisory = params.id;
+      this.showComponent = this.isCreate;
       if (!this.isCreate) {
-        this.service.findByIDAdvisory(idAdvisory).subscribe((resp) => {
-          const advisory = {
-            id: resp.id,
-            consultantId: resp.consultantId,
-            clientId: resp.clientId,
-            date: resp.date,
-            type: resp.type,
-            durationInHours: resp.durationInHours,
-            preparationTimeInHours: resp.preparationTimeInHours,
-            area: resp.area,
-            subject: resp.subject,
-            notes: resp.notes,
-            state: resp.state,
-          };
-          this.form.patchValue(advisory);
-          this.validateInput(true);
-        });
+        const idAdvisory = params.id;
+        this.service
+          .findByIDAdvisory(idAdvisory)
+          .pipe(
+            finalize(() => {
+              this.showComponent = true;
+            }),
+          )
+          .subscribe((resp) => {
+            const advisory = {
+              id: resp.id,
+              consultantId: resp.consultantId,
+              clientId: resp.clientId,
+              date: resp.date,
+              type: resp.type,
+              durationInHours: resp.durationInHours,
+              preparationTimeInHours: resp.preparationTimeInHours,
+              area: resp.area,
+              subject: resp.subject,
+              notes: resp.notes,
+              state: resp.state,
+            };
+            this.form.patchValue(advisory);
+            this.validateInput(true);
+          });
       }
     });
   }
@@ -89,26 +99,30 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       advisory.consultantId = this.consultant;
       this.isLoading = true;
-      const subscription = this.service.createAdvisory(advisory).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.ADVISER,
-            'success',
-          );
-
-          this.router.navigate(['./asesoria']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.ADVISER,
-            'error',
-          );
-        },
-      );
+      const subscription = this.service
+        .createAdvisory(advisory)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.ADVISER,
+              'success',
+            );
+            this.router.navigate(['./asesoria']);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.ADVISER,
+              'error',
+            );
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }
@@ -119,26 +133,32 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const advisory = this.form.value;
       this.isLoading = true;
-      const subscription = this.service.updateAdvisory(advisory).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.ADVISER,
-            'success',
-          );
-          this.router.navigate(['./asesoria']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.ADVISER,
-            'error',
-          );
-          this.validateInput(true);
-        },
-      );
+      const subscription = this.service
+        .updateAdvisory(advisory)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.ADVISER,
+              'success',
+            );
+            this.router.navigate(['./asesoria']);
+          },
+          () => {
+            this.isLoading = false;
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.ADVISER,
+              'error',
+            );
+            this.validateInput(true);
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }

@@ -1,17 +1,20 @@
-<section class="page">
+<div class="table-spinner" *ngIf="isLoading">
+  <mat-spinner color="primary" diameter="70"></mat-spinner>
+</div>
+
+<section *ngIf="!isLoading" class="page">
   <div class="mat-elevation-z8 table">
     <mat-card class="page__header">
-      <h3>{{ LABELS.TITLE }} {{ eventId }}</h3>
+      <h3>{{ LABELS.TITLE }} {{ event.title }}</h3>
     </mat-card>
     <mat-divider></mat-divider>
-    <mat-card class="page__header">
+    <mat-card class="page__header-attendance">
       <mat-form-field class="search-input">
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <div class="page__header--group">
+      <div class="page__header-attendance--group">
         <button
-          class="button-export"
           mat-stroked-button
           (click)="selected()"
           matTooltip="{{ LABELS.TOOLTIP.SAVE }}"
@@ -26,11 +29,7 @@
       </div>
     </mat-card>
 
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
-
-    <table *ngIf="!isLoading" mat-table [dataSource]="participants" matSort class="table--content">
+    <table mat-table [dataSource]="participants" matSort class="table--content">
       <ng-container matColumnDef="userId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.USERID }}

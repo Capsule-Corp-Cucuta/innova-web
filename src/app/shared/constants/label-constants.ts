@@ -223,8 +223,9 @@ export class LabelConstants {
         FILTER: 'Buscar',
         SEARCH: 'Buscar...',
         NOT_DATA: 'No hay datos',
-        COLUMNS: ['type', 'id', 'name', 'lastname', 'companyName', 'nit', 'active', 'actions'],
+        COLUMNS: ['consultantId', 'type', 'id', 'name', 'lastname', 'companyName', 'nit', 'active', 'actions'],
         CELLS: {
+          CONSULTANT: 'Asesor asignado:',
           BUSINESS_TYPE: 'Tipo:',
           IDENTIFICATION_CARD: 'Cédula:',
           NAME: 'Nombres:',

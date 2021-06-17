@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,6 +28,7 @@ export class FormComponent implements OnInit, OnDestroy {
   public isLoading = false;
   public isCreate: boolean;
   public tomorrow = new Date();
+  public showComponent = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -56,11 +58,19 @@ export class FormComponent implements OnInit, OnDestroy {
       this.isCreate = !params.id;
       const idEvent = params.id;
       this.validateInput(true);
+      this.showComponent = this.isCreate;
       if (!this.isCreate) {
-        this.service.findByIDEvent(idEvent).subscribe((resp) => {
-          this.form.patchValue(resp);
-          this.endDate = resp.closeDate;
-        });
+        this.service
+          .findByIDEvent(idEvent)
+          .pipe(
+            finalize(() => {
+              this.showComponent = true;
+            }),
+          )
+          .subscribe((resp) => {
+            this.form.patchValue(resp);
+            this.endDate = resp.closeDate;
+          });
       }
     });
   }
@@ -86,25 +96,30 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const event = this.form.value;
       this.isLoading = true;
-      const subscription = this.service.createEvent(event).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT,
-            'success',
-          );
-          this.router.navigate(['./evento']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT,
-            'error',
-          );
-        },
-      );
+      const subscription = this.service
+        .createEvent(event)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTCREATE + SharedConstants.ALERTSUCCESS.EVENT,
+              'success',
+            );
+            this.router.navigate(['./evento']);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTCREATE + SharedConstants.ALERTERROR.EVENT,
+              'error',
+            );
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }
@@ -114,25 +129,30 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const event = this.form.value;
       this.isLoading = true;
-      const subscription = this.service.updateEvent(event).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.EVENT,
-            'success',
-          );
-          this.router.navigate(['./evento']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.EVENT,
-            'error',
-          );
-        },
-      );
+      const subscription = this.service
+        .updateEvent(event)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.EVENT,
+              'success',
+            );
+            this.router.navigate(['./evento']);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.EVENT,
+              'error',
+            );
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }

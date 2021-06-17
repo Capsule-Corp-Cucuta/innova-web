@@ -25,6 +25,15 @@
     </div>
 
     <table *ngIf="!isLoading" mat-table [dataSource]="client" matSort class="table--content">
+      <ng-container matColumnDef="consultantId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.CONSULTANT }}
+        </th>
+        <td mat-cell *matCellDef="let client">
+          {{ client.consultantId }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.BUSINESS_TYPE }}

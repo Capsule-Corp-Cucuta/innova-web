@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -24,9 +25,10 @@ export class FormComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public idUser: string;
   public check: boolean;
-  public authority: string;
-  public isAccompaniment = false;
   public isLoading = false;
+  public authority: string;
+  public showComponent = false;
+  public isAccompaniment = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -54,17 +56,24 @@ export class FormComponent implements OnInit, OnDestroy {
   public validateIsCreateForm(): void {
     this.activeRoute.params.subscribe((params: Params) => {
       this.idUser = params.id;
-      this.service.findByIdUser(this.idUser).subscribe((resp) => {
-        this.form.patchValue(resp);
-        this.validateInput(true);
-      });
+      this.service
+        .findByIdUser(this.idUser)
+        .pipe(
+          finalize(() => {
+            this.showComponent = true;
+          }),
+        )
+        .subscribe((resp) => {
+          this.form.patchValue(resp);
+          this.validateInput(true);
+        });
     });
   }
 
   public validateAccompaniment(authority: string): void {
     if (authority === SharedConstants.ROLES.CONTACT) {
       const subscription = this.service.findByIDContact(this.idUser).subscribe((resp) => {
-        this.isAccompaniment = resp.requestAccompaniment == true ? false : true;
+        this.isAccompaniment = !resp.requestAccompaniment === true;
       });
       this.subscriptions.push(subscription);
     }
@@ -77,31 +86,36 @@ export class FormComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       const user = this.form.value;
       this.isLoading = true;
-      const subscription = this.service.updateUser(user).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.USER,
-            'success',
-          );
-          if (this.check) {
-            this.service.requestAccompaniment(this.idUser).subscribe(() => {
-              this.validateAccompaniment(this.authority);
-            });
-          }
-          this.validateInput(true);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.USER,
-            'error',
-          );
-          this.validateInput(true);
-        },
-      );
+      const subscription = this.service
+        .updateUser(user)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.USER,
+              'success',
+            );
+            if (this.check) {
+              this.service.requestAccompaniment(this.idUser).subscribe(() => {
+                this.validateAccompaniment(this.authority);
+              });
+            }
+            this.validateInput(true);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.USER,
+              'error',
+            );
+            this.validateInput(true);
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }

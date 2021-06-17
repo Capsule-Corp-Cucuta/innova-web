@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -33,8 +34,8 @@ export class FormComponent implements OnInit, OnDestroy {
 
   public step = 0;
   public form: FormGroup;
-  public isWatch: boolean;
   public isLoading = false;
+  public showComponent = false;
 
   private client: Client;
   private subscriptions: Subscription[] = [];
@@ -49,7 +50,7 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.validateIsCreateForm();
+    this.initializeData();
   }
 
   ngOnDestroy(): void {
@@ -58,15 +59,21 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
-  public validateIsCreateForm(): void {
+  public initializeData(): void {
     this.activeRoute.params.subscribe((params: Params) => {
-      this.isWatch = !params.id;
       const idClient = params.id;
-      this.service.findByIDClient(idClient).subscribe((resp) => {
-        this.client = resp;
-        this.form.patchValue(resp);
-        this.validateInput(true);
-      });
+      this.service
+        .findByIDClient(idClient)
+        .pipe(
+          finalize(() => {
+            this.showComponent = true;
+          }),
+        )
+        .subscribe((resp) => {
+          this.client = resp;
+          this.form.patchValue(resp);
+          this.validateInput(true);
+        });
     });
   }
 
@@ -77,26 +84,31 @@ export class FormComponent implements OnInit, OnDestroy {
       const client = this.form.value;
       client.consultantId = this.client.consultantId;
       this.isLoading = true;
-      const subscription = this.service.updateClient(client).subscribe(
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTSUCCESS.TITLE,
-            SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.CLIENT,
-            'success',
-          );
-          this.router.navigate(['./cliente']);
-        },
-        () => {
-          this.isLoading = false;
-          Swal.fire(
-            SharedConstants.ALERTERROR.TITLE,
-            SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.CLIENT,
-            'error',
-          );
-          this.validateInput(true);
-        },
-      );
+      const subscription = this.service
+        .updateClient(client)
+        .pipe(
+          finalize(() => {
+            this.isLoading = false;
+          }),
+        )
+        .subscribe(
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTSUCCESS.TITLE,
+              SharedConstants.ALERTSUCCESS.TEXTUPDATE + SharedConstants.ALERTSUCCESS.CLIENT,
+              'success',
+            );
+            this.router.navigate(['./cliente']);
+          },
+          () => {
+            Swal.fire(
+              SharedConstants.ALERTERROR.TITLE,
+              SharedConstants.ALERTERROR.TEXTUPDATE + SharedConstants.ALERTERROR.CLIENT,
+              'error',
+            );
+            this.validateInput(true);
+          },
+        );
       this.subscriptions.push(subscription);
     }
   }

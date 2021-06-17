@@ -1,10 +1,13 @@
-<section class="page">
+<div class="form-spinner" *ngIf="!showComponent">
+  <mat-spinner color="primary" diameter="70"></mat-spinner>
+</div>
+
+<section *ngIf="showComponent" class="page">
   <mat-card class="mat-elevation-z8 card">
     <mat-card-header class="header">
       <mat-card-title class="header__title">
         <mat-icon class="header__title--icon">{{ ICONS.PERSON }}</mat-icon>
-        <p *ngIf="isWatch" class="header__title--text">{{ LABELS.TITLE }}</p>
-        <p *ngIf="!isWatch" class="header__title--text">
+        <p class="header__title--text">
           {{ LABELS.TITLE_UPDATE }}
         </p>
       </mat-card-title>
@@ -454,7 +457,6 @@
           <span>{{ LABELS.BACK_BUTTON }}</span>
         </button>
         <button
-          *ngIf="!isWatch"
           mat-raised-button
           color="primary"
           class="form__actions--button"

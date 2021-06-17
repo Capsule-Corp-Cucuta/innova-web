@@ -1,5 +1,13 @@
 @import 'colors';
 
+.form-spinner {
+  align-items: center;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  width: 100%;
+}
+
 .page {
   align-items: center;
   display: flex;
@@ -59,13 +67,10 @@
   &__actions {
     display: flex;
     justify-content: space-around;
+    margin: 3rem 0 0;
 
     &--button {
       width: 25rem;
-    }
-
-    @media (max-width: 480px) {
-
     }
   }
 
@@ -100,4 +105,8 @@
       }
     }
   }
+}
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: $disabled-back;
 }
