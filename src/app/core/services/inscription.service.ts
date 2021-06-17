@@ -28,4 +28,8 @@ export class InscriptionService {
   public findInscriptionsByEvent(id: number): Observable<Inscription[]> {
     return this.http.get<Inscription[]>(InscriptionService.ENDPOINT + '/event/' + id);
   }
+
+  public deleteInscriptToEvent(idUser: string, idEvent: number): Observable<Response> {
+    return this.http.delete<Response>(InscriptionService.ENDPOINT + '/event/' + idEvent + '/user/' + idUser);
+  }
 }

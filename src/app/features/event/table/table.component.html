@@ -6,11 +6,12 @@
     <mat-divider></mat-divider>
 
     <mat-card class="page__header">
-      <mat-form-field>
+      <mat-form-field class="search-input">
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
       <button
+        class="button-export"
         mat-stroked-button
         (click)="exportAsXLSX()"
         matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
@@ -21,7 +22,11 @@
       </button>
     </mat-card>
 
-    <table mat-table [dataSource]="events" matSort class="table--content">
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+
+    <table *ngIf="!isLoading" mat-table [dataSource]="events" matSort class="table--content">
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.TITLE }}
@@ -129,9 +134,6 @@
         <td class="mat-cell" colspan="12">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[12]"></mat-paginator>
   </div>
 </section>

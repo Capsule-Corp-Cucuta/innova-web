@@ -86,7 +86,7 @@ export class SignupComponent implements OnDestroy {
       companyCity: [null],
       companyDepartment: [null, [Validators.maxLength(10)]],
       companyPhone: [null, [Validators.maxLength(10)]],
-      companyCellPhone: [null, [Validators.maxLength(10)]],
+      companyCellphone: [null, [Validators.maxLength(10)]],
       companyEmail: [null, [Validators.email]],
       companyWebsite: [null],
       registrationDate: [new Date()],

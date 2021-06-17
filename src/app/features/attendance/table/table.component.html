@@ -1,15 +1,19 @@
-<section class="page">
+<div class="table-spinner" *ngIf="isLoading">
+  <mat-spinner color="primary" diameter="70"></mat-spinner>
+</div>
+
+<section *ngIf="!isLoading" class="page">
   <div class="mat-elevation-z8 table">
     <mat-card class="page__header">
-      <h3>{{ LABELS.TITLE }} {{ eventId }}</h3>
+      <h3>{{ LABELS.TITLE }} {{ event.title }}</h3>
     </mat-card>
     <mat-divider></mat-divider>
-    <mat-card class="page__header">
-      <mat-form-field>
+    <mat-card class="page__header-attendance">
+      <mat-form-field class="search-input">
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <div class="page__header--group">
+      <div class="page__header-attendance--group">
         <button
           mat-stroked-button
           (click)="selected()"
@@ -60,9 +64,6 @@
         <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[12]"></mat-paginator>
   </div>
 </section>

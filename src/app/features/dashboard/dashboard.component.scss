@@ -27,6 +27,7 @@
   .mat-nav-list a mat-icon {
     font-size: 2rem;
   }
+
   .mat-nav-list a span {
     font-size: 1.5rem;
     margin-left: 0.3rem;
@@ -54,11 +55,12 @@
   padding-top: 1.2rem;
   width: 15rem;
 }
+
 .id-user {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   font-size: 1.2rem;
+  justify-content: center;
   padding: 1rem;
 }
 @media (min-width: 480px) {

@@ -1,4 +1,8 @@
-<section class="page">
+<div class="form-spinner" *ngIf="!showComponent">
+  <mat-spinner color="primary" diameter="70"></mat-spinner>
+</div>
+
+<section *ngIf="showComponent" class="page">
   <mat-card class="mat-elevation-z8 card">
     <mat-card-header class="header">
       <mat-card-title class="header__title">
@@ -71,7 +75,7 @@
               matInput
               type="number"
               placeholder="{{ LABELS.PLACEHOLDER.PREPARATION }}"
-              formControlName="preparationTypeInHours"
+              formControlName="preparationTimeInHours"
             />
           </mat-form-field>
         </div>
@@ -85,7 +89,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field class="form__content--group--item">
+          <mat-form-field *ngIf="!isCreate" class="form__content--group--item">
             <mat-select placeholder="{{ LABELS.PLACEHOLDER.STATE }}" formControlName="state">
               <mat-option *ngFor="let op of ADVISORY_STATE" [value]="op.value">
                 {{ op.value | AdvisoryState }}
@@ -111,7 +115,7 @@
       </mat-card-content>
 
       <mat-card-actions class="form__actions">
-        <button mat-raised-button routerLink="/{{ ROUTES.ADVISORY }}">
+        <button class="form__actions--button" mat-raised-button routerLink="/{{ ROUTES.ADVISORY }}">
           <span>{{ LABELS.BACK_BUTTON }}</span>
         </button>
 

@@ -51,6 +51,7 @@
     color: $accent-red;
     line-height: 1.4rem;
     margin-right: 0.5rem;
+    margin-top: 1rem;
     min-width: auto;
     padding: 0.5rem;
     position: absolute;
@@ -67,8 +68,9 @@
     &--group {
       display: flex;
       justify-content: space-between;
+
       &--item {
-        flex: 1 1 0px;
+        flex: 1 1 0;
         padding: 5px;
       }
     }
@@ -77,10 +79,12 @@
   &__actions {
     display: flex;
     justify-content: space-around;
+
     &--button {
       width: 25rem;
     }
   }
+
   .span {
     &__justify {
       text-align: justify;
@@ -89,7 +93,7 @@
 }
 
 .error {
-  color: #e74c3c;
+  color: $accent-red;
   display: flex;
   justify-content: center;
 }
@@ -108,6 +112,7 @@
       }
     }
   }
+
   .card {
     width: 30rem;
   }

@@ -1,5 +1,13 @@
 @import 'colors';
 
+.form-spinner {
+  align-items: center;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  width: 100%;
+}
+
 .page {
   align-items: center;
   display: flex;
@@ -48,9 +56,10 @@
     &--group {
       display: flex;
       justify-content: space-between;
+
       &--item {
+        flex: 1 1 0;
         padding: 5px;
-        flex: 1 1 0px;
       }
     }
   }
@@ -58,11 +67,13 @@
   &__actions {
     display: flex;
     justify-content: space-around;
+    margin: 3rem 0 0;
 
     &--button {
       width: 25rem;
     }
   }
+
   .span {
     &__justify {
       text-align: justify;
@@ -79,6 +90,7 @@
     justify-content: space-between;
   }
 }
+
 @media (max-width: 480px) {
   .card {
     width: 28rem;
@@ -87,9 +99,14 @@
   .form {
     &__content {
       display: grid;
+
       &--group {
         flex-direction: column;
       }
     }
   }
+}
+
+.mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: $disabled-back;
 }

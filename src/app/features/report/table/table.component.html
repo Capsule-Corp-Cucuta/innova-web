@@ -4,8 +4,8 @@
       <h3>{{ LABELS.TITLE }}</h3>
     </mat-card>
     <mat-divider></mat-divider>
-    <mat-card class="page__header">
-      <div class="page__header--group">
+    <mat-card class="page__header-report">
+      <div class="page__header-report--group">
         <mat-form-field class="page__header--group--item" *ngIf="authority == ROLES.ADMIN">
           <mat-select placeholder="{{ LABELS.CONSULTANT }}" [(ngModel)]="consultantId">
             <mat-option *ngFor="let op of consultants" [value]="op.id"> {{ op.name }} {{ op.lastname }} </mat-option>
@@ -22,7 +22,7 @@
         <button
           mat-stroked-button
           color="success"
-          class="page__header--group--item"
+          class="page__header-report--item-button"
           matTooltip="{{ LABELS.TOOLTIP.SEARCH }}"
           (click)="loadReport($event)"
         >
@@ -31,7 +31,7 @@
         <button
           mat-stroked-button
           color="accent"
-          class="page__header--group--item"
+          class="page__header-report--item-button"
           matTooltip="{{ LABELS.TOOLTIP.CLEAR }}"
           (click)="clear()"
         >
@@ -42,12 +42,11 @@
             {{ LABELS.ERROR_CONSULTANT }}
           </p>
         </div>
-      </div>
-      <div class="page__header--group">
+
         <button
           mat-stroked-button
           color="primary"
-          class="page__header--group--item"
+          class="page__header-report--item-button button-export"
           matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
           (click)="exportAsXLSX()"
         >
@@ -56,13 +55,17 @@
       </div>
     </mat-card>
 
-    <table mat-table [dataSource]="reports" class="table--content">
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+
+    <table *ngIf="!isLoading" mat-table [dataSource]="reports" class="table--content">
       <ng-container matColumnDef="consultant">
         <th mat-header-cell *matHeaderCellDef>
           {{ LABELS.CELLS.CONSULTANT }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.consultant }}
+          {{ report.asesor }}
         </td>
       </ng-container>
 
@@ -71,7 +74,7 @@
           {{ LABELS.CELLS.START_DATE }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.startDate }}
+          {{ report.fecha_inicial }}
         </td>
       </ng-container>
 
@@ -79,7 +82,7 @@
         <th mat-header-cell *matHeaderCellDef>
           {{ LABELS.CELLS.CLOSE_DATE }}
         </th>
-        <td mat-cell *matCellDef="let report">{{ report.closeDate }}</td>
+        <td mat-cell *matCellDef="let report">{{ report.fecha_fin }}</td>
       </ng-container>
 
       <ng-container matColumnDef="hour">
@@ -87,15 +90,12 @@
           {{ LABELS.CELLS.HOUR }}
         </th>
         <td mat-cell *matCellDef="let report">
-          {{ report.hour }}
+          {{ report.horas }}
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="LABELS.COLUMNS"></tr>
       <tr mat-row *matRowDef="let row; columns: LABELS.COLUMNS"></tr>
     </table>
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
   </div>
 </section>

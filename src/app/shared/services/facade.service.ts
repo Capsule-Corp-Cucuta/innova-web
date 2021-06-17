@@ -338,6 +338,10 @@ export class FacadeService {
     return this.inscriptionService.findInscriptionsByEvent(eventId);
   }
 
+  public deleteInscriptToEvent(idUser: string, idEvent: number): Observable<Response> {
+    return this.inscriptionService.deleteInscriptToEvent(idUser, idEvent);
+  }
+
   /**
    * Export Excel methods
    */

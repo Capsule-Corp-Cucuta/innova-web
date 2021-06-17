@@ -96,12 +96,13 @@
         <span> {{ event.email }}</span>
       </div>
 
-      <div *ngIf="event.link">
+      <div *ngIf="event.link && showButtonDesist">
         <span>
-          <a href="{{ event.link }}" target="_blank">
-            <b>{{ LABELS.PLACEHOLDER.WEBSITE }}</b>
-          </a>
+          <b>{{ LABELS.PLACEHOLDER.WEBSITE }} </b>
         </span>
+        <a href="{{ event.link }}" target="_blank">
+          <b>{{ LABELS.PLACEHOLDER.GO_TO_WEBSITE }}</b>
+        </a>
       </div>
       <div class="header__justify" *ngIf="event.description">
         <span>
@@ -125,6 +126,19 @@
           <mat-spinner color="accent" diameter="30"></mat-spinner>
         </div>
         <span *ngIf="!isLoading">{{ LABELS.INSCRIPTION_BUTTON }}</span>
+      </button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="desistEvent()"
+        *ngIf="showButtonDesist"
+        class="form__actions--button"
+      >
+        <div class="button-spinner" *ngIf="isLoading">
+          <mat-spinner color="accent" diameter="30"></mat-spinner>
+        </div>
+        <span *ngIf="!isLoading">{{ LABELS.DESIST_BUTTON }}</span>
       </button>
     </mat-card-actions>
   </mat-card>

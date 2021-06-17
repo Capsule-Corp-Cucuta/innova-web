@@ -5,16 +5,35 @@
     </mat-card>
     <mat-divider></mat-divider>
     <mat-card class="page__header">
-      <mat-form-field>
+      <mat-form-field class="search-input">
         <mat-label>{{ LABELS.FILTER }}</mat-label>
         <input matInput (keyup)="applyFilter()" placeholder="{{ LABELS.SEARCH }}" [(ngModel)]="filter" #input />
       </mat-form-field>
-      <button mat-stroked-button (click)="exportAsXLSX()" matTooltip="{{ LABELS.TOOLTIP.EXPORT }}" color="primary">
+      <button
+        class="button-export"
+        mat-stroked-button
+        (click)="exportAsXLSX()"
+        matTooltip="{{ LABELS.TOOLTIP.EXPORT }}"
+        color="primary"
+      >
         <mat-icon>{{ ICONS.EXPORT }}</mat-icon>
       </button>
     </mat-card>
 
-    <table mat-table [dataSource]="consultant" matSort class="table--content">
+    <div class="table-spinner" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="70"></mat-spinner>
+    </div>
+
+    <table *ngIf="!isLoading" mat-table [dataSource]="consultant" matSort class="table--content">
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ LABELS.CELLS.CODE }}
+        </th>
+        <td mat-cell *matCellDef="let consultant">
+          {{ consultant.code }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ LABELS.CELLS.IDENTIFICATION_CARD }}
@@ -101,9 +120,6 @@
         <td class="mat-cell" colspan="4">{{ LABELS.NOT_DATA }}</td>
       </tr>
     </table>
-    <div class="table-spinner" *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="70"></mat-spinner>
-    </div>
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[12]"></mat-paginator>
   </div>
 </section>

@@ -80,7 +80,7 @@ export class SharedConstants {
     ADVISORYTYPE: {
       INITIAL: 'Inicial',
       FOLLOW_UP: 'Seguimiento',
-      CLOSING: 'Clausura',
+      CLOSING: 'Cierre',
     },
     ADVISORYAREA: {
       BUSINESS_PLAN: 'Plan de negocios',
@@ -130,6 +130,7 @@ export class SharedConstants {
     TEXTENABLE: 'Se activo ',
     TEXTEMAIL: 'Se ha enviado contraseña al correo electrónico ingresado.',
     TEXTCHANGE: 'Se ha cambiado la contraseña.',
+    TEXTDESIST: 'Se ha cancelado la inscripcion al evento',
     ADVISER: ' la asesoria',
     CLIENT: ' el cliente',
     CONSULTANT: ' el asesor',
@@ -151,6 +152,7 @@ export class SharedConstants {
     TEXTENABLE: 'Se ha producido un error acitvando el ',
     TEXTEMAIL: 'Se ha producido un error al enviar correo',
     TEXTCHANGE: 'Se ha producido un error al cambiar la contraseña',
+    TEXTDESIST: 'Se ha producido un error al desistir del evento',
     ADVISER: ' la asesoria',
     CLIENT: ' el cliente',
     CONSULTANT: ' el asesor',

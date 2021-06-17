@@ -13,6 +13,7 @@ export class AdvisoryTypePipe implements PipeTransform {
       case 1:
       case 'SEGUIMIENTO':
         return SharedConstants.PIPES.ADVISORYTYPE.FOLLOW_UP;
+      case 'DE_CIERRE':
       default:
         return SharedConstants.PIPES.ADVISORYTYPE.CLOSING;
     }
