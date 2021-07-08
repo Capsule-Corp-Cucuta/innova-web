@@ -67,7 +67,7 @@ export class TableComponent implements OnInit, OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe(() => {
-        this.loadDataAdmin();
+        this.loadData();
       });
     }
   }
